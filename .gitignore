@@ -4,6 +4,7 @@ CLAUDE.md
 .cursorrules
 .cursor/
 .github/copilot-instructions.md
+.serena
 
 # Dependencies
 node_modules

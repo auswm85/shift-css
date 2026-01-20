@@ -1,0 +1,227 @@
+/**
+ * Shift CSS - Visibility & State Utilities (Thematic)
+ *
+ * Semantic attribute selectors for visibility states.
+ * These define the "state" of elements.
+ *
+ * Usage:
+ *   <div s-hidden>Hidden element</div>
+ *   <span s-sr-only>Screen reader only</span>
+ *   <div s-hide-on="sm">Hide on small screens</div>
+ *   <div s-truncate>Truncated text...</div>
+ */
+
+/* =============================================================================
+   VISIBILITY STATES
+   ============================================================================= */
+
+[s-hidden] {
+  display: none;
+}
+
+[s-visible] {
+  visibility: visible;
+}
+
+[s-invisible] {
+  visibility: hidden;
+}
+
+[s-collapse] {
+  visibility: collapse;
+}
+
+/* =============================================================================
+   SCREEN READER UTILITIES
+   ============================================================================= */
+
+/* Visually hidden but accessible to screen readers */
+[s-sr-only] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Remove sr-only (for focus states) */
+[s-sr-only="focusable"]:focus,
+[s-sr-only="focusable"]:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* =============================================================================
+   TEXT OVERFLOW
+   ============================================================================= */
+
+[s-truncate] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[s-truncate="2"] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+[s-truncate="3"] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+[s-truncate="4"] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* =============================================================================
+   OVERFLOW CONTROL
+   ============================================================================= */
+
+[s-overflow="auto"] {
+  overflow: auto;
+}
+
+[s-overflow="hidden"] {
+  overflow: hidden;
+}
+
+[s-overflow="visible"] {
+  overflow: visible;
+}
+
+[s-overflow="scroll"] {
+  overflow: scroll;
+}
+
+[s-overflow-x="auto"] {
+  overflow-x: auto;
+}
+
+[s-overflow-x="hidden"] {
+  overflow-x: hidden;
+}
+
+[s-overflow-y="auto"] {
+  overflow-y: auto;
+}
+
+[s-overflow-y="hidden"] {
+  overflow-y: hidden;
+}
+
+/* =============================================================================
+   RESPONSIVE VISIBILITY
+   ============================================================================= */
+
+/* Hide on breakpoints */
+@media (width < 640px) {
+  [s-hide-on~="sm"] {
+    display: none;
+  }
+}
+
+@media (width >= 640px) and (width < 768px) {
+  [s-hide-on~="md"] {
+    display: none;
+  }
+}
+
+@media (width >= 768px) and (width < 1024px) {
+  [s-hide-on~="lg"] {
+    display: none;
+  }
+}
+
+@media (width >= 1024px) {
+  [s-hide-on~="xl"] {
+    display: none;
+  }
+}
+
+/* Show only on breakpoints */
+@media (width >= 640px) {
+  [s-show-on~="sm"] {
+    display: none;
+  }
+}
+
+@media (width < 640px), (width >= 768px) {
+  [s-show-on~="md"] {
+    display: none;
+  }
+}
+
+@media (width < 768px), (width >= 1024px) {
+  [s-show-on~="lg"] {
+    display: none;
+  }
+}
+
+@media (width < 1024px) {
+  [s-show-on~="xl"] {
+    display: none;
+  }
+}
+
+/* =============================================================================
+   POINTER EVENTS
+   ============================================================================= */
+
+[s-pointer="none"] {
+  pointer-events: none;
+}
+
+[s-pointer="auto"] {
+  pointer-events: auto;
+}
+
+/* =============================================================================
+   USER SELECT
+   ============================================================================= */
+
+[s-select="none"] {
+  user-select: none;
+}
+
+[s-select="text"] {
+  user-select: text;
+}
+
+[s-select="all"] {
+  user-select: all;
+}
+
+[s-select="auto"] {
+  user-select: auto;
+}
+
+/* =============================================================================
+   ISOLATION (for stacking contexts)
+   ============================================================================= */
+
+[s-isolate] {
+  isolation: isolate;
+}
+
+[s-isolate="auto"] {
+  isolation: auto;
+}

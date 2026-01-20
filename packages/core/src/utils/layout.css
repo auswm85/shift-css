@@ -1,0 +1,399 @@
+/**
+ * Shift CSS - Layout Utilities (Structural)
+ *
+ * Semantic attribute selectors for layout patterns.
+ * These define the "skeleton" of your UI.
+ *
+ * Usage:
+ *   <div s-flex>Flex container</div>
+ *   <div s-flex="col">Vertical stack</div>
+ *   <div s-flex="center">Centered content</div>
+ *   <div s-grid="3">3-column grid</div>
+ *   <div s-gap="md">Consistent spacing</div>
+ *   <div s-container>Centered container</div>
+ */
+
+/* =============================================================================
+   FLEX LAYOUT
+   ============================================================================= */
+
+/* Base flex - just enables flexbox */
+[s-flex] {
+  display: flex;
+}
+
+/* Flex direction variants */
+[s-flex="row"] {
+  display: flex;
+  flex-direction: row;
+}
+
+[s-flex="col"] {
+  display: flex;
+  flex-direction: column;
+}
+
+[s-flex="row-reverse"] {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+[s-flex="col-reverse"] {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* Common flex patterns */
+[s-flex="center"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[s-flex="stack"] {
+  display: flex;
+  flex-direction: column;
+}
+
+[s-flex="between"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[s-flex="end"] {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Flex wrap */
+[s-flex~="wrap"] {
+  flex-wrap: wrap;
+}
+
+[s-flex~="nowrap"] {
+  flex-wrap: nowrap;
+}
+
+/* =============================================================================
+   FLEX ALIGNMENT (composable modifiers)
+   ============================================================================= */
+
+/* Justify content */
+[s-justify="start"] {
+  justify-content: flex-start;
+}
+
+[s-justify="end"] {
+  justify-content: flex-end;
+}
+
+[s-justify="center"] {
+  justify-content: center;
+}
+
+[s-justify="between"] {
+  justify-content: space-between;
+}
+
+[s-justify="around"] {
+  justify-content: space-around;
+}
+
+[s-justify="evenly"] {
+  justify-content: space-evenly;
+}
+
+/* Align items */
+[s-items="start"] {
+  align-items: flex-start;
+}
+
+[s-items="end"] {
+  align-items: flex-end;
+}
+
+[s-items="center"] {
+  align-items: center;
+}
+
+[s-items="baseline"] {
+  align-items: baseline;
+}
+
+[s-items="stretch"] {
+  align-items: stretch;
+}
+
+/* Align content (for wrapped flex) */
+[s-content="start"] {
+  align-content: flex-start;
+}
+
+[s-content="end"] {
+  align-content: flex-end;
+}
+
+[s-content="center"] {
+  align-content: center;
+}
+
+[s-content="between"] {
+  align-content: space-between;
+}
+
+[s-content="around"] {
+  align-content: space-around;
+}
+
+/* =============================================================================
+   GRID LAYOUT
+   ============================================================================= */
+
+/* Base grid - just enables grid */
+[s-grid] {
+  display: grid;
+}
+
+/* Grid column variants */
+[s-grid="1"] {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+[s-grid="2"] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+[s-grid="3"] {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+[s-grid="4"] {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+[s-grid="5"] {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+[s-grid="6"] {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+[s-grid="12"] {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+/* Auto-fit grid - responsive without media queries */
+[s-grid="auto-fit"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+[s-grid="auto-fill"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+}
+
+/* Grid rows */
+[s-grid-rows="1"] {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+
+[s-grid-rows="2"] {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+[s-grid-rows="3"] {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+[s-grid-rows="4"] {
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+/* =============================================================================
+   GRID SPAN (for children)
+   ============================================================================= */
+
+[s-col-span="1"] {
+  grid-column: span 1 / span 1;
+}
+
+[s-col-span="2"] {
+  grid-column: span 2 / span 2;
+}
+
+[s-col-span="3"] {
+  grid-column: span 3 / span 3;
+}
+
+[s-col-span="4"] {
+  grid-column: span 4 / span 4;
+}
+
+[s-col-span="6"] {
+  grid-column: span 6 / span 6;
+}
+
+[s-col-span="12"] {
+  grid-column: span 12 / span 12;
+}
+
+[s-col-span="full"] {
+  grid-column: 1 / -1;
+}
+
+[s-row-span="1"] {
+  grid-row: span 1 / span 1;
+}
+
+[s-row-span="2"] {
+  grid-row: span 2 / span 2;
+}
+
+[s-row-span="3"] {
+  grid-row: span 3 / span 3;
+}
+
+[s-row-span="full"] {
+  grid-row: 1 / -1;
+}
+
+/* =============================================================================
+   GAP (Designer's Tool - semantic spacing)
+   ============================================================================= */
+
+/* Base gap - applies default medium spacing */
+[s-gap] {
+  gap: var(--s-space-4);
+}
+
+/* Gap size variants */
+[s-gap="xs"] {
+  gap: var(--s-space-1);
+}
+
+[s-gap="sm"] {
+  gap: var(--s-space-2);
+}
+
+[s-gap="md"] {
+  gap: var(--s-space-4);
+}
+
+[s-gap="lg"] {
+  gap: var(--s-space-6);
+}
+
+[s-gap="xl"] {
+  gap: var(--s-space-8);
+}
+
+[s-gap="none"] {
+  gap: 0;
+}
+
+/* =============================================================================
+   CONTAINER
+   ============================================================================= */
+
+[s-container] {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--s-space-4);
+  max-width: var(--s-container-max, 80rem);
+}
+
+[s-container="sm"] {
+  max-width: 40rem;
+}
+
+[s-container="md"] {
+  max-width: 48rem;
+}
+
+[s-container="lg"] {
+  max-width: 64rem;
+}
+
+[s-container="xl"] {
+  max-width: 80rem;
+}
+
+[s-container="full"] {
+  max-width: 100%;
+}
+
+[s-container="prose"] {
+  max-width: 65ch;
+}
+
+/* =============================================================================
+   POSITION
+   ============================================================================= */
+
+[s-position="static"] {
+  position: static;
+}
+
+[s-position="relative"] {
+  position: relative;
+}
+
+[s-position="absolute"] {
+  position: absolute;
+}
+
+[s-position="fixed"] {
+  position: fixed;
+}
+
+[s-position="sticky"] {
+  position: sticky;
+}
+
+/* Common position patterns */
+[s-inset="0"] {
+  inset: 0;
+}
+
+[s-inset="auto"] {
+  inset: auto;
+}
+
+/* =============================================================================
+   DISPLAY (for non-flex/grid cases)
+   ============================================================================= */
+
+[s-display="block"] {
+  display: block;
+}
+
+[s-display="inline"] {
+  display: inline;
+}
+
+[s-display="inline-block"] {
+  display: inline-block;
+}
+
+[s-display="contents"] {
+  display: contents;
+}
+
+[s-display="inline-flex"] {
+  display: inline-flex;
+}
+
+[s-display="inline-grid"] {
+  display: inline-grid;
+}

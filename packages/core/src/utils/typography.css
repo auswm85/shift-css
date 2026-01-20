@@ -2,427 +2,427 @@
  * Shift CSS - Typography Utilities
  *
  * Text styling, alignment, and color utilities.
+ * Namespaced with `s-` prefix.
  */
 
-/* Font family */
-.font-sans {
-  font-family: var(--font-sans);
+/* =============================================================================
+   FONT FAMILY
+   ============================================================================= */
+
+.s-font-sans {
+  font-family: var(--s-font-sans);
 }
-.font-serif {
-  font-family: var(--font-serif);
+.s-font-serif {
+  font-family: var(--s-font-serif);
 }
-.font-mono {
-  font-family: var(--font-mono);
+.s-font-mono {
+  font-family: var(--s-font-mono);
 }
 
-/* Font size */
-.text-xs {
-  font-size: var(--text-xs);
+/* =============================================================================
+   FONT SIZE
+   ============================================================================= */
+
+.s-text-xs {
+  font-size: var(--s-text-xs);
 }
-.text-sm {
-  font-size: var(--text-sm);
+.s-text-sm {
+  font-size: var(--s-text-sm);
 }
-.text-base {
-  font-size: var(--text-base);
+.s-text-base {
+  font-size: var(--s-text-base);
 }
-.text-lg {
-  font-size: var(--text-lg);
+.s-text-lg {
+  font-size: var(--s-text-lg);
 }
-.text-xl {
-  font-size: var(--text-xl);
+.s-text-xl {
+  font-size: var(--s-text-xl);
 }
-.text-2xl {
-  font-size: var(--text-2xl);
+.s-text-2xl {
+  font-size: var(--s-text-2xl);
 }
-.text-3xl {
-  font-size: var(--text-3xl);
+.s-text-3xl {
+  font-size: var(--s-text-3xl);
 }
-.text-4xl {
-  font-size: var(--text-4xl);
+.s-text-4xl {
+  font-size: var(--s-text-4xl);
 }
-.text-5xl {
-  font-size: var(--text-5xl);
+.s-text-5xl {
+  font-size: var(--s-text-5xl);
 }
 
-/* Font weight */
-.font-thin {
-  font-weight: var(--font-thin);
+/* =============================================================================
+   FONT WEIGHT
+   ============================================================================= */
+
+.s-font-thin {
+  font-weight: var(--s-font-thin);
 }
-.font-extralight {
-  font-weight: var(--font-extralight);
+.s-font-extralight {
+  font-weight: var(--s-font-extralight);
 }
-.font-light {
-  font-weight: var(--font-light);
+.s-font-light {
+  font-weight: var(--s-font-light);
 }
-.font-normal {
-  font-weight: var(--font-normal);
+.s-font-normal {
+  font-weight: var(--s-font-normal);
 }
-.font-medium {
-  font-weight: var(--font-medium);
+.s-font-medium {
+  font-weight: var(--s-font-medium);
 }
-.font-semibold {
-  font-weight: var(--font-semibold);
+.s-font-semibold {
+  font-weight: var(--s-font-semibold);
 }
-.font-bold {
-  font-weight: var(--font-bold);
+.s-font-bold {
+  font-weight: var(--s-font-bold);
 }
-.font-extrabold {
-  font-weight: var(--font-extrabold);
+.s-font-extrabold {
+  font-weight: var(--s-font-extrabold);
 }
-.font-black {
-  font-weight: var(--font-black);
+.s-font-black {
+  font-weight: var(--s-font-black);
 }
 
-/* Line height */
-.leading-none {
-  line-height: var(--leading-none);
+/* =============================================================================
+   LINE HEIGHT
+   ============================================================================= */
+
+.s-leading-none {
+  line-height: var(--s-leading-none);
 }
-.leading-tight {
-  line-height: var(--leading-tight);
+.s-leading-tight {
+  line-height: var(--s-leading-tight);
 }
-.leading-snug {
-  line-height: var(--leading-snug);
+.s-leading-snug {
+  line-height: var(--s-leading-snug);
 }
-.leading-normal {
-  line-height: var(--leading-normal);
+.s-leading-normal {
+  line-height: var(--s-leading-normal);
 }
-.leading-relaxed {
-  line-height: var(--leading-relaxed);
+.s-leading-relaxed {
+  line-height: var(--s-leading-relaxed);
 }
-.leading-loose {
-  line-height: var(--leading-loose);
+.s-leading-loose {
+  line-height: var(--s-leading-loose);
 }
 
-/* Letter spacing */
-.tracking-tighter {
-  letter-spacing: var(--tracking-tighter);
+/* =============================================================================
+   LETTER SPACING
+   ============================================================================= */
+
+.s-tracking-tighter {
+  letter-spacing: var(--s-tracking-tighter);
 }
-.tracking-tight {
-  letter-spacing: var(--tracking-tight);
+.s-tracking-tight {
+  letter-spacing: var(--s-tracking-tight);
 }
-.tracking-normal {
-  letter-spacing: var(--tracking-normal);
+.s-tracking-normal {
+  letter-spacing: var(--s-tracking-normal);
 }
-.tracking-wide {
-  letter-spacing: var(--tracking-wide);
+.s-tracking-wide {
+  letter-spacing: var(--s-tracking-wide);
 }
-.tracking-wider {
-  letter-spacing: var(--tracking-wider);
+.s-tracking-wider {
+  letter-spacing: var(--s-tracking-wider);
 }
-.tracking-widest {
-  letter-spacing: var(--tracking-widest);
+.s-tracking-widest {
+  letter-spacing: var(--s-tracking-widest);
 }
 
-/* Text alignment */
-.text-left {
+/* =============================================================================
+   TEXT ALIGNMENT
+   ============================================================================= */
+
+.s-text-left {
   text-align: left;
 }
-.text-center {
+.s-text-center {
   text-align: center;
 }
-.text-right {
+.s-text-right {
   text-align: right;
 }
-.text-justify {
+.s-text-justify {
   text-align: justify;
 }
-.text-start {
+.s-text-start {
   text-align: start;
 }
-.text-end {
+.s-text-end {
   text-align: end;
 }
 
-/* Vertical alignment */
-.align-baseline {
+/* =============================================================================
+   VERTICAL ALIGNMENT
+   ============================================================================= */
+
+.s-align-baseline {
   vertical-align: baseline;
 }
-.align-top {
+.s-align-top {
   vertical-align: top;
 }
-.align-middle {
+.s-align-middle {
   vertical-align: middle;
 }
-.align-bottom {
+.s-align-bottom {
   vertical-align: bottom;
 }
-.align-text-top {
+.s-align-text-top {
   vertical-align: text-top;
 }
-.align-text-bottom {
+.s-align-text-bottom {
   vertical-align: text-bottom;
 }
-.align-sub {
+.s-align-sub {
   vertical-align: sub;
 }
-.align-super {
+.s-align-super {
   vertical-align: super;
 }
 
-/* Text decoration */
-.underline {
+/* =============================================================================
+   TEXT DECORATION
+   ============================================================================= */
+
+.s-underline {
   text-decoration-line: underline;
 }
-.overline {
+.s-overline {
   text-decoration-line: overline;
 }
-.line-through {
+.s-line-through {
   text-decoration-line: line-through;
 }
-.no-underline {
+.s-no-underline {
   text-decoration-line: none;
 }
 
 /* Text decoration style */
-.decoration-solid {
+.s-decoration-solid {
   text-decoration-style: solid;
 }
-.decoration-double {
+.s-decoration-double {
   text-decoration-style: double;
 }
-.decoration-dotted {
+.s-decoration-dotted {
   text-decoration-style: dotted;
 }
-.decoration-dashed {
+.s-decoration-dashed {
   text-decoration-style: dashed;
 }
-.decoration-wavy {
+.s-decoration-wavy {
   text-decoration-style: wavy;
 }
 
-/* Text transform */
-.uppercase {
+/* =============================================================================
+   TEXT TRANSFORM
+   ============================================================================= */
+
+.s-uppercase {
   text-transform: uppercase;
 }
-.lowercase {
+.s-lowercase {
   text-transform: lowercase;
 }
-.capitalize {
+.s-capitalize {
   text-transform: capitalize;
 }
-.normal-case {
+.s-normal-case {
   text-transform: none;
 }
 
-/* Text overflow */
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+/* =============================================================================
+   TEXT OVERFLOW
+   ============================================================================= */
 
-.text-ellipsis {
+.s-text-ellipsis {
   text-overflow: ellipsis;
 }
-.text-clip {
+.s-text-clip {
   text-overflow: clip;
 }
 
-/* Text wrap */
-.text-wrap {
+/* =============================================================================
+   TEXT WRAP
+   ============================================================================= */
+
+.s-text-wrap {
   text-wrap: wrap;
 }
-.text-nowrap {
+.s-text-nowrap {
   text-wrap: nowrap;
 }
-.text-balance {
+.s-text-balance {
   text-wrap: balance;
 }
-.text-pretty {
+.s-text-pretty {
   text-wrap: pretty;
 }
 
-/* Whitespace */
-.whitespace-normal {
+/* =============================================================================
+   WHITESPACE
+   ============================================================================= */
+
+.s-whitespace-normal {
   white-space: normal;
 }
-.whitespace-nowrap {
+.s-whitespace-nowrap {
   white-space: nowrap;
 }
-.whitespace-pre {
+.s-whitespace-pre {
   white-space: pre;
 }
-.whitespace-pre-line {
+.s-whitespace-pre-line {
   white-space: pre-line;
 }
-.whitespace-pre-wrap {
+.s-whitespace-pre-wrap {
   white-space: pre-wrap;
 }
-.whitespace-break-spaces {
+.s-whitespace-break-spaces {
   white-space: break-spaces;
 }
 
-/* Word break */
-.break-normal {
+/* =============================================================================
+   WORD BREAK
+   ============================================================================= */
+
+.s-break-normal {
   overflow-wrap: normal;
   word-break: normal;
 }
-.break-words {
+.s-break-words {
   overflow-wrap: break-word;
 }
-.break-all {
+.s-break-all {
   word-break: break-all;
 }
-.break-keep {
+.s-break-keep {
   word-break: keep-all;
 }
 
-/* Hyphens */
-.hyphens-none {
+/* =============================================================================
+   HYPHENS
+   ============================================================================= */
+
+.s-hyphens-none {
   hyphens: none;
 }
-.hyphens-manual {
+.s-hyphens-manual {
   hyphens: manual;
 }
-.hyphens-auto {
+.s-hyphens-auto {
   hyphens: auto;
 }
 
-/* Text color utilities (semantic) */
-.text-primary {
-  color: var(--text-primary);
+/* =============================================================================
+   TEXT COLOR (semantic)
+   ============================================================================= */
+
+.s-text-primary {
+  color: var(--s-text-primary);
 }
-.text-secondary {
-  color: var(--text-secondary);
+.s-text-secondary {
+  color: var(--s-text-secondary);
 }
-.text-tertiary {
-  color: var(--text-tertiary);
+.s-text-tertiary {
+  color: var(--s-text-tertiary);
 }
-.text-inverse {
-  color: var(--text-inverse);
+.s-text-inverse {
+  color: var(--s-text-inverse);
 }
 
-/* Text color utilities (status) */
-.text-success {
-  color: var(--state-success);
+/* Text color (status) */
+.s-text-success {
+  color: var(--s-state-success);
 }
-.text-warning {
-  color: var(--state-warning);
+.s-text-warning {
+  color: var(--s-state-warning);
 }
-.text-danger {
-  color: var(--state-danger);
+.s-text-danger {
+  color: var(--s-state-danger);
 }
 
-/* Link styling */
-.link {
-  color: var(--interactive-primary);
+/* =============================================================================
+   LINK STYLING
+   ============================================================================= */
+
+.s-link {
+  color: var(--s-interactive-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
 
   &:hover {
-    color: var(--interactive-primary-hover);
+    color: var(--s-interactive-primary-hover);
   }
 }
 
-/* List styles */
-.list-none {
+/* =============================================================================
+   LIST STYLES
+   ============================================================================= */
+
+.s-list-none {
   list-style-type: none;
 }
-.list-disc {
+.s-list-disc {
   list-style-type: disc;
 }
-.list-decimal {
+.s-list-decimal {
   list-style-type: decimal;
 }
-.list-inside {
+.s-list-inside {
   list-style-position: inside;
 }
-.list-outside {
+.s-list-outside {
   list-style-position: outside;
 }
 
-/* Selection */
-.select-none {
-  user-select: none;
-}
-.select-text {
-  user-select: text;
-}
-.select-all {
-  user-select: all;
-}
-.select-auto {
-  user-select: auto;
-}
+/* =============================================================================
+   OPACITY
+   ============================================================================= */
 
-/* Opacity */
-.opacity-0 {
+.s-opacity-0 {
   opacity: 0;
 }
-.opacity-5 {
+.s-opacity-5 {
   opacity: 0.05;
 }
-.opacity-10 {
+.s-opacity-10 {
   opacity: 0.1;
 }
-.opacity-20 {
+.s-opacity-20 {
   opacity: 0.2;
 }
-.opacity-25 {
+.s-opacity-25 {
   opacity: 0.25;
 }
-.opacity-30 {
+.s-opacity-30 {
   opacity: 0.3;
 }
-.opacity-40 {
+.s-opacity-40 {
   opacity: 0.4;
 }
-.opacity-50 {
+.s-opacity-50 {
   opacity: 0.5;
 }
-.opacity-60 {
+.s-opacity-60 {
   opacity: 0.6;
 }
-.opacity-70 {
+.s-opacity-70 {
   opacity: 0.7;
 }
-.opacity-75 {
+.s-opacity-75 {
   opacity: 0.75;
 }
-.opacity-80 {
+.s-opacity-80 {
   opacity: 0.8;
 }
-.opacity-90 {
+.s-opacity-90 {
   opacity: 0.9;
 }
-.opacity-95 {
+.s-opacity-95 {
   opacity: 0.95;
 }
-.opacity-100 {
+.s-opacity-100 {
   opacity: 1;
-}
-
-/* Visibility */
-.visible {
-  visibility: visible;
-}
-.invisible {
-  visibility: hidden;
-}
-.collapse {
-  visibility: collapse;
-}
-
-/* Screen reader only */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-.not-sr-only {
-  position: static;
-  width: auto;
-  height: auto;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
 }

@@ -3,49 +3,57 @@ title: Typography
 description: Text styling and typography utility classes
 ---
 
+## Overview
+
+Typography utilities provide consistent text styling based on design tokens. All classes use the `s-` namespace prefix to avoid conflicts with other CSS frameworks.
+
 ## Font Size
 
 Fluid typography that scales with viewport:
 
 ```html
-<p class="text-xs">Extra small text</p>
-<p class="text-sm">Small text</p>
-<p class="text-base">Base text (default)</p>
-<p class="text-lg">Large text</p>
-<p class="text-xl">Extra large text</p>
-<p class="text-2xl">2x large text</p>
-<p class="text-3xl">3x large text</p>
-<p class="text-4xl">4x large text</p>
-<p class="text-5xl">5x large text</p>
+<p class="s-text-xs">Extra small text</p>
+<p class="s-text-sm">Small text</p>
+<p class="s-text-base">Base text (default)</p>
+<p class="s-text-lg">Large text</p>
+<p class="s-text-xl">Extra large text</p>
+<p class="s-text-2xl">2x large text</p>
+<p class="s-text-3xl">3x large text</p>
+<p class="s-text-4xl">4x large text</p>
+<p class="s-text-5xl">5x large text</p>
 ```
 
 ## Font Weight
 
 ```html
-<p class="font-thin">Thin (100)</p>
-<p class="font-light">Light (300)</p>
-<p class="font-normal">Normal (400)</p>
-<p class="font-medium">Medium (500)</p>
-<p class="font-semibold">Semibold (600)</p>
-<p class="font-bold">Bold (700)</p>
-<p class="font-black">Black (900)</p>
+<p class="s-font-thin">Thin (100)</p>
+<p class="s-font-extralight">Extra Light (200)</p>
+<p class="s-font-light">Light (300)</p>
+<p class="s-font-normal">Normal (400)</p>
+<p class="s-font-medium">Medium (500)</p>
+<p class="s-font-semibold">Semibold (600)</p>
+<p class="s-font-bold">Bold (700)</p>
+<p class="s-font-extrabold">Extra Bold (800)</p>
+<p class="s-font-black">Black (900)</p>
 ```
 
 ## Font Family
 
 ```html
-<p class="font-sans">Sans-serif font</p>
-<p class="font-serif">Serif font</p>
-<p class="font-mono">Monospace font</p>
+<p class="s-font-sans">Sans-serif font</p>
+<p class="s-font-serif">Serif font</p>
+<p class="s-font-mono">Monospace font</p>
 ```
 
 ## Text Alignment
 
 ```html
-<p class="text-left">Left aligned</p>
-<p class="text-center">Center aligned</p>
-<p class="text-right">Right aligned</p>
-<p class="text-justify">Justified text</p>
+<p class="s-text-left">Left aligned</p>
+<p class="s-text-center">Center aligned</p>
+<p class="s-text-right">Right aligned</p>
+<p class="s-text-justify">Justified text</p>
+<p class="s-text-start">Start aligned (logical)</p>
+<p class="s-text-end">End aligned (logical)</p>
 ```
 
 ## Text Color
@@ -53,11 +61,13 @@ Fluid typography that scales with viewport:
 ### Semantic Colors
 
 ```html
-<p class="text-primary">Primary text color</p>
-<p class="text-secondary">Secondary/muted text</p>
-<p class="text-success">Success text</p>
-<p class="text-warning">Warning text</p>
-<p class="text-danger">Danger text</p>
+<p class="s-text-primary">Primary text color</p>
+<p class="s-text-secondary">Secondary/muted text</p>
+<p class="s-text-tertiary">Tertiary text</p>
+<p class="s-text-inverse">Inverse text (for dark backgrounds)</p>
+<p class="s-text-success">Success text</p>
+<p class="s-text-warning">Warning text</p>
+<p class="s-text-danger">Danger text</p>
 ```
 
 ### Using Color Tokens
@@ -70,90 +80,159 @@ Fluid typography that scales with viewport:
 ## Line Height
 
 ```html
-<p class="leading-none">No extra line height (1)</p>
-<p class="leading-tight">Tight line height (1.25)</p>
-<p class="leading-snug">Snug line height (1.375)</p>
-<p class="leading-normal">Normal line height (1.5)</p>
-<p class="leading-relaxed">Relaxed line height (1.625)</p>
-<p class="leading-loose">Loose line height (2)</p>
+<p class="s-leading-none">No extra line height (1)</p>
+<p class="s-leading-tight">Tight line height (1.25)</p>
+<p class="s-leading-snug">Snug line height (1.375)</p>
+<p class="s-leading-normal">Normal line height (1.5)</p>
+<p class="s-leading-relaxed">Relaxed line height (1.625)</p>
+<p class="s-leading-loose">Loose line height (2)</p>
 ```
 
 ## Letter Spacing
 
 ```html
-<p class="tracking-tighter">Tighter tracking</p>
-<p class="tracking-tight">Tight tracking</p>
-<p class="tracking-normal">Normal tracking</p>
-<p class="tracking-wide">Wide tracking</p>
-<p class="tracking-wider">Wider tracking</p>
-<p class="tracking-widest">Widest tracking</p>
+<p class="s-tracking-tighter">Tighter tracking (-0.05em)</p>
+<p class="s-tracking-tight">Tight tracking (-0.025em)</p>
+<p class="s-tracking-normal">Normal tracking (0)</p>
+<p class="s-tracking-wide">Wide tracking (0.025em)</p>
+<p class="s-tracking-wider">Wider tracking (0.05em)</p>
+<p class="s-tracking-widest">Widest tracking (0.1em)</p>
 ```
 
 ## Text Transform
 
 ```html
-<p class="uppercase">UPPERCASE TEXT</p>
-<p class="lowercase">lowercase text</p>
-<p class="capitalize">Capitalized Text</p>
-<p class="normal-case">Normal case</p>
+<p class="s-uppercase">UPPERCASE TEXT</p>
+<p class="s-lowercase">lowercase text</p>
+<p class="s-capitalize">Capitalized Text</p>
+<p class="s-normal-case">Normal case</p>
 ```
 
 ## Text Decoration
 
 ```html
-<p class="underline">Underlined text</p>
-<p class="line-through">Strikethrough text</p>
-<p class="no-underline">No underline</p>
+<p class="s-underline">Underlined text</p>
+<p class="s-overline">Overlined text</p>
+<p class="s-line-through">Strikethrough text</p>
+<p class="s-no-underline">No underline</p>
+```
+
+### Decoration Styles
+
+```html
+<p class="s-underline s-decoration-solid">Solid underline</p>
+<p class="s-underline s-decoration-double">Double underline</p>
+<p class="s-underline s-decoration-dotted">Dotted underline</p>
+<p class="s-underline s-decoration-dashed">Dashed underline</p>
+<p class="s-underline s-decoration-wavy">Wavy underline</p>
 ```
 
 ## Text Overflow
 
+### Truncation (Attribute-based)
+
+For semantic text truncation, use the `s-truncate` attribute:
+
 ```html
-<p class="truncate">Long text that will be truncated with an ellipsis...</p>
+<!-- Single line truncate -->
+<p s-truncate>Long text that will be truncated with an ellipsis...</p>
 
-<p class="text-ellipsis overflow-hidden">Text with ellipsis</p>
+<!-- Multi-line truncate -->
+<p s-truncate="2">Text truncated to 2 lines...</p>
+<p s-truncate="3">Text truncated to 3 lines...</p>
+<p s-truncate="4">Text truncated to 4 lines...</p>
+```
 
-<p class="text-clip overflow-hidden">Text that clips</p>
+### Text Overflow Classes
+
+```html
+<p class="s-text-ellipsis">Text with ellipsis</p>
+<p class="s-text-clip">Text that clips</p>
+```
+
+## Text Wrap
+
+```html
+<p class="s-text-wrap">Normal text wrapping</p>
+<p class="s-text-nowrap">No wrapping</p>
+<p class="s-text-balance">Balanced text (CSS text-wrap: balance)</p>
+<p class="s-text-pretty">Pretty text (CSS text-wrap: pretty)</p>
 ```
 
 ## Whitespace
 
 ```html
-<p class="whitespace-normal">Normal whitespace handling</p>
-<p class="whitespace-nowrap">No wrapping</p>
-<p class="whitespace-pre">Preserve whitespace</p>
-<p class="whitespace-pre-line">Preserve newlines</p>
-<p class="whitespace-pre-wrap">Preserve all, wrap</p>
+<p class="s-whitespace-normal">Normal whitespace handling</p>
+<p class="s-whitespace-nowrap">No wrapping</p>
+<p class="s-whitespace-pre">Preserve whitespace</p>
+<p class="s-whitespace-pre-line">Preserve newlines</p>
+<p class="s-whitespace-pre-wrap">Preserve all, wrap</p>
+<p class="s-whitespace-break-spaces">Break on spaces</p>
 ```
 
 ## Word Break
 
 ```html
-<p class="break-normal">Normal word breaking</p>
-<p class="wrap-break-word">Break long words</p>
-<p class="break-all">Break anywhere</p>
+<p class="s-break-normal">Normal word breaking</p>
+<p class="s-break-words">Break long words</p>
+<p class="s-break-all">Break anywhere</p>
+<p class="s-break-keep">Keep words together</p>
 ```
 
-## Headings
+## Hyphens
 
 ```html
-<h1 class="text-4xl font-bold mb-4">Heading 1</h1>
-<h2 class="text-3xl font-bold mb-3">Heading 2</h2>
-<h3 class="text-2xl font-semibold mb-2">Heading 3</h3>
-<h4 class="text-xl font-semibold mb-2">Heading 4</h4>
-<h5 class="text-lg font-medium mb-1">Heading 5</h5>
-<h6 class="text-base font-medium mb-1">Heading 6</h6>
+<p class="s-hyphens-none">No hyphenation</p>
+<p class="s-hyphens-manual">Manual hyphenation only</p>
+<p class="s-hyphens-auto">Automatic hyphenation</p>
 ```
 
-## Prose
-
-For long-form content with good defaults:
+## Vertical Alignment
 
 ```html
-<article class="prose">
-  <h1>Article Title</h1>
-  <p>Paragraphs, lists, and other content automatically styled.</p>
-</article>
+<span class="s-align-baseline">Baseline</span>
+<span class="s-align-top">Top</span>
+<span class="s-align-middle">Middle</span>
+<span class="s-align-bottom">Bottom</span>
+<span class="s-align-text-top">Text top</span>
+<span class="s-align-text-bottom">Text bottom</span>
+```
+
+## List Styles
+
+```html
+<ul class="s-list-none">No bullets</ul>
+<ul class="s-list-disc">Disc bullets</ul>
+<ol class="s-list-decimal">Numbered</ol>
+<ul class="s-list-inside">List inside</ul>
+<ul class="s-list-outside">List outside</ul>
+```
+
+## Opacity
+
+```html
+<p class="s-opacity-0">Invisible</p>
+<p class="s-opacity-25">25% opacity</p>
+<p class="s-opacity-50">50% opacity</p>
+<p class="s-opacity-75">75% opacity</p>
+<p class="s-opacity-100">Fully visible</p>
+```
+
+## Links
+
+```html
+<a href="#" class="s-link">Styled link with underline and hover</a>
+```
+
+## Headings Example
+
+```html
+<h1 class="s-text-4xl s-font-bold s-mb-4">Heading 1</h1>
+<h2 class="s-text-3xl s-font-bold s-mb-3">Heading 2</h2>
+<h3 class="s-text-2xl s-font-semibold s-mb-2">Heading 3</h3>
+<h4 class="s-text-xl s-font-semibold s-mb-2">Heading 4</h4>
+<h5 class="s-text-lg s-font-medium s-mb-1">Heading 5</h5>
+<h6 class="s-text-base s-font-medium s-mb-1">Heading 6</h6>
 ```
 
 ## CSS Custom Properties
@@ -165,13 +244,10 @@ For long-form content with good defaults:
   --s-font-serif: "Georgia", serif;
   --s-font-mono: "JetBrains Mono", monospace;
 
-  /* Base size (affects all fluid typography) */
-  --s-font-base: 1rem;
+  /* Font sizes */
+  --s-text-base: 1rem;
+  --s-text-lg: 1.125rem;
+  --s-text-xl: 1.25rem;
+  /* ... etc */
 }
-```
-
-## Responsive Typography
-
-```html
-<h1 class="text-2xl md:text-3xl lg:text-4xl">Responsive heading</h1>
 ```

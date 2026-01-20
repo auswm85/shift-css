@@ -1,57 +1,57 @@
 ---
 title: Spacing
-description: Margin and padding utility classes
+description: Margin, padding, and gap utility classes
 ---
 
 ## Overview
 
-Spacing utilities provide consistent margin and padding based on the design token scale.
+Spacing utilities provide consistent margin, padding, and gap based on the design token scale. All classes use the `s-` namespace prefix to avoid conflicts with other CSS frameworks.
 
 ## Spacing Scale
 
-| Token | Value | Class |
-|-------|-------|-------|
-| `0` | `0` | `.p-0`, `.m-0` |
-| `1` | `0.25rem` | `.p-1`, `.m-1` |
-| `2` | `0.5rem` | `.p-2`, `.m-2` |
-| `3` | `0.75rem` | `.p-3`, `.m-3` |
-| `4` | `1rem` | `.p-4`, `.m-4` |
-| `5` | `1.25rem` | `.p-5`, `.m-5` |
-| `6` | `1.5rem` | `.p-6`, `.m-6` |
-| `8` | `2rem` | `.p-8`, `.m-8` |
-| `10` | `2.5rem` | `.p-10`, `.m-10` |
-| `12` | `3rem` | `.p-12`, `.m-12` |
-| `16` | `4rem` | `.p-16`, `.m-16` |
+| Token | Value | Padding | Margin | Gap |
+|-------|-------|---------|--------|-----|
+| `0` | `0` | `.s-p-0` | `.s-m-0` | `.s-gap-0` |
+| `1` | `0.25rem` | `.s-p-1` | `.s-m-1` | `.s-gap-1` |
+| `2` | `0.5rem` | `.s-p-2` | `.s-m-2` | `.s-gap-2` |
+| `3` | `0.75rem` | `.s-p-3` | `.s-m-3` | `.s-gap-3` |
+| `4` | `1rem` | `.s-p-4` | `.s-m-4` | `.s-gap-4` |
+| `5` | `1.25rem` | `.s-p-5` | `.s-m-5` | `.s-gap-5` |
+| `6` | `1.5rem` | `.s-p-6` | `.s-m-6` | `.s-gap-6` |
+| `8` | `2rem` | `.s-p-8` | `.s-m-8` | `.s-gap-8` |
+| `10` | `2.5rem` | `.s-p-10` | `.s-m-10` | `.s-gap-10` |
+| `12` | `3rem` | `.s-p-12` | `.s-m-12` | `.s-gap-12` |
+| `16` | `4rem` | `.s-p-16` | `.s-m-16` | `.s-gap-16` |
 
 ## Padding
 
 ### All Sides
 
 ```html
-<div class="p-4">Padding on all sides</div>
+<div class="s-p-4">Padding on all sides</div>
 ```
 
 ### Horizontal & Vertical
 
 ```html
-<div class="px-4">Horizontal padding (left & right)</div>
-<div class="py-4">Vertical padding (top & bottom)</div>
+<div class="s-px-4">Horizontal padding (left & right)</div>
+<div class="s-py-4">Vertical padding (top & bottom)</div>
 ```
 
 ### Individual Sides
 
 ```html
-<div class="pt-4">Padding top</div>
-<div class="pr-4">Padding right</div>
-<div class="pb-4">Padding bottom</div>
-<div class="pl-4">Padding left</div>
+<div class="s-pt-4">Padding top</div>
+<div class="s-pr-4">Padding right</div>
+<div class="s-pb-4">Padding bottom</div>
+<div class="s-pl-4">Padding left</div>
 ```
 
 ### Logical Properties
 
 ```html
-<div class="ps-4">Padding inline-start</div>
-<div class="pe-4">Padding inline-end</div>
+<div class="s-ps-4">Padding inline-start</div>
+<div class="s-pe-4">Padding inline-end</div>
 ```
 
 ## Margin
@@ -59,54 +59,81 @@ Spacing utilities provide consistent margin and padding based on the design toke
 ### All Sides
 
 ```html
-<div class="m-4">Margin on all sides</div>
+<div class="s-m-4">Margin on all sides</div>
 ```
 
 ### Horizontal & Vertical
 
 ```html
-<div class="mx-4">Horizontal margin</div>
-<div class="my-4">Vertical margin</div>
+<div class="s-mx-4">Horizontal margin</div>
+<div class="s-my-4">Vertical margin</div>
 ```
 
 ### Individual Sides
 
 ```html
-<div class="mt-4">Margin top</div>
-<div class="mr-4">Margin right</div>
-<div class="mb-4">Margin bottom</div>
-<div class="ml-4">Margin left</div>
+<div class="s-mt-4">Margin top</div>
+<div class="s-mr-4">Margin right</div>
+<div class="s-mb-4">Margin bottom</div>
+<div class="s-ml-4">Margin left</div>
 ```
 
 ### Auto Margins
 
 ```html
-<div class="mx-auto">Center horizontally</div>
-<div class="ml-auto">Push to the right</div>
-<div class="mr-auto">Push to the left</div>
+<div class="s-mx-auto">Center horizontally</div>
+<div class="s-ml-auto">Push to the right</div>
+<div class="s-mr-auto">Push to the left</div>
 ```
 
 ### Negative Margins
 
 ```html
-<div class="-mt-4">Negative margin top</div>
-<div class="-mx-2">Negative horizontal margin</div>
+<div class="s--mt-4">Negative margin top</div>
+<div class="s--mx-2">Negative horizontal margin</div>
 ```
 
-## Gap (for Flex/Grid)
+## Gap
+
+Gap utilities are for fine-grained control within flex/grid containers.
+
+### Atomic Gap Classes (Developer's Screwdriver)
+
+Use these for precise pixel-perfect control:
 
 ```html
-<div class="flex gap-4">
+<div s-flex class="s-gap-4">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
 </div>
 ```
 
+### Semantic Gap Attribute (Designer's Tool)
+
+For consistent, design-system-aligned spacing, use the `s-gap` attribute:
+
+```html
+<div s-flex s-gap="md">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+| Attribute | Value | Use Case |
+|-----------|-------|----------|
+| `s-gap="xs"` | `0.25rem` | Extra tight spacing |
+| `s-gap="sm"` | `0.5rem` | Compact layouts |
+| `s-gap="md"` | `1rem` | Standard spacing |
+| `s-gap="lg"` | `1.5rem` | Comfortable layouts |
+| `s-gap="xl"` | `2rem` | Spacious layouts |
+| `s-gap="none"` | `0` | No gap |
+
 ### Row & Column Gap
 
 ```html
-<div class="grid gap-x-4 gap-y-2">
+<div s-grid="3" class="s-gap-x-4 s-gap-y-2">
   <!-- Grid items -->
 </div>
 ```
@@ -116,7 +143,7 @@ Spacing utilities provide consistent margin and padding based on the design toke
 Add space between child elements:
 
 ```html
-<div class="space-y-4">
+<div class="s-space-y-4">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
@@ -124,26 +151,16 @@ Add space between child elements:
 ```
 
 ```html
-<div class="space-x-4 flex">
+<div s-flex class="s-space-x-4">
   <div>Item 1</div>
   <div>Item 2</div>
   <div>Item 3</div>
-</div>
-```
-
-## Responsive Spacing
-
-Spacing utilities support responsive prefixes:
-
-```html
-<div class="p-2 md:p-4 lg:p-6">
-  Padding increases with screen size
 </div>
 ```
 
 ## Using CSS Variables
 
-Access spacing tokens directly:
+Access spacing tokens directly in your CSS:
 
 ```css
 .custom-element {

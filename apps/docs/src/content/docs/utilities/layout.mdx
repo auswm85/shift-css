@@ -1,166 +1,332 @@
 ---
-title: Flexbox & Grid
-description: Layout utility classes for flexbox and CSS grid
+title: Layout
+description: Flexbox, Grid, and Container utilities using semantic attributes
 ---
+
+## Overview
+
+Shift CSS uses **semantic attribute selectors** for structural layout patterns. This creates a declarative API where attributes define the "skeleton" of your UI.
+
+- **Structural layout** → Attribute selectors (`s-flex`, `s-grid`, `s-container`)
+- **Atomic utilities** → Classes with `s-` prefix (`.s-flex-1`, `.s-w-full`)
 
 ## Flexbox
 
-### Display Flex
+### Basic Flex Container
 
 ```html
-<div class="flex">Flex container</div>
-<div class="inline-flex">Inline flex container</div>
+<div s-flex>Flex container</div>
+<div s-flex="row">Horizontal (explicit)</div>
+<div s-flex="col">Vertical stack</div>
 ```
 
-### Direction
+### Direction Variants
+
+| Attribute | Description |
+|-----------|-------------|
+| `s-flex` | Basic flex container |
+| `s-flex="row"` | Horizontal (default) |
+| `s-flex="col"` | Vertical stack |
+| `s-flex="row-reverse"` | Horizontal reversed |
+| `s-flex="col-reverse"` | Vertical reversed |
+
+### Common Patterns
 
 ```html
-<div class="flex flex-row">Horizontal (default)</div>
-<div class="flex flex-col">Vertical</div>
-<div class="flex flex-row-reverse">Horizontal reversed</div>
-<div class="flex flex-col-reverse">Vertical reversed</div>
-```
+<!-- Center everything -->
+<div s-flex="center">Perfectly centered</div>
 
-### Justify Content
+<!-- Space between with vertical centering -->
+<div s-flex="between">
+  <span>Left</span>
+  <span>Right</span>
+</div>
 
-```html
-<div class="flex justify-start">Start</div>
-<div class="flex justify-center">Center</div>
-<div class="flex justify-end">End</div>
-<div class="flex justify-between">Space between</div>
-<div class="flex justify-around">Space around</div>
-<div class="flex justify-evenly">Space evenly</div>
-```
+<!-- End-aligned -->
+<div s-flex="end">
+  <button>Action</button>
+</div>
 
-### Align Items
-
-```html
-<div class="flex items-start">Start</div>
-<div class="flex items-center">Center</div>
-<div class="flex items-end">End</div>
-<div class="flex items-baseline">Baseline</div>
-<div class="flex items-stretch">Stretch (default)</div>
+<!-- Vertical stack -->
+<div s-flex="stack">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</div>
 ```
 
 ### Flex Wrap
 
-```html
-<div class="flex flex-wrap">Wrap items</div>
-<div class="flex flex-nowrap">No wrap (default)</div>
-<div class="flex flex-wrap-reverse">Wrap reverse</div>
-```
-
-### Flex Items
+Use space-separated values to add wrap:
 
 ```html
-<div class="flex">
-  <div class="flex-1">Grow equally</div>
-  <div class="flex-1">Grow equally</div>
-</div>
+<div s-flex="row wrap">Wrapping flex row</div>
+<div s-flex="col nowrap">Non-wrapping column</div>
+```
 
-<div class="flex">
-  <div class="flex-none">Don't grow or shrink</div>
-  <div class="flex-auto">Grow and shrink</div>
-</div>
+### Alignment Modifiers
 
-<div class="flex">
-  <div class="flex-grow">Grow to fill</div>
-  <div class="flex-shrink-0">Don't shrink</div>
+Combine with alignment attributes for fine control:
+
+```html
+<div s-flex s-justify="between" s-items="center">
+  <span>Left</span>
+  <span>Right</span>
 </div>
 ```
+
+**Justify Content:**
+
+| Attribute | CSS Value |
+|-----------|-----------|
+| `s-justify="start"` | `flex-start` |
+| `s-justify="end"` | `flex-end` |
+| `s-justify="center"` | `center` |
+| `s-justify="between"` | `space-between` |
+| `s-justify="around"` | `space-around` |
+| `s-justify="evenly"` | `space-evenly` |
+
+**Align Items:**
+
+| Attribute | CSS Value |
+|-----------|-----------|
+| `s-items="start"` | `flex-start` |
+| `s-items="end"` | `flex-end` |
+| `s-items="center"` | `center` |
+| `s-items="baseline"` | `baseline` |
+| `s-items="stretch"` | `stretch` |
+
+### Flex Item Classes
+
+For child element sizing, use atomic classes:
+
+```html
+<div s-flex>
+  <div class="s-flex-1">Grow equally</div>
+  <div class="s-flex-1">Grow equally</div>
+</div>
+
+<div s-flex>
+  <div class="s-flex-none">Fixed size</div>
+  <div class="s-flex-auto">Grow and shrink</div>
+</div>
+
+<div s-flex>
+  <div class="s-grow">Grow to fill</div>
+  <div class="s-shrink-0">Don't shrink</div>
+</div>
+```
+
+| Class | CSS Value |
+|-------|-----------|
+| `.s-flex-1` | `flex: 1 1 0%` |
+| `.s-flex-auto` | `flex: 1 1 auto` |
+| `.s-flex-initial` | `flex: 0 1 auto` |
+| `.s-flex-none` | `flex: none` |
+| `.s-grow` | `flex-grow: 1` |
+| `.s-grow-0` | `flex-grow: 0` |
+| `.s-shrink` | `flex-shrink: 1` |
+| `.s-shrink-0` | `flex-shrink: 0` |
 
 ### Self Alignment
 
 ```html
-<div class="flex items-start">
-  <div class="self-center">Centered item</div>
-  <div class="self-end">End-aligned item</div>
+<div s-flex="row">
+  <div class="s-self-start">Top</div>
+  <div class="s-self-center">Center</div>
+  <div class="s-self-end">Bottom</div>
 </div>
 ```
 
 ## CSS Grid
 
-### Display Grid
+### Basic Grid
 
 ```html
-<div class="grid">Grid container</div>
+<div s-grid>Basic grid</div>
+<div s-grid="3">3 equal columns</div>
 ```
 
-### Grid Columns
+### Column Variants
+
+| Attribute | Description |
+|-----------|-------------|
+| `s-grid` | Basic grid container |
+| `s-grid="1"` | 1 column |
+| `s-grid="2"` | 2 columns |
+| `s-grid="3"` | 3 columns |
+| `s-grid="4"` | 4 columns |
+| `s-grid="5"` | 5 columns |
+| `s-grid="6"` | 6 columns |
+| `s-grid="12"` | 12 columns |
+| `s-grid="auto-fit"` | Responsive auto-fit |
+| `s-grid="auto-fill"` | Responsive auto-fill |
+
+### Responsive Grid
+
+The `auto-fit` variant creates a responsive grid without media queries:
 
 ```html
-<div class="grid grid-cols-2">2 columns</div>
-<div class="grid grid-cols-3">3 columns</div>
-<div class="grid grid-cols-4">4 columns</div>
-<div class="grid grid-cols-6">6 columns</div>
-<div class="grid grid-cols-12">12 columns</div>
-```
-
-### Column Span
-
-```html
-<div class="grid grid-cols-6">
-  <div class="col-span-2">Spans 2 columns</div>
-  <div class="col-span-4">Spans 4 columns</div>
+<div s-grid="auto-fit" s-gap="md">
+  <article s-card>Card 1</article>
+  <article s-card>Card 2</article>
+  <article s-card>Card 3</article>
 </div>
 ```
 
 ### Grid Rows
 
 ```html
-<div class="grid grid-rows-2">2 rows</div>
-<div class="grid grid-rows-3">3 rows</div>
-```
-
-### Row Span
-
-```html
-<div class="grid grid-rows-3">
-  <div class="row-span-2">Spans 2 rows</div>
+<div s-grid="2" s-grid-rows="3">
+  <!-- 2 columns × 3 rows -->
 </div>
 ```
 
-### Gap
+### Column & Row Span
 
 ```html
-<div class="grid grid-cols-3 gap-4">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
+<div s-grid="6">
+  <div s-col-span="2">Spans 2 columns</div>
+  <div s-col-span="4">Spans 4 columns</div>
+  <div s-col-span="full">Full width</div>
+</div>
+
+<div s-grid="3" s-grid-rows="3">
+  <div s-row-span="2">Spans 2 rows</div>
+  <div s-row-span="full">Full height</div>
 </div>
 ```
 
-### Placement
+## Gap (Spacing)
+
+### Semantic Gap (Designer's Tool)
+
+For consistent, design-system-aligned spacing:
 
 ```html
-<div class="grid place-items-center">Center all items</div>
-<div class="grid place-content-center">Center all content</div>
+<div s-flex s-gap="md">Consistent medium gap</div>
+<div s-grid="3" s-gap="lg">Comfortable grid spacing</div>
+```
+
+| Attribute | Value | Use Case |
+|-----------|-------|----------|
+| `s-gap` | `1rem` | Default (same as md) |
+| `s-gap="xs"` | `0.25rem` | Extra tight |
+| `s-gap="sm"` | `0.5rem` | Compact |
+| `s-gap="md"` | `1rem` | Standard |
+| `s-gap="lg"` | `1.5rem` | Comfortable |
+| `s-gap="xl"` | `2rem` | Spacious |
+| `s-gap="none"` | `0` | No gap |
+
+### Atomic Gap (Developer's Screwdriver)
+
+For precise pixel-level control, use gap classes:
+
+```html
+<div s-flex class="s-gap-4">Exact 1rem gap</div>
+<div s-grid="3" class="s-gap-x-4 s-gap-y-2">Different row/column gaps</div>
 ```
 
 ## Container
 
-### Max-Width Container
+### Basic Container
 
 ```html
-<div class="container">
-  Centered container with max-width
+<div s-container>
+  Centered with max-width and padding
 </div>
 ```
 
-### Container with Padding
+### Size Variants
 
-```html
-<div class="container px-4">
-  Container with horizontal padding
-</div>
-```
+| Attribute | Max Width |
+|-----------|-----------|
+| `s-container` | `80rem` (1280px) |
+| `s-container="sm"` | `40rem` (640px) |
+| `s-container="md"` | `48rem` (768px) |
+| `s-container="lg"` | `64rem` (1024px) |
+| `s-container="xl"` | `80rem` (1280px) |
+| `s-container="full"` | `100%` |
+| `s-container="prose"` | `65ch` |
 
 ### Custom Container Width
 
 ```css
 :root {
-  --s-container-max: 1400px;  /* Default: 80rem (1280px) */
+  --s-container-max: 1400px;
 }
+```
+
+## Position
+
+```html
+<div s-position="relative">
+  <div s-position="absolute" s-inset="0">Overlay</div>
+</div>
+
+<header s-position="sticky">Sticky header</header>
+<div s-position="fixed">Fixed element</div>
+```
+
+## Display
+
+For non-flex/grid display modes:
+
+```html
+<span s-display="block">Block element</span>
+<div s-display="inline">Inline element</div>
+<div s-display="inline-block">Inline block</div>
+<div s-display="contents">Contents (removes wrapper)</div>
+<div s-display="inline-flex">Inline flex</div>
+<div s-display="inline-grid">Inline grid</div>
+```
+
+## Sizing Classes
+
+### Width
+
+```html
+<div class="s-w-full">100% width</div>
+<div class="s-w-screen">100vw width</div>
+<div class="s-w-min">min-content</div>
+<div class="s-w-max">max-content</div>
+<div class="s-w-fit">fit-content</div>
+<div class="s-w-auto">auto</div>
+```
+
+### Height
+
+```html
+<div class="s-h-full">100% height</div>
+<div class="s-h-screen">100vh height</div>
+<div class="s-h-screen-dvh">100dvh (dynamic viewport)</div>
+<div class="s-h-min">min-content</div>
+<div class="s-h-max">max-content</div>
+<div class="s-h-fit">fit-content</div>
+```
+
+### Min/Max Width
+
+```html
+<div class="s-min-w-0">min-width: 0</div>
+<div class="s-min-w-full">min-width: 100%</div>
+<div class="s-max-w-md">max-width: 28rem</div>
+<div class="s-max-w-prose">max-width: 65ch</div>
+```
+
+### Aspect Ratio
+
+```html
+<div class="s-aspect-square">1:1</div>
+<div class="s-aspect-video">16:9</div>
+<div class="s-aspect-4-3">4:3</div>
+```
+
+### Z-Index
+
+```html
+<div class="s-z-10">z-index: 10</div>
+<div class="s-z-50">z-index: 50</div>
+<div class="s-z-auto">z-index: auto</div>
 ```
 
 ## Common Patterns
@@ -168,7 +334,7 @@ description: Layout utility classes for flexbox and CSS grid
 ### Centered Content
 
 ```html
-<div class="flex items-center justify-center min-h-screen">
+<div s-flex="center" class="s-min-h-screen">
   Perfectly centered
 </div>
 ```
@@ -176,16 +342,16 @@ description: Layout utility classes for flexbox and CSS grid
 ### Sidebar Layout
 
 ```html
-<div class="flex">
-  <aside class="flex-none w-64">Sidebar</aside>
-  <main class="flex-1">Main content</main>
+<div s-flex>
+  <aside class="s-flex-none s-w-64">Sidebar</aside>
+  <main class="s-flex-1">Main content</main>
 </div>
 ```
 
 ### Card Grid
 
 ```html
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div s-grid="auto-fit" s-gap="md">
   <article s-card>Card 1</article>
   <article s-card>Card 2</article>
   <article s-card>Card 3</article>
@@ -195,23 +361,21 @@ description: Layout utility classes for flexbox and CSS grid
 ### Holy Grail Layout
 
 ```html
-<div class="flex flex-col min-h-screen">
-  <header class="flex-none">Header</header>
-  <main class="flex-1">Content</main>
-  <footer class="flex-none">Footer</footer>
+<div s-flex="col" class="s-min-h-screen">
+  <header class="s-flex-none">Header</header>
+  <main class="s-flex-1">Content</main>
+  <footer class="s-flex-none">Footer</footer>
 </div>
 ```
 
-## Responsive Layout
-
-All layout utilities support responsive prefixes:
+### Navigation Bar
 
 ```html
-<div class="flex flex-col md:flex-row">
-  Stack on mobile, row on desktop
-</div>
-
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-  Responsive grid columns
-</div>
+<nav s-flex="between" s-gap="md" class="s-px-4 s-py-2">
+  <a href="/">Logo</a>
+  <div s-flex s-gap="sm">
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+</nav>
 ```
