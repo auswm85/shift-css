@@ -4,7 +4,7 @@
  * Captures screenshots of UI components to detect UI drift.
  */
 
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Button Components', () => {
 	test.beforeEach(async ({ page }) => {
@@ -36,7 +36,7 @@ test.describe('Button Components', () => {
 			document.documentElement.style.colorScheme = 'light';
 		});
 
-		const primaryBtn = page.locator('.btn-primary').first();
+		const primaryBtn = page.locator('[s-btn="primary"]').first();
 		await primaryBtn.hover();
 		await page.waitForTimeout(100);
 
@@ -48,7 +48,7 @@ test.describe('Button Components', () => {
 			document.documentElement.style.colorScheme = 'light';
 		});
 
-		const primaryBtn = page.locator('.btn-primary').first();
+		const primaryBtn = page.locator('[s-btn="primary"]').first();
 		await primaryBtn.focus();
 		await page.waitForTimeout(100);
 

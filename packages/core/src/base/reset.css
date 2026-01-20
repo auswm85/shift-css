@@ -21,6 +21,9 @@
 
 /* Fluid typography and smooth scrolling */
 html {
+  /* Enable light-dark() function for automatic theming */
+  color-scheme: light dark;
+
   /* Fluid base font size: 15px at 320px → 16px at 1280px */
   font-size: clamp(0.9375rem, 0.875rem + 0.25vi, 1rem);
 
@@ -39,9 +42,9 @@ html {
 body {
   line-height: 1.5;
   min-height: 100dvh;
-  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
-  background-color: var(--surface-base);
-  color: var(--text-primary);
+  font-family: var(--s-font-sans, ui-sans-serif, system-ui, sans-serif);
+  background-color: var(--s-surface-base);
+  color: var(--s-text-primary);
 }
 
 /* Improved media defaults */
@@ -108,7 +111,7 @@ ol {
 
 /* Links */
 a {
-  color: var(--interactive-primary);
+  color: var(--s-interactive-primary);
   text-decoration: none;
 
   &:hover {
@@ -118,7 +121,7 @@ a {
 
 /* Focus styles for accessibility */
 :focus-visible {
-  outline: 2px solid var(--focus-ring);
+  outline: 2px solid var(--s-focus-ring);
   outline-offset: 2px;
 }
 
@@ -144,7 +147,7 @@ table {
 /* Pre/code defaults */
 pre,
 code {
-  font-family: var(--font-mono, ui-monospace, monospace);
+  font-family: var(--s-font-mono, ui-monospace, monospace);
 }
 
 pre {

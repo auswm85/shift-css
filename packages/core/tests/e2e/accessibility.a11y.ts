@@ -4,8 +4,8 @@
  * Tests WCAG 2.1 compliance including color contrast requirements.
  */
 
-import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/test';
 
 test.describe('Accessibility - Color Contrast', () => {
 	test('colors page passes axe contrast checks - light mode', async ({ page }) => {
@@ -59,9 +59,7 @@ test.describe('Accessibility - Color Contrast', () => {
 		});
 		await page.waitForTimeout(100);
 
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa'])
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
 			(v) => v.id === 'color-contrast'
@@ -88,9 +86,7 @@ test.describe('Accessibility - Color Contrast', () => {
 		});
 		await page.waitForTimeout(100);
 
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa'])
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
 			(v) => v.id === 'color-contrast'
@@ -111,9 +107,7 @@ test.describe('Accessibility - Color Contrast', () => {
 });
 
 test.describe('Accessibility - Components', () => {
-	test('components page has no accessibility violations - light mode', async ({
-		page,
-	}) => {
+	test('components page has no accessibility violations - light mode', async ({ page }) => {
 		await page.goto('/components.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'light';
@@ -127,9 +121,7 @@ test.describe('Accessibility - Components', () => {
 		expect(accessibilityScanResults.violations).toHaveLength(0);
 	});
 
-	test('components page has no accessibility violations - dark mode', async ({
-		page,
-	}) => {
+	test('components page has no accessibility violations - dark mode', async ({ page }) => {
 		await page.goto('/components.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'dark';
@@ -150,9 +142,7 @@ test.describe('Accessibility - Components', () => {
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('Tab'); // Skip nav links
 
-		const focusedElement = await page.evaluate(() =>
-			document.activeElement?.classList.contains('btn')
-		);
+		const focusedElement = await page.evaluate(() => document.activeElement?.hasAttribute('s-btn'));
 
 		expect(focusedElement).toBe(true);
 	});
@@ -180,7 +170,7 @@ test.describe('Accessibility - Focus Indicators', () => {
 			document.documentElement.style.colorScheme = 'light';
 		});
 
-		const button = page.locator('.btn-primary').first();
+		const button = page.locator('[s-btn="primary"]').first();
 		await button.focus();
 
 		// Check that focus outline is visible

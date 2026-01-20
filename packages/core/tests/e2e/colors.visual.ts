@@ -4,7 +4,7 @@
  * Captures screenshots of color scales to detect UI drift.
  */
 
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Color Scales Visual Regression', () => {
 	test.beforeEach(async ({ page }) => {

@@ -5,8 +5,8 @@
  * Uses axe-core for accurate WCAG-compliant contrast validation.
  */
 
-import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/test';
 
 test.describe('Tinted Gray Contrast - Axe Validation', () => {
 	test('tinted gray combinations meet AA contrast - light mode', async ({ page }) => {
@@ -51,9 +51,7 @@ test.describe('Tinted Gray Contrast - Axe Validation', () => {
 });
 
 test.describe('Semantic Token Contrast', () => {
-	test('semantic tokens meet AA contrast in light mode', async ({
-		page,
-	}) => {
+	test('semantic tokens meet AA contrast in light mode', async ({ page }) => {
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'light';
@@ -73,9 +71,7 @@ test.describe('Semantic Token Contrast', () => {
 		expect(contrastViolations).toHaveLength(0);
 	});
 
-	test('semantic tokens meet AA contrast in dark mode', async ({
-		page,
-	}) => {
+	test('semantic tokens meet AA contrast in dark mode', async ({ page }) => {
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'dark';
@@ -118,9 +114,7 @@ test.describe('Large Text Contrast Requirements', () => {
 });
 
 test.describe('Interactive Element Contrast (WCAG 2.1 SC 1.4.11)', () => {
-	test('button boundaries meet 3:1 contrast against background', async ({
-		page,
-	}) => {
+	test('button boundaries meet 3:1 contrast against background', async ({ page }) => {
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'light';
@@ -147,9 +141,7 @@ test.describe('Interactive Element Contrast (WCAG 2.1 SC 1.4.11)', () => {
 		expect(violations).toHaveLength(0);
 	});
 
-	test('input borders meet 3:1 contrast against background', async ({
-		page,
-	}) => {
+	test('input borders meet 3:1 contrast against background', async ({ page }) => {
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'light';
@@ -158,16 +150,13 @@ test.describe('Interactive Element Contrast (WCAG 2.1 SC 1.4.11)', () => {
 
 		// Get the input border color and background
 		const contrastData = await page.evaluate(() => {
-			const container = document.querySelector(
-				'[data-testid="interactive-contrast"]'
-			);
-			const input = container?.querySelector('.input');
+			const container = document.querySelector('[data-testid="interactive-contrast"]');
+			const input = container?.querySelector('[s-input]');
 			if (!input) return null;
 
 			const styles = window.getComputedStyle(input);
 			const borderColor = styles.borderColor;
-			const bgColor =
-				window.getComputedStyle(input.parentElement!).backgroundColor;
+			const bgColor = window.getComputedStyle(input.parentElement!).backgroundColor;
 
 			return { borderColor, bgColor };
 		});
@@ -208,9 +197,7 @@ test.describe('Custom Hue Contrast Preservation', () => {
 		});
 		await page.waitForTimeout(200);
 
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa'])
-			.analyze();
+		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
 			(v) => v.id === 'color-contrast'
@@ -232,9 +219,7 @@ test.describe('Custom Hue Contrast Preservation', () => {
 });
 
 test.describe('State Color Contrast', () => {
-	test('all state colors (success, warning, danger) meet AA', async ({
-		page,
-	}) => {
+	test('all state colors (success, warning, danger) meet AA', async ({ page }) => {
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
 			document.documentElement.style.colorScheme = 'light';

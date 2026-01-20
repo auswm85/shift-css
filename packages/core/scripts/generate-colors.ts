@@ -76,7 +76,7 @@ function generateColorScale(
 		const c = chroma[step]?.value;
 
 		if (l !== undefined && c !== undefined) {
-			const varName = `--color-${scaleName}-${step}`;
+			const varName = `--s-${scaleName}-${step}`;
 			lines.push(`    ${varName}: oklch(${l} ${c} ${hueVar});`);
 		}
 	}
@@ -91,7 +91,7 @@ function generateSemanticTokens(semantic: SemanticTokens['semantic']): string[] 
 		lines.push(``, `    /* ${category.toUpperCase()} */`);
 
 		for (const [name, token] of Object.entries(tokens)) {
-			const varName = `--${category}-${camelToKebab(name)}`;
+			const varName = `--s-${category}-${camelToKebab(name)}`;
 
 			// Convert token references to CSS variable references
 			const lightValue = resolveTokenReference(token.light.value);
@@ -105,11 +105,12 @@ function generateSemanticTokens(semantic: SemanticTokens['semantic']): string[] 
 }
 
 function resolveTokenReference(value: string): string {
-	// Convert {color.primary.500} to var(--color-primary-500)
+	// Convert {color.primary.500} to var(--s-primary-500)
 	const match = value.match(/^\{(.+)\}$/);
 	if (match?.[1]) {
-		const path = match[1].replace(/\./g, '-');
-		return `var(--${path})`;
+		// Remove 'color.' prefix and convert dots to dashes
+		const path = match[1].replace(/^color\./, '').replace(/\./g, '-');
+		return `var(--s-${path})`;
 	}
 	return value;
 }
@@ -122,14 +123,14 @@ function generateSpacingTokens(spacing: SpacingTokens): string[] {
 	const lines: string[] = ['', '    /* SPACING SCALE */'];
 
 	for (const [step, token] of Object.entries(spacing.spacing)) {
-		const varName = `--spacing-${step.replace('.', '_')}`;
+		const varName = `--s-space-${step.replace('.', '_')}`;
 		lines.push(`    ${varName}: ${token.value};`);
 	}
 
 	lines.push('', '    /* BORDER RADIUS */');
 
 	for (const [name, token] of Object.entries(spacing.radius)) {
-		const varName = `--radius-${name}`;
+		const varName = `--s-radius-${name}`;
 		lines.push(`    ${varName}: ${token.value};`);
 	}
 
@@ -140,47 +141,47 @@ function generateTypographyTokens(): string[] {
 	return [
 		'',
 		'    /* TYPOGRAPHY */',
-		'    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";',
-		'    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;',
-		'    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;',
+		'    --s-font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";',
+		'    --s-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;',
+		'    --s-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;',
 		'',
 		'    /* FONT SIZES (fluid) */',
-		'    --text-xs: clamp(0.6875rem, 0.625rem + 0.25vi, 0.75rem);',
-		'    --text-sm: clamp(0.8125rem, 0.75rem + 0.25vi, 0.875rem);',
-		'    --text-base: clamp(0.9375rem, 0.875rem + 0.25vi, 1rem);',
-		'    --text-lg: clamp(1.0625rem, 1rem + 0.25vi, 1.125rem);',
-		'    --text-xl: clamp(1.1875rem, 1.0625rem + 0.5vi, 1.25rem);',
-		'    --text-2xl: clamp(1.4375rem, 1.25rem + 0.75vi, 1.5rem);',
-		'    --text-3xl: clamp(1.75rem, 1.5rem + 1vi, 1.875rem);',
-		'    --text-4xl: clamp(2.125rem, 1.75rem + 1.5vi, 2.25rem);',
-		'    --text-5xl: clamp(2.75rem, 2.25rem + 2vi, 3rem);',
+		'    --s-text-xs: clamp(0.6875rem, 0.625rem + 0.25vi, 0.75rem);',
+		'    --s-text-sm: clamp(0.8125rem, 0.75rem + 0.25vi, 0.875rem);',
+		'    --s-text-base: clamp(0.9375rem, 0.875rem + 0.25vi, 1rem);',
+		'    --s-text-lg: clamp(1.0625rem, 1rem + 0.25vi, 1.125rem);',
+		'    --s-text-xl: clamp(1.1875rem, 1.0625rem + 0.5vi, 1.25rem);',
+		'    --s-text-2xl: clamp(1.4375rem, 1.25rem + 0.75vi, 1.5rem);',
+		'    --s-text-3xl: clamp(1.75rem, 1.5rem + 1vi, 1.875rem);',
+		'    --s-text-4xl: clamp(2.125rem, 1.75rem + 1.5vi, 2.25rem);',
+		'    --s-text-5xl: clamp(2.75rem, 2.25rem + 2vi, 3rem);',
 		'',
 		'    /* LINE HEIGHTS */',
-		'    --leading-none: 1;',
-		'    --leading-tight: 1.25;',
-		'    --leading-snug: 1.375;',
-		'    --leading-normal: 1.5;',
-		'    --leading-relaxed: 1.625;',
-		'    --leading-loose: 2;',
+		'    --s-leading-none: 1;',
+		'    --s-leading-tight: 1.25;',
+		'    --s-leading-snug: 1.375;',
+		'    --s-leading-normal: 1.5;',
+		'    --s-leading-relaxed: 1.625;',
+		'    --s-leading-loose: 2;',
 		'',
 		'    /* FONT WEIGHTS */',
-		'    --font-thin: 100;',
-		'    --font-extralight: 200;',
-		'    --font-light: 300;',
-		'    --font-normal: 400;',
-		'    --font-medium: 500;',
-		'    --font-semibold: 600;',
-		'    --font-bold: 700;',
-		'    --font-extrabold: 800;',
-		'    --font-black: 900;',
+		'    --s-font-thin: 100;',
+		'    --s-font-extralight: 200;',
+		'    --s-font-light: 300;',
+		'    --s-font-normal: 400;',
+		'    --s-font-medium: 500;',
+		'    --s-font-semibold: 600;',
+		'    --s-font-bold: 700;',
+		'    --s-font-extrabold: 800;',
+		'    --s-font-black: 900;',
 		'',
 		'    /* LETTER SPACING */',
-		'    --tracking-tighter: -0.05em;',
-		'    --tracking-tight: -0.025em;',
-		'    --tracking-normal: 0;',
-		'    --tracking-wide: 0.025em;',
-		'    --tracking-wider: 0.05em;',
-		'    --tracking-widest: 0.1em;',
+		'    --s-tracking-tighter: -0.05em;',
+		'    --s-tracking-tight: -0.025em;',
+		'    --s-tracking-normal: 0;',
+		'    --s-tracking-wide: 0.025em;',
+		'    --s-tracking-wider: 0.05em;',
+		'    --s-tracking-widest: 0.1em;',
 	];
 }
 
@@ -188,21 +189,21 @@ function generateTransitionTokens(): string[] {
 	return [
 		'',
 		'    /* TRANSITIONS */',
-		'    --duration-75: 75ms;',
-		'    --duration-100: 100ms;',
-		'    --duration-150: 150ms;',
-		'    --duration-200: 200ms;',
-		'    --duration-300: 300ms;',
-		'    --duration-500: 500ms;',
-		'    --duration-700: 700ms;',
-		'    --duration-1000: 1000ms;',
+		'    --s-duration-75: 75ms;',
+		'    --s-duration-100: 100ms;',
+		'    --s-duration-150: 150ms;',
+		'    --s-duration-200: 200ms;',
+		'    --s-duration-300: 300ms;',
+		'    --s-duration-500: 500ms;',
+		'    --s-duration-700: 700ms;',
+		'    --s-duration-1000: 1000ms;',
 		'',
 		'    /* EASING */',
-		'    --ease-linear: linear;',
-		'    --ease-in: cubic-bezier(0.4, 0, 1, 1);',
-		'    --ease-out: cubic-bezier(0, 0, 0.2, 1);',
-		'    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);',
-		'    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);',
+		'    --s-ease-linear: linear;',
+		'    --s-ease-in: cubic-bezier(0.4, 0, 1, 1);',
+		'    --s-ease-out: cubic-bezier(0, 0, 0.2, 1);',
+		'    --s-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);',
+		'    --s-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);',
 	];
 }
 
@@ -210,14 +211,14 @@ function generateShadowTokens(): string[] {
 	return [
 		'',
 		'    /* SHADOWS */',
-		'    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);',
-		'    --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);',
-		'    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);',
-		'    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);',
-		'    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);',
-		'    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);',
-		'    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);',
-		'    --shadow-none: 0 0 #0000;',
+		'    --s-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);',
+		'    --s-shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);',
+		'    --s-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);',
+		'    --s-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);',
+		'    --s-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);',
+		'    --s-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);',
+		'    --s-shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);',
+		'    --s-shadow-none: 0 0 #0000;',
 	];
 }
 

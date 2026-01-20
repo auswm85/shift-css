@@ -6,9 +6,9 @@
 	<title>Shift CSS - Test Fixtures</title>
 	<link rel="stylesheet" href="/dist/shift.css">
 	<style>
-		body { padding: var(--spacing-8); }
-		.fixture-nav { margin-bottom: var(--spacing-8); }
-		.fixture-nav a { margin-right: var(--spacing-4); }
+		body { padding: var(--s-space-8); }
+		.fixture-nav { margin-bottom: var(--s-space-8); }
+		.fixture-nav a { margin-right: var(--s-space-4); }
 	</style>
 </head>
 <body>
@@ -25,17 +25,19 @@
 
 	<h2>Quick Component Preview</h2>
 
-	<section class="surface-card" style="padding: var(--spacing-6); margin-bottom: var(--spacing-4);">
-		<h3>Surface Card</h3>
-		<p>A basic surface card component for content grouping.</p>
-		<button class="btn btn-primary">Primary Action</button>
-		<button class="btn btn-secondary">Secondary</button>
-	</section>
+	<article s-card style="margin-bottom: var(--s-space-4);">
+		<div s-card-body>
+			<h3 s-card-title>Surface Card</h3>
+			<p>A basic surface card component for content grouping.</p>
+			<button s-btn="primary">Primary Action</button>
+			<button s-btn="secondary">Secondary</button>
+		</div>
+	</article>
 
-	<section style="margin-top: var(--spacing-8);">
+	<section style="margin-top: var(--s-space-8);">
 		<h3>Theme Toggle Test</h3>
 		<p>Toggle between light and dark modes to test automatic theming.</p>
-		<button id="theme-toggle" class="btn btn-secondary">Toggle Theme</button>
+		<button id="theme-toggle" s-btn="secondary">Toggle Theme</button>
 	</section>
 
 	<script>

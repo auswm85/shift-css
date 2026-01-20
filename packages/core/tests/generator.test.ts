@@ -8,13 +8,13 @@
 import { describe, expect, test } from 'bun:test';
 import {
 	calculateContrastRatio,
+	isValidChroma,
+	isValidHue,
+	isValidLightness,
 	meetsWcagAA,
 	meetsWcagAAA,
 	meetsWcagAALarge,
 	oklchLightnessToRelativeLuminance,
-	isValidLightness,
-	isValidChroma,
-	isValidHue,
 } from '../scripts/utils.ts';
 
 /**
@@ -64,7 +64,7 @@ const NEUTRAL_CHROMA_SCALE = {
 
 describe('Lightness Scale Properties', () => {
 	test('all lightness values are valid (0-1)', () => {
-		for (const [step, value] of Object.entries(LIGHTNESS_SCALE)) {
+		for (const [_step, value] of Object.entries(LIGHTNESS_SCALE)) {
 			expect(isValidLightness(value.toString())).toBe(true);
 		}
 	});
@@ -97,9 +97,7 @@ describe('Lightness Scale Properties', () => {
 		const avgDiff = differences.reduce((a, b) => a + b, 0) / differences.length;
 
 		// Most steps should be within 50% of the average (allowing for intentional variation)
-		const withinTolerance = differences.filter(
-			(d) => d >= avgDiff * 0.3 && d <= avgDiff * 2.0
-		);
+		const withinTolerance = differences.filter((d) => d >= avgDiff * 0.3 && d <= avgDiff * 2.0);
 		expect(withinTolerance.length).toBeGreaterThanOrEqual(differences.length * 0.7);
 	});
 
@@ -215,12 +213,12 @@ describe('Tinted Gray Contrast Validation', () => {
 	test('neutral chroma does not significantly impact luminance', () => {
 		// For OKLCH, chroma affects saturation but not perceived lightness
 		// The lightness value should be the primary determinant of contrast
-		for (const [step, lightness] of Object.entries(LIGHTNESS_SCALE)) {
+		for (const [_step, lightness] of Object.entries(LIGHTNESS_SCALE)) {
 			const lum = oklchLightnessToRelativeLuminance(lightness);
 			// Luminance should be reasonable (not NaN, not negative)
 			expect(lum).toBeGreaterThanOrEqual(0);
 			expect(lum).toBeLessThanOrEqual(1);
-			expect(isNaN(lum)).toBe(false);
+			expect(Number.isNaN(lum)).toBe(false);
 		}
 	});
 

@@ -1,71 +1,73 @@
 /**
  * Shift CSS - Button Component
  *
- * Accessible button styles with variants and states.
- * Uses semantic tokens for automatic light/dark theming.
+ * Accessible button styles using semantic attribute selectors.
+ * Uses s-btn attribute for variants and s-size for scaling.
+ *
+ * Usage:
+ *   <button s-btn="primary">Primary</button>
+ *   <button s-btn="secondary">Secondary</button>
+ *   <button s-btn="ghost">Ghost</button>
+ *   <button s-btn="primary" s-size="lg">Large Primary</button>
  */
 
-.btn {
-  /* Button properties */
-  --btn-bg: var(--interactive-primary);
-  --btn-text: var(--text-inverse);
-  --btn-border: transparent;
-  --btn-padding-x: var(--spacing-4);
-  --btn-padding-y: var(--spacing-2);
-  --btn-radius: var(--radius-md);
-  --btn-font-weight: var(--font-semibold);
+/* Base button - zero specificity for easy overrides */
+:where([s-btn]) {
+  /* Button CSS properties (customization points) */
+  --_btn-bg: var(--s-interactive-primary);
+  --_btn-text: var(--s-text-inverse);
+  --_btn-border: transparent;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2);
+  gap: var(--s-space-2);
 
-  padding: var(--btn-padding-y) var(--btn-padding-x);
-  border-radius: var(--btn-radius);
-  font-weight: var(--btn-font-weight);
-  font-size: var(--text-sm);
+  padding: var(--s-space-2) var(--s-space-4);
+  border-radius: var(--s-radius-md);
+  font-weight: var(--s-font-semibold);
+  font-size: var(--s-text-sm);
   line-height: 1;
   white-space: nowrap;
 
-  /* Semantic fallback for text color */
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  border: 1px solid var(--btn-border);
+  background-color: var(--_btn-bg);
+  color: var(--_btn-text);
+  border: 1px solid var(--_btn-border);
 
   /* Auto-contrast for custom backgrounds */
   @supports (color: oklch(from red l c h)) {
     color: oklch(
-      from var(--btn-bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+      from var(--_btn-bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
     );
   }
 
   @supports (color: contrast-color(red)) {
-    color: contrast-color(var(--btn-bg));
+    color: contrast-color(var(--_btn-bg));
   }
 
   /* Transitions */
   transition:
-    background-color var(--duration-150) var(--ease-out),
-    border-color var(--duration-150) var(--ease-out),
-    transform var(--duration-100) var(--ease-out);
+    background-color var(--s-duration-150) var(--s-ease-out),
+    border-color var(--s-duration-150) var(--s-ease-out),
+    transform var(--s-duration-100) var(--s-ease-out);
 
   cursor: pointer;
   user-select: none;
 
   /* Hover state */
   &:hover:not(:disabled) {
-    --btn-bg: var(--interactive-primary-hover);
+    --_btn-bg: var(--s-interactive-primary-hover);
   }
 
   /* Active state */
   &:active:not(:disabled) {
-    --btn-bg: var(--interactive-primary-active);
+    --_btn-bg: var(--s-interactive-primary-active);
     transform: scale(0.98);
   }
 
   /* Focus state */
   &:focus-visible {
-    outline: 2px solid var(--focus-ring);
+    outline: 2px solid var(--s-focus-ring);
     outline-offset: 2px;
   }
 
@@ -77,95 +79,161 @@
   }
 }
 
-/* Button variants */
-.btn--secondary {
-  --btn-bg: var(--surface-raised);
-  --btn-text: var(--text-primary);
-  --btn-border: var(--border-default);
+/* =============================================================================
+   BUTTON VARIANTS (0,1,0 specificity - slightly sticky)
+   ============================================================================= */
+
+/* Primary - default, explicit declaration */
+[s-btn="primary"] {
+  --_btn-bg: var(--s-interactive-primary);
+  --_btn-text: var(--s-text-inverse);
 
   &:hover:not(:disabled) {
-    --btn-bg: var(--surface-sunken);
+    --_btn-bg: var(--s-interactive-primary-hover);
+  }
+
+  &:active:not(:disabled) {
+    --_btn-bg: var(--s-interactive-primary-active);
   }
 }
 
-.btn--outline {
-  --btn-bg: transparent;
-  --btn-text: var(--interactive-primary);
-  --btn-border: var(--interactive-primary);
+/* Secondary */
+[s-btn="secondary"] {
+  --_btn-bg: var(--s-surface-raised);
+  --_btn-text: var(--s-text-primary);
+  --_btn-border: var(--s-border-default);
+
+  /* Override auto-contrast */
+  color: var(--_btn-text);
+
+  &:hover:not(:disabled) {
+    --_btn-bg: var(--s-surface-sunken);
+  }
+}
+
+/* Ghost - transparent background */
+[s-btn="ghost"] {
+  --_btn-bg: transparent;
+  --_btn-text: var(--s-interactive-primary);
 
   /* Override auto-contrast for transparent bg */
-  color: var(--btn-text);
+  color: var(--_btn-text);
 
   &:hover:not(:disabled) {
-    --btn-bg: var(--interactive-primary);
-    --btn-text: var(--text-inverse);
-    color: var(--btn-text);
+    --_btn-bg: var(--s-surface-sunken);
   }
 }
 
-.btn--ghost {
-  --btn-bg: transparent;
-  --btn-text: var(--interactive-primary);
+/* Link - looks like a link */
+[s-btn="link"] {
+  --_btn-bg: transparent;
+  --_btn-text: var(--s-interactive-primary);
+  --_btn-border: transparent;
 
-  /* Override auto-contrast for transparent bg */
-  color: var(--btn-text);
+  color: var(--_btn-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 
   &:hover:not(:disabled) {
-    --btn-bg: var(--surface-sunken);
+    --_btn-text: var(--s-interactive-primary-hover);
+    color: var(--_btn-text);
   }
 }
 
-.btn--danger {
-  --btn-bg: var(--state-danger);
+/* Outline */
+[s-btn="outline"] {
+  --_btn-bg: transparent;
+  --_btn-text: var(--s-interactive-primary);
+  --_btn-border: var(--s-interactive-primary);
+
+  color: var(--_btn-text);
 
   &:hover:not(:disabled) {
-    --btn-bg: var(--color-danger-700);
+    --_btn-bg: var(--s-interactive-primary);
+    --_btn-text: var(--s-text-inverse);
+    color: var(--_btn-text);
   }
 }
 
-.btn--success {
-  --btn-bg: var(--state-success);
+/* =============================================================================
+   STATE VARIANTS
+   ============================================================================= */
+
+/* Danger */
+[s-btn="danger"] {
+  --_btn-bg: var(--s-state-danger);
 
   &:hover:not(:disabled) {
-    --btn-bg: var(--color-success-700);
+    --_btn-bg: var(--s-danger-800);
+  }
+
+  &:active:not(:disabled) {
+    --_btn-bg: var(--s-danger-900);
   }
 }
 
-.btn--warning {
-  --btn-bg: var(--state-warning);
+/* Success */
+[s-btn="success"] {
+  --_btn-bg: var(--s-state-success);
 
   &:hover:not(:disabled) {
-    --btn-bg: var(--color-warning-700);
+    --_btn-bg: var(--s-success-800);
+  }
+
+  &:active:not(:disabled) {
+    --_btn-bg: var(--s-success-900);
   }
 }
 
-/* Button sizes */
-.btn--sm {
-  --btn-padding-x: var(--spacing-3);
-  --btn-padding-y: var(--spacing-1_5);
-  font-size: var(--text-xs);
+/* Warning */
+[s-btn="warning"] {
+  --_btn-bg: var(--s-state-warning);
+
+  &:hover:not(:disabled) {
+    --_btn-bg: var(--s-warning-800);
+  }
+
+  &:active:not(:disabled) {
+    --_btn-bg: var(--s-warning-900);
+  }
 }
 
-.btn--lg {
-  --btn-padding-x: var(--spacing-6);
-  --btn-padding-y: var(--spacing-3);
-  font-size: var(--text-base);
+/* =============================================================================
+   SIZE MODIFIERS (composable via s-size attribute)
+   ============================================================================= */
+
+[s-btn][s-size="sm"] {
+  padding: var(--s-space-1) var(--s-space-3);
+  font-size: var(--s-text-xs);
 }
 
-/* Icon button */
-.btn--icon {
-  --btn-padding-x: var(--spacing-2);
-  --btn-padding-y: var(--spacing-2);
+[s-btn][s-size="lg"] {
+  padding: var(--s-space-3) var(--s-space-6);
+  font-size: var(--s-text-base);
+}
+
+[s-btn][s-size="xl"] {
+  padding: var(--s-space-4) var(--s-space-8);
+  font-size: var(--s-text-lg);
+}
+
+/* =============================================================================
+   SPECIAL STATES
+   ============================================================================= */
+
+/* Icon-only button */
+[s-btn][s-icon] {
+  padding: var(--s-space-2);
   aspect-ratio: 1;
 }
 
-/* Full width button */
-.btn--block {
+/* Full-width button */
+[s-btn][s-block] {
   width: 100%;
 }
 
-/* Button with loading state */
-.btn--loading {
+/* Loading state */
+[s-btn][s-loading] {
   position: relative;
   color: transparent;
   pointer-events: none;
@@ -177,116 +245,39 @@
     margin: auto;
     width: 1em;
     height: 1em;
-    border: 2px solid currentColor;
+    border: 2px solid var(--s-text-inverse);
     border-right-color: transparent;
     border-radius: 50%;
-    animation: btn-spin 0.6s linear infinite;
+    animation: s-btn-spin 0.6s linear infinite;
   }
 }
 
-@keyframes btn-spin {
+@keyframes s-btn-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Button group */
-.btn-group {
+/* =============================================================================
+   BUTTON GROUP
+   ============================================================================= */
+
+[s-btn-group] {
   display: inline-flex;
 
-  & > .btn {
+  & > [s-btn] {
     border-radius: 0;
 
     &:first-child {
-      border-radius: var(--radius-md) 0 0 var(--radius-md);
+      border-radius: var(--s-radius-md) 0 0 var(--s-radius-md);
     }
 
     &:last-child {
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      border-radius: 0 var(--s-radius-md) var(--s-radius-md) 0;
     }
 
     &:not(:last-child) {
       border-right: none;
     }
   }
-}
-
-/* Shorthand class aliases (non-BEM style) */
-.btn-primary {
-  /* Primary is default, no changes needed */
-}
-
-.btn-secondary {
-  --btn-bg: var(--surface-raised);
-  --btn-text: var(--text-primary);
-  --btn-border: var(--border-default);
-
-  /* Override auto-contrast */
-  color: var(--btn-text);
-
-  &:hover:not(:disabled) {
-    --btn-bg: var(--surface-sunken);
-  }
-}
-
-.btn-outline {
-  --btn-bg: transparent;
-  --btn-text: var(--interactive-primary);
-  --btn-border: var(--interactive-primary);
-
-  color: var(--btn-text);
-
-  &:hover:not(:disabled) {
-    --btn-bg: var(--interactive-primary);
-    --btn-text: var(--text-inverse);
-    color: var(--btn-text);
-  }
-}
-
-.btn-ghost {
-  --btn-bg: transparent;
-  --btn-text: var(--interactive-primary);
-
-  color: var(--btn-text);
-
-  &:hover:not(:disabled) {
-    --btn-bg: var(--surface-sunken);
-  }
-}
-
-.btn-danger {
-  --btn-bg: var(--state-danger);
-
-  &:hover:not(:disabled) {
-    --btn-bg: var(--color-danger-700);
-  }
-}
-
-.btn-success {
-  --btn-bg: var(--state-success);
-
-  &:hover:not(:disabled) {
-    --btn-bg: var(--color-success-700);
-  }
-}
-
-.btn-warning {
-  --btn-bg: var(--state-warning);
-
-  &:hover:not(:disabled) {
-    --btn-bg: var(--color-warning-700);
-  }
-}
-
-/* Shorthand size aliases */
-.btn-sm {
-  --btn-padding-x: var(--spacing-3);
-  --btn-padding-y: var(--spacing-1_5);
-  font-size: var(--text-xs);
-}
-
-.btn-lg {
-  --btn-padding-x: var(--spacing-6);
-  --btn-padding-y: var(--spacing-3);
-  font-size: var(--text-base);
 }

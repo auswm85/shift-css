@@ -27,11 +27,7 @@ export function resolveTokenReference(value: string): string {
 /**
  * Generate an OKLCH color value string
  */
-export function generateOklchColor(
-	lightness: string,
-	chroma: string,
-	hueVar: string
-): string {
+export function generateOklchColor(lightness: string, chroma: string, hueVar: string): string {
 	return `oklch(${lightness} ${chroma} ${hueVar})`;
 }
 
@@ -54,7 +50,7 @@ export function generateLightDark(lightValue: string, darkValue: string): string
  */
 export function isValidLightness(value: string): boolean {
 	const num = parseFloat(value);
-	return !isNaN(num) && num >= 0 && num <= 1;
+	return !Number.isNaN(num) && num >= 0 && num <= 1;
 }
 
 /**
@@ -62,7 +58,7 @@ export function isValidLightness(value: string): boolean {
  */
 export function isValidChroma(value: string): boolean {
 	const num = parseFloat(value);
-	return !isNaN(num) && num >= 0 && num <= 0.5;
+	return !Number.isNaN(num) && num >= 0 && num <= 0.5;
 }
 
 /**
@@ -70,7 +66,7 @@ export function isValidChroma(value: string): boolean {
  */
 export function isValidHue(value: string): boolean {
 	const num = parseFloat(value);
-	return !isNaN(num) && num >= 0 && num <= 360;
+	return !Number.isNaN(num) && num >= 0 && num <= 360;
 }
 
 /**
@@ -80,7 +76,7 @@ export function isValidHue(value: string): boolean {
 export function oklchLightnessToRelativeLuminance(l: number): number {
 	// Approximate conversion from OKLCH L to relative luminance
 	// OKLCH L is perceptually uniform, so this is approximate
-	return Math.pow(l, 2.4);
+	return l ** 2.4;
 }
 
 /**

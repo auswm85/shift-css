@@ -6,24 +6,24 @@
 	<title>Shift CSS - Typography</title>
 	<link rel="stylesheet" href="/dist/shift.css">
 	<style>
-		body { padding: var(--spacing-8); }
-		.fixture-nav { margin-bottom: var(--spacing-8); }
-		.fixture-nav a { margin-right: var(--spacing-4); }
-		section { margin-bottom: var(--spacing-12); }
-		.type-sample { margin-bottom: var(--spacing-4); }
+		body { padding: var(--s-space-8); }
+		.fixture-nav { margin-bottom: var(--s-space-8); }
+		.fixture-nav a { margin-right: var(--s-space-4); }
+		section { margin-bottom: var(--s-space-12); }
+		.type-sample { margin-bottom: var(--s-space-4); }
 		.theme-controls {
 			position: fixed;
-			top: var(--spacing-4);
-			right: var(--spacing-4);
+			top: var(--s-space-4);
+			right: var(--s-space-4);
 			display: flex;
-			gap: var(--spacing-2);
+			gap: var(--s-space-2);
 		}
 	</style>
 </head>
 <body>
 	<div class="theme-controls">
-		<button id="light-mode" class="btn btn-secondary">Light</button>
-		<button id="dark-mode" class="btn btn-secondary">Dark</button>
+		<button id="light-mode" s-btn="secondary">Light</button>
+		<button id="dark-mode" s-btn="secondary">Dark</button>
 	</div>
 
 	<nav class="fixture-nav">
@@ -40,31 +40,31 @@
 	<section data-testid="font-sizes">
 		<h2>Font Sizes (Fluid)</h2>
 
-		<div class="type-sample" style="font-size: var(--text-xs);">
+		<div class="type-sample" style="font-size: var(--s-text-xs);">
 			<strong>text-xs:</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-sm);">
+		<div class="type-sample" style="font-size: var(--s-text-sm);">
 			<strong>text-sm:</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-base);">
+		<div class="type-sample" style="font-size: var(--s-text-base);">
 			<strong>text-base:</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-lg);">
+		<div class="type-sample" style="font-size: var(--s-text-lg);">
 			<strong>text-lg:</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-xl);">
+		<div class="type-sample" style="font-size: var(--s-text-xl);">
 			<strong>text-xl:</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-2xl);">
+		<div class="type-sample" style="font-size: var(--s-text-2xl);">
 			<strong>text-2xl:</strong> The quick brown fox jumps.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-3xl);">
+		<div class="type-sample" style="font-size: var(--s-text-3xl);">
 			<strong>text-3xl:</strong> The quick brown fox.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-4xl);">
+		<div class="type-sample" style="font-size: var(--s-text-4xl);">
 			<strong>text-4xl:</strong> Quick brown fox.
 		</div>
-		<div class="type-sample" style="font-size: var(--text-5xl);">
+		<div class="type-sample" style="font-size: var(--s-text-5xl);">
 			<strong>text-5xl:</strong> Quick fox.
 		</div>
 	</section>
@@ -73,13 +73,13 @@
 	<section data-testid="font-families">
 		<h2>Font Families</h2>
 
-		<div class="type-sample" style="font-family: var(--font-sans);">
+		<div class="type-sample" style="font-family: var(--s-font-sans);">
 			<strong>font-sans:</strong> The quick brown fox jumps over the lazy dog. 0123456789
 		</div>
-		<div class="type-sample" style="font-family: var(--font-serif);">
+		<div class="type-sample" style="font-family: var(--s-font-serif);">
 			<strong>font-serif:</strong> The quick brown fox jumps over the lazy dog. 0123456789
 		</div>
-		<div class="type-sample" style="font-family: var(--font-mono);">
+		<div class="type-sample" style="font-family: var(--s-font-mono);">
 			<strong>font-mono:</strong> The quick brown fox jumps over the lazy dog. 0123456789
 		</div>
 	</section>
@@ -88,31 +88,31 @@
 	<section data-testid="font-weights">
 		<h2>Font Weights</h2>
 
-		<div class="type-sample" style="font-weight: var(--font-thin);">
+		<div class="type-sample" style="font-weight: var(--s-font-thin);">
 			<strong>font-thin (100):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-extralight);">
+		<div class="type-sample" style="font-weight: var(--s-font-extralight);">
 			<strong>font-extralight (200):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-light);">
+		<div class="type-sample" style="font-weight: var(--s-font-light);">
 			<strong>font-light (300):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-normal);">
+		<div class="type-sample" style="font-weight: var(--s-font-normal);">
 			<strong>font-normal (400):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-medium);">
+		<div class="type-sample" style="font-weight: var(--s-font-medium);">
 			<strong>font-medium (500):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-semibold);">
+		<div class="type-sample" style="font-weight: var(--s-font-semibold);">
 			<strong>font-semibold (600):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-bold);">
+		<div class="type-sample" style="font-weight: var(--s-font-bold);">
 			<strong>font-bold (700):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-extrabold);">
+		<div class="type-sample" style="font-weight: var(--s-font-extrabold);">
 			<strong>font-extrabold (800):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
-		<div class="type-sample" style="font-weight: var(--font-black);">
+		<div class="type-sample" style="font-weight: var(--s-font-black);">
 			<strong>font-black (900):</strong> The quick brown fox jumps over the lazy dog.
 		</div>
 	</section>
@@ -121,19 +121,19 @@
 	<section data-testid="line-heights">
 		<h2>Line Heights</h2>
 
-		<div class="type-sample" style="line-height: var(--leading-none); max-width: 40ch; background: var(--surface-subtle); padding: var(--spacing-4);">
+		<div class="type-sample" style="line-height: var(--s-leading-none); max-width: 40ch; background: var(--s-surface-sunken); padding: var(--s-space-4);">
 			<strong>leading-none (1):</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
 		</div>
-		<div class="type-sample" style="line-height: var(--leading-tight); max-width: 40ch; background: var(--surface-subtle); padding: var(--spacing-4);">
+		<div class="type-sample" style="line-height: var(--s-leading-tight); max-width: 40ch; background: var(--s-surface-sunken); padding: var(--s-space-4);">
 			<strong>leading-tight (1.25):</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
 		</div>
-		<div class="type-sample" style="line-height: var(--leading-normal); max-width: 40ch; background: var(--surface-subtle); padding: var(--spacing-4);">
+		<div class="type-sample" style="line-height: var(--s-leading-normal); max-width: 40ch; background: var(--s-surface-sunken); padding: var(--s-space-4);">
 			<strong>leading-normal (1.5):</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
 		</div>
-		<div class="type-sample" style="line-height: var(--leading-relaxed); max-width: 40ch; background: var(--surface-subtle); padding: var(--spacing-4);">
+		<div class="type-sample" style="line-height: var(--s-leading-relaxed); max-width: 40ch; background: var(--s-surface-sunken); padding: var(--s-space-4);">
 			<strong>leading-relaxed (1.625):</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
 		</div>
-		<div class="type-sample" style="line-height: var(--leading-loose); max-width: 40ch; background: var(--surface-subtle); padding: var(--spacing-4);">
+		<div class="type-sample" style="line-height: var(--s-leading-loose); max-width: 40ch; background: var(--s-surface-sunken); padding: var(--s-space-4);">
 			<strong>leading-loose (2):</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
 		</div>
 	</section>
@@ -142,22 +142,22 @@
 	<section data-testid="letter-spacing">
 		<h2>Letter Spacing</h2>
 
-		<div class="type-sample" style="letter-spacing: var(--tracking-tighter);">
+		<div class="type-sample" style="letter-spacing: var(--s-tracking-tighter);">
 			<strong>tracking-tighter (-0.05em):</strong> COMPACT HEADLINES
 		</div>
-		<div class="type-sample" style="letter-spacing: var(--tracking-tight);">
+		<div class="type-sample" style="letter-spacing: var(--s-tracking-tight);">
 			<strong>tracking-tight (-0.025em):</strong> SLIGHTLY TIGHTER TEXT
 		</div>
-		<div class="type-sample" style="letter-spacing: var(--tracking-normal);">
+		<div class="type-sample" style="letter-spacing: var(--s-tracking-normal);">
 			<strong>tracking-normal (0):</strong> NORMAL LETTER SPACING
 		</div>
-		<div class="type-sample" style="letter-spacing: var(--tracking-wide);">
+		<div class="type-sample" style="letter-spacing: var(--s-tracking-wide);">
 			<strong>tracking-wide (0.025em):</strong> SLIGHTLY WIDER TEXT
 		</div>
-		<div class="type-sample" style="letter-spacing: var(--tracking-wider);">
+		<div class="type-sample" style="letter-spacing: var(--s-tracking-wider);">
 			<strong>tracking-wider (0.05em):</strong> WIDER LETTER SPACING
 		</div>
-		<div class="type-sample" style="letter-spacing: var(--tracking-widest);">
+		<div class="type-sample" style="letter-spacing: var(--s-tracking-widest);">
 			<strong>tracking-widest (0.1em):</strong> VERY WIDE SPACING
 		</div>
 	</section>
@@ -166,16 +166,16 @@
 	<section data-testid="text-colors">
 		<h2>Semantic Text Colors</h2>
 
-		<div class="type-sample" style="color: var(--text-primary);">
+		<div class="type-sample" style="color: var(--s-text-primary);">
 			<strong>text-primary:</strong> Primary text for main content.
 		</div>
-		<div class="type-sample" style="color: var(--text-secondary);">
+		<div class="type-sample" style="color: var(--s-text-secondary);">
 			<strong>text-secondary:</strong> Secondary text for supporting content.
 		</div>
-		<div class="type-sample" style="color: var(--text-muted);">
-			<strong>text-muted:</strong> Muted text for less important content.
+		<div class="type-sample" style="color: var(--s-text-tertiary);">
+			<strong>text-tertiary:</strong> Tertiary text for less important content.
 		</div>
-		<div class="type-sample" style="color: var(--text-inverse); background: var(--color-neutral-900); padding: var(--spacing-2);">
+		<div class="type-sample" style="color: var(--s-text-inverse); background: var(--s-neutral-900); padding: var(--s-space-2);">
 			<strong>text-inverse:</strong> Inverse text on dark backgrounds.
 		</div>
 	</section>

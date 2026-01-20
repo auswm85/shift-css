@@ -1,186 +1,205 @@
 /**
  * Shift CSS - Input Component
  *
- * Form input styles with variants and states.
+ * Form input styles using semantic attribute selectors.
+ *
+ * Usage:
+ *   <input s-input type="text" placeholder="Enter text">
+ *   <input s-input s-size="lg" type="email">
+ *   <textarea s-input>Content</textarea>
+ *   <select s-input><option>Choose...</option></select>
  */
 
-.input {
-  /* Input properties */
-  --input-bg: var(--surface-base);
-  --input-border: var(--border-default);
-  --input-text: var(--text-primary);
-  --input-placeholder: var(--text-tertiary);
-  --input-radius: var(--radius-md);
-  --input-padding-x: var(--spacing-3);
-  --input-padding-y: var(--spacing-2);
+/* Base input - zero specificity for easy overrides */
+:where([s-input]) {
+  /* Input CSS properties (customization points) */
+  --_input-bg: var(--s-surface-base);
+  --_input-border: var(--s-border-default);
+  --_input-text: var(--s-text-primary);
+  --_input-placeholder: var(--s-text-tertiary);
+  --_input-radius: var(--s-radius-md);
 
+  appearance: none;
   display: block;
   width: 100%;
 
-  padding: var(--input-padding-y) var(--input-padding-x);
-  background-color: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: var(--input-radius);
-  color: var(--input-text);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
+  padding: var(--s-space-2) var(--s-space-3);
+  background-color: var(--_input-bg);
+  border: 2px solid var(--_input-border);
+  border-radius: var(--_input-radius);
+  color: var(--_input-text);
+  font-size: var(--s-text-sm);
+  line-height: var(--s-leading-normal);
 
   transition:
-    border-color var(--duration-150) var(--ease-out),
-    box-shadow var(--duration-150) var(--ease-out);
+    border-color var(--s-duration-150) var(--s-ease-out),
+    box-shadow var(--s-duration-150) var(--s-ease-out);
 
   &::placeholder {
-    color: var(--input-placeholder);
+    color: var(--_input-placeholder);
   }
 
   /* Hover state */
   &:hover:not(:disabled):not(:focus) {
-    --input-border: var(--border-strong);
+    --_input-border: var(--s-border-strong);
   }
 
   /* Focus state */
   &:focus {
-    --input-border: var(--focus-ring);
+    --_input-border: var(--s-interactive-primary);
     outline: none;
-    box-shadow: 0 0 0 3px oklch(from var(--focus-ring) l c h / 0.2);
+    box-shadow: 0 0 0 3px oklch(from var(--s-interactive-primary) l c h / 0.2);
   }
 
   /* Disabled state */
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background-color: var(--surface-sunken);
+    background-color: var(--s-surface-sunken);
   }
 
   /* Invalid state */
   &:invalid:not(:placeholder-shown),
   &[aria-invalid="true"] {
-    --input-border: var(--state-danger);
+    --_input-border: var(--s-state-danger);
 
     &:focus {
-      box-shadow: 0 0 0 3px oklch(from var(--state-danger) l c h / 0.2);
+      box-shadow: 0 0 0 3px oklch(from var(--s-state-danger) l c h / 0.2);
     }
   }
 }
 
-/* Input sizes */
-.input--sm {
-  --input-padding-x: var(--spacing-2);
-  --input-padding-y: var(--spacing-1_5);
-  font-size: var(--text-xs);
+/* =============================================================================
+   INPUT SIZE VARIANTS
+   ============================================================================= */
+
+[s-input][s-size="sm"] {
+  padding: var(--s-space-1) var(--s-space-2);
+  font-size: var(--s-text-xs);
 }
 
-.input--lg {
-  --input-padding-x: var(--spacing-4);
-  --input-padding-y: var(--spacing-3);
-  font-size: var(--text-base);
+[s-input][s-size="lg"] {
+  padding: var(--s-space-3) var(--s-space-4);
+  font-size: var(--s-text-base);
 }
+
+/* =============================================================================
+   SPECIFIC INPUT TYPES
+   ============================================================================= */
 
 /* Textarea */
-textarea.input {
+textarea[s-input] {
   min-height: 6rem;
   resize: vertical;
 }
 
 /* Select */
-select.input {
-  appearance: none;
+select[s-input] {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right var(--spacing-3) center;
-  padding-right: var(--spacing-10);
+  background-position: right var(--s-space-3) center;
+  padding-right: var(--s-space-10);
 }
 
-/* Input group (with addons) */
-.input-group {
+/* =============================================================================
+   INPUT GROUP (with addons)
+   ============================================================================= */
+
+[s-input-group] {
   display: flex;
 
-  & > .input {
+  & > [s-input] {
     flex: 1;
     min-width: 0;
     border-radius: 0;
 
     &:first-child {
-      border-radius: var(--input-radius) 0 0 var(--input-radius);
+      border-radius: var(--s-radius-md) 0 0 var(--s-radius-md);
     }
 
     &:last-child {
-      border-radius: 0 var(--input-radius) var(--input-radius) 0;
+      border-radius: 0 var(--s-radius-md) var(--s-radius-md) 0;
     }
   }
 
-  & > .input-addon {
+  & > [s-input-addon] {
     display: flex;
     align-items: center;
-    padding: var(--input-padding-y) var(--input-padding-x);
-    background-color: var(--surface-sunken);
-    border: 1px solid var(--border-default);
-    color: var(--text-secondary);
-    font-size: var(--text-sm);
+    padding: var(--s-space-2) var(--s-space-3);
+    background-color: var(--s-surface-sunken);
+    border: 2px solid var(--s-border-default);
+    color: var(--s-text-secondary);
+    font-size: var(--s-text-sm);
     white-space: nowrap;
 
     &:first-child {
-      border-radius: var(--input-radius) 0 0 var(--input-radius);
+      border-radius: var(--s-radius-md) 0 0 var(--s-radius-md);
       border-right: none;
     }
 
     &:last-child {
-      border-radius: 0 var(--input-radius) var(--input-radius) 0;
+      border-radius: 0 var(--s-radius-md) var(--s-radius-md) 0;
       border-left: none;
     }
   }
 }
 
-/* Form field wrapper */
-.field {
+/* =============================================================================
+   FORM FIELD WRAPPER
+   ============================================================================= */
+
+[s-field] {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1_5);
+  gap: var(--s-space-1);
 }
 
-.field__label {
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--text-primary);
+[s-field-label] {
+  font-size: var(--s-text-sm);
+  font-weight: var(--s-font-medium);
+  color: var(--s-text-primary);
 }
 
-.field__hint {
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
+[s-field-hint] {
+  font-size: var(--s-text-xs);
+  color: var(--s-text-secondary);
 }
 
-.field__error {
-  font-size: var(--text-xs);
-  color: var(--state-danger);
+[s-field-error] {
+  font-size: var(--s-text-xs);
+  color: var(--s-state-danger);
 }
 
-/* Checkbox / Radio */
-.checkbox,
-.radio {
+/* =============================================================================
+   CHECKBOX / RADIO
+   ============================================================================= */
+
+[s-checkbox],
+[s-radio] {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--s-space-2);
   cursor: pointer;
 
   & input {
     appearance: none;
     width: 1.25rem;
     height: 1.25rem;
-    border: 2px solid var(--border-default);
-    background-color: var(--surface-base);
+    border: 2px solid var(--s-border-default);
+    background-color: var(--s-surface-base);
     cursor: pointer;
 
     transition:
-      background-color var(--duration-150) var(--ease-out),
-      border-color var(--duration-150) var(--ease-out);
+      background-color var(--s-duration-150) var(--s-ease-out),
+      border-color var(--s-duration-150) var(--s-ease-out);
 
     &:checked {
-      background-color: var(--interactive-primary);
-      border-color: var(--interactive-primary);
+      background-color: var(--s-interactive-primary);
+      border-color: var(--s-interactive-primary);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--focus-ring);
+      outline: 2px solid var(--s-focus-ring);
       outline-offset: 2px;
     }
 
@@ -191,8 +210,8 @@ select.input {
   }
 }
 
-.checkbox input {
-  border-radius: var(--radius-sm);
+[s-checkbox] input {
+  border-radius: var(--s-radius-sm);
 
   &:checked {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
@@ -202,7 +221,7 @@ select.input {
   }
 }
 
-.radio input {
+[s-radio] input {
   border-radius: 50%;
 
   &:checked {
@@ -212,11 +231,14 @@ select.input {
   }
 }
 
-/* Toggle switch */
-.toggle {
+/* =============================================================================
+   TOGGLE SWITCH
+   ============================================================================= */
+
+[s-toggle] {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--s-space-2);
   cursor: pointer;
 
   & input {
@@ -224,11 +246,11 @@ select.input {
     width: 2.5rem;
     height: 1.5rem;
     border-radius: 9999px;
-    background-color: var(--border-default);
+    background-color: var(--s-border-default);
     cursor: pointer;
     position: relative;
 
-    transition: background-color var(--duration-200) var(--ease-out);
+    transition: background-color var(--s-duration-200) var(--s-ease-out);
 
     &::after {
       content: "";
@@ -238,14 +260,14 @@ select.input {
       width: calc(1.5rem - 4px);
       height: calc(1.5rem - 4px);
       border-radius: 50%;
-      background-color: var(--surface-base);
-      box-shadow: var(--shadow-sm);
+      background-color: var(--s-surface-base);
+      box-shadow: var(--s-shadow-sm);
 
-      transition: transform var(--duration-200) var(--ease-out);
+      transition: transform var(--s-duration-200) var(--s-ease-out);
     }
 
     &:checked {
-      background-color: var(--interactive-primary);
+      background-color: var(--s-interactive-primary);
 
       &::after {
         transform: translateX(1rem);
@@ -253,7 +275,7 @@ select.input {
     }
 
     &:focus-visible {
-      outline: 2px solid var(--focus-ring);
+      outline: 2px solid var(--s-focus-ring);
       outline-offset: 2px;
     }
 

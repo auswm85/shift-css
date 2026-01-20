@@ -2,56 +2,65 @@
  * Shift CSS - Card Component
  *
  * Flexible card component with header, body, footer sections.
- * Supports container queries for responsive behavior.
+ * Uses semantic attribute selectors and supports container queries.
+ *
+ * Usage:
+ *   <article s-card>Basic card content</article>
+ *   <article s-card s-surface="raised">Elevated card</article>
+ *   <article s-card s-interactive>Clickable card</article>
  */
 
-.card {
-  /* Card properties */
-  --card-bg: var(--surface-raised);
-  --card-border: var(--border-muted);
-  --card-radius: var(--radius-xl);
-  --card-shadow: var(--shadow-base);
-  --card-padding: var(--spacing-4);
+/* Base card - zero specificity for easy overrides */
+:where([s-card]) {
+  /* Card CSS properties (customization points) */
+  --_card-bg: var(--s-surface-raised);
+  --_card-border: var(--s-border-muted);
+  --_card-radius: var(--s-radius-xl);
+  --_card-shadow: var(--s-shadow-base);
+  --_card-padding: var(--s-space-4);
 
   container-type: inline-size;
 
   display: flex;
   flex-direction: column;
 
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--card-radius);
-  box-shadow: var(--card-shadow);
+  background-color: var(--_card-bg);
+  border: 1px solid var(--_card-border);
+  border-radius: var(--_card-radius);
+  box-shadow: var(--_card-shadow);
   overflow: hidden;
 
   /* Auto-contrast text */
-  color: var(--text-primary);
+  color: var(--s-text-primary);
 
   @supports (color: oklch(from red l c h)) {
     color: oklch(
-      from var(--card-bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+      from var(--_card-bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
     );
   }
 }
 
-/* Card sections */
-.card__header {
-  padding: var(--card-padding);
-  border-bottom: 1px solid var(--card-border);
+/* =============================================================================
+   CARD SECTIONS
+   ============================================================================= */
+
+[s-card-header] {
+  padding: var(--_card-padding, var(--s-space-4));
+  border-bottom: 1px solid var(--_card-border, var(--s-border-muted));
 }
 
-.card__body {
-  padding: var(--card-padding);
+[s-card-body] {
+  padding: var(--_card-padding, var(--s-space-4));
   flex: 1;
 }
 
-.card__footer {
-  padding: var(--card-padding);
-  border-top: 1px solid var(--card-border);
+[s-card-footer] {
+  padding: var(--_card-padding, var(--s-space-4));
+  border-top: 1px solid var(--_card-border, var(--s-border-muted));
 }
 
 /* Card media (image at top) */
-.card__media {
+[s-card-media] {
   aspect-ratio: 16 / 9;
   overflow: hidden;
 
@@ -63,55 +72,77 @@
 }
 
 /* Card title */
-.card__title {
-  font-size: var(--text-lg);
-  font-weight: var(--font-semibold);
-  line-height: var(--leading-tight);
-  margin-bottom: var(--spacing-1);
+[s-card-title] {
+  font-size: var(--s-text-lg);
+  font-weight: var(--s-font-semibold);
+  line-height: var(--s-leading-tight);
+  margin-bottom: var(--s-space-1);
 }
 
 /* Card subtitle/description */
-.card__subtitle {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
+[s-card-subtitle] {
+  font-size: var(--s-text-sm);
+  color: var(--s-text-secondary);
 }
 
-/* Card variants */
-.card--flat {
-  --card-shadow: none;
-  --card-border: var(--border-default);
+/* =============================================================================
+   CARD VARIANTS
+   ============================================================================= */
+
+/* Flat card (no shadow) */
+[s-card="flat"] {
+  --_card-shadow: none;
+  --_card-border: var(--s-border-default);
 }
 
-.card--elevated {
-  --card-shadow: var(--shadow-lg);
-  --card-border: transparent;
+/* Elevated card */
+[s-card="elevated"],
+[s-card][s-surface="raised"] {
+  --_card-shadow: var(--s-shadow-lg);
+  --_card-border: transparent;
 }
 
-.card--outline {
-  --card-shadow: none;
-  --card-border: var(--border-strong);
-  --card-bg: transparent;
+/* Floating card (high elevation) */
+[s-card][s-surface="floating"] {
+  --_card-shadow: var(--s-shadow-xl);
+  --_card-border: transparent;
 }
+
+/* Outline card */
+[s-card="outline"] {
+  --_card-shadow: none;
+  --_card-border: var(--s-border-strong);
+  --_card-bg: transparent;
+}
+
+/* =============================================================================
+   CARD MODIFIERS
+   ============================================================================= */
 
 /* Interactive card */
-.card--interactive {
+[s-card][s-interactive] {
   cursor: pointer;
   transition:
-    transform var(--duration-200) var(--ease-out),
-    box-shadow var(--duration-200) var(--ease-out);
+    transform var(--s-duration-200) var(--s-ease-out),
+    box-shadow var(--s-duration-200) var(--s-ease-out);
 
   &:hover {
     transform: translateY(-4px);
-    --card-shadow: var(--shadow-xl);
+    --_card-shadow: var(--s-shadow-xl);
   }
 
   &:active {
     transform: translateY(-2px);
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--s-focus-ring);
+    outline-offset: 2px;
+  }
 }
 
 /* Card with link overlay */
-.card--link {
+[s-card][s-link] {
   position: relative;
 
   & a::after {
@@ -122,10 +153,10 @@
 }
 
 /* Horizontal card layout */
-.card--horizontal {
+[s-card][s-horizontal] {
   flex-direction: row;
 
-  & .card__media {
+  & [s-card-media] {
     aspect-ratio: 1;
     width: 33%;
     flex-shrink: 0;
@@ -134,37 +165,54 @@
 
 /* Container query: Stack horizontal cards on small containers */
 @container (max-width: 24rem) {
-  .card--horizontal {
+  [s-card][s-horizontal] {
     flex-direction: column;
 
-    & .card__media {
+    & [s-card-media] {
       width: 100%;
       aspect-ratio: 16 / 9;
     }
   }
 }
 
-/* Card group (grid) */
-.card-grid {
+/* =============================================================================
+   CARD SIZE VARIANTS
+   ============================================================================= */
+
+[s-card][s-size="sm"] {
+  --_card-padding: var(--s-space-3);
+  --_card-radius: var(--s-radius-lg);
+}
+
+[s-card][s-size="lg"] {
+  --_card-padding: var(--s-space-6);
+}
+
+/* Feature card (centered, larger padding) */
+[s-card="feature"] {
+  text-align: center;
+  --_card-padding: var(--s-space-6);
+}
+
+[s-card-icon] {
+  font-size: var(--s-text-4xl);
+  margin-bottom: var(--s-space-4);
+}
+
+/* =============================================================================
+   CARD LAYOUTS
+   ============================================================================= */
+
+/* Card grid */
+[s-card-grid] {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-  gap: var(--spacing-4);
+  gap: var(--s-space-4);
 }
 
 /* Card stack (vertical list) */
-.card-stack {
+[s-card-stack] {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
-}
-
-/* Feature card */
-.card--feature {
-  text-align: center;
-  --card-padding: var(--spacing-6);
-
-  & .card__icon {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--spacing-4);
-  }
+  gap: var(--s-space-4);
 }

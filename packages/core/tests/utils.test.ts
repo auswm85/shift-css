@@ -4,19 +4,19 @@
 
 import { describe, expect, test } from 'bun:test';
 import {
+	calculateContrastRatio,
 	camelToKebab,
-	resolveTokenReference,
-	generateOklchColor,
 	generateCssVar,
 	generateLightDark,
-	isValidLightness,
+	generateOklchColor,
 	isValidChroma,
 	isValidHue,
-	calculateContrastRatio,
+	isValidLightness,
 	meetsWcagAA,
 	meetsWcagAAA,
 	meetsWcagAALarge,
 	oklchLightnessToRelativeLuminance,
+	resolveTokenReference,
 } from '../scripts/utils.ts';
 
 describe('camelToKebab', () => {
@@ -57,9 +57,7 @@ describe('resolveTokenReference', () => {
 
 describe('generateOklchColor', () => {
 	test('generates valid OKLCH color string', () => {
-		expect(generateOklchColor('0.5', '0.15', 'var(--hue)')).toBe(
-			'oklch(0.5 0.15 var(--hue))'
-		);
+		expect(generateOklchColor('0.5', '0.15', 'var(--hue)')).toBe('oklch(0.5 0.15 var(--hue))');
 	});
 
 	test('handles decimal values', () => {
@@ -194,7 +192,9 @@ describe('Token Validation', () => {
 	});
 
 	test('lightness scale is monotonically decreasing', () => {
-		const lightnessValues = [0.9778, 0.9356, 0.8811, 0.8267, 0.7422, 0.6478, 0.5733, 0.4689, 0.3944, 0.32, 0.2378];
+		const lightnessValues = [
+			0.9778, 0.9356, 0.8811, 0.8267, 0.7422, 0.6478, 0.5733, 0.4689, 0.3944, 0.32, 0.2378,
+		];
 
 		for (let i = 1; i < lightnessValues.length; i++) {
 			const current = lightnessValues[i]!;
@@ -204,7 +204,19 @@ describe('Token Validation', () => {
 	});
 
 	test('chroma values are valid', () => {
-		const chromaValues = ['0.0108', '0.0321', '0.0636', '0.0951', '0.1211', '0.1472', '0.1383', '0.1178', '0.0894', '0.0720', '0.0540'];
+		const chromaValues = [
+			'0.0108',
+			'0.0321',
+			'0.0636',
+			'0.0951',
+			'0.1211',
+			'0.1472',
+			'0.1383',
+			'0.1178',
+			'0.0894',
+			'0.0720',
+			'0.0540',
+		];
 
 		for (const value of chromaValues) {
 			expect(isValidChroma(value)).toBe(true);

@@ -6,28 +6,28 @@
 	<title>Shift CSS - Components</title>
 	<link rel="stylesheet" href="/dist/shift.css">
 	<style>
-		body { padding: var(--spacing-8); }
-		.fixture-nav { margin-bottom: var(--spacing-8); }
-		.fixture-nav a { margin-right: var(--spacing-4); }
-		section { margin-bottom: var(--spacing-12); }
+		body { padding: var(--s-space-8); }
+		.fixture-nav { margin-bottom: var(--s-space-8); }
+		.fixture-nav a { margin-right: var(--s-space-4); }
+		section { margin-bottom: var(--s-space-12); }
 		.component-grid {
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: var(--spacing-4);
+			gap: var(--s-space-4);
 		}
 		.theme-controls {
 			position: fixed;
-			top: var(--spacing-4);
-			right: var(--spacing-4);
+			top: var(--s-space-4);
+			right: var(--s-space-4);
 			display: flex;
-			gap: var(--spacing-2);
+			gap: var(--s-space-2);
 		}
 	</style>
 </head>
 <body>
 	<div class="theme-controls">
-		<button id="light-mode" class="btn btn-secondary">Light</button>
-		<button id="dark-mode" class="btn btn-secondary">Dark</button>
+		<button id="light-mode" s-btn="secondary">Light</button>
+		<button id="dark-mode" s-btn="secondary">Dark</button>
 	</div>
 
 	<nav class="fixture-nav">
@@ -45,24 +45,24 @@
 		<h2>Buttons</h2>
 
 		<h3>Button Variants</h3>
-		<div class="component-grid" style="margin-bottom: var(--spacing-4);">
-			<button class="btn btn-primary">Primary</button>
-			<button class="btn btn-secondary">Secondary</button>
-			<button class="btn btn-danger">Danger</button>
-			<button class="btn btn-ghost">Ghost</button>
+		<div class="component-grid" style="margin-bottom: var(--s-space-4);">
+			<button s-btn="primary">Primary</button>
+			<button s-btn="secondary">Secondary</button>
+			<button s-btn="danger">Danger</button>
+			<button s-btn="ghost">Ghost</button>
 		</div>
 
 		<h3>Button States</h3>
-		<div class="component-grid" style="margin-bottom: var(--spacing-4);">
-			<button class="btn btn-primary">Default</button>
-			<button class="btn btn-primary" disabled>Disabled</button>
+		<div class="component-grid" style="margin-bottom: var(--s-space-4);">
+			<button s-btn="primary">Default</button>
+			<button s-btn="primary" disabled>Disabled</button>
 		</div>
 
 		<h3>Button Sizes</h3>
-		<div style="display: flex; align-items: center; gap: var(--spacing-4); flex-wrap: wrap;">
-			<button class="btn btn-primary btn-sm">Small</button>
-			<button class="btn btn-primary">Medium</button>
-			<button class="btn btn-primary btn-lg">Large</button>
+		<div style="display: flex; align-items: center; gap: var(--s-space-4); flex-wrap: wrap;">
+			<button s-btn="primary" s-size="sm">Small</button>
+			<button s-btn="primary">Medium</button>
+			<button s-btn="primary" s-size="lg">Large</button>
 		</div>
 	</section>
 
@@ -71,22 +71,26 @@
 		<h2>Cards</h2>
 
 		<div class="component-grid">
-			<div class="surface-card" style="padding: var(--spacing-6);">
-				<h3>Card Title</h3>
-				<p>This is a basic card component with default styling.</p>
-				<button class="btn btn-primary btn-sm">Action</button>
-			</div>
+			<article s-card>
+				<div s-card-body>
+					<h3 s-card-title>Card Title</h3>
+					<p>This is a basic card component with default styling.</p>
+					<button s-btn="primary" s-size="sm">Action</button>
+				</div>
+			</article>
 
-			<div class="surface-elevated" style="padding: var(--spacing-6);">
-				<h3>Elevated Card</h3>
-				<p>A card with elevated styling for emphasis.</p>
-				<button class="btn btn-secondary btn-sm">Action</button>
-			</div>
+			<article s-card s-surface="raised">
+				<div s-card-body>
+					<h3 s-card-title>Elevated Card</h3>
+					<p>A card with elevated styling for emphasis.</p>
+					<button s-btn="secondary" s-size="sm">Action</button>
+				</div>
+			</article>
 
-			<div class="surface-inset" style="padding: var(--spacing-6);">
-				<h3>Inset Surface</h3>
-				<p>An inset surface for nested content areas.</p>
-			</div>
+			<section s-surface="sunken" style="padding: var(--s-space-6);">
+				<h3>Sunken Surface</h3>
+				<p>A sunken surface for nested content areas.</p>
+			</section>
 		</div>
 	</section>
 
@@ -94,30 +98,30 @@
 	<section data-testid="inputs-section">
 		<h2>Form Inputs</h2>
 
-		<div style="max-width: 400px; display: flex; flex-direction: column; gap: var(--spacing-4);">
-			<div>
-				<label for="text-input" style="display: block; margin-bottom: var(--spacing-2);">Text Input</label>
-				<input type="text" id="text-input" class="input" placeholder="Enter text..." />
+		<div style="max-width: 400px; display: flex; flex-direction: column; gap: var(--s-space-4);">
+			<div s-field>
+				<label s-field-label for="text-input">Text Input</label>
+				<input type="text" id="text-input" s-input placeholder="Enter text..." />
 			</div>
 
-			<div>
-				<label for="disabled-input" style="display: block; margin-bottom: var(--spacing-2);">Disabled Input</label>
-				<input type="text" id="disabled-input" class="input" placeholder="Disabled..." disabled />
+			<div s-field>
+				<label s-field-label for="disabled-input">Disabled Input</label>
+				<input type="text" id="disabled-input" s-input placeholder="Disabled..." disabled />
 			</div>
 
-			<div>
-				<label for="email-input" style="display: block; margin-bottom: var(--spacing-2);">Email Input</label>
-				<input type="email" id="email-input" class="input" placeholder="email@example.com" />
+			<div s-field>
+				<label s-field-label for="email-input">Email Input</label>
+				<input type="email" id="email-input" s-input placeholder="email@example.com" />
 			</div>
 
-			<div>
-				<label for="textarea" style="display: block; margin-bottom: var(--spacing-2);">Textarea</label>
-				<textarea id="textarea" class="input" rows="3" placeholder="Enter longer text..."></textarea>
+			<div s-field>
+				<label s-field-label for="textarea">Textarea</label>
+				<textarea id="textarea" s-input rows="3" placeholder="Enter longer text..."></textarea>
 			</div>
 
-			<div>
-				<label for="select" style="display: block; margin-bottom: var(--spacing-2);">Select</label>
-				<select id="select" class="input">
+			<div s-field>
+				<label s-field-label for="select">Select</label>
+				<select id="select" s-input>
 					<option>Option 1</option>
 					<option>Option 2</option>
 					<option>Option 3</option>
@@ -131,20 +135,20 @@
 		<h2>Surfaces</h2>
 
 		<div class="component-grid">
-			<div class="surface-base" style="padding: var(--spacing-6); border: 1px solid var(--border-default);">
+			<section s-surface s-bordered>
 				<h4>Base Surface</h4>
 				<p>The foundational surface for page backgrounds.</p>
-			</div>
+			</section>
 
-			<div class="surface-subtle" style="padding: var(--spacing-6); border: 1px solid var(--border-default);">
-				<h4>Subtle Surface</h4>
-				<p>A subtle background for secondary content areas.</p>
-			</div>
+			<section s-surface="sunken" s-bordered>
+				<h4>Sunken Surface</h4>
+				<p>A sunken background for input-like areas.</p>
+			</section>
 
-			<div class="surface-muted" style="padding: var(--spacing-6); border: 1px solid var(--border-default);">
-				<h4>Muted Surface</h4>
-				<p>A muted background for disabled or inactive states.</p>
-			</div>
+			<section s-surface="raised">
+				<h4>Raised Surface</h4>
+				<p>An elevated surface for card-like content.</p>
+			</section>
 		</div>
 	</section>
 
@@ -152,31 +156,34 @@
 	<section data-testid="combined-section">
 		<h2>Combined Example</h2>
 
-		<div class="surface-card" style="padding: var(--spacing-8); max-width: 500px;">
-			<h3 style="margin-bottom: var(--spacing-4);">Contact Form</h3>
+		<article s-card style="max-width: 500px;">
+			<div s-card-header>
+				<h3 s-card-title>Contact Form</h3>
+			</div>
+			<div s-card-body>
+				<form style="display: flex; flex-direction: column; gap: var(--s-space-4);">
+					<div s-field>
+						<label s-field-label for="name">Name</label>
+						<input type="text" id="name" s-input placeholder="Your name" />
+					</div>
 
-			<form style="display: flex; flex-direction: column; gap: var(--spacing-4);">
-				<div>
-					<label for="name" style="display: block; margin-bottom: var(--spacing-2);">Name</label>
-					<input type="text" id="name" class="input" placeholder="Your name" />
-				</div>
+					<div s-field>
+						<label s-field-label for="email">Email</label>
+						<input type="email" id="email" s-input placeholder="your@email.com" />
+					</div>
 
-				<div>
-					<label for="email" style="display: block; margin-bottom: var(--spacing-2);">Email</label>
-					<input type="email" id="email" class="input" placeholder="your@email.com" />
-				</div>
+					<div s-field>
+						<label s-field-label for="message">Message</label>
+						<textarea id="message" s-input rows="4" placeholder="Your message..."></textarea>
+					</div>
 
-				<div>
-					<label for="message" style="display: block; margin-bottom: var(--spacing-2);">Message</label>
-					<textarea id="message" class="input" rows="4" placeholder="Your message..."></textarea>
-				</div>
-
-				<div style="display: flex; gap: var(--spacing-4); justify-content: flex-end;">
-					<button type="button" class="btn btn-ghost">Cancel</button>
-					<button type="submit" class="btn btn-primary">Send Message</button>
-				</div>
-			</form>
-		</div>
+					<div style="display: flex; gap: var(--s-space-4); justify-content: flex-end;">
+						<button type="button" s-btn="ghost">Cancel</button>
+						<button type="submit" s-btn="primary">Send Message</button>
+					</div>
+				</form>
+			</div>
+		</article>
 	</section>
 
 	<script>
