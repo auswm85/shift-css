@@ -5,7 +5,7 @@
 <h1 align="center">Shift CSS</h1>
 
 <p align="center">
-  <a href="https://auswm85.github.io/shift-css">Documentation</a>
+  <a href="https://getshiftcss.com">Documentation</a>
 </p>
 
 <p align="center">A zero-runtime, OKLCH-native CSS framework with automatic theming.</p>
