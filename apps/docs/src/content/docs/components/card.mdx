@@ -11,9 +11,7 @@ The `s-card` attribute provides a structured container for content with optional
 
 ```html
 <article s-card>
-  <div s-card-body>
-    Simple card content
-  </div>
+  <div s-card-body>Simple card content</div>
 </article>
 ```
 
@@ -24,9 +22,7 @@ The `s-card` attribute provides a structured container for content with optional
   <header s-card-header>
     <h3>Card Title</h3>
   </header>
-  <div s-card-body>
-    Main card content goes here.
-  </div>
+  <div s-card-body>Main card content goes here.</div>
   <footer s-card-footer>
     <button s-btn="primary" s-size="sm">Action</button>
   </footer>
@@ -35,12 +31,15 @@ The `s-card` attribute provides a structured container for content with optional
 
 ## Card Sections
 
-| Attribute | Purpose |
-|-----------|---------|
-| `s-card` | Main card container |
-| `s-card-header` | Card header area |
-| `s-card-body` | Main content area |
-| `s-card-footer` | Footer with actions |
+| Attribute         | Purpose               |
+| ----------------- | --------------------- |
+| `s-card`          | Main card container   |
+| `s-card-header`   | Card header area      |
+| `s-card-body`     | Main content area     |
+| `s-card-footer`   | Footer with actions   |
+| `s-card-media`    | Image/media container |
+| `s-card-title`    | Card title text       |
+| `s-card-subtitle` | Subtitle/description  |
 
 ## Examples
 
@@ -72,10 +71,104 @@ The `s-card` attribute provides a structured container for content with optional
 </article>
 ```
 
-## Card Grid
+### Card with Media
 
 ```html
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-space-4);">
+<article s-card>
+  <div s-card-media>
+    <img src="/image.jpg" alt="Card image" />
+  </div>
+  <div s-card-body>
+    <h4 s-card-title>Card Title</h4>
+    <p s-card-subtitle>A brief description</p>
+    <p>More detailed content here.</p>
+  </div>
+</article>
+```
+
+## Variants
+
+### Flat Card
+
+No shadow, just a border:
+
+```html
+<article s-card="flat">
+  <div s-card-body>Flat card with border</div>
+</article>
+```
+
+### Elevated Card
+
+Higher shadow:
+
+```html
+<article s-card="elevated">
+  <div s-card-body>Elevated card</div>
+</article>
+```
+
+### Outline Card
+
+Transparent with strong border:
+
+```html
+<article s-card="outline">
+  <div s-card-body>Outline card</div>
+</article>
+```
+
+## Modifiers
+
+### Interactive Card
+
+Lift effect on hover:
+
+```html
+<article s-card s-interactive>
+  <div s-card-body>Hover me!</div>
+</article>
+```
+
+### Horizontal Layout
+
+Side-by-side media and content:
+
+```html
+<article s-card s-horizontal>
+  <div s-card-media>
+    <img src="/image.jpg" alt="Card image" />
+  </div>
+  <div s-card-body>
+    <h4 s-card-title>Horizontal Card</h4>
+    <p>Content beside the image.</p>
+  </div>
+</article>
+```
+
+### Card with Link Overlay
+
+Make the entire card clickable:
+
+```html
+<article s-card s-link s-interactive>
+  <div s-card-body>
+    <h4 s-card-title>
+      <a href="/details">Clickable Card</a>
+    </h4>
+    <p>Click anywhere on the card.</p>
+  </div>
+</article>
+```
+
+## Card Layouts
+
+### Card Grid
+
+Responsive grid with auto-fitting columns:
+
+```html
+<div s-card-grid>
   <article s-card>
     <div s-card-body>Card 1</div>
   </article>
@@ -88,24 +181,39 @@ The `s-card` attribute provides a structured container for content with optional
 </div>
 ```
 
+### Card Stack
+
+Vertical list of cards:
+
+```html
+<div s-card-stack>
+  <article s-card>
+    <div s-card-body>Stacked card 1</div>
+  </article>
+  <article s-card>
+    <div s-card-body>Stacked card 2</div>
+  </article>
+</div>
+```
+
 ## How It Works
 
 Cards use CSS custom properties for consistent styling:
 
 ```css
 :where([s-card]) {
-  --_bg: var(--s-surface-raised);
-  --_border: var(--s-border-default);
-  --_radius: var(--s-radius-lg);
-  --_padding: var(--s-space-4);
+  --_card-bg: var(--s-surface-raised);
+  --_card-border: var(--s-border-muted);
+  --_card-radius: var(--s-radius-xl);
+  --_card-padding: var(--s-space-4);
 
-  background: var(--_bg);
-  border: 1px solid var(--_border);
-  border-radius: var(--_radius);
+  background-color: var(--_card-bg);
+  border: 1px solid var(--_card-border);
+  border-radius: var(--_card-radius);
 }
 
 :where([s-card-body]) {
-  padding: var(--_padding);
+  padding: var(--_card-padding);
 }
 ```
 
@@ -114,10 +222,8 @@ Cards use CSS custom properties for consistent styling:
 ### Custom Background
 
 ```html
-<article s-card style="--_bg: var(--s-primary-50);">
-  <div s-card-body>
-    Tinted card background
-  </div>
+<article s-card style="--_card-bg: var(--s-primary-50);">
+  <div s-card-body>Tinted card background</div>
 </article>
 ```
 
@@ -125,6 +231,24 @@ Cards use CSS custom properties for consistent styling:
 
 ```css
 [s-card] {
-  --_radius: 0;
+  --_card-radius: 0;
 }
 ```
+
+## All Attributes
+
+| Attribute         | Purpose           | Values                                              |
+| ----------------- | ----------------- | --------------------------------------------------- |
+| `s-card`          | Card variant      | (default), `flat`, `elevated`, `outline`, `feature` |
+| `s-card-header`   | Header section    | N/A                                                 |
+| `s-card-body`     | Body section      | N/A                                                 |
+| `s-card-footer`   | Footer section    | N/A                                                 |
+| `s-card-media`    | Media container   | N/A                                                 |
+| `s-card-title`    | Title element     | N/A                                                 |
+| `s-card-subtitle` | Subtitle element  | N/A                                                 |
+| `s-interactive`   | Hover lift effect | Boolean                                             |
+| `s-horizontal`    | Horizontal layout | Boolean                                             |
+| `s-link`          | Link overlay      | Boolean                                             |
+| `s-size`          | Card size         | `sm`, `lg`                                          |
+| `s-card-grid`     | Grid container    | N/A                                                 |
+| `s-card-stack`    | Stack container   | N/A                                                 |

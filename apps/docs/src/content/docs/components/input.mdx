@@ -17,7 +17,7 @@ Form inputs with automatic dark mode support and accessible focus states.
 
 ```html
 <div s-field>
-  <label s-label for="email">Email</label>
+  <label s-field-label for="email">Email</label>
   <input s-input type="email" id="email" placeholder="you@example.com" />
 </div>
 ```
@@ -82,40 +82,32 @@ Use the `s-size` attribute:
 ### Checkbox
 
 ```html
-<div s-field>
-  <label s-label>
-    <input s-checkbox type="checkbox" />
-    Remember me
-  </label>
-</div>
+<label s-checkbox>
+  <input type="checkbox" />
+  Remember me
+</label>
 ```
 
 ### Radio Buttons
 
 ```html
-<div s-field>
-  <label s-label>
-    <input s-radio type="radio" name="option" value="1" />
-    Option 1
-  </label>
-</div>
-<div s-field>
-  <label s-label>
-    <input s-radio type="radio" name="option" value="2" />
-    Option 2
-  </label>
-</div>
+<label s-radio>
+  <input type="radio" name="option" value="1" />
+  Option 1
+</label>
+<label s-radio>
+  <input type="radio" name="option" value="2" />
+  Option 2
+</label>
 ```
 
 ### Toggle Switch
 
 ```html
-<div s-field>
-  <label s-label>
-    <input s-toggle type="checkbox" />
-    Enable notifications
-  </label>
-</div>
+<label s-toggle>
+  <input type="checkbox" />
+  Enable notifications
+</label>
 ```
 
 ## Form Layout
@@ -123,16 +115,18 @@ Use the `s-size` attribute:
 ```html
 <form>
   <div s-field>
-    <label s-label for="name">Name</label>
+    <label s-field-label for="name">Name</label>
     <input s-input type="text" id="name" />
   </div>
   <div s-field>
-    <label s-label for="email">Email</label>
+    <label s-field-label for="email">Email</label>
     <input s-input type="email" id="email" />
+    <span s-field-hint>We'll never share your email.</span>
   </div>
   <div s-field>
-    <label s-label for="message">Message</label>
+    <label s-field-label for="message">Message</label>
     <textarea s-input id="message" rows="4"></textarea>
+    <span s-field-error>This field is required.</span>
   </div>
   <div>
     <button s-btn="primary" type="submit">Submit</button>
@@ -143,32 +137,52 @@ Use the `s-size` attribute:
 
 ## Form Attributes
 
-| Attribute | Purpose | Example |
-|-----------|---------|---------|
-| `s-input` | Text input styling | `<input s-input>` |
-| `s-field` | Form field wrapper | `<div s-field>` |
-| `s-label` | Field label | `<label s-label>` |
-| `s-checkbox` | Checkbox styling | `<input s-checkbox type="checkbox">` |
-| `s-radio` | Radio button styling | `<input s-radio type="radio">` |
-| `s-toggle` | Toggle switch | `<input s-toggle type="checkbox">` |
+| Attribute       | Purpose               | Example                 |
+| --------------- | --------------------- | ----------------------- |
+| `s-input`       | Text input styling    | `<input s-input>`       |
+| `s-field`       | Form field wrapper    | `<div s-field>`         |
+| `s-field-label` | Field label           | `<label s-field-label>` |
+| `s-field-hint`  | Helper text           | `<span s-field-hint>`   |
+| `s-field-error` | Error message         | `<span s-field-error>`  |
+| `s-checkbox`    | Checkbox wrapper      | `<label s-checkbox>`    |
+| `s-radio`       | Radio button wrapper  | `<label s-radio>`       |
+| `s-toggle`      | Toggle switch wrapper | `<label s-toggle>`      |
+| `s-input-group` | Input with addons     | `<div s-input-group>`   |
+| `s-input-addon` | Addon element         | `<span s-input-addon>`  |
+
+## Input Groups
+
+Combine inputs with addons for prefixes or suffixes:
+
+```html
+<div s-input-group>
+  <span s-input-addon>https://</span>
+  <input s-input type="text" placeholder="example.com" />
+</div>
+
+<div s-input-group>
+  <input s-input type="number" placeholder="0.00" />
+  <span s-input-addon>USD</span>
+</div>
+```
 
 ## How It Works
 
 ```css
 :where([s-input]) {
-  --_bg: var(--s-surface-sunken);
-  --_border: var(--s-border-default);
-  --_radius: var(--s-radius);
+  --_input-bg: var(--s-surface-base);
+  --_input-border: var(--s-border-default);
+  --_input-radius: var(--s-radius-md);
 
-  background: var(--_bg);
-  border: 1px solid var(--_border);
-  border-radius: var(--_radius);
+  background-color: var(--_input-bg);
+  border: 2px solid var(--_input-border);
+  border-radius: var(--_input-radius);
   padding: var(--s-space-2) var(--s-space-3);
 }
 
 [s-input]:focus {
-  outline: 2px solid var(--s-focus-ring);
-  outline-offset: 2px;
+  --_input-border: var(--s-interactive-primary);
+  box-shadow: 0 0 0 3px oklch(from var(--s-interactive-primary) l c h / 0.2);
 }
 ```
 

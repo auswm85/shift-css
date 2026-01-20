@@ -39,6 +39,32 @@ The `s-btn` attribute provides accessible, styled buttons with automatic dark mo
 <button s-btn="link">Link</button>
 ```
 
+### Outline
+
+```html
+<button s-btn="outline">Outline</button>
+```
+
+## State Variants
+
+### Danger
+
+```html
+<button s-btn="danger">Delete</button>
+```
+
+### Success
+
+```html
+<button s-btn="success">Confirm</button>
+```
+
+### Warning
+
+```html
+<button s-btn="warning">Caution</button>
+```
+
 ## Sizes
 
 Use the `s-size` attribute to change button size:
@@ -47,6 +73,7 @@ Use the `s-size` attribute to change button size:
 <button s-btn="primary" s-size="sm">Small</button>
 <button s-btn="primary">Default (Medium)</button>
 <button s-btn="primary" s-size="lg">Large</button>
+<button s-btn="primary" s-size="xl">Extra Large</button>
 ```
 
 ## States
@@ -57,10 +84,26 @@ Use the `s-size` attribute to change button size:
 <button s-btn="primary" disabled>Disabled</button>
 ```
 
-### Active
+### Loading
 
 ```html
-<button s-btn="primary" active>Active</button>
+<button s-btn="primary" s-loading>Loading...</button>
+```
+
+## Special Modifiers
+
+### Icon-Only Button
+
+```html
+<button s-btn="primary" s-icon>
+  <svg><!-- icon --></svg>
+</button>
+```
+
+### Full-Width Button
+
+```html
+<button s-btn="primary" s-block>Full Width</button>
 ```
 
 ## With Icons
@@ -78,6 +121,18 @@ Use the `s-size` attribute to change button size:
 <a href="/path" s-btn="primary">Link Button</a>
 ```
 
+## Button Groups
+
+Group related buttons together:
+
+```html
+<div s-btn-group>
+  <button s-btn="secondary">Left</button>
+  <button s-btn="secondary">Center</button>
+  <button s-btn="secondary">Right</button>
+</div>
+```
+
 ## How It Works
 
 Buttons use the Layered Intent pattern with `:where()` for zero-specificity base styles:
@@ -85,29 +140,47 @@ Buttons use the Layered Intent pattern with `:where()` for zero-specificity base
 ```css
 /* Base styles - easily overridable */
 :where([s-btn]) {
-  --_bg: var(--s-neutral-100);
-  --_color: var(--s-text-primary);
+  --_btn-bg: var(--s-interactive-primary);
+  --_btn-text: var(--s-text-inverse);
+  --_btn-border: transparent;
 
   display: inline-flex;
   align-items: center;
-  background: var(--_bg);
-  color: var(--_color);
+  background-color: var(--_btn-bg);
+  color: var(--_btn-text);
+
+  /* Auto-contrast for custom backgrounds */
+  @supports (color: oklch(from red l c h)) {
+    color: oklch(
+      from var(--_btn-bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+    );
+  }
 }
 
 /* Variant styles - intentional specificity */
 [s-btn="primary"] {
-  --_bg: var(--s-primary-500);
-  --_color: oklch(from var(--_bg) calc(l < 0.6 ? 0.98 : 0.15) 0.01 h);
+  --_btn-bg: var(--s-interactive-primary);
 }
 ```
 
 ## CSS Custom Properties
 
-| Property | Description |
-|----------|-------------|
-| `--_bg` | Background color (private) |
-| `--_color` | Text color (private, auto-contrast) |
-| `--_border` | Border color (private) |
+| Property        | Description                         |
+| --------------- | ----------------------------------- |
+| `--_btn-bg`     | Background color (private)          |
+| `--_btn-text`   | Text color (private, auto-contrast) |
+| `--_btn-border` | Border color (private)              |
+
+## All Attributes
+
+| Attribute     | Purpose                | Values                                                                             |
+| ------------- | ---------------------- | ---------------------------------------------------------------------------------- |
+| `s-btn`       | Button variant         | `primary`, `secondary`, `ghost`, `link`, `outline`, `danger`, `success`, `warning` |
+| `s-size`      | Button size            | `sm`, `lg`, `xl`                                                                   |
+| `s-icon`      | Icon-only button       | Boolean                                                                            |
+| `s-block`     | Full-width button      | Boolean                                                                            |
+| `s-loading`   | Loading state          | Boolean                                                                            |
+| `s-btn-group` | Button group container | N/A                                                                                |
 
 ## Customization Examples
 

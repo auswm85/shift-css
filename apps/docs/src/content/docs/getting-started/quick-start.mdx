@@ -17,7 +17,9 @@ description: Get up and running with Shift CSS in minutes
   <body>
     <div s-surface="raised" style="padding: var(--s-space-6);">
       <h1>Hello Shift CSS!</h1>
-      <p style="color: var(--s-text-secondary); margin-bottom: var(--s-space-4);">
+      <p
+        style="color: var(--s-text-secondary); margin-bottom: var(--s-space-4);"
+      >
         This text automatically adapts to light/dark mode.
       </p>
       <button s-btn="primary">Primary Button</button>
@@ -58,6 +60,7 @@ Override seed hues to change the entire color palette:
 ```html
 <button s-btn="primary">Primary</button>
 <button s-btn="secondary">Secondary</button>
+<button s-btn="outline">Outline</button>
 <button s-btn="ghost">Ghost</button>
 <button s-btn="link">Link</button>
 ```
@@ -80,7 +83,7 @@ Override seed hues to change the entire color palette:
 
 ```html
 <div s-field>
-  <label s-label for="email">Email</label>
+  <label s-field-label for="email">Email</label>
   <input s-input type="email" id="email" placeholder="you@example.com" />
 </div>
 ```
@@ -107,11 +110,11 @@ To force a specific theme, use the `color-scheme` property:
 
 Shift CSS uses **semantic attribute modules** instead of modifier classes:
 
-| Old Pattern | New Pattern |
-|-------------|-------------|
-| `class="btn btn-primary"` | `s-btn="primary"` |
+| Old Pattern                       | New Pattern          |
+| --------------------------------- | -------------------- |
+| `class="btn btn-primary"`         | `s-btn="primary"`    |
 | `class="surface surface--raised"` | `s-surface="raised"` |
-| `class="card"` | `s-card` |
-| `class="input"` | `s-input` |
+| `class="card"`                    | `s-card`             |
+| `class="input"`                   | `s-input`            |
 
 This creates a strict, declarative API that's easier to maintain and nearly impossible to break with conflicting classes.
