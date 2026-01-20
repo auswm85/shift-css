@@ -13,9 +13,10 @@ const sizes = {
 };
 
 const { icon, text } = sizes[size];
+const base = import.meta.env.BASE_URL;
 ---
 
-<a href="/" class="logo" style={`--logo-text-size: ${text}`}>
+<a href={base} class="logo" style={`--logo-text-size: ${text}`}>
 	<svg
 		width={icon}
 		height={icon}

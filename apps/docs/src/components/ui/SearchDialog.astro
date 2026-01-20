@@ -1,8 +1,9 @@
 ---
 // SearchDialog - Pagefind search modal
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<dialog id="search-dialog" class="docs-search-dialog" aria-label="Search documentation">
+<dialog id="search-dialog" class="docs-search-dialog" aria-label="Search documentation" data-base-url={base}>
 	<div class="docs-search-content">
 		<div class="docs-search-header">
 			<span class="docs-search-title">Search</span>
@@ -183,7 +184,8 @@
 			if (pagefindLoaded) return;
 
 			const container = document.getElementById('pagefind-container');
-			if (!container) return;
+			const dialog = document.getElementById('search-dialog');
+			if (!container || !dialog) return;
 
 			// Check if PagefindUI is already loaded
 			if (window.PagefindUI) {
@@ -191,9 +193,12 @@
 				return;
 			}
 
+			// Get base URL from data attribute
+			const baseUrl = dialog.getAttribute('data-base-url') || '';
+
 			// Load the script
 			const script = document.createElement('script');
-			script.src = '/pagefind/pagefind-ui.js';
+			script.src = baseUrl + '/pagefind/pagefind-ui.js';
 			script.onload = function() {
 				initPagefindUI();
 			};
@@ -213,11 +218,15 @@
 		function initPagefindUI() {
 			if (!window.PagefindUI) return;
 
+			const dialog = document.getElementById('search-dialog');
+			const baseUrl = dialog ? dialog.getAttribute('data-base-url') || '' : '';
+
 			new window.PagefindUI({
 				element: '#pagefind-container',
 				showSubResults: true,
 				showImages: false,
 				excerptLength: 15,
+				basePath: baseUrl + '/pagefind/',
 			});
 
 			pagefindLoaded = true;

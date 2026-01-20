@@ -6,7 +6,8 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
-const { prev, next } = findAdjacentPages(currentPath);
+const base = import.meta.env.BASE_URL;
+const { prev, next } = findAdjacentPages(currentPath, base);
 ---
 
 {

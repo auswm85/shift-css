@@ -10,7 +10,8 @@ export interface NavGroup {
 
 export type NavEntry = NavItem | NavGroup;
 
-export const navigation: NavEntry[] = [
+// Raw navigation paths (without base URL)
+const navigationData: NavEntry[] = [
 	{ label: 'Live Demo', href: '/demo' },
 	{
 		label: 'Getting Started',
@@ -60,9 +61,38 @@ export function isNavGroup(entry: NavEntry): entry is NavGroup {
 	return 'items' in entry;
 }
 
-export function flattenNavigation(): NavItem[] {
+// Prefix all hrefs with base URL
+function prefixNavigation(nav: NavEntry[], baseUrl: string): NavEntry[] {
+	const base = baseUrl.replace(/\/$/, '');
+	return nav.map((entry) => {
+		if (isNavGroup(entry)) {
+			return {
+				...entry,
+				items: entry.items.map((item) => ({
+					...item,
+					href: `${base}${item.href}`,
+				})),
+			};
+		}
+		return {
+			...entry,
+			href: `${base}${entry.href}`,
+		};
+	});
+}
+
+// Get navigation with base URL prefixed
+export function getNavigation(baseUrl: string): NavEntry[] {
+	return prefixNavigation(navigationData, baseUrl);
+}
+
+// Legacy export for backward compatibility (no base URL)
+export const navigation = navigationData;
+
+export function flattenNavigation(baseUrl = ''): NavItem[] {
+	const nav = baseUrl ? getNavigation(baseUrl) : navigationData;
 	const items: NavItem[] = [];
-	for (const entry of navigation) {
+	for (const entry of nav) {
 		if (isNavGroup(entry)) {
 			items.push(...entry.items);
 		} else {
@@ -72,8 +102,11 @@ export function flattenNavigation(): NavItem[] {
 	return items;
 }
 
-export function findAdjacentPages(currentPath: string): { prev?: NavItem; next?: NavItem } {
-	const items = flattenNavigation();
+export function findAdjacentPages(
+	currentPath: string,
+	baseUrl = ''
+): { prev?: NavItem; next?: NavItem } {
+	const items = flattenNavigation(baseUrl);
 	const normalizedPath = currentPath.replace(/\/$/, '');
 	const currentIndex = items.findIndex(
 		(item) => item.href === normalizedPath || item.href === currentPath
