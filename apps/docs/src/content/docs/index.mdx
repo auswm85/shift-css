@@ -3,7 +3,7 @@ title: Shift CSS
 description: Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming
 template: splash
 hero:
-  tagline: A modern CSS framework built for perceptual color consistency, automatic theming, and zero specificity conflicts.
+  tagline: Precision UI built on OKLCH and semantic attributes
   actions:
     - text: Get Started
       link: /getting-started/introduction/
@@ -15,6 +15,7 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import BundleSize from '../../components/BundleSize.astro';
 
 ## Why Shift CSS?
 
@@ -25,10 +26,10 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
   <Card title="Zero-Class Theming" icon="moon">
     Native `light-dark()` function. No `.dark` class needed - respects `prefers-color-scheme` automatically.
   </Card>
-  <Card title="Cascade Layers" icon="layers">
+  <Card title="Cascade Layers" icon="list-format">
     No more `!important`. Framework styles live in `@layer` so your CSS always wins.
   </Card>
-  <Card title="Container Queries" icon="box">
+  <Card title="Container Queries" icon="puzzle">
     Components respond to their container, not the viewport. True modular design.
   </Card>
 </CardGrid>
@@ -49,4 +50,4 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ## Bundle Size
 
-**~8KB gzipped** - All components, utilities, and a complete color system.
+<BundleSize /> - All components, utilities, and a complete color system.
