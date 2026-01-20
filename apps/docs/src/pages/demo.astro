@@ -380,6 +380,18 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		margin: 0;
 	}
 
+	/* Force card text visibility */
+	.demo-page [s-card] h4,
+	.demo-page [s-card-title] {
+		color: var(--s-neutral-900) !important;
+	}
+
+	.demo-page [s-card] p,
+	.demo-page [s-card-body] p,
+	.demo-page [s-card-subtitle] {
+		color: var(--s-neutral-700) !important;
+	}
+
 	.demo-page {
 		max-width: 900px;
 	}

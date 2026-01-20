@@ -151,9 +151,9 @@ select[s-input] {
 
 /* Primary button - hollow with glow */
 [s-btn="primary"] {
-  background: transparent;
+  background: var(--s-primary);
   border: var(--s-border-width) solid var(--s-primary);
-  color: var(--s-primary);
+  color: var(--s-neutral-950);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
@@ -207,6 +207,18 @@ select[s-input] {
 [s-card] {
   border: var(--s-border-width) solid var(--s-neutral-200);
   background: var(--s-neutral-050);
+  color: var(--s-neutral-900);
+}
+
+[s-card] p,
+[s-card-body] p,
+[s-card-subtitle] {
+  color: var(--s-neutral-700);
+}
+
+[s-card] h4,
+[s-card-title] {
+  color: var(--s-neutral-900);
 }
 
 /* Surfaces - ensure text visibility */
@@ -256,6 +268,11 @@ select[s-input] {
     box-shadow: var(--s-glow);
     outline: none;
   }
+}
+
+[s-input-addon] {
+  color: var(--s-neutral-600);
+  background: var(--s-neutral-100);
 }
 
 /* Code blocks - deeper void */
