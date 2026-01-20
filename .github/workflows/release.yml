@@ -1,15 +1,14 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [published]
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
-    name: Release
+    name: Publish to npm
     runs-on: ubuntu-latest
     environment: release
     permissions:
@@ -38,22 +37,12 @@ jobs:
         run: bun run build
 
       - name: Update package version
-        run: npm version ${{ github.ref_name }} --no-git-tag-version --allow-same-version
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version --allow-same-version
         working-directory: packages/core
 
       - name: Publish to npm
         run: npm publish --provenance --access public
         working-directory: packages/core
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish GitHub Release
-        uses: release-drafter/release-drafter@v6
-        with:
-          publish: true
-          tag: ${{ github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
