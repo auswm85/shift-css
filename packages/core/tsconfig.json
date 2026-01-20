@@ -11,8 +11,10 @@
     "declaration": false,
     "noEmit": true,
     "isolatedModules": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "allowImportingTsExtensions": true,
+    "types": ["bun"]
   },
-  "include": ["scripts/**/*.ts"],
+  "include": ["scripts/**/*.ts", "tests/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

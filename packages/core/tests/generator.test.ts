@@ -15,7 +15,7 @@ import {
 	isValidLightness,
 	isValidChroma,
 	isValidHue,
-} from '../scripts/utils';
+} from '../scripts/utils.ts';
 
 /**
  * Color scale definitions from tokens/colors.json

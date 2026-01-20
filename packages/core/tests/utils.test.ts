@@ -17,7 +17,7 @@ import {
 	meetsWcagAAA,
 	meetsWcagAALarge,
 	oklchLightnessToRelativeLuminance,
-} from '../scripts/utils';
+} from '../scripts/utils.ts';
 
 describe('camelToKebab', () => {
 	test('converts camelCase to kebab-case', () => {
@@ -197,7 +197,9 @@ describe('Token Validation', () => {
 		const lightnessValues = [0.9778, 0.9356, 0.8811, 0.8267, 0.7422, 0.6478, 0.5733, 0.4689, 0.3944, 0.32, 0.2378];
 
 		for (let i = 1; i < lightnessValues.length; i++) {
-			expect(lightnessValues[i]).toBeLessThan(lightnessValues[i - 1]);
+			const current = lightnessValues[i]!;
+			const previous = lightnessValues[i - 1]!;
+			expect(current).toBeLessThan(previous);
 		}
 	});
 
