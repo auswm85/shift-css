@@ -52,12 +52,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/shift-css"
+    "url": "https://github.com/auswm85/shift-css"
   },
   "bugs": {
-    "url": "https://github.com/your-username/shift-css/issues"
+    "url": "https://github.com/auswm85/shift-css/issues"
   },
-  "homepage": "https://github.com/your-username/shift-css#readme",
+  "homepage": "https://github.com/auswm85/shift-css#readme",
   "sideEffects": [
     "**/*.css"
   ]
