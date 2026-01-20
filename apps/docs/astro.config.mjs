@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import { defineConfig } from 'astro/config';
 
 export default defineConfig({
 	site: 'https://auswm85.github.io',
