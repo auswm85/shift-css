@@ -13,6 +13,7 @@ export default defineConfig({
 			],
 			customCss: ['@shift-css/core'],
 			sidebar: [
+				{ label: 'Live Demo', link: '/demo' },
 				{
 					label: 'Getting Started',
 					items: [

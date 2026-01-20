@@ -93,15 +93,22 @@
   --btn-text: var(--interactive-primary);
   --btn-border: var(--interactive-primary);
 
+  /* Override auto-contrast for transparent bg */
+  color: var(--btn-text);
+
   &:hover:not(:disabled) {
     --btn-bg: var(--interactive-primary);
     --btn-text: var(--text-inverse);
+    color: var(--btn-text);
   }
 }
 
 .btn--ghost {
   --btn-bg: transparent;
   --btn-text: var(--interactive-primary);
+
+  /* Override auto-contrast for transparent bg */
+  color: var(--btn-text);
 
   &:hover:not(:disabled) {
     --btn-bg: var(--surface-sunken);
@@ -113,6 +120,22 @@
 
   &:hover:not(:disabled) {
     --btn-bg: var(--color-danger-700);
+  }
+}
+
+.btn--success {
+  --btn-bg: var(--state-success);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--color-success-700);
+  }
+}
+
+.btn--warning {
+  --btn-bg: var(--state-warning);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--color-warning-700);
   }
 }
 
