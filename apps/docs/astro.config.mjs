@@ -11,7 +11,7 @@ export default defineConfig({
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/your-username/shift-css' },
 			],
-			customCss: ['@shift-css/core'],
+			customCss: ['@shift-css/core', './src/styles/theme.css'],
 			sidebar: [
 				{ label: 'Live Demo', link: '/demo' },
 				{
