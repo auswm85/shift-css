@@ -63,27 +63,87 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		</div>
 
 		<h2>Surfaces</h2>
+
+		<h3>Elevation Variants</h3>
 		<div class="demo-grid">
+			<div s-surface="sunken">
+				<h4>Sunken</h4>
+				<p><code>s-surface="sunken"</code></p>
+			</div>
 			<div s-surface="flat">
-				<h4>Flat Surface</h4>
-				<p>Default surface using <code>s-surface="flat"</code>.</p>
+				<h4>Flat</h4>
+				<p><code>s-surface="flat"</code></p>
 			</div>
 			<div s-surface="raised">
-				<h4>Raised Surface</h4>
-				<p>Elevated using <code>s-surface="raised"</code>.</p>
+				<h4>Raised</h4>
+				<p><code>s-surface="raised"</code></p>
 			</div>
-			<div s-surface="sunken">
-				<h4>Sunken Surface</h4>
-				<p>Recessed using <code>s-surface="sunken"</code>.</p>
+			<div s-surface="floating">
+				<h4>Floating</h4>
+				<p><code>s-surface="floating"</code></p>
+			</div>
+		</div>
+
+		<h3>Modifiers</h3>
+		<div class="demo-grid">
+			<div s-surface="flat" s-bordered>
+				<h4>Bordered</h4>
+				<p><code>s-bordered</code></p>
+			</div>
+			<div s-surface="raised" s-interactive>
+				<h4>Interactive</h4>
+				<p><code>s-interactive</code> - hover me!</p>
+			</div>
+		</div>
+
+		<h3>Color Variants</h3>
+		<div class="demo-grid">
+			<div s-surface="primary">
+				<h4>Primary</h4>
+				<p><code>s-surface="primary"</code></p>
+			</div>
+			<div s-surface="secondary">
+				<h4>Secondary</h4>
+				<p><code>s-surface="secondary"</code></p>
+			</div>
+			<div s-surface="accent">
+				<h4>Accent</h4>
+				<p><code>s-surface="accent"</code></p>
+			</div>
+		</div>
+
+		<h3>State Surfaces</h3>
+		<div class="demo-grid">
+			<div s-surface="success">
+				<h4>Success</h4>
+				<p>For success messages</p>
+			</div>
+			<div s-surface="warning">
+				<h4>Warning</h4>
+				<p>For warning messages</p>
+			</div>
+			<div s-surface="danger">
+				<h4>Danger</h4>
+				<p>For error messages</p>
 			</div>
 		</div>
 
 		<h2>Buttons</h2>
+
+		<h3>Variants</h3>
 		<div class="demo-row">
 			<button s-btn="primary">Primary</button>
 			<button s-btn="secondary">Secondary</button>
+			<button s-btn="outline">Outline</button>
 			<button s-btn="ghost">Ghost</button>
 			<button s-btn="link">Link</button>
+		</div>
+
+		<h3>State Variants</h3>
+		<div class="demo-row">
+			<button s-btn="danger">Danger</button>
+			<button s-btn="success">Success</button>
+			<button s-btn="warning">Warning</button>
 		</div>
 
 		<h3>Sizes</h3>
@@ -91,22 +151,40 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 			<button s-btn="primary" s-size="sm">Small</button>
 			<button s-btn="primary">Medium</button>
 			<button s-btn="primary" s-size="lg">Large</button>
+			<button s-btn="primary" s-size="xl">Extra Large</button>
 		</div>
 
-		<h3>States</h3>
+		<h3>States & Modifiers</h3>
 		<div class="demo-row">
-			<button s-btn="primary">Normal</button>
 			<button s-btn="primary" disabled>Disabled</button>
+			<button s-btn="primary" s-loading>Loading</button>
+			<button s-btn="primary" s-icon>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+			</button>
+		</div>
+
+		<h3>Full Width</h3>
+		<button s-btn="primary" s-block>Full Width Button</button>
+
+		<h3>Button Group</h3>
+		<div class="demo-row">
+			<div s-btn-group>
+				<button s-btn="secondary">Left</button>
+				<button s-btn="secondary">Center</button>
+				<button s-btn="secondary">Right</button>
+			</div>
 		</div>
 
 		<h2>Cards</h2>
+
+		<h3>Basic Cards</h3>
 		<div class="demo-grid">
 			<article s-card>
 				<header s-card-header>
-					<h4>Card Title</h4>
+					<h4>Card with Header</h4>
 				</header>
 				<div s-card-body>
-					<p>Basic card with header and body.</p>
+					<p>Card body content goes here.</p>
 				</div>
 				<footer s-card-footer>
 					<button s-btn="primary" s-size="sm">Action</button>
@@ -114,25 +192,170 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 			</article>
 			<article s-card>
 				<div s-card-body>
-					<h4>Simple Card</h4>
-					<p>Card with just a body section.</p>
+					<h4 s-card-title>Card Title</h4>
+					<p s-card-subtitle>Card subtitle text</p>
+					<p>Using semantic title/subtitle attributes.</p>
+				</div>
+			</article>
+		</div>
+
+		<h3>Media Card</h3>
+		<div class="demo-grid">
+			<article s-card>
+				<div s-card-media>
+					<img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=225&fit=crop" alt="Abstract gradient" />
+				</div>
+				<div s-card-body>
+					<h4 s-card-title>Media Card</h4>
+					<p s-card-subtitle>With image container</p>
+					<p>Using <code>s-card-media</code> for 16:9 images.</p>
+				</div>
+			</article>
+			<article s-card s-horizontal>
+				<div s-card-media>
+					<img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200&h=200&fit=crop" alt="Abstract art" />
+				</div>
+				<div s-card-body>
+					<h4 s-card-title>Horizontal Card</h4>
+					<p s-card-subtitle>Side-by-side layout</p>
+					<p>Using <code>s-horizontal</code> modifier.</p>
+				</div>
+			</article>
+		</div>
+
+		<h3>Card Variants</h3>
+		<div class="demo-grid">
+			<article s-card="flat">
+				<div s-card-body>
+					<h4>Flat Card</h4>
+					<p><code>s-card="flat"</code></p>
+				</div>
+			</article>
+			<article s-card="elevated">
+				<div s-card-body>
+					<h4>Elevated Card</h4>
+					<p><code>s-card="elevated"</code></p>
+				</div>
+			</article>
+			<article s-card="outline">
+				<div s-card-body>
+					<h4>Outline Card</h4>
+					<p><code>s-card="outline"</code></p>
+				</div>
+			</article>
+		</div>
+
+		<h3>Interactive Card</h3>
+		<div class="demo-grid">
+			<article s-card s-interactive>
+				<div s-card-body>
+					<h4>Hover Me!</h4>
+					<p><code>s-interactive</code> adds lift on hover.</p>
 				</div>
 			</article>
 		</div>
 
 		<h2>Inputs</h2>
+
+		<h3>Text Inputs</h3>
 		<div class="demo-grid">
 			<div s-field>
-				<label s-label>Text Input</label>
+				<label s-field-label>Text Input</label>
 				<input s-input type="text" placeholder="Enter text..." />
 			</div>
 			<div s-field>
-				<label s-label>Select</label>
+				<label s-field-label>With Hint</label>
+				<input s-input type="email" placeholder="you@example.com" />
+				<span s-field-hint>We'll never share your email.</span>
+			</div>
+			<div s-field>
+				<label s-field-label>With Error</label>
+				<input s-input type="text" aria-invalid="true" value="Invalid input" />
+				<span s-field-error>This field has an error.</span>
+			</div>
+		</div>
+
+		<h3>Input Sizes</h3>
+		<div class="demo-grid">
+			<div s-field>
+				<label s-field-label>Small</label>
+				<input s-input s-size="sm" type="text" placeholder="Small input" />
+			</div>
+			<div s-field>
+				<label s-field-label>Default</label>
+				<input s-input type="text" placeholder="Default input" />
+			</div>
+			<div s-field>
+				<label s-field-label>Large</label>
+				<input s-input s-size="lg" type="text" placeholder="Large input" />
+			</div>
+		</div>
+
+		<h3>Input Groups</h3>
+		<div class="demo-grid">
+			<div s-field>
+				<label s-field-label>URL</label>
+				<div s-input-group>
+					<span s-input-addon>https://</span>
+					<input s-input type="text" placeholder="example.com" />
+				</div>
+			</div>
+			<div s-field>
+				<label s-field-label>Price</label>
+				<div s-input-group>
+					<input s-input type="number" placeholder="0.00" />
+					<span s-input-addon>USD</span>
+				</div>
+			</div>
+		</div>
+
+		<h3>Select & Textarea</h3>
+		<div class="demo-grid">
+			<div s-field>
+				<label s-field-label>Select</label>
 				<select s-input>
 					<option>Option 1</option>
 					<option>Option 2</option>
 					<option>Option 3</option>
 				</select>
+			</div>
+			<div s-field>
+				<label s-field-label>Textarea</label>
+				<textarea s-input rows="3" placeholder="Enter message..."></textarea>
+			</div>
+		</div>
+
+		<h3>Checkbox, Radio & Toggle</h3>
+		<div class="demo-grid">
+			<div class="form-controls">
+				<label s-checkbox>
+					<input type="checkbox" checked />
+					Checkbox option
+				</label>
+				<label s-checkbox>
+					<input type="checkbox" />
+					Another option
+				</label>
+			</div>
+			<div class="form-controls">
+				<label s-radio>
+					<input type="radio" name="demo-radio" checked />
+					Radio option 1
+				</label>
+				<label s-radio>
+					<input type="radio" name="demo-radio" />
+					Radio option 2
+				</label>
+			</div>
+			<div class="form-controls">
+				<label s-toggle>
+					<input type="checkbox" checked />
+					Enable feature
+				</label>
+				<label s-toggle>
+					<input type="checkbox" />
+					Another toggle
+				</label>
 			</div>
 		</div>
 
@@ -150,7 +373,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 </StarlightPage>
 
 <style>
-	/* Reset Starlight's default margins inside our components */
+	/* Reset Starlight's default margins and colors inside our components */
 	.demo-page [s-surface] :where(h4, p),
 	.demo-page [s-card] :where(h4, p),
 	.demo-page [s-btn] {
@@ -162,14 +385,14 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 	}
 
 	.intro {
-		color: var(--s-neutral-500);
+		color: var(--s-text-primary);
 		margin-bottom: var(--s-space-6);
 	}
 
 	.customization-panel {
-		background: var(--s-neutral-050);
-		border: var(--s-border-width) solid var(--s-neutral-200);
-		border-radius: var(--s-radius);
+		background: var(--s-surface-sunken);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-lg);
 		padding: var(--s-space-6);
 		margin-bottom: var(--s-space-8);
 	}
@@ -189,7 +412,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
 	.hue-slider input[type="range"] {
 		width: 100%;
-		accent-color: var(--s-primary);
+		accent-color: var(--s-interactive-primary);
 	}
 
 	.hue-value {
@@ -200,11 +423,11 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		margin-top: var(--s-space-10);
 		margin-bottom: var(--s-space-4);
 		padding-bottom: var(--s-space-2);
-		border-bottom: var(--s-border-width) solid var(--s-neutral-200);
+		border-bottom: 1px solid var(--s-border-default);
 	}
 
 	h3 {
-		color: var(--s-neutral-500);
+		color: var(--s-text-primary);
 		font-size: var(--s-text-base);
 		margin-top: var(--s-space-6);
 		margin-bottom: var(--s-space-3);
@@ -216,7 +439,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
 	.color-scale {
 		display: flex;
-		border-radius: var(--s-radius);
+		border-radius: var(--s-radius-md);
 		overflow: hidden;
 		margin-bottom: var(--s-space-4);
 	}
@@ -234,7 +457,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
 	.status-swatch {
 		padding: var(--s-space-3) var(--s-space-4);
-		border-radius: var(--s-radius);
+		border-radius: var(--s-radius-md);
 		color: white;
 		font-weight: var(--s-font-medium);
 		font-size: var(--s-text-sm);
@@ -242,7 +465,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
 	.demo-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: var(--s-space-4);
 		margin-bottom: var(--s-space-4);
 	}
@@ -261,10 +484,10 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 	}
 
 	.typography-demo {
-		background: var(--s-neutral-050);
+		background: var(--s-surface-sunken);
 		padding: var(--s-space-6);
-		border-radius: var(--s-radius);
-		border: var(--s-border-width) solid var(--s-neutral-200);
+		border-radius: var(--s-radius-lg);
+		border: 1px solid var(--s-border-default);
 	}
 
 	.typography-demo p {
@@ -275,16 +498,39 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		margin-bottom: 0;
 	}
 
-	.demo-page [s-surface] p,
 	.demo-page [s-card] p {
-		color: var(--s-neutral-500);
+		color: var(--s-text-secondary);
 		font-size: var(--s-text-sm);
 		margin: 0;
+	}
+
+	.demo-page [s-surface] p {
+		font-size: var(--s-text-sm);
+		margin: 0;
+	}
+
+	/* Slightly dim subtext on color variant surfaces for hierarchy */
+	.demo-page [s-surface="primary"] p,
+	.demo-page [s-surface="secondary"] p,
+	.demo-page [s-surface="accent"] p {
+		opacity: 0.85;
 	}
 
 	/* Add padding to surfaces in demo */
 	.demo-page [s-surface] {
 		padding: var(--s-space-4);
+	}
+
+	/* Form controls layout */
+	.form-controls {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-2);
+	}
+
+	/* Full width button spacing */
+	.demo-page [s-btn][s-block] {
+		margin-bottom: var(--s-space-4);
 	}
 </style>
 
