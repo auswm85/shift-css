@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -37,14 +37,27 @@ jobs:
       - name: Build packages
         run: bun run build
 
+      - name: Update package version
+        run: npm version ${{ github.ref_name }} --no-git-tag-version --allow-same-version
+        working-directory: packages/core
+
       - name: Publish to npm
         run: npm publish --provenance --access public
         working-directory: packages/core
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Create GitHub Release
+      - name: Publish GitHub Release
+        uses: release-drafter/release-drafter@v6
+        with:
+          publish: true
+          tag: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
           files: |
             packages/core/dist/shift.min.css
             packages/core/dist/shift.css

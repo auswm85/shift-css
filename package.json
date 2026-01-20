@@ -14,14 +14,10 @@
     "format": "biome format --write .",
     "test": "cd packages/core && bun test",
     "test:docker": "docker build -f Dockerfile.test -t shift-css-test . && docker run --rm -v $(pwd)/packages/core/tests/e2e/snapshots:/app/packages/core/tests/e2e/snapshots shift-css-test bun run --cwd packages/core test:visual",
-    "test:docker:update": "docker build -f Dockerfile.test -t shift-css-test . && docker run --rm -v $(pwd)/packages/core/tests/e2e/snapshots:/app/packages/core/tests/e2e/snapshots shift-css-test bunx --cwd packages/core playwright test --update-snapshots --project=visual-chrome",
-    "changeset": "changeset",
-    "version": "changeset version",
-    "release": "bun run build && changeset publish"
+    "test:docker:update": "docker build -f Dockerfile.test -t shift-css-test . && docker run --rm -v $(pwd)/packages/core/tests/e2e/snapshots:/app/packages/core/tests/e2e/snapshots shift-css-test bunx --cwd packages/core playwright test --update-snapshots --project=visual-chrome"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.11",
-    "@changesets/cli": "^2.29.8"
+    "@biomejs/biome": "2.3.11"
   },
   "engines": {
     "node": ">=20.0.0"
