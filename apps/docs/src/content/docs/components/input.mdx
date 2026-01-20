@@ -1,0 +1,193 @@
+---
+title: Input
+description: Form input components with consistent styling
+---
+
+## Overview
+
+Form inputs with automatic dark mode support and accessible focus states.
+
+## Text Input
+
+```html
+<input type="text" class="input" placeholder="Enter text..." />
+```
+
+## With Labels
+
+```html
+<label class="input-group">
+  <span class="input-label">Email</span>
+  <input type="email" class="input" placeholder="you@example.com" />
+</label>
+```
+
+## Input Sizes
+
+```html
+<input type="text" class="input input--sm" placeholder="Small" />
+<input type="text" class="input" placeholder="Default" />
+<input type="text" class="input input--lg" placeholder="Large" />
+```
+
+## States
+
+### Disabled
+
+```html
+<input type="text" class="input" disabled placeholder="Disabled input" />
+```
+
+### Error
+
+```html
+<input type="text" class="input input--error" placeholder="Error state" />
+<span class="input-error-text">This field is required</span>
+```
+
+### Success
+
+```html
+<input type="text" class="input input--success" placeholder="Valid input" />
+```
+
+## Input Types
+
+### Password
+
+```html
+<input type="password" class="input" placeholder="Password" />
+```
+
+### Search
+
+```html
+<input type="search" class="input" placeholder="Search..." />
+```
+
+### Number
+
+```html
+<input type="number" class="input" placeholder="0" />
+```
+
+## Textarea
+
+```html
+<textarea class="input textarea" rows="4" placeholder="Enter message..."></textarea>
+```
+
+## Select
+
+```html
+<select class="input select">
+  <option value="">Choose an option</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+</select>
+```
+
+## Input with Addons
+
+### Prefix
+
+```html
+<div class="input-wrapper">
+  <span class="input-addon">$</span>
+  <input type="text" class="input" placeholder="0.00" />
+</div>
+```
+
+### Suffix
+
+```html
+<div class="input-wrapper">
+  <input type="text" class="input" placeholder="Username" />
+  <span class="input-addon">@domain.com</span>
+</div>
+```
+
+### With Button
+
+```html
+<div class="input-wrapper">
+  <input type="text" class="input" placeholder="Search..." />
+  <button class="btn">Search</button>
+</div>
+```
+
+## Checkbox & Radio
+
+### Checkbox
+
+```html
+<label class="checkbox">
+  <input type="checkbox" />
+  <span class="checkbox__label">Remember me</span>
+</label>
+```
+
+### Radio Group
+
+```html
+<fieldset class="radio-group">
+  <legend>Select an option</legend>
+  <label class="radio">
+    <input type="radio" name="option" value="1" />
+    <span class="radio__label">Option 1</span>
+  </label>
+  <label class="radio">
+    <input type="radio" name="option" value="2" />
+    <span class="radio__label">Option 2</span>
+  </label>
+</fieldset>
+```
+
+## Form Layout
+
+```html
+<form class="form">
+  <div class="form-group">
+    <label class="input-label">Name</label>
+    <input type="text" class="input" />
+  </div>
+  <div class="form-group">
+    <label class="input-label">Email</label>
+    <input type="email" class="input" />
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn">Submit</button>
+    <button type="reset" class="btn btn--ghost">Reset</button>
+  </div>
+</form>
+```
+
+## CSS Custom Properties
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--input-bg` | `var(--surface-sunken)` | Background color |
+| `--input-border` | `var(--border-default)` | Border color |
+| `--input-radius` | `var(--radius-base)` | Border radius |
+| `--input-padding-x` | `var(--spacing-3)` | Horizontal padding |
+| `--input-padding-y` | `var(--spacing-2)` | Vertical padding |
+| `--input-focus-ring` | `var(--color-primary-500)` | Focus ring color |
+
+## Customization Examples
+
+### Rounded Inputs
+
+```css
+.input {
+  --input-radius: var(--radius-full);
+}
+```
+
+### Custom Focus Color
+
+```css
+.input {
+  --input-focus-ring: var(--color-accent-500);
+}
+```

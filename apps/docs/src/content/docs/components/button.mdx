@@ -1,0 +1,147 @@
+---
+title: Button
+description: Versatile button component with multiple variants and sizes
+---
+
+## Overview
+
+The `.btn` component provides accessible, styled buttons with automatic dark mode support.
+
+## Basic Usage
+
+```html
+<button class="btn">Primary Button</button>
+```
+
+## Variants
+
+### Primary (Default)
+
+```html
+<button class="btn">Primary</button>
+```
+
+### Secondary
+
+```html
+<button class="btn btn--secondary">Secondary</button>
+```
+
+### Outline
+
+```html
+<button class="btn btn--outline">Outline</button>
+```
+
+### Ghost
+
+```html
+<button class="btn btn--ghost">Ghost</button>
+```
+
+### Danger
+
+```html
+<button class="btn btn--danger">Danger</button>
+```
+
+### Success
+
+```html
+<button class="btn btn--success">Success</button>
+```
+
+## Sizes
+
+```html
+<button class="btn btn--sm">Small</button>
+<button class="btn">Default</button>
+<button class="btn btn--lg">Large</button>
+```
+
+## States
+
+### Disabled
+
+```html
+<button class="btn" disabled>Disabled</button>
+```
+
+### Loading
+
+```html
+<button class="btn btn--loading">Loading...</button>
+```
+
+## Button Groups
+
+```html
+<div class="btn-group">
+  <button class="btn">Left</button>
+  <button class="btn">Center</button>
+  <button class="btn">Right</button>
+</div>
+```
+
+## With Icons
+
+```html
+<button class="btn">
+  <svg><!-- icon --></svg>
+  With Icon
+</button>
+
+<button class="btn btn--icon" aria-label="Settings">
+  <svg><!-- icon --></svg>
+</button>
+```
+
+## Full Width
+
+```html
+<button class="btn btn--block">Full Width Button</button>
+```
+
+## As Links
+
+```html
+<a href="/path" class="btn">Link Button</a>
+```
+
+## CSS Custom Properties
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--btn-bg` | `var(--interactive-primary)` | Background color |
+| `--btn-color` | `auto-contrast` | Text color |
+| `--btn-radius` | `var(--radius-base)` | Border radius |
+| `--btn-padding-x` | `var(--spacing-4)` | Horizontal padding |
+| `--btn-padding-y` | `var(--spacing-2)` | Vertical padding |
+| `--btn-font-weight` | `var(--font-medium)` | Font weight |
+
+## Customization Examples
+
+### Pill Buttons
+
+```css
+.btn {
+  --btn-radius: var(--radius-full);
+}
+```
+
+### Custom Brand Color
+
+```html
+<button class="btn" style="--btn-bg: var(--color-accent-500);">
+  Accent Button
+</button>
+```
+
+### Scoped Customization
+
+```css
+.my-section .btn {
+  --btn-bg: var(--color-secondary-600);
+  --btn-radius: 0;
+}
+```

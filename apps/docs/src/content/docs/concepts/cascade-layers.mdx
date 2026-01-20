@@ -1,0 +1,80 @@
+---
+title: Cascade Layers
+description: How Shift CSS uses @layer for predictable specificity
+---
+
+## The Specificity Problem
+
+Traditional CSS frameworks suffer from specificity wars:
+
+```css
+/* Framework defines */
+.btn { background: blue; }
+
+/* You want to override */
+.btn { background: purple; }  /* Works... sometimes */
+
+/* But then the framework has */
+.btn.btn-primary { background: blue; }  /* Higher specificity wins */
+
+/* So you resort to */
+.btn { background: purple !important; }  /* The nuclear option */
+```
+
+## The Cascade Layers Solution
+
+CSS Cascade Layers (`@layer`) provide explicit control over which styles take precedence, regardless of specificity:
+
+```css
+/* Framework in a layer */
+@layer framework {
+  .btn { background: blue; }
+  .btn.btn-primary { background: blue; }
+}
+
+/* Your CSS (unlayered) ALWAYS wins */
+.btn { background: purple; }  /* Always applies! */
+```
+
+## Shift CSS Layer Hierarchy
+
+```css
+@layer shift.reset, shift.tokens, shift.core, shift.utils;
+```
+
+**Order (lowest to highest priority):**
+
+1. `shift.reset` - Browser reset, fluid typography
+2. `shift.tokens` - CSS custom properties
+3. `shift.core` - Components (buttons, cards, inputs)
+4. `shift.utils` - Utility classes
+
+**Your CSS** (unlayered) automatically has the highest priority.
+
+## Practical Example
+
+```html
+<style>
+  /* Shift CSS is in @layer shift.* */
+
+  /* Your styles override without !important */
+  .btn {
+    background: var(--color-accent-500);
+    border-radius: 9999px;
+  }
+</style>
+
+<button class="btn">Custom Styled</button>
+```
+
+## Working With Layers
+
+You can also create your own layers that sit between Shift CSS and your custom styles:
+
+```css
+@layer shift.reset, shift.tokens, shift.core, shift.utils, app.components, app.utilities;
+
+@layer app.components {
+  .my-button { /* Your component styles */ }
+}
+```

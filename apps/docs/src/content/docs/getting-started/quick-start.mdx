@@ -1,0 +1,98 @@
+---
+title: Quick Start
+description: Get up and running with Shift CSS in minutes
+---
+
+## Basic Setup
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/@shift-css/core" />
+    <title>My Shift CSS App</title>
+  </head>
+  <body>
+    <div class="surface p-6">
+      <h1 class="text-2xl font-bold mb-4">Hello Shift CSS!</h1>
+      <p class="text-secondary mb-4">
+        This text automatically adapts to light/dark mode.
+      </p>
+      <button class="btn">Primary Button</button>
+      <button class="btn btn--secondary">Secondary</button>
+    </div>
+  </body>
+</html>
+```
+
+## Customizing Your Brand
+
+Override seed hues to change the entire color palette:
+
+```html
+<style>
+  :root {
+    /* Change primary from blue (250) to purple (280) */
+    --shift-hue-primary: 280;
+
+    /* Make grays have a purple tint */
+    --shift-hue-neutral: 280;
+  }
+</style>
+```
+
+## Using Components
+
+### Surface (Auto-Contrast Background)
+
+```html
+<div class="surface">Text color automatically adjusts for readability</div>
+
+<div class="surface surface--primary">
+  Primary colored surface with auto-contrast text
+</div>
+```
+
+### Buttons
+
+```html
+<button class="btn">Primary</button>
+<button class="btn btn--secondary">Secondary</button>
+<button class="btn btn--outline">Outline</button>
+<button class="btn btn--ghost">Ghost</button>
+<button class="btn btn--danger">Danger</button>
+```
+
+### Cards
+
+```html
+<div class="card">
+  <div class="card__header">
+    <h3 class="card__title">Card Title</h3>
+  </div>
+  <div class="card__body">Card content goes here.</div>
+  <div class="card__footer">
+    <button class="btn btn--sm">Action</button>
+  </div>
+</div>
+```
+
+## Dark Mode
+
+Shift CSS automatically respects `prefers-color-scheme`. No classes needed! Toggle your system's dark mode to see it in action.
+
+To force a specific theme, use the `color-scheme` property:
+
+```css
+/* Force light mode */
+:root {
+  color-scheme: light;
+}
+
+/* Force dark mode */
+:root {
+  color-scheme: dark;
+}
+```

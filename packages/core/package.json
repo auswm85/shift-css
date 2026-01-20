@@ -1,0 +1,52 @@
+{
+  "name": "@shift-css/core",
+  "version": "0.0.1",
+  "description": "Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming",
+  "type": "module",
+  "main": "./dist/shift.css",
+  "exports": {
+    ".": "./dist/shift.css",
+    "./min": "./dist/shift.min.css",
+    "./reset": "./dist/reset.css",
+    "./tokens": "./dist/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "build:tokens": "tsx scripts/generate-colors.ts",
+    "dev": "tsx scripts/build.ts --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "lightningcss": "^1.30.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "css",
+    "css-framework",
+    "oklch",
+    "design-tokens",
+    "cascade-layers",
+    "light-dark",
+    "zero-runtime",
+    "color-system"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/shift-css"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/shift-css/issues"
+  },
+  "homepage": "https://github.com/your-username/shift-css#readme",
+  "sideEffects": [
+    "**/*.css"
+  ]
+}

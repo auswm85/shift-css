@@ -1,0 +1,170 @@
+---
+title: Spacing Tokens
+description: Consistent spacing scale for margins, padding, and gaps
+---
+
+## Spacing Scale
+
+Shift CSS uses a consistent spacing scale based on `rem` units:
+
+| Token | Value | Pixels (at 16px base) |
+|-------|-------|----------------------|
+| `--spacing-0` | `0` | 0px |
+| `--spacing-px` | `1px` | 1px |
+| `--spacing-0.5` | `0.125rem` | 2px |
+| `--spacing-1` | `0.25rem` | 4px |
+| `--spacing-1.5` | `0.375rem` | 6px |
+| `--spacing-2` | `0.5rem` | 8px |
+| `--spacing-2.5` | `0.625rem` | 10px |
+| `--spacing-3` | `0.75rem` | 12px |
+| `--spacing-3.5` | `0.875rem` | 14px |
+| `--spacing-4` | `1rem` | 16px |
+| `--spacing-5` | `1.25rem` | 20px |
+| `--spacing-6` | `1.5rem` | 24px |
+| `--spacing-7` | `1.75rem` | 28px |
+| `--spacing-8` | `2rem` | 32px |
+| `--spacing-9` | `2.25rem` | 36px |
+| `--spacing-10` | `2.5rem` | 40px |
+| `--spacing-11` | `2.75rem` | 44px |
+| `--spacing-12` | `3rem` | 48px |
+| `--spacing-14` | `3.5rem` | 56px |
+| `--spacing-16` | `4rem` | 64px |
+| `--spacing-20` | `5rem` | 80px |
+| `--spacing-24` | `6rem` | 96px |
+
+## Using Spacing Tokens
+
+### In Custom CSS
+
+```css
+.my-component {
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  gap: var(--spacing-2);
+}
+```
+
+### With Utility Classes
+
+```html
+<div class="p-4 mb-6 gap-2">
+  Uses spacing scale
+</div>
+```
+
+## Component Spacing
+
+Components use spacing tokens for internal consistency:
+
+```css
+.card {
+  --card-padding: var(--spacing-4);
+}
+
+.btn {
+  --btn-padding-x: var(--spacing-4);
+  --btn-padding-y: var(--spacing-2);
+}
+
+.input {
+  --input-padding-x: var(--spacing-3);
+  --input-padding-y: var(--spacing-2);
+}
+```
+
+## Container Width
+
+```css
+:root {
+  --container-max: 80rem;  /* 1280px */
+  --container-padding: var(--spacing-4);
+}
+```
+
+## Customizing Spacing
+
+### Override Individual Values
+
+```css
+:root {
+  --spacing-4: 1.25rem;  /* Default: 1rem */
+}
+```
+
+### Tighter Spacing System
+
+```css
+:root {
+  --spacing-1: 0.2rem;
+  --spacing-2: 0.4rem;
+  --spacing-3: 0.6rem;
+  --spacing-4: 0.8rem;
+}
+```
+
+### Looser Spacing System
+
+```css
+:root {
+  --spacing-1: 0.3rem;
+  --spacing-2: 0.6rem;
+  --spacing-3: 0.9rem;
+  --spacing-4: 1.2rem;
+}
+```
+
+## Fluid Spacing (Advanced)
+
+For responsive spacing that scales with viewport:
+
+```css
+.hero {
+  padding: clamp(var(--spacing-4), 5vw, var(--spacing-16));
+}
+```
+
+## Best Practices
+
+### Consistency
+
+Use spacing tokens instead of arbitrary values:
+
+```css
+/* Good */
+.element {
+  margin: var(--spacing-4);
+}
+
+/* Avoid */
+.element {
+  margin: 17px;
+}
+```
+
+### Vertical Rhythm
+
+Use consistent vertical spacing for readability:
+
+```css
+.prose > * + * {
+  margin-top: var(--spacing-4);
+}
+
+.prose h2 {
+  margin-top: var(--spacing-8);
+}
+```
+
+### Component Boundaries
+
+Use larger spacing between components, smaller within:
+
+```css
+.section {
+  padding: var(--spacing-16) 0;
+}
+
+.section-content {
+  gap: var(--spacing-4);
+}
+```

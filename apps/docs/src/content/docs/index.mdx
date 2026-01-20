@@ -1,0 +1,52 @@
+---
+title: Shift CSS
+description: Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming
+template: splash
+hero:
+  tagline: A modern CSS framework built for perceptual color consistency, automatic theming, and zero specificity conflicts.
+  actions:
+    - text: Get Started
+      link: /getting-started/introduction/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/your-username/shift-css
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Why Shift CSS?
+
+<CardGrid stagger>
+  <Card title="OKLCH Native" icon="sun">
+    Perceptually uniform color scales. Blue-500 and Yellow-500 have the same visual brightness.
+  </Card>
+  <Card title="Zero-Class Theming" icon="moon">
+    Native `light-dark()` function. No `.dark` class needed - respects `prefers-color-scheme` automatically.
+  </Card>
+  <Card title="Cascade Layers" icon="layers">
+    No more `!important`. Framework styles live in `@layer` so your CSS always wins.
+  </Card>
+  <Card title="Container Queries" icon="box">
+    Components respond to their container, not the viewport. True modular design.
+  </Card>
+</CardGrid>
+
+## Quick Start
+
+```html
+<!-- Just drop it in -->
+<link rel="stylesheet" href="https://unpkg.com/@shift-css/core">
+
+<!-- Customize with CSS variables -->
+<style>
+  :root {
+    --shift-hue-primary: 280;  /* Purple brand */
+  }
+</style>
+```
+
+## Bundle Size
+
+**~8KB gzipped** - All components, utilities, and a complete color system.

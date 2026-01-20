@@ -1,0 +1,124 @@
+---
+title: Surface
+description: Auto-contrast background component with intelligent text color
+---
+
+## Overview
+
+The `.surface` component provides backgrounds that automatically calculate readable text colors using CSS `contrast-color()`.
+
+## Basic Usage
+
+```html
+<div class="surface">
+  Text color automatically adjusts for readability
+</div>
+```
+
+## Variants
+
+### Default Surface
+
+Uses the base surface color from your theme:
+
+```html
+<div class="surface">Default surface</div>
+```
+
+### Primary Surface
+
+```html
+<div class="surface surface--primary">
+  Primary colored surface with auto-contrast text
+</div>
+```
+
+### Secondary Surface
+
+```html
+<div class="surface surface--secondary">
+  Secondary colored surface
+</div>
+```
+
+### Accent Surface
+
+```html
+<div class="surface surface--accent">
+  Accent colored surface
+</div>
+```
+
+## Elevation Levels
+
+Surfaces support different elevation levels:
+
+```html
+<div class="surface surface--raised">
+  Raised surface (higher elevation)
+</div>
+
+<div class="surface surface--sunken">
+  Sunken surface (lower elevation)
+</div>
+```
+
+## Custom Backgrounds
+
+Override the background while maintaining auto-contrast:
+
+```html
+<div class="surface" style="--surface-bg: oklch(0.3 0.1 250);">
+  Custom dark background with automatic light text
+</div>
+
+<div class="surface" style="--surface-bg: oklch(0.9 0.05 90);">
+  Custom light background with automatic dark text
+</div>
+```
+
+## How Auto-Contrast Works
+
+The surface component uses progressive enhancement for text contrast:
+
+```css
+.surface {
+  background-color: var(--surface-bg);
+
+  /* Primary: CSS Color Level 6 */
+  color: contrast-color(var(--surface-bg));
+
+  /* Fallback 1: Relative color syntax */
+  @supports not (color: contrast-color(red)) {
+    color: oklch(from var(--surface-bg)
+      clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0);
+  }
+
+  /* Fallback 2: Semantic token */
+  @supports not (color: oklch(from red l c h)) {
+    color: var(--text-primary);
+  }
+}
+```
+
+## Container Query Support
+
+Surfaces respond to their container size:
+
+```html
+<div class="surface" style="width: 200px;">
+  Compact padding in narrow containers
+</div>
+
+<div class="surface" style="width: 600px;">
+  Standard padding in wider containers
+</div>
+```
+
+## CSS Custom Properties
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--surface-bg` | `var(--surface-base)` | Background color |
+| `--surface-padding` | `var(--spacing-4)` | Internal padding |
+| `--surface-radius` | `var(--radius-base)` | Border radius |

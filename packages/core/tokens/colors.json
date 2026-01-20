@@ -1,0 +1,88 @@
+{
+  "color": {
+    "seed": {
+      "primary": {
+        "value": "250",
+        "type": "hue",
+        "description": "Primary brand hue (blue)"
+      },
+      "secondary": {
+        "value": "180",
+        "type": "hue",
+        "description": "Secondary brand hue (cyan)"
+      },
+      "accent": {
+        "value": "30",
+        "type": "hue",
+        "description": "Accent hue (orange)"
+      },
+      "success": {
+        "value": "145",
+        "type": "hue",
+        "description": "Success state hue (green)"
+      },
+      "warning": {
+        "value": "45",
+        "type": "hue",
+        "description": "Warning state hue (amber)"
+      },
+      "danger": {
+        "value": "25",
+        "type": "hue",
+        "description": "Danger/error state hue (red)"
+      },
+      "neutral": {
+        "value": "250",
+        "type": "hue",
+        "description": "Neutral/gray hue (brand-tinted)"
+      }
+    },
+    "lightness": {
+      "50": { "value": "0.9778", "description": "Lightest step" },
+      "100": { "value": "0.9356", "description": "Very light" },
+      "200": { "value": "0.8811", "description": "Light" },
+      "300": { "value": "0.8267", "description": "Light-medium" },
+      "400": { "value": "0.7422", "description": "Medium-light" },
+      "500": { "value": "0.6478", "description": "Medium (base)" },
+      "600": { "value": "0.5733", "description": "Medium-dark" },
+      "700": { "value": "0.4689", "description": "Dark" },
+      "800": { "value": "0.3944", "description": "Very dark" },
+      "900": { "value": "0.3200", "description": "Near black" },
+      "950": { "value": "0.2378", "description": "Darkest step" }
+    },
+    "chroma": {
+      "vivid": {
+        "50": {
+          "value": "0.0108",
+          "description": "Minimal chroma at light end"
+        },
+        "100": { "value": "0.0321", "description": "Very low chroma" },
+        "200": { "value": "0.0636", "description": "Low chroma" },
+        "300": { "value": "0.0951", "description": "Low-medium chroma" },
+        "400": { "value": "0.1211", "description": "Medium chroma" },
+        "500": {
+          "value": "0.1472",
+          "description": "Full chroma (peak saturation)"
+        },
+        "600": { "value": "0.1383", "description": "High chroma" },
+        "700": { "value": "0.1178", "description": "Medium-high chroma" },
+        "800": { "value": "0.0894", "description": "Medium chroma" },
+        "900": { "value": "0.0720", "description": "Low-medium chroma" },
+        "950": { "value": "0.0540", "description": "Low chroma at dark end" }
+      },
+      "neutral": {
+        "50": { "value": "0.0054", "description": "Very subtle tint" },
+        "100": { "value": "0.0072", "description": "Subtle tint" },
+        "200": { "value": "0.0090", "description": "Slight tint" },
+        "300": { "value": "0.0099", "description": "Light tint" },
+        "400": { "value": "0.0108", "description": "Noticeable tint" },
+        "500": { "value": "0.0118", "description": "Base neutral chroma" },
+        "600": { "value": "0.0108", "description": "Medium tint" },
+        "700": { "value": "0.0099", "description": "Deeper tint" },
+        "800": { "value": "0.0090", "description": "Dark tint" },
+        "900": { "value": "0.0081", "description": "Very dark tint" },
+        "950": { "value": "0.0072", "description": "Darkest tint" }
+      }
+    }
+  }
+}

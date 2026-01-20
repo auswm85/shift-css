@@ -1,0 +1,26 @@
+/**
+ * Shift CSS
+ * Zero-runtime, OKLCH-native CSS framework
+ *
+ * Layer order (lowest → highest specificity):
+ * 1. shift.reset   - Modern browser reset, fluid typography, accessibility
+ * 2. shift.tokens  - CSS custom properties (generated from JSON)
+ * 3. shift.core    - UI components (Buttons, Cards, Surface)
+ * 4. shift.utils   - Atomic utility classes
+ *
+ * User CSS automatically overrides framework styles (no !important needed)
+ */
+
+/* Declare layer order FIRST - establishes specificity */
+@layer shift.reset, shift.tokens, shift.core, shift.utils;
+
+/* Import layer contents */
+@import "./base/reset.css" layer(shift.reset);
+@import "./tokens/tokens.css" layer(shift.tokens);
+@import "./components/surface.css" layer(shift.core);
+@import "./components/button.css" layer(shift.core);
+@import "./components/card.css" layer(shift.core);
+@import "./components/input.css" layer(shift.core);
+@import "./utils/spacing.css" layer(shift.utils);
+@import "./utils/flex.css" layer(shift.utils);
+@import "./utils/typography.css" layer(shift.utils);

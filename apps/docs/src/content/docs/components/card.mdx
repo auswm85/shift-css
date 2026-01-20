@@ -1,0 +1,175 @@
+---
+title: Card
+description: Flexible card component for content containers
+---
+
+## Overview
+
+The `.card` component provides a structured container for content with optional header, body, and footer sections.
+
+## Basic Usage
+
+```html
+<div class="card">
+  <div class="card__body">
+    Simple card content
+  </div>
+</div>
+```
+
+## Full Structure
+
+```html
+<div class="card">
+  <div class="card__header">
+    <h3 class="card__title">Card Title</h3>
+    <p class="card__subtitle">Optional subtitle</p>
+  </div>
+  <div class="card__body">
+    Main card content goes here.
+  </div>
+  <div class="card__footer">
+    <button class="btn btn--sm">Action</button>
+  </div>
+</div>
+```
+
+## Variants
+
+### Elevated
+
+```html
+<div class="card card--elevated">
+  Card with shadow elevation
+</div>
+```
+
+### Outlined
+
+```html
+<div class="card card--outlined">
+  Card with border only
+</div>
+```
+
+### Flat
+
+```html
+<div class="card card--flat">
+  Card without elevation or border
+</div>
+```
+
+## With Media
+
+### Image Header
+
+```html
+<div class="card">
+  <img class="card__media" src="image.jpg" alt="Description" />
+  <div class="card__body">
+    Content below the image
+  </div>
+</div>
+```
+
+### Horizontal Layout
+
+```html
+<div class="card card--horizontal">
+  <img class="card__media" src="image.jpg" alt="Description" />
+  <div class="card__body">
+    Content beside the image
+  </div>
+</div>
+```
+
+## Interactive Cards
+
+### Clickable Card
+
+```html
+<a href="/path" class="card card--interactive">
+  <div class="card__body">
+    Entire card is clickable
+  </div>
+</a>
+```
+
+### Hover Effects
+
+```html
+<div class="card card--hover">
+  <div class="card__body">
+    Card with hover state
+  </div>
+</div>
+```
+
+## Sizing
+
+### Compact
+
+```html
+<div class="card card--compact">
+  <div class="card__body">
+    Reduced padding
+  </div>
+</div>
+```
+
+### Large
+
+```html
+<div class="card card--lg">
+  <div class="card__body">
+    Increased padding
+  </div>
+</div>
+```
+
+## Card Grid
+
+```html
+<div class="grid grid-cols-3 gap-4">
+  <div class="card">
+    <div class="card__body">Card 1</div>
+  </div>
+  <div class="card">
+    <div class="card__body">Card 2</div>
+  </div>
+  <div class="card">
+    <div class="card__body">Card 3</div>
+  </div>
+</div>
+```
+
+## CSS Custom Properties
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--card-bg` | `var(--surface-raised)` | Background color |
+| `--card-radius` | `var(--radius-lg)` | Border radius |
+| `--card-padding` | `var(--spacing-4)` | Internal padding |
+| `--card-border` | `var(--border-default)` | Border color |
+| `--card-shadow` | `var(--shadow-md)` | Box shadow |
+
+## Customization Examples
+
+### Brand-Colored Cards
+
+```html
+<div class="card" style="--card-bg: var(--color-primary-100);">
+  <div class="card__body">
+    Tinted card background
+  </div>
+</div>
+```
+
+### Sharp Corners
+
+```css
+.card {
+  --card-radius: 0;
+}
+```

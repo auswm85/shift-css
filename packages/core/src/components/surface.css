@@ -1,0 +1,121 @@
+/**
+ * Shift CSS - Surface Component
+ *
+ * Adaptive surface with automatic contrast text color.
+ * Uses CSS Color Level 6 contrast-color() with progressive fallbacks.
+ */
+
+.surface {
+  /* Enable container queries */
+  container-type: inline-size;
+
+  /* Surface background (customizable) */
+  --surface-bg: var(--surface-base);
+  --surface-padding: var(--spacing-4);
+  --surface-radius: var(--radius-lg);
+
+  background-color: var(--surface-bg);
+  padding: var(--surface-padding);
+  border-radius: var(--surface-radius);
+
+  /**
+   * AUTO-CONTRAST TEXT COLOR
+   *
+   * Strategy (best to fallback):
+   * 1. contrast-color() - CSS Color Level 6 (Chrome Canary, Safari TP)
+   * 2. Relative color syntax - Extract lightness, threshold at L=0.6
+   * 3. Semantic token fallback - Pre-defined light-dark() value
+   */
+
+  /* FALLBACK 1: Semantic token (works everywhere) */
+  color: var(--text-primary);
+
+  /* FALLBACK 2: Relative color syntax (2024+ browsers) */
+  @supports (color: oklch(from red l c h)) {
+    color: oklch(
+      from var(--surface-bg)
+        /* If L < 0.6, use light text (0.95); otherwise dark text (0.15) */
+        clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+    );
+  }
+
+  /* PRIMARY: contrast-color() (CSS Color Level 6 - 2025+ browsers) */
+  @supports (color: contrast-color(red)) {
+    color: contrast-color(var(--surface-bg));
+  }
+}
+
+/* Surface variants */
+.surface--raised {
+  --surface-bg: var(--surface-raised);
+  box-shadow: var(--shadow-md);
+}
+
+.surface--sunken {
+  --surface-bg: var(--surface-sunken);
+  box-shadow: var(--shadow-inner);
+}
+
+.surface--bordered {
+  border: 1px solid var(--border-default);
+}
+
+/* Surface with custom brand colors */
+.surface--primary {
+  --surface-bg: var(--color-primary-500);
+}
+
+.surface--secondary {
+  --surface-bg: var(--color-secondary-500);
+}
+
+.surface--accent {
+  --surface-bg: var(--color-accent-500);
+}
+
+/* State surfaces */
+.surface--success {
+  --surface-bg: var(--state-success-bg);
+  border-left: 4px solid var(--state-success);
+}
+
+.surface--warning {
+  --surface-bg: var(--state-warning-bg);
+  border-left: 4px solid var(--state-warning);
+}
+
+.surface--danger {
+  --surface-bg: var(--state-danger-bg);
+  border-left: 4px solid var(--state-danger);
+}
+
+/* Container query responsive behavior */
+@container (max-width: 20rem) {
+  .surface {
+    --surface-padding: var(--spacing-3);
+  }
+}
+
+@container (min-width: 40rem) {
+  .surface {
+    --surface-padding: var(--spacing-6);
+  }
+}
+
+/* Interactive surface */
+.surface--interactive {
+  cursor: pointer;
+  transition:
+    transform var(--duration-150) var(--ease-out),
+    box-shadow var(--duration-150) var(--ease-out);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+}

@@ -1,0 +1,105 @@
+---
+title: Light/Dark Theming
+description: Zero-class automatic theming with light-dark()
+---
+
+## The Traditional Approach
+
+Most frameworks require explicit dark mode classes:
+
+```html
+<!-- You have to write both -->
+<div class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+  Content
+</div>
+```
+
+This doubles your class count and is easy to forget.
+
+## Shift CSS: Zero-Class Theming
+
+Shift CSS uses the native CSS `light-dark()` function. Components automatically adapt:
+
+```html
+<!-- Just write once -->
+<div class="surface">
+  Content automatically adapts to light/dark mode
+</div>
+```
+
+## How It Works
+
+Semantic tokens are defined with both light and dark values:
+
+```css
+:root {
+  color-scheme: light dark;
+
+  --surface-base: light-dark(
+    var(--color-neutral-50),   /* Light mode */
+    var(--color-neutral-950)   /* Dark mode */
+  );
+
+  --text-primary: light-dark(
+    var(--color-neutral-900),
+    var(--color-neutral-50)
+  );
+}
+```
+
+The browser automatically selects the appropriate value based on `prefers-color-scheme`.
+
+## Forcing a Theme
+
+To override the system preference:
+
+```css
+/* Force light mode */
+:root {
+  color-scheme: light;
+}
+
+/* Force dark mode */
+:root {
+  color-scheme: dark;
+}
+```
+
+Or with JavaScript:
+
+```js
+// Toggle dark mode
+document.documentElement.style.colorScheme = 'dark';
+```
+
+## Semantic Color Tokens
+
+| Token | Light | Dark | Usage |
+|-------|-------|------|-------|
+| `--surface-base` | neutral-50 | neutral-950 | Default backgrounds |
+| `--surface-raised` | neutral-100 | neutral-900 | Cards, modals |
+| `--surface-sunken` | neutral-200 | neutral-800 | Inputs, wells |
+| `--text-primary` | neutral-900 | neutral-50 | Main text |
+| `--text-secondary` | neutral-600 | neutral-400 | Muted text |
+| `--border-default` | neutral-200 | neutral-800 | Borders |
+
+## Auto-Contrast Text
+
+Components like `.surface` automatically calculate readable text color:
+
+```css
+.surface {
+  background: var(--surface-bg);
+
+  /* Uses contrast-color() with fallbacks */
+  color: contrast-color(var(--surface-bg));
+}
+```
+
+Even custom backgrounds get readable text automatically:
+
+```html
+<div class="surface" style="--surface-bg: oklch(0.3 0.1 250);">
+  This text is automatically light on the dark background
+</div>
+```

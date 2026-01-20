@@ -1,0 +1,131 @@
+{
+  "semantic": {
+    "surface": {
+      "base": {
+        "light": { "value": "{color.neutral.50}" },
+        "dark": { "value": "{color.neutral.950}" },
+        "description": "Default background surface"
+      },
+      "raised": {
+        "light": { "value": "{color.neutral.100}" },
+        "dark": { "value": "{color.neutral.900}" },
+        "description": "Elevated surface (cards, modals)"
+      },
+      "sunken": {
+        "light": { "value": "{color.neutral.200}" },
+        "dark": { "value": "{color.neutral.800}" },
+        "description": "Recessed surface (inputs, wells)"
+      },
+      "overlay": {
+        "light": { "value": "{color.neutral.900}" },
+        "dark": { "value": "{color.neutral.100}" },
+        "description": "Overlay/scrim background"
+      }
+    },
+    "text": {
+      "primary": {
+        "light": { "value": "{color.neutral.900}" },
+        "dark": { "value": "{color.neutral.50}" },
+        "description": "Primary text color"
+      },
+      "secondary": {
+        "light": { "value": "{color.neutral.600}" },
+        "dark": { "value": "{color.neutral.400}" },
+        "description": "Secondary/muted text"
+      },
+      "tertiary": {
+        "light": { "value": "{color.neutral.500}" },
+        "dark": { "value": "{color.neutral.500}" },
+        "description": "Tertiary/disabled text"
+      },
+      "inverse": {
+        "light": { "value": "{color.neutral.50}" },
+        "dark": { "value": "{color.neutral.900}" },
+        "description": "Inverted text (on dark/light backgrounds)"
+      }
+    },
+    "border": {
+      "default": {
+        "light": { "value": "{color.neutral.200}" },
+        "dark": { "value": "{color.neutral.800}" },
+        "description": "Default border color"
+      },
+      "muted": {
+        "light": { "value": "{color.neutral.100}" },
+        "dark": { "value": "{color.neutral.900}" },
+        "description": "Subtle border color"
+      },
+      "strong": {
+        "light": { "value": "{color.neutral.400}" },
+        "dark": { "value": "{color.neutral.600}" },
+        "description": "Emphasized border color"
+      }
+    },
+    "interactive": {
+      "primary": {
+        "light": { "value": "{color.primary.600}" },
+        "dark": { "value": "{color.primary.400}" },
+        "description": "Primary interactive elements"
+      },
+      "primaryHover": {
+        "light": { "value": "{color.primary.700}" },
+        "dark": { "value": "{color.primary.300}" },
+        "description": "Primary hover state"
+      },
+      "primaryActive": {
+        "light": { "value": "{color.primary.800}" },
+        "dark": { "value": "{color.primary.200}" },
+        "description": "Primary active/pressed state"
+      },
+      "secondary": {
+        "light": { "value": "{color.secondary.600}" },
+        "dark": { "value": "{color.secondary.400}" },
+        "description": "Secondary interactive elements"
+      }
+    },
+    "state": {
+      "success": {
+        "light": { "value": "{color.success.600}" },
+        "dark": { "value": "{color.success.400}" },
+        "description": "Success state color"
+      },
+      "successBg": {
+        "light": { "value": "{color.success.100}" },
+        "dark": { "value": "{color.success.900}" },
+        "description": "Success background"
+      },
+      "warning": {
+        "light": { "value": "{color.warning.600}" },
+        "dark": { "value": "{color.warning.400}" },
+        "description": "Warning state color"
+      },
+      "warningBg": {
+        "light": { "value": "{color.warning.100}" },
+        "dark": { "value": "{color.warning.900}" },
+        "description": "Warning background"
+      },
+      "danger": {
+        "light": { "value": "{color.danger.600}" },
+        "dark": { "value": "{color.danger.400}" },
+        "description": "Danger/error state color"
+      },
+      "dangerBg": {
+        "light": { "value": "{color.danger.100}" },
+        "dark": { "value": "{color.danger.900}" },
+        "description": "Danger background"
+      }
+    },
+    "focus": {
+      "ring": {
+        "light": { "value": "{color.primary.500}" },
+        "dark": { "value": "{color.primary.400}" },
+        "description": "Focus ring color"
+      },
+      "ringOffset": {
+        "light": { "value": "{color.neutral.50}" },
+        "dark": { "value": "{color.neutral.950}" },
+        "description": "Focus ring offset background"
+      }
+    }
+  }
+}

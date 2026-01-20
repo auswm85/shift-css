@@ -1,0 +1,69 @@
+---
+title: Installation
+description: How to install and set up Shift CSS in your project
+---
+
+## Package Manager
+
+```bash
+# npm
+npm install @shift-css/core
+
+# pnpm
+pnpm add @shift-css/core
+
+# yarn
+yarn add @shift-css/core
+```
+
+Then import in your CSS or JavaScript:
+
+```css
+/* In your CSS */
+@import "@shift-css/core";
+```
+
+```js
+// Or in JavaScript/bundler
+import "@shift-css/core";
+```
+
+## CDN
+
+For quick prototyping or static sites:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@shift-css/core" />
+```
+
+Or use the minified version:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@shift-css/core/min" />
+```
+
+## Subpath Exports
+
+Import only what you need:
+
+```css
+/* Full framework */
+@import "@shift-css/core";
+
+/* Minified */
+@import "@shift-css/core/min";
+
+/* Individual layers */
+@import "@shift-css/core/reset";
+@import "@shift-css/core/tokens";
+```
+
+## Browser Support
+
+Shift CSS targets cutting-edge 2025 browsers:
+
+- Chrome 131+
+- Firefox 133+
+- Safari 18+
+
+Features like `contrast-color()` have progressive fallbacks for slightly older browsers.

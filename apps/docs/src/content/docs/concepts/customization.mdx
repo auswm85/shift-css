@@ -1,0 +1,121 @@
+---
+title: Customization
+description: Customize Shift CSS without a build step
+---
+
+## CSS Variables Only
+
+Shift CSS is fully customizable via CSS custom properties. No build step required.
+
+## Changing Brand Colors
+
+Override seed hues to regenerate entire color palettes:
+
+```css
+:root {
+  /* Primary brand color */
+  --shift-hue-primary: 280;    /* Default: 250 (blue) */
+
+  /* Gray tint (matches primary for cohesion) */
+  --shift-hue-neutral: 280;    /* Default: 250 */
+
+  /* Secondary brand color */
+  --shift-hue-secondary: 160;  /* Default: 180 (cyan) */
+
+  /* Accent/highlight color */
+  --shift-hue-accent: 45;      /* Default: 30 (orange) */
+}
+```
+
+## Overriding Specific Tokens
+
+Target individual color steps:
+
+```css
+:root {
+  /* Make primary-500 more saturated */
+  --color-primary-500: oklch(0.65 0.2 var(--shift-hue-primary));
+
+  /* Custom semantic mappings */
+  --interactive-primary: var(--color-primary-700);
+}
+```
+
+## Typography
+
+```css
+:root {
+  /* Font families */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Base size (affects all fluid typography) */
+  --text-base: 1rem;
+}
+```
+
+## Spacing Scale
+
+```css
+:root {
+  /* Override spacing values */
+  --spacing-4: 1.25rem;  /* Default: 1rem */
+
+  /* Or use a different base */
+  --spacing-1: 0.3rem;   /* Tighter spacing */
+}
+```
+
+## Border Radius
+
+```css
+:root {
+  /* Rounded corners */
+  --radius-base: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* Or go sharp */
+  --radius-base: 0;
+  --radius-lg: 0;
+  --radius-full: 0;
+}
+```
+
+## Component-Level Customization
+
+Components use internal custom properties:
+
+```css
+/* Customize buttons globally */
+.btn {
+  --btn-radius: var(--radius-full);  /* Pill buttons */
+  --btn-font-weight: var(--font-bold);
+}
+
+/* Or scope to a container */
+.my-section .btn {
+  --btn-bg: var(--color-accent-500);
+}
+```
+
+## Per-Instance Customization
+
+Use inline styles for one-off changes:
+
+```html
+<button class="btn" style="--btn-bg: var(--color-success-500);">
+  Success Button
+</button>
+
+<div class="surface" style="--surface-bg: var(--color-primary-900);">
+  Custom dark surface with auto-contrast text
+</div>
+```
+
+## Container Width
+
+```css
+:root {
+  --container-max: 1400px;  /* Default: 80rem (1280px) */
+}
+```

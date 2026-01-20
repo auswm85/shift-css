@@ -1,0 +1,217 @@
+---
+title: Flexbox & Grid
+description: Layout utility classes for flexbox and CSS grid
+---
+
+## Flexbox
+
+### Display Flex
+
+```html
+<div class="flex">Flex container</div>
+<div class="inline-flex">Inline flex container</div>
+```
+
+### Direction
+
+```html
+<div class="flex flex-row">Horizontal (default)</div>
+<div class="flex flex-col">Vertical</div>
+<div class="flex flex-row-reverse">Horizontal reversed</div>
+<div class="flex flex-col-reverse">Vertical reversed</div>
+```
+
+### Justify Content
+
+```html
+<div class="flex justify-start">Start</div>
+<div class="flex justify-center">Center</div>
+<div class="flex justify-end">End</div>
+<div class="flex justify-between">Space between</div>
+<div class="flex justify-around">Space around</div>
+<div class="flex justify-evenly">Space evenly</div>
+```
+
+### Align Items
+
+```html
+<div class="flex items-start">Start</div>
+<div class="flex items-center">Center</div>
+<div class="flex items-end">End</div>
+<div class="flex items-baseline">Baseline</div>
+<div class="flex items-stretch">Stretch (default)</div>
+```
+
+### Flex Wrap
+
+```html
+<div class="flex flex-wrap">Wrap items</div>
+<div class="flex flex-nowrap">No wrap (default)</div>
+<div class="flex flex-wrap-reverse">Wrap reverse</div>
+```
+
+### Flex Items
+
+```html
+<div class="flex">
+  <div class="flex-1">Grow equally</div>
+  <div class="flex-1">Grow equally</div>
+</div>
+
+<div class="flex">
+  <div class="flex-none">Don't grow or shrink</div>
+  <div class="flex-auto">Grow and shrink</div>
+</div>
+
+<div class="flex">
+  <div class="flex-grow">Grow to fill</div>
+  <div class="flex-shrink-0">Don't shrink</div>
+</div>
+```
+
+### Self Alignment
+
+```html
+<div class="flex items-start">
+  <div class="self-center">Centered item</div>
+  <div class="self-end">End-aligned item</div>
+</div>
+```
+
+## CSS Grid
+
+### Display Grid
+
+```html
+<div class="grid">Grid container</div>
+```
+
+### Grid Columns
+
+```html
+<div class="grid grid-cols-2">2 columns</div>
+<div class="grid grid-cols-3">3 columns</div>
+<div class="grid grid-cols-4">4 columns</div>
+<div class="grid grid-cols-6">6 columns</div>
+<div class="grid grid-cols-12">12 columns</div>
+```
+
+### Column Span
+
+```html
+<div class="grid grid-cols-6">
+  <div class="col-span-2">Spans 2 columns</div>
+  <div class="col-span-4">Spans 4 columns</div>
+</div>
+```
+
+### Grid Rows
+
+```html
+<div class="grid grid-rows-2">2 rows</div>
+<div class="grid grid-rows-3">3 rows</div>
+```
+
+### Row Span
+
+```html
+<div class="grid grid-rows-3">
+  <div class="row-span-2">Spans 2 rows</div>
+</div>
+```
+
+### Gap
+
+```html
+<div class="grid grid-cols-3 gap-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+### Placement
+
+```html
+<div class="grid place-items-center">Center all items</div>
+<div class="grid place-content-center">Center all content</div>
+```
+
+## Container
+
+### Max-Width Container
+
+```html
+<div class="container">
+  Centered container with max-width
+</div>
+```
+
+### Container with Padding
+
+```html
+<div class="container px-4">
+  Container with horizontal padding
+</div>
+```
+
+### Custom Container Width
+
+```css
+:root {
+  --container-max: 1400px;  /* Default: 80rem (1280px) */
+}
+```
+
+## Common Patterns
+
+### Centered Content
+
+```html
+<div class="flex items-center justify-center min-h-screen">
+  Perfectly centered
+</div>
+```
+
+### Sidebar Layout
+
+```html
+<div class="flex">
+  <aside class="flex-none w-64">Sidebar</aside>
+  <main class="flex-1">Main content</main>
+</div>
+```
+
+### Card Grid
+
+```html
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+  <div class="card">Card 3</div>
+</div>
+```
+
+### Holy Grail Layout
+
+```html
+<div class="flex flex-col min-h-screen">
+  <header class="flex-none">Header</header>
+  <main class="flex-1">Content</main>
+  <footer class="flex-none">Footer</footer>
+</div>
+```
+
+## Responsive Layout
+
+All layout utilities support responsive prefixes:
+
+```html
+<div class="flex flex-col md:flex-row">
+  Stack on mobile, row on desktop
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+  Responsive grid columns
+</div>
+```

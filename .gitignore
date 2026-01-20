@@ -1,0 +1,38 @@
+# AI tooling
+CLAUDE.md
+.claude/
+.cursorrules
+.cursor/
+.github/copilot-instructions.md
+
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+*.tsbuildinfo
+.astro
+
+# Package manager
+.pnpm-debug.log
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

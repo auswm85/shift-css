@@ -1,0 +1,165 @@
+---
+title: Spacing
+description: Margin and padding utility classes
+---
+
+## Overview
+
+Spacing utilities provide consistent margin and padding based on the design token scale.
+
+## Spacing Scale
+
+| Token | Value | Class |
+|-------|-------|-------|
+| `0` | `0` | `.p-0`, `.m-0` |
+| `1` | `0.25rem` | `.p-1`, `.m-1` |
+| `2` | `0.5rem` | `.p-2`, `.m-2` |
+| `3` | `0.75rem` | `.p-3`, `.m-3` |
+| `4` | `1rem` | `.p-4`, `.m-4` |
+| `5` | `1.25rem` | `.p-5`, `.m-5` |
+| `6` | `1.5rem` | `.p-6`, `.m-6` |
+| `8` | `2rem` | `.p-8`, `.m-8` |
+| `10` | `2.5rem` | `.p-10`, `.m-10` |
+| `12` | `3rem` | `.p-12`, `.m-12` |
+| `16` | `4rem` | `.p-16`, `.m-16` |
+
+## Padding
+
+### All Sides
+
+```html
+<div class="p-4">Padding on all sides</div>
+```
+
+### Horizontal & Vertical
+
+```html
+<div class="px-4">Horizontal padding (left & right)</div>
+<div class="py-4">Vertical padding (top & bottom)</div>
+```
+
+### Individual Sides
+
+```html
+<div class="pt-4">Padding top</div>
+<div class="pr-4">Padding right</div>
+<div class="pb-4">Padding bottom</div>
+<div class="pl-4">Padding left</div>
+```
+
+### Logical Properties
+
+```html
+<div class="ps-4">Padding inline-start</div>
+<div class="pe-4">Padding inline-end</div>
+```
+
+## Margin
+
+### All Sides
+
+```html
+<div class="m-4">Margin on all sides</div>
+```
+
+### Horizontal & Vertical
+
+```html
+<div class="mx-4">Horizontal margin</div>
+<div class="my-4">Vertical margin</div>
+```
+
+### Individual Sides
+
+```html
+<div class="mt-4">Margin top</div>
+<div class="mr-4">Margin right</div>
+<div class="mb-4">Margin bottom</div>
+<div class="ml-4">Margin left</div>
+```
+
+### Auto Margins
+
+```html
+<div class="mx-auto">Center horizontally</div>
+<div class="ml-auto">Push to the right</div>
+<div class="mr-auto">Push to the left</div>
+```
+
+### Negative Margins
+
+```html
+<div class="-mt-4">Negative margin top</div>
+<div class="-mx-2">Negative horizontal margin</div>
+```
+
+## Gap (for Flex/Grid)
+
+```html
+<div class="flex gap-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+### Row & Column Gap
+
+```html
+<div class="grid gap-x-4 gap-y-2">
+  <!-- Grid items -->
+</div>
+```
+
+## Space Between
+
+Add space between child elements:
+
+```html
+<div class="space-y-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+```html
+<div class="space-x-4 flex">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+## Responsive Spacing
+
+Spacing utilities support responsive prefixes:
+
+```html
+<div class="p-2 md:p-4 lg:p-6">
+  Padding increases with screen size
+</div>
+```
+
+## Using CSS Variables
+
+Access spacing tokens directly:
+
+```css
+.custom-element {
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  gap: var(--spacing-2);
+}
+```
+
+## Customizing the Scale
+
+Override spacing values in your CSS:
+
+```css
+:root {
+  --spacing-4: 1.25rem;  /* Default: 1rem */
+  --spacing-1: 0.3rem;   /* Tighter base */
+}
+```

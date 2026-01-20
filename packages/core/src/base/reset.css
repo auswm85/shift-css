@@ -1,0 +1,200 @@
+/**
+ * Shift CSS - Modern Reset
+ *
+ * A modern CSS reset optimized for:
+ * - Accessibility
+ * - Fluid typography
+ * - Sensible defaults
+ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins */
+* {
+  margin: 0;
+}
+
+/* Fluid typography and smooth scrolling */
+html {
+  /* Fluid base font size: 15px at 320px → 16px at 1280px */
+  font-size: clamp(0.9375rem, 0.875rem + 0.25vi, 1rem);
+
+  /* Smooth scrolling for users who haven't disabled it */
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+
+  /* Better text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Body defaults */
+body {
+  line-height: 1.5;
+  min-height: 100dvh;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  background-color: var(--surface-base);
+  color: var(--text-primary);
+}
+
+/* Improved media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove built-in button styles */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Text overflow handling */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Heading line heights */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* Paragraph text wrapping */
+p {
+  text-wrap: pretty;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* Links */
+a {
+  color: var(--interactive-primary);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Stacking context for app root */
+#root,
+#__next,
+#app {
+  isolation: isolate;
+  min-height: 100dvh;
+}
+
+/* Table defaults */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Pre/code defaults */
+pre,
+code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
+
+pre {
+  overflow-x: auto;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  * {
+    border-color: currentColor !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}

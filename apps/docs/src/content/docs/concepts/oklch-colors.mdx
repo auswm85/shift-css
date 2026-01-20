@@ -1,0 +1,75 @@
+---
+title: OKLCH Color System
+description: Understanding Shift CSS's perceptually uniform color space
+---
+
+## What is OKLCH?
+
+OKLCH is a perceptually uniform color space with three components:
+
+- **L** (Lightness): 0 to 1, where 0 is black and 1 is white
+- **C** (Chroma): 0 to ~0.4, representing color saturation
+- **H** (Hue): 0 to 360 degrees around the color wheel
+
+Unlike RGB or HSL, OKLCH ensures that colors with the same lightness value **look equally bright** to the human eye.
+
+## Why Not RGB/HSL?
+
+```css
+/* HSL: Same "lightness" but vastly different perceived brightness */
+--blue: hsl(220, 100%, 50%);   /* Looks dark */
+--yellow: hsl(60, 100%, 50%);  /* Looks bright */
+
+/* OKLCH: Same lightness = same perceived brightness */
+--blue: oklch(0.65 0.15 250);   /* Looks medium */
+--yellow: oklch(0.65 0.15 90);  /* Looks equally medium */
+```
+
+## Shift CSS Color Scales
+
+Each color scale is generated from a **seed hue** with perceptually uniform lightness steps:
+
+| Step | Lightness | Use Case |
+|------|-----------|----------|
+| 50   | 0.978     | Lightest background |
+| 100  | 0.936     | Hover backgrounds |
+| 200  | 0.881     | Subtle borders |
+| 300  | 0.827     | Disabled states |
+| 400  | 0.742     | Secondary text |
+| 500  | 0.648     | Primary interactive |
+| 600  | 0.573     | Hover states |
+| 700  | 0.469     | Active states |
+| 800  | 0.394     | High contrast |
+| 900  | 0.320     | Near black |
+| 950  | 0.238     | Darkest |
+
+## Customizing Seed Hues
+
+Override any color palette by changing its seed hue:
+
+```css
+:root {
+  --shift-hue-primary: 280;    /* Purple */
+  --shift-hue-secondary: 160;  /* Teal */
+  --shift-hue-accent: 45;      /* Gold */
+  --shift-hue-success: 145;    /* Green */
+  --shift-hue-warning: 45;     /* Amber */
+  --shift-hue-danger: 25;      /* Red */
+  --shift-hue-neutral: 280;    /* Purple-tinted grays */
+}
+```
+
+## Brand-Tinted Neutrals
+
+The `--shift-hue-neutral` variable adds a subtle tint to all gray colors, creating a cohesive brand feel:
+
+```css
+/* Default: Blue-tinted grays (250) */
+--shift-hue-neutral: 250;
+
+/* Warm grays */
+--shift-hue-neutral: 30;
+
+/* Cool grays */
+--shift-hue-neutral: 210;
+```
