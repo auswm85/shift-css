@@ -19,6 +19,7 @@ const navigationData: NavEntry[] = [
 			{ label: 'Introduction', href: '/getting-started/introduction' },
 			{ label: 'Installation', href: '/getting-started/installation' },
 			{ label: 'Quick Start', href: '/getting-started/quick-start' },
+			{ label: 'CLI Setup', href: '/getting-started/migration' },
 		],
 	},
 	{
