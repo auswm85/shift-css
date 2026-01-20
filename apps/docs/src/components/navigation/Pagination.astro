@@ -1,0 +1,34 @@
+---
+import { findAdjacentPages } from '../../data/navigation';
+
+interface Props {
+	currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const { prev, next } = findAdjacentPages(currentPath);
+---
+
+{
+	(prev || next) && (
+		<nav class="docs-pagination" aria-label="Pagination">
+			{prev ? (
+				<a href={prev.href} class="docs-pagination-link">
+					<span class="docs-pagination-label">Previous</span>
+					<span class="docs-pagination-title">{prev.label}</span>
+				</a>
+			) : (
+				<div />
+			)}
+
+			{next ? (
+				<a href={next.href} class="docs-pagination-link docs-pagination-link--next">
+					<span class="docs-pagination-label">Next</span>
+					<span class="docs-pagination-title">{next.label}</span>
+				</a>
+			) : (
+				<div />
+			)}
+		</nav>
+	)
+}

@@ -1,53 +1,31 @@
 ---
-title: Shift CSS
-description: Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming
-template: splash
-hero:
-  tagline: Precision UI built on OKLCH and semantic attributes
-  actions:
-    - text: Get Started
-      link: /getting-started/introduction/
-      icon: right-arrow
-    - text: View on GitHub
-      link: https://github.com/your-username/shift-css
-      icon: external
-      variant: minimal
+title: Introduction
+description: Learn what Shift CSS is and why it was built
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
-import BundleSize from '../../components/BundleSize.astro';
+Shift CSS is an open-source CSS framework built for the modern web. It solves four critical problems with existing frameworks.
 
-## Why Shift CSS?
+## The Problems
 
-<CardGrid stagger>
-  <Card title="OKLCH Native" icon="sun">
-    Perceptually uniform color scales. Blue-500 and Yellow-500 have the same visual brightness.
-  </Card>
-  <Card title="Zero-Class Theming" icon="moon">
-    Native `light-dark()` function. No `.dark` class needed - respects `prefers-color-scheme` automatically.
-  </Card>
-  <Card title="Cascade Layers" icon="list-format">
-    No more `!important`. Framework styles live in `@layer` so your CSS always wins.
-  </Card>
-  <Card title="Container Queries" icon="puzzle">
-    Components respond to their container, not the viewport. True modular design.
-  </Card>
-</CardGrid>
+### 1. Color Inconsistency
 
-## Quick Start
+RGB-based frameworks produce "muddy" color scales. Blue-500 and Yellow-500 might have the same numeric value, but vastly different perceived brightness. Shift CSS uses **OKLCH** - a perceptually uniform color space where every shade at the same level looks equally bright.
 
-```html
-<!-- Just drop it in -->
-<link rel="stylesheet" href="https://unpkg.com/@shift-css/core">
+### 2. The "Dark Mode Tax"
 
-<!-- Customize with CSS variables -->
-<style>
-  :root {
-    --shift-hue-primary: 280;  /* Purple brand */
-  }
-</style>
-```
+Traditional frameworks require redundant classes like `bg-white dark:bg-black` for every themed element. Shift CSS uses the native CSS `light-dark()` function - components automatically adapt to `prefers-color-scheme` with zero additional classes.
 
-## Bundle Size
+### 3. Specificity Wars
 
-<BundleSize /> - All components, utilities, and a complete color system.
+Overriding framework styles often requires `!important` or convoluted selectors. Shift CSS uses **CSS Cascade Layers** - all framework styles live in `@layer shift.*`, so any user-defined CSS naturally takes precedence.
+
+### 4. Static Breakpoints
+
+Media queries respond to the viewport, but modern components need to respond to their container. Shift CSS prioritizes **Container Queries** for truly modular, reusable components.
+
+## Core Principles
+
+- **Zero Runtime**: No JavaScript required for theming or color calculations
+- **Build Optional**: Ship a single CSS file, customize entirely via CSS variables
+- **Perceptually Correct**: OKLCH ensures consistent visual appearance across hues
+- **Future-Facing**: Targets cutting-edge browsers (Chrome 131+, Firefox 133+, Safari 18+)

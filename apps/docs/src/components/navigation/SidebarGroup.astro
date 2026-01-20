@@ -1,0 +1,40 @@
+---
+import type { NavGroup } from '../../data/navigation';
+
+interface Props {
+	group: NavGroup;
+	currentPath: string;
+}
+
+const { group, currentPath } = Astro.props;
+---
+
+<div class="docs-sidebar-group">
+	<span class="docs-sidebar-group-label">{group.label}</span>
+	<div class="docs-sidebar-group-items">
+		{
+			group.items.map((item) => {
+				const isActive =
+					item.href === currentPath || item.href === currentPath.replace(/\/$/, '');
+
+				return (
+					<a
+						href={item.href}
+						class="docs-sidebar-link"
+						aria-current={isActive ? 'page' : undefined}
+					>
+						{item.label}
+					</a>
+				);
+			})
+		}
+	</div>
+</div>
+
+<style>
+	.docs-sidebar-group-items {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-1);
+	}
+</style>

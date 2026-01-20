@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.37.2",
+    "@astrojs/mdx": "^4.2.6",
     "astro": "^5.16.11",
     "@shift-css/core": "workspace:*"
+  },
+  "devDependencies": {
+    "pagefind": "^1.4.0"
   }
 }

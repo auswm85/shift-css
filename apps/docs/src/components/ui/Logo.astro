@@ -1,0 +1,59 @@
+---
+interface Props {
+	size?: 'sm' | 'md' | 'lg';
+	showText?: boolean;
+}
+
+const { size = 'md', showText = true } = Astro.props;
+
+const sizes = {
+	sm: { icon: 24, text: 'var(--s-text-base)' },
+	md: { icon: 28, text: 'var(--s-text-lg)' },
+	lg: { icon: 32, text: 'var(--s-text-xl)' },
+};
+
+const { icon, text } = sizes[size];
+---
+
+<a href="/" class="logo" style={`--logo-text-size: ${text}`}>
+	<svg
+		width={icon}
+		height={icon}
+		viewBox="0 0 32 32"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden="true"
+	>
+		<!-- Abstract S shape representing shift/layers -->
+		<rect x="4" y="4" width="24" height="6" rx="1" fill="currentColor" opacity="0.4" />
+		<rect x="8" y="13" width="20" height="6" rx="1" fill="currentColor" opacity="0.7" />
+		<rect x="4" y="22" width="24" height="6" rx="1" fill="currentColor" />
+	</svg>
+	{showText && <span class="logo-text">Shift CSS</span>}
+</a>
+
+<style>
+	.logo {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-space-2);
+		color: var(--s-text-primary);
+		text-decoration: none;
+		transition: opacity 0.15s;
+	}
+
+	.logo:hover {
+		opacity: 0.8;
+	}
+
+	.logo svg {
+		flex-shrink: 0;
+		color: var(--s-interactive-primary);
+	}
+
+	.logo-text {
+		font-size: var(--logo-text-size);
+		font-weight: var(--s-font-bold);
+		letter-spacing: -0.025em;
+	}
+</style>

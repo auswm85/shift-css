@@ -1,23 +1,26 @@
 ---
-import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import DocsLayout from '../components/layout/DocsLayout.astro';
 ---
 
-<StarlightPage frontmatter={{ title: 'Live Demo', description: 'Interactive demo of Shift CSS' }}>
+<DocsLayout
+	title="Live Demo"
+	description="Interactive demo of Shift CSS - adjust the seed hues to see the entire color system update in real-time."
+>
 	<div class="demo-page">
 		<p class="intro">Adjust the seed hues to see the entire color system update in real-time.</p>
 
 		<div class="customization-panel">
 			<div class="hue-sliders">
 				<div class="hue-slider">
-					<label>Primary Hue: <span class="hue-value" id="primary-value">200</span>°</label>
+					<label>Primary Hue: <span class="hue-value" id="primary-value">200</span>&deg;</label>
 					<input type="range" min="0" max="360" value="200" id="primary-slider" />
 				</div>
 				<div class="hue-slider">
-					<label>Neutral Hue: <span class="hue-value" id="neutral-value">220</span>°</label>
+					<label>Neutral Hue: <span class="hue-value" id="neutral-value">220</span>&deg;</label>
 					<input type="range" min="0" max="360" value="220" id="neutral-slider" />
 				</div>
 				<div class="hue-slider">
-					<label>Accent Hue: <span class="hue-value" id="accent-value">140</span>°</label>
+					<label>Accent Hue: <span class="hue-value" id="accent-value">140</span>&deg;</label>
 					<input type="range" min="0" max="360" value="140" id="accent-slider" />
 				</div>
 			</div>
@@ -27,32 +30,136 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
 		<h3>Primary</h3>
 		<div class="color-scale">
-			<div class="color-swatch" style="background: var(--s-primary-50); color: var(--s-primary-900);">50</div>
-			<div class="color-swatch" style="background: var(--s-primary-100); color: var(--s-primary-900);">100</div>
-			<div class="color-swatch" style="background: var(--s-primary-200); color: var(--s-primary-900);">200</div>
-			<div class="color-swatch" style="background: var(--s-primary-300); color: var(--s-primary-900);">300</div>
-			<div class="color-swatch" style="background: var(--s-primary-400); color: var(--s-primary-950);">400</div>
-			<div class="color-swatch" style="background: var(--s-primary-500); color: var(--s-primary-50);">500</div>
-			<div class="color-swatch" style="background: var(--s-primary-600); color: var(--s-primary-50);">600</div>
-			<div class="color-swatch" style="background: var(--s-primary-700); color: var(--s-primary-50);">700</div>
-			<div class="color-swatch" style="background: var(--s-primary-800); color: var(--s-primary-50);">800</div>
-			<div class="color-swatch" style="background: var(--s-primary-900); color: var(--s-primary-50);">900</div>
-			<div class="color-swatch" style="background: var(--s-primary-950); color: var(--s-primary-50);">950</div>
+			<div class="color-swatch" style="background: var(--s-primary-50); color: var(--s-primary-900);">
+				50
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-100); color: var(--s-primary-900);"
+			>
+				100
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-200); color: var(--s-primary-900);"
+			>
+				200
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-300); color: var(--s-primary-900);"
+			>
+				300
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-400); color: var(--s-primary-950);"
+			>
+				400
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-500); color: var(--s-primary-50);"
+			>
+				500
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-600); color: var(--s-primary-50);"
+			>
+				600
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-700); color: var(--s-primary-50);"
+			>
+				700
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-800); color: var(--s-primary-50);"
+			>
+				800
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-900); color: var(--s-primary-50);"
+			>
+				900
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-primary-950); color: var(--s-primary-50);"
+			>
+				950
+			</div>
 		</div>
 
 		<h3>Neutral (Brand-Tinted Grays)</h3>
 		<div class="color-scale">
-			<div class="color-swatch" style="background: var(--s-neutral-50); color: var(--s-neutral-900);">50</div>
-			<div class="color-swatch" style="background: var(--s-neutral-100); color: var(--s-neutral-900);">100</div>
-			<div class="color-swatch" style="background: var(--s-neutral-200); color: var(--s-neutral-900);">200</div>
-			<div class="color-swatch" style="background: var(--s-neutral-300); color: var(--s-neutral-900);">300</div>
-			<div class="color-swatch" style="background: var(--s-neutral-400); color: var(--s-neutral-950);">400</div>
-			<div class="color-swatch" style="background: var(--s-neutral-500); color: var(--s-neutral-50);">500</div>
-			<div class="color-swatch" style="background: var(--s-neutral-600); color: var(--s-neutral-50);">600</div>
-			<div class="color-swatch" style="background: var(--s-neutral-700); color: var(--s-neutral-50);">700</div>
-			<div class="color-swatch" style="background: var(--s-neutral-800); color: var(--s-neutral-50);">800</div>
-			<div class="color-swatch" style="background: var(--s-neutral-900); color: var(--s-neutral-50);">900</div>
-			<div class="color-swatch" style="background: var(--s-neutral-950); color: var(--s-neutral-50);">950</div>
+			<div class="color-swatch" style="background: var(--s-neutral-50); color: var(--s-neutral-900);">
+				50
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-100); color: var(--s-neutral-900);"
+			>
+				100
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-200); color: var(--s-neutral-900);"
+			>
+				200
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-300); color: var(--s-neutral-900);"
+			>
+				300
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-400); color: var(--s-neutral-950);"
+			>
+				400
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-500); color: var(--s-neutral-50);"
+			>
+				500
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-600); color: var(--s-neutral-50);"
+			>
+				600
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-700); color: var(--s-neutral-50);"
+			>
+				700
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-800); color: var(--s-neutral-50);"
+			>
+				800
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-900); color: var(--s-neutral-50);"
+			>
+				900
+			</div>
+			<div
+				class="color-swatch"
+				style="background: var(--s-neutral-950); color: var(--s-neutral-50);"
+			>
+				950
+			</div>
 		</div>
 
 		<h3>Status Colors</h3>
@@ -159,7 +266,16 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 			<button s-btn="primary" disabled>Disabled</button>
 			<button s-btn="primary" s-loading>Loading</button>
 			<button s-btn="primary" s-icon>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					><path d="M12 5v14M5 12h14"></path></svg
+				>
 			</button>
 		</div>
 
@@ -203,7 +319,10 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		<div class="demo-grid">
 			<article s-card>
 				<div s-card-media>
-					<img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=225&fit=crop" alt="Abstract gradient" />
+					<img
+						src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=225&fit=crop"
+						alt="Abstract gradient"
+					/>
 				</div>
 				<div s-card-body>
 					<h4 s-card-title>Media Card</h4>
@@ -213,7 +332,10 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 			</article>
 			<article s-card s-horizontal>
 				<div s-card-media>
-					<img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200&h=200&fit=crop" alt="Abstract art" />
+					<img
+						src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200&h=200&fit=crop"
+						alt="Abstract art"
+					/>
 				</div>
 				<div s-card-body>
 					<h4 s-card-title>Horizontal Card</h4>
@@ -370,17 +492,15 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 			<p style="font-size: var(--s-text-3xl);">text-3xl: The quick brown fox</p>
 		</div>
 	</div>
-</StarlightPage>
+</DocsLayout>
 
 <style>
-	/* Reset Starlight's default margins and colors inside our components */
 	.demo-page [s-surface] :where(h4, p),
 	.demo-page [s-card] :where(h4, p),
 	.demo-page [s-btn] {
 		margin: 0;
 	}
 
-	/* Force card text visibility */
 	.demo-page [s-card] h4,
 	.demo-page [s-card-title] {
 		color: var(--s-neutral-900) !important;
@@ -422,7 +542,7 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		margin-bottom: var(--s-space-2);
 	}
 
-	.hue-slider input[type="range"] {
+	.hue-slider input[type='range'] {
 		width: 100%;
 		accent-color: var(--s-interactive-primary);
 	}
@@ -490,7 +610,6 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		margin-bottom: var(--s-space-4);
 	}
 
-	/* Reset Starlight's lobotomized owl selector (adds margin-top to siblings) */
 	.demo-page * + * {
 		margin-top: 0;
 	}
@@ -521,47 +640,51 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 		margin: 0;
 	}
 
-	/* Slightly dim subtext on color variant surfaces for hierarchy */
-	.demo-page [s-surface="primary"] p,
-	.demo-page [s-surface="secondary"] p,
-	.demo-page [s-surface="accent"] p {
+	.demo-page [s-surface='primary'] p,
+	.demo-page [s-surface='secondary'] p,
+	.demo-page [s-surface='accent'] p {
 		opacity: 0.85;
 	}
 
-	/* Add padding to surfaces in demo */
 	.demo-page [s-surface] {
 		padding: var(--s-space-4);
 	}
 
-	/* Form controls layout */
 	.form-controls {
 		display: flex;
 		flex-direction: column;
 		gap: var(--s-space-2);
 	}
 
-	/* Full width button spacing */
 	.demo-page [s-btn][s-block] {
 		margin-bottom: var(--s-space-4);
 	}
 </style>
 
 <script>
-	document.getElementById('primary-slider')?.addEventListener('input', (e) => {
-		const value = (e.target as HTMLInputElement).value;
-		document.documentElement.style.setProperty('--shift-hue-primary', value);
-		document.getElementById('primary-value')!.textContent = value;
-	});
+	function initDemoSliders() {
+		document.getElementById('primary-slider')?.addEventListener('input', (e) => {
+			const value = (e.target as HTMLInputElement).value;
+			document.documentElement.style.setProperty('--shift-hue-primary', value);
+			document.getElementById('primary-value')!.textContent = value;
+		});
 
-	document.getElementById('neutral-slider')?.addEventListener('input', (e) => {
-		const value = (e.target as HTMLInputElement).value;
-		document.documentElement.style.setProperty('--shift-hue-neutral', value);
-		document.getElementById('neutral-value')!.textContent = value;
-	});
+		document.getElementById('neutral-slider')?.addEventListener('input', (e) => {
+			const value = (e.target as HTMLInputElement).value;
+			document.documentElement.style.setProperty('--shift-hue-neutral', value);
+			document.getElementById('neutral-value')!.textContent = value;
+		});
 
-	document.getElementById('accent-slider')?.addEventListener('input', (e) => {
-		const value = (e.target as HTMLInputElement).value;
-		document.documentElement.style.setProperty('--shift-hue-accent', value);
-		document.getElementById('accent-value')!.textContent = value;
-	});
+		document.getElementById('accent-slider')?.addEventListener('input', (e) => {
+			const value = (e.target as HTMLInputElement).value;
+			document.documentElement.style.setProperty('--shift-hue-accent', value);
+			document.getElementById('accent-value')!.textContent = value;
+		});
+	}
+
+	// Initialize on load
+	initDemoSliders();
+
+	// Re-init after Astro page transitions
+	document.addEventListener('astro:after-swap', initDemoSliders);
 </script>

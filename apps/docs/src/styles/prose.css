@@ -1,0 +1,319 @@
+/**
+ * Shift CSS Documentation Prose Styles
+ * Typography for MDX content
+ */
+
+.prose {
+	color: var(--s-text-primary);
+	font-size: var(--s-text-base);
+	line-height: var(--s-leading-relaxed);
+}
+
+/* =============================================================================
+   Headings
+   ============================================================================= */
+
+.prose h1 {
+	font-size: var(--s-text-3xl);
+	font-weight: var(--s-font-bold);
+	line-height: var(--s-leading-tight);
+	margin-bottom: var(--s-space-4);
+	color: var(--s-text-primary);
+}
+
+.prose h2 {
+	font-size: var(--s-text-2xl);
+	font-weight: var(--s-font-semibold);
+	line-height: var(--s-leading-tight);
+	margin-top: var(--s-space-10);
+	margin-bottom: var(--s-space-4);
+	padding-bottom: var(--s-space-2);
+	border-bottom: 1px solid var(--s-border-default);
+	color: var(--s-text-primary);
+}
+
+.prose h3 {
+	font-size: var(--s-text-xl);
+	font-weight: var(--s-font-semibold);
+	line-height: var(--s-leading-snug);
+	margin-top: var(--s-space-8);
+	margin-bottom: var(--s-space-3);
+	color: var(--s-text-primary);
+}
+
+.prose h4 {
+	font-size: var(--s-text-lg);
+	font-weight: var(--s-font-semibold);
+	line-height: var(--s-leading-snug);
+	margin-top: var(--s-space-6);
+	margin-bottom: var(--s-space-2);
+	color: var(--s-text-primary);
+}
+
+.prose h5,
+.prose h6 {
+	font-size: var(--s-text-base);
+	font-weight: var(--s-font-semibold);
+	line-height: var(--s-leading-normal);
+	margin-top: var(--s-space-4);
+	margin-bottom: var(--s-space-2);
+	color: var(--s-text-primary);
+}
+
+/* Anchor links for headings */
+.prose h2[id],
+.prose h3[id],
+.prose h4[id] {
+	scroll-margin-top: calc(var(--docs-header-height) + var(--s-space-4));
+}
+
+/* =============================================================================
+   Paragraphs and Text
+   ============================================================================= */
+
+.prose p {
+	margin-bottom: var(--s-space-4);
+}
+
+.prose p:last-child {
+	margin-bottom: 0;
+}
+
+.prose strong {
+	font-weight: var(--s-font-semibold);
+	color: var(--s-text-primary);
+}
+
+.prose em {
+	font-style: italic;
+}
+
+/* =============================================================================
+   Links
+   ============================================================================= */
+
+.prose a {
+	color: var(--s-interactive-primary);
+	text-decoration: underline;
+	text-decoration-color: oklch(from var(--s-interactive-primary) l c h / 0.4);
+	text-underline-offset: 0.15em;
+	transition: text-decoration-color 0.15s;
+}
+
+.prose a:hover {
+	text-decoration-color: currentColor;
+}
+
+/* =============================================================================
+   Lists
+   ============================================================================= */
+
+.prose ul,
+.prose ol {
+	margin-bottom: var(--s-space-4);
+	padding-left: var(--s-space-6);
+}
+
+.prose ul {
+	list-style-type: disc;
+}
+
+.prose ol {
+	list-style-type: decimal;
+}
+
+.prose li {
+	margin-bottom: var(--s-space-2);
+}
+
+.prose li:last-child {
+	margin-bottom: 0;
+}
+
+.prose li > ul,
+.prose li > ol {
+	margin-top: var(--s-space-2);
+	margin-bottom: 0;
+}
+
+/* =============================================================================
+   Code
+   ============================================================================= */
+
+.prose code {
+	font-family: var(--s-font-mono);
+	font-size: 0.875em;
+	background: var(--s-surface-subtle);
+	padding: 0.15em 0.4em;
+	border-radius: var(--s-radius-sm);
+	color: var(--s-text-primary);
+}
+
+.prose pre {
+	margin-bottom: var(--s-space-4);
+	padding: var(--s-space-4);
+	background: var(--s-surface-sunken);
+	border: 1px solid var(--s-border-default);
+	border-radius: var(--s-radius-md);
+	overflow-x: auto;
+	font-size: var(--s-text-sm);
+	line-height: var(--s-leading-relaxed);
+}
+
+.prose pre code {
+	background: transparent;
+	padding: 0;
+	border-radius: 0;
+	font-size: inherit;
+}
+
+/* Shiki themes integration */
+.prose pre {
+	background-color: var(--shiki-dark-bg, var(--s-surface-sunken));
+	color: var(--shiki-dark, var(--s-text-primary));
+}
+
+@media (prefers-color-scheme: light) {
+	.prose pre {
+		background-color: var(--shiki-light-bg, var(--s-surface-sunken));
+		color: var(--shiki-light, var(--s-text-primary));
+	}
+}
+
+:root[data-theme='light'] .prose pre {
+	background-color: var(--shiki-light-bg, var(--s-surface-sunken));
+	color: var(--shiki-light, var(--s-text-primary));
+}
+
+:root[data-theme='dark'] .prose pre {
+	background-color: var(--shiki-dark-bg, var(--s-surface-sunken));
+	color: var(--shiki-dark, var(--s-text-primary));
+}
+
+/* =============================================================================
+   Blockquotes
+   ============================================================================= */
+
+.prose blockquote {
+	margin-bottom: var(--s-space-4);
+	padding: var(--s-space-4);
+	padding-left: var(--s-space-5);
+	border-left: 4px solid var(--s-interactive-primary);
+	background: var(--s-surface-subtle);
+	border-radius: 0 var(--s-radius-md) var(--s-radius-md) 0;
+	font-style: italic;
+	color: var(--s-text-secondary);
+}
+
+.prose blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+/* =============================================================================
+   Horizontal Rules
+   ============================================================================= */
+
+.prose hr {
+	margin: var(--s-space-8) 0;
+	border: none;
+	border-top: 1px solid var(--s-border-default);
+}
+
+/* =============================================================================
+   Tables
+   ============================================================================= */
+
+.prose table {
+	width: 100%;
+	margin-bottom: var(--s-space-4);
+	border-collapse: collapse;
+	font-size: var(--s-text-sm);
+}
+
+.prose th,
+.prose td {
+	padding: var(--s-space-3);
+	text-align: left;
+	border-bottom: 1px solid var(--s-border-default);
+}
+
+.prose th {
+	font-weight: var(--s-font-semibold);
+	background: var(--s-surface-subtle);
+	color: var(--s-text-primary);
+}
+
+.prose tr:hover td {
+	background: var(--s-surface-hover);
+}
+
+/* =============================================================================
+   Images and Figures
+   ============================================================================= */
+
+.prose img {
+	max-width: 100%;
+	height: auto;
+	border-radius: var(--s-radius-md);
+	margin-bottom: var(--s-space-4);
+}
+
+.prose figure {
+	margin-bottom: var(--s-space-4);
+}
+
+.prose figcaption {
+	margin-top: var(--s-space-2);
+	font-size: var(--s-text-sm);
+	color: var(--s-text-muted);
+	text-align: center;
+}
+
+/* =============================================================================
+   Description Lists (for API docs, etc.)
+   ============================================================================= */
+
+.prose dl {
+	margin-bottom: var(--s-space-4);
+}
+
+.prose dt {
+	font-weight: var(--s-font-semibold);
+	color: var(--s-text-primary);
+	margin-top: var(--s-space-3);
+}
+
+.prose dd {
+	margin-left: var(--s-space-4);
+	color: var(--s-text-secondary);
+}
+
+/* =============================================================================
+   First Element Reset (remove top margin on first element)
+   ============================================================================= */
+
+.prose > *:first-child {
+	margin-top: 0;
+}
+
+/* =============================================================================
+   Page Title and Description
+   ============================================================================= */
+
+.prose-header {
+	margin-bottom: var(--s-space-8);
+}
+
+.prose-title {
+	font-size: var(--s-text-4xl);
+	font-weight: var(--s-font-bold);
+	line-height: var(--s-leading-tight);
+	margin-bottom: var(--s-space-3);
+	color: var(--s-text-primary);
+}
+
+.prose-description {
+	font-size: var(--s-text-lg);
+	color: var(--s-text-secondary);
+	line-height: var(--s-leading-relaxed);
+}

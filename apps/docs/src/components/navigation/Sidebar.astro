@@ -1,0 +1,35 @@
+---
+import { navigation, isNavGroup, type NavEntry } from '../../data/navigation';
+import SidebarGroup from './SidebarGroup.astro';
+
+interface Props {
+	currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<aside class="docs-sidebar">
+	<nav class="docs-sidebar-nav" aria-label="Main navigation">
+		{
+			navigation.map((entry: NavEntry) => {
+				if (isNavGroup(entry)) {
+					return <SidebarGroup group={entry} currentPath={currentPath} />;
+				}
+
+				const isActive =
+					entry.href === currentPath || entry.href === currentPath.replace(/\/$/, '');
+
+				return (
+					<a
+						href={entry.href}
+						class="docs-sidebar-link"
+						aria-current={isActive ? 'page' : undefined}
+					>
+						{entry.label}
+					</a>
+				);
+			})
+		}
+	</nav>
+</aside>

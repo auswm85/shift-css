@@ -1,0 +1,91 @@
+---
+import { filterTocHeadings, type TocHeading } from '../../utils/toc';
+
+interface Props {
+	headings: TocHeading[];
+}
+
+const { headings } = Astro.props;
+const tocHeadings = filterTocHeadings(headings);
+---
+
+{
+	tocHeadings.length > 0 && (
+		<nav aria-label="Table of contents">
+			<span class="docs-toc-label">On this page</span>
+			<ul class="docs-toc-list">
+				{tocHeadings.map((heading) => (
+					<li>
+						<a
+							href={`#${heading.slug}`}
+							class="docs-toc-link"
+							data-level={heading.depth}
+							data-toc-link
+						>
+							{heading.text}
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	)
+}
+
+<script>
+	function initTocHighlight() {
+		const tocLinks = document.querySelectorAll('[data-toc-link]');
+		if (tocLinks.length === 0) return;
+
+		const headingIds = Array.from(tocLinks).map((link) => {
+			const href = link.getAttribute('href');
+			return href ? href.slice(1) : '';
+		});
+
+		const headings = headingIds
+			.map((id) => document.getElementById(id))
+			.filter((el): el is HTMLElement => el !== null);
+
+		if (headings.length === 0) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				// Find the first visible heading
+				const visibleEntry = entries.find((entry) => entry.isIntersecting);
+
+				if (visibleEntry) {
+					const id = visibleEntry.target.id;
+
+					// Update aria-current on all links
+					tocLinks.forEach((link) => {
+						const href = link.getAttribute('href');
+						const isActive = href === `#${id}`;
+						link.setAttribute('aria-current', isActive ? 'true' : 'false');
+					});
+				}
+			},
+			{
+				rootMargin: '-80px 0px -70% 0px',
+				threshold: 0,
+			}
+		);
+
+		headings.forEach((heading) => {
+			observer.observe(heading);
+		});
+
+		// Cleanup on page transitions
+		document.addEventListener(
+			'astro:before-swap',
+			() => {
+				observer.disconnect();
+			},
+			{ once: true }
+		);
+	}
+
+	// Initialize on load
+	initTocHighlight();
+
+	// Re-init after Astro page transitions
+	document.addEventListener('astro:after-swap', initTocHighlight);
+</script>

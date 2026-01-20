@@ -1,0 +1,51 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../ui/Header.astro';
+import Sidebar from '../navigation/Sidebar.astro';
+import MobileMenu from '../navigation/MobileMenu.astro';
+import TableOfContents from '../navigation/TableOfContents.astro';
+import Pagination from '../navigation/Pagination.astro';
+import SearchDialog from '../ui/SearchDialog.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+	headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { title, description, headings = [] } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description}>
+	<div class="docs-layout">
+		<Header />
+
+		<Sidebar currentPath={currentPath} />
+
+		<main class="docs-main">
+			<article class="docs-content">
+				<header class="prose-header">
+					<h1 class="prose-title">{title}</h1>
+					{description && <p class="prose-description">{description}</p>}
+				</header>
+
+				<div class="prose">
+					<slot />
+				</div>
+			</article>
+
+			<Pagination currentPath={currentPath} />
+		</main>
+
+		<aside class="docs-toc">
+			<TableOfContents headings={headings} />
+		</aside>
+	</div>
+
+	<!-- Mobile menu dialog -->
+	<MobileMenu currentPath={currentPath} />
+
+	<!-- Search dialog -->
+	<SearchDialog />
+</BaseLayout>

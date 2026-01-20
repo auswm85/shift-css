@@ -1,0 +1,135 @@
+---
+import { navigation, isNavGroup, type NavEntry } from '../../data/navigation';
+import Logo from '../ui/Logo.astro';
+
+interface Props {
+	currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<dialog id="mobile-menu" class="docs-mobile-menu" aria-label="Navigation menu">
+	<div class="docs-mobile-menu-content">
+		<div class="docs-mobile-menu-header">
+			<Logo size="sm" />
+			<button
+				type="button"
+				class="docs-mobile-close"
+				aria-label="Close navigation menu"
+				data-mobile-close
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+				>
+					<path d="M18 6 6 18"></path>
+					<path d="m6 6 12 12"></path>
+				</svg>
+			</button>
+		</div>
+
+		<nav class="docs-sidebar-nav" aria-label="Mobile navigation">
+			{
+				navigation.map((entry: NavEntry) => {
+					if (isNavGroup(entry)) {
+						return (
+							<div class="docs-sidebar-group">
+								<span class="docs-sidebar-group-label">{entry.label}</span>
+								<div class="docs-sidebar-group-items">
+									{entry.items.map((item) => {
+										const isActive =
+											item.href === currentPath ||
+											item.href === currentPath.replace(/\/$/, '');
+
+										return (
+											<a
+												href={item.href}
+												class="docs-sidebar-link"
+												aria-current={isActive ? 'page' : undefined}
+												data-mobile-link
+											>
+												{item.label}
+											</a>
+										);
+									})}
+								</div>
+							</div>
+						);
+					}
+
+					const isActive =
+						entry.href === currentPath || entry.href === currentPath.replace(/\/$/, '');
+
+					return (
+						<a
+							href={entry.href}
+							class="docs-sidebar-link"
+							aria-current={isActive ? 'page' : undefined}
+							data-mobile-link
+						>
+							{entry.label}
+						</a>
+					);
+				})
+			}
+		</nav>
+	</div>
+</dialog>
+
+<style>
+	.docs-sidebar-group-items {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-1);
+	}
+</style>
+
+<script>
+	function initMobileMenu() {
+		const dialog = document.querySelector('#mobile-menu') as HTMLDialogElement;
+		const closeBtn = document.querySelector('[data-mobile-close]');
+		const links = document.querySelectorAll('[data-mobile-link]');
+
+		if (!dialog) return;
+
+		// Close button
+		closeBtn?.addEventListener('click', () => {
+			dialog.close();
+		});
+
+		// Close when clicking backdrop
+		dialog.addEventListener('click', (e) => {
+			if (e.target === dialog) {
+				dialog.close();
+			}
+		});
+
+		// Close when clicking a link
+		links.forEach((link) => {
+			link.addEventListener('click', () => {
+				dialog.close();
+			});
+		});
+
+		// Close on Escape key (native behavior, but ensure toggle updates)
+		dialog.addEventListener('close', () => {
+			const toggle = document.querySelector('[data-mobile-toggle]');
+			toggle?.setAttribute('aria-expanded', 'false');
+		});
+	}
+
+	// Initialize on load
+	initMobileMenu();
+
+	// Re-init after Astro page transitions
+	document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

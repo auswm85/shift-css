@@ -1,0 +1,126 @@
+---
+// ThemeToggle - Dark/Light mode switcher
+---
+
+<button
+	type="button"
+	class="theme-toggle"
+	aria-label="Toggle color theme"
+	data-theme-toggle
+>
+	<!-- Sun icon (shown in dark mode) -->
+	<svg
+		class="theme-icon theme-icon--sun"
+		xmlns="http://www.w3.org/2000/svg"
+		width="20"
+		height="20"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		aria-hidden="true"
+	>
+		<circle cx="12" cy="12" r="4"></circle>
+		<path d="M12 2v2"></path>
+		<path d="M12 20v2"></path>
+		<path d="m4.93 4.93 1.41 1.41"></path>
+		<path d="m17.66 17.66 1.41 1.41"></path>
+		<path d="M2 12h2"></path>
+		<path d="M20 12h2"></path>
+		<path d="m6.34 17.66-1.41 1.41"></path>
+		<path d="m19.07 4.93-1.41 1.41"></path>
+	</svg>
+	<!-- Moon icon (shown in light mode) -->
+	<svg
+		class="theme-icon theme-icon--moon"
+		xmlns="http://www.w3.org/2000/svg"
+		width="20"
+		height="20"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		aria-hidden="true"
+	>
+		<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+	</svg>
+</button>
+
+<style>
+	.theme-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		padding: 0;
+		background: transparent;
+		border: 1px solid transparent;
+		border-radius: var(--s-radius-md);
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		transition:
+			background 0.15s,
+			color 0.15s,
+			border-color 0.15s;
+	}
+
+	.theme-toggle:hover {
+		background: var(--s-surface-hover);
+		color: var(--s-text-primary);
+		border-color: var(--s-border-default);
+	}
+
+	.theme-icon {
+		display: none;
+	}
+
+	/* Show sun in dark mode, moon in light mode */
+	:root[data-theme='dark'] .theme-icon--sun {
+		display: block;
+	}
+
+	:root[data-theme='light'] .theme-icon--moon {
+		display: block;
+	}
+
+	/* Default to system preference icons */
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme]) .theme-icon--sun {
+			display: block;
+		}
+	}
+
+	@media (prefers-color-scheme: light) {
+		:root:not([data-theme]) .theme-icon--moon {
+			display: block;
+		}
+	}
+</style>
+
+<script>
+	function initThemeToggle() {
+		const toggle = document.querySelector('[data-theme-toggle]');
+		if (!toggle) return;
+
+		toggle.addEventListener('click', () => {
+			const currentTheme = document.documentElement.getAttribute('data-theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			const effectiveTheme = currentTheme || (prefersDark ? 'dark' : 'light');
+			const newTheme = effectiveTheme === 'dark' ? 'light' : 'dark';
+
+			document.documentElement.setAttribute('data-theme', newTheme);
+			localStorage.setItem('shift-docs-theme', newTheme);
+		});
+	}
+
+	// Run on initial load
+	initThemeToggle();
+
+	// Re-run after Astro page transitions
+	document.addEventListener('astro:after-swap', initThemeToggle);
+</script>

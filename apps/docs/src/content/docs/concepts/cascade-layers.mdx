@@ -78,3 +78,35 @@ You can also create your own layers that sit between Shift CSS and your custom s
   .my-button { /* Your component styles */ }
 }
 ```
+
+## Integrating With Existing CSS
+
+Need to use Shift CSS alongside existing styles or another CSS framework? Wrap the existing CSS in a lower-priority layer:
+
+```css
+/* 1. Define the layer hierarchy first */
+/* The last layer in this list is the strongest */
+@layer legacy, shift.reset, shift.tokens, shift.core, shift.utils;
+
+/* 2. Wrap the existing CSS */
+/* This "demotes" it so it can be easily overridden */
+@layer legacy {
+  @import url("existing-styles.css");
+  /* Any other existing styles go here */
+}
+
+/* 3. Shift CSS components now take priority */
+@layer shift.core {
+  [s-btn="primary"] {
+    /* This will now win over any .btn styles in legacy */
+    background: var(--s-primary-500);
+  }
+}
+```
+
+This approach lets you:
+
+- **Gradually migrate** from existing CSS to Shift CSS
+- **Use both** side-by-side during transition
+- **Override legacy styles** without `!important` hacks
+- **Maintain predictable specificity** across your entire codebase

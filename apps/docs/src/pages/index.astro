@@ -1,0 +1,320 @@
+---
+import { Code } from 'astro:components';
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/ui/Header.astro';
+import MobileMenu from '../components/navigation/MobileMenu.astro';
+import SearchDialog from '../components/ui/SearchDialog.astro';
+import BundleSize from '../components/BundleSize.astro';
+
+const quickStartCode = `<!-- Just drop it in -->
+<link rel="stylesheet" href="https://unpkg.com/@shift-css/core">
+
+<!-- Customize with CSS variables -->
+<style>
+  :root {
+    --shift-hue-primary: 280;  /* Purple brand */
+  }
+</style>`;
+---
+
+<BaseLayout
+	title="Shift CSS"
+	description="Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming"
+>
+	<div class="home-layout">
+		<Header />
+
+		<main class="home-main">
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="hero-content">
+					<h1 class="hero-title">
+						Precision UI built on<br />
+						<span class="hero-highlight">OKLCH</span> and semantic attributes
+					</h1>
+					<p class="hero-description">
+						Zero-runtime CSS framework with perceptually uniform colors, cascade layers, and native
+						<code>light-dark()</code> theming.
+					</p>
+					<div class="hero-actions">
+						<a href="/getting-started/introduction" s-btn="primary" s-size="lg"> Get Started </a>
+						<a
+							href="https://github.com/your-username/shift-css"
+							s-btn="secondary"
+							s-size="lg"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							View on GitHub
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Features Section -->
+			<section class="features">
+				<div class="features-grid">
+					<article s-card>
+						<div s-card-body>
+							<div class="feature-icon">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<circle cx="12" cy="12" r="4"></circle>
+									<path d="M12 2v2"></path>
+									<path d="M12 20v2"></path>
+									<path d="m4.93 4.93 1.41 1.41"></path>
+									<path d="m17.66 17.66 1.41 1.41"></path>
+									<path d="M2 12h2"></path>
+									<path d="M20 12h2"></path>
+									<path d="m6.34 17.66-1.41 1.41"></path>
+									<path d="m19.07 4.93-1.41 1.41"></path>
+								</svg>
+							</div>
+							<h3 s-card-title>OKLCH Native</h3>
+							<p s-card-subtitle>
+								Perceptually uniform color scales. Blue-500 and Yellow-500 have the same visual
+								brightness.
+							</p>
+						</div>
+					</article>
+
+					<article s-card>
+						<div s-card-body>
+							<div class="feature-icon">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+								</svg>
+							</div>
+							<h3 s-card-title>Zero-Class Theming</h3>
+							<p s-card-subtitle>
+								Native <code>light-dark()</code> function. No <code>.dark</code> class needed - respects
+								<code>prefers-color-scheme</code> automatically.
+							</p>
+						</div>
+					</article>
+
+					<article s-card>
+						<div s-card-body>
+							<div class="feature-icon">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<rect width="7" height="9" x="3" y="3" rx="1"></rect>
+									<rect width="7" height="5" x="14" y="3" rx="1"></rect>
+									<rect width="7" height="9" x="14" y="12" rx="1"></rect>
+									<rect width="7" height="5" x="3" y="16" rx="1"></rect>
+								</svg>
+							</div>
+							<h3 s-card-title>Cascade Layers</h3>
+							<p s-card-subtitle>
+								No more <code>!important</code>. Framework styles live in <code>@layer</code> so your
+								CSS always wins.
+							</p>
+						</div>
+					</article>
+
+					<article s-card>
+						<div s-card-body>
+							<div class="feature-icon">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+									></path>
+									<circle cx="12" cy="13" r="3"></circle>
+								</svg>
+							</div>
+							<h3 s-card-title>Container Queries</h3>
+							<p s-card-subtitle>
+								Components respond to their container, not the viewport. True modular design.
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- Quick Start Section -->
+			<section class="quick-start">
+				<h2>Quick Start</h2>
+				<div class="prose">
+					<Code code={quickStartCode} lang="html" themes={{ light: 'github-light', dark: 'github-dark' }} />
+				</div>
+			</section>
+
+			<!-- Bundle Size Section -->
+			<section class="bundle-size">
+				<p class="bundle-text">
+					<BundleSize /> — All components, utilities, and a complete color system.
+				</p>
+			</section>
+		</main>
+	</div>
+
+	<!-- Mobile menu dialog -->
+	<MobileMenu currentPath="/" />
+
+	<!-- Search dialog -->
+	<SearchDialog />
+</BaseLayout>
+
+<style>
+	.home-layout {
+		min-height: 100vh;
+	}
+
+	.home-main {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: var(--s-space-6);
+	}
+
+	/* Hero */
+	.hero {
+		padding: var(--s-space-16) 0;
+		text-align: center;
+	}
+
+	.hero-title {
+		font-size: clamp(var(--s-text-3xl), 5vw, var(--s-text-5xl));
+		font-weight: var(--s-font-bold);
+		line-height: var(--s-leading-tight);
+		margin-bottom: var(--s-space-4);
+		color: var(--s-text-primary);
+	}
+
+	.hero-highlight {
+		color: var(--s-interactive-primary);
+	}
+
+	.hero-description {
+		font-size: var(--s-text-lg);
+		color: var(--s-text-secondary);
+		max-width: 36rem;
+		margin: 0 auto var(--s-space-8);
+		line-height: var(--s-leading-relaxed);
+	}
+
+	.hero-description code {
+		font-family: var(--s-font-mono);
+		font-size: 0.9em;
+		background: var(--s-surface-subtle);
+		padding: 0.1em 0.4em;
+		border-radius: var(--s-radius-sm);
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--s-space-3);
+	}
+
+	/* Features */
+	.features {
+		padding: var(--s-space-12) 0;
+	}
+
+	.features-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--s-space-4);
+	}
+
+	.feature-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		margin-bottom: var(--s-space-3);
+		background: var(--s-surface-subtle);
+		border-radius: var(--s-radius-md);
+		color: var(--s-interactive-primary);
+	}
+
+	.features [s-card-title] {
+		font-size: var(--s-text-lg);
+		margin-bottom: var(--s-space-2);
+	}
+
+	.features [s-card-subtitle] {
+		font-size: var(--s-text-sm);
+		line-height: var(--s-leading-relaxed);
+	}
+
+	.features [s-card-subtitle] code {
+		font-family: var(--s-font-mono);
+		font-size: 0.9em;
+		background: var(--s-surface-subtle);
+		padding: 0.1em 0.3em;
+		border-radius: var(--s-radius-sm);
+	}
+
+	/* Quick Start */
+	.quick-start {
+		padding: var(--s-space-12) 0;
+	}
+
+	.quick-start h2 {
+		font-size: var(--s-text-2xl);
+		font-weight: var(--s-font-semibold);
+		margin-bottom: var(--s-space-4);
+		text-align: center;
+	}
+
+	.quick-start :global(pre) {
+		border-radius: 0 !important;
+		border: 1px solid var(--s-neutral-200) !important;
+	}
+
+	/* Bundle Size */
+	.bundle-size {
+		padding: var(--s-space-8) 0;
+		text-align: center;
+	}
+
+	.bundle-text {
+		font-size: var(--s-text-lg);
+		color: var(--s-text-secondary);
+	}
+
+	.bundle-text :global(strong) {
+		color: var(--s-interactive-primary);
+		font-weight: var(--s-font-semibold);
+	}
+</style>
