@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Abstract S shape representing shift/layers -->
+  <rect x="4" y="4" width="24" height="6" rx="1" fill="#00cbe7" opacity="0.4" />
+  <rect x="8" y="13" width="20" height="6" rx="1" fill="#00cbe7" opacity="0.7" />
+  <rect x="4" y="22" width="24" height="6" rx="1" fill="#00cbe7" />
+</svg>
