@@ -4,6 +4,7 @@ A zero-runtime, OKLCH-native CSS framework with automatic theming.
 
 [![npm version](https://img.shields.io/npm/v/@shift-css/core)](https://www.npmjs.com/package/@shift-css/core)
 [![CI](https://github.com/auswm85/shift-css/actions/workflows/ci.yml/badge.svg)](https://github.com/auswm85/shift-css/actions/workflows/ci.yml)
+[![CSS gzip size](https://img.badgesize.io/https://cdn.jsdelivr.net/npm/@shift-css/core/dist/shift.min.css?compression=gzip&label=CSS%20gzip%20size)](https://cdn.jsdelivr.net/npm/@shift-css/core/dist/shift.min.css)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Why Shift CSS?
