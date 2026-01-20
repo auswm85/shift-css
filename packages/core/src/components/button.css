@@ -210,3 +210,83 @@
     }
   }
 }
+
+/* Shorthand class aliases (non-BEM style) */
+.btn-primary {
+  /* Primary is default, no changes needed */
+}
+
+.btn-secondary {
+  --btn-bg: var(--surface-raised);
+  --btn-text: var(--text-primary);
+  --btn-border: var(--border-default);
+
+  /* Override auto-contrast */
+  color: var(--btn-text);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--surface-sunken);
+  }
+}
+
+.btn-outline {
+  --btn-bg: transparent;
+  --btn-text: var(--interactive-primary);
+  --btn-border: var(--interactive-primary);
+
+  color: var(--btn-text);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--interactive-primary);
+    --btn-text: var(--text-inverse);
+    color: var(--btn-text);
+  }
+}
+
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-text: var(--interactive-primary);
+
+  color: var(--btn-text);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--surface-sunken);
+  }
+}
+
+.btn-danger {
+  --btn-bg: var(--state-danger);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--color-danger-700);
+  }
+}
+
+.btn-success {
+  --btn-bg: var(--state-success);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--color-success-700);
+  }
+}
+
+.btn-warning {
+  --btn-bg: var(--state-warning);
+
+  &:hover:not(:disabled) {
+    --btn-bg: var(--color-warning-700);
+  }
+}
+
+/* Shorthand size aliases */
+.btn-sm {
+  --btn-padding-x: var(--spacing-3);
+  --btn-padding-y: var(--spacing-1_5);
+  font-size: var(--text-xs);
+}
+
+.btn-lg {
+  --btn-padding-x: var(--spacing-6);
+  --btn-padding-y: var(--spacing-3);
+  font-size: var(--text-base);
+}

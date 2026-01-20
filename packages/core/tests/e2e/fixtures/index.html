@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shift CSS - Test Fixtures</title>
+	<link rel="stylesheet" href="/dist/shift.css">
+	<style>
+		body { padding: var(--spacing-8); }
+		.fixture-nav { margin-bottom: var(--spacing-8); }
+		.fixture-nav a { margin-right: var(--spacing-4); }
+	</style>
+</head>
+<body>
+	<nav class="fixture-nav">
+		<a href="/">Home</a>
+		<a href="/colors.html">Colors</a>
+		<a href="/components.html">Components</a>
+		<a href="/typography.html">Typography</a>
+		<a href="/contrast.html">Contrast Tests</a>
+	</nav>
+
+	<h1>Shift CSS Test Fixtures</h1>
+	<p>Use these pages for visual regression and accessibility testing.</p>
+
+	<h2>Quick Component Preview</h2>
+
+	<section class="surface-card" style="padding: var(--spacing-6); margin-bottom: var(--spacing-4);">
+		<h3>Surface Card</h3>
+		<p>A basic surface card component for content grouping.</p>
+		<button class="btn btn-primary">Primary Action</button>
+		<button class="btn btn-secondary">Secondary</button>
+	</section>
+
+	<section style="margin-top: var(--spacing-8);">
+		<h3>Theme Toggle Test</h3>
+		<p>Toggle between light and dark modes to test automatic theming.</p>
+		<button id="theme-toggle" class="btn btn-secondary">Toggle Theme</button>
+	</section>
+
+	<script>
+		document.getElementById('theme-toggle').addEventListener('click', () => {
+			const html = document.documentElement;
+			const current = html.style.colorScheme;
+			html.style.colorScheme = current === 'dark' ? 'light' : 'dark';
+		});
+	</script>
+</body>
+</html>

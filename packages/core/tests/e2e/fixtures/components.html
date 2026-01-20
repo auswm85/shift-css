@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shift CSS - Components</title>
+	<link rel="stylesheet" href="/dist/shift.css">
+	<style>
+		body { padding: var(--spacing-8); }
+		.fixture-nav { margin-bottom: var(--spacing-8); }
+		.fixture-nav a { margin-right: var(--spacing-4); }
+		section { margin-bottom: var(--spacing-12); }
+		.component-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: var(--spacing-4);
+		}
+		.theme-controls {
+			position: fixed;
+			top: var(--spacing-4);
+			right: var(--spacing-4);
+			display: flex;
+			gap: var(--spacing-2);
+		}
+	</style>
+</head>
+<body>
+	<div class="theme-controls">
+		<button id="light-mode" class="btn btn-secondary">Light</button>
+		<button id="dark-mode" class="btn btn-secondary">Dark</button>
+	</div>
+
+	<nav class="fixture-nav">
+		<a href="/">Home</a>
+		<a href="/colors.html">Colors</a>
+		<a href="/components.html">Components</a>
+		<a href="/typography.html">Typography</a>
+		<a href="/contrast.html">Contrast Tests</a>
+	</nav>
+
+	<h1>Components</h1>
+
+	<!-- Buttons Section -->
+	<section data-testid="buttons-section">
+		<h2>Buttons</h2>
+
+		<h3>Button Variants</h3>
+		<div class="component-grid" style="margin-bottom: var(--spacing-4);">
+			<button class="btn btn-primary">Primary</button>
+			<button class="btn btn-secondary">Secondary</button>
+			<button class="btn btn-danger">Danger</button>
+			<button class="btn btn-ghost">Ghost</button>
+		</div>
+
+		<h3>Button States</h3>
+		<div class="component-grid" style="margin-bottom: var(--spacing-4);">
+			<button class="btn btn-primary">Default</button>
+			<button class="btn btn-primary" disabled>Disabled</button>
+		</div>
+
+		<h3>Button Sizes</h3>
+		<div style="display: flex; align-items: center; gap: var(--spacing-4); flex-wrap: wrap;">
+			<button class="btn btn-primary btn-sm">Small</button>
+			<button class="btn btn-primary">Medium</button>
+			<button class="btn btn-primary btn-lg">Large</button>
+		</div>
+	</section>
+
+	<!-- Cards Section -->
+	<section data-testid="cards-section">
+		<h2>Cards</h2>
+
+		<div class="component-grid">
+			<div class="surface-card" style="padding: var(--spacing-6);">
+				<h3>Card Title</h3>
+				<p>This is a basic card component with default styling.</p>
+				<button class="btn btn-primary btn-sm">Action</button>
+			</div>
+
+			<div class="surface-elevated" style="padding: var(--spacing-6);">
+				<h3>Elevated Card</h3>
+				<p>A card with elevated styling for emphasis.</p>
+				<button class="btn btn-secondary btn-sm">Action</button>
+			</div>
+
+			<div class="surface-inset" style="padding: var(--spacing-6);">
+				<h3>Inset Surface</h3>
+				<p>An inset surface for nested content areas.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Form Inputs Section -->
+	<section data-testid="inputs-section">
+		<h2>Form Inputs</h2>
+
+		<div style="max-width: 400px; display: flex; flex-direction: column; gap: var(--spacing-4);">
+			<div>
+				<label for="text-input" style="display: block; margin-bottom: var(--spacing-2);">Text Input</label>
+				<input type="text" id="text-input" class="input" placeholder="Enter text..." />
+			</div>
+
+			<div>
+				<label for="disabled-input" style="display: block; margin-bottom: var(--spacing-2);">Disabled Input</label>
+				<input type="text" id="disabled-input" class="input" placeholder="Disabled..." disabled />
+			</div>
+
+			<div>
+				<label for="email-input" style="display: block; margin-bottom: var(--spacing-2);">Email Input</label>
+				<input type="email" id="email-input" class="input" placeholder="email@example.com" />
+			</div>
+
+			<div>
+				<label for="textarea" style="display: block; margin-bottom: var(--spacing-2);">Textarea</label>
+				<textarea id="textarea" class="input" rows="3" placeholder="Enter longer text..."></textarea>
+			</div>
+
+			<div>
+				<label for="select" style="display: block; margin-bottom: var(--spacing-2);">Select</label>
+				<select id="select" class="input">
+					<option>Option 1</option>
+					<option>Option 2</option>
+					<option>Option 3</option>
+				</select>
+			</div>
+		</div>
+	</section>
+
+	<!-- Surfaces Section -->
+	<section data-testid="surfaces-section">
+		<h2>Surfaces</h2>
+
+		<div class="component-grid">
+			<div class="surface-base" style="padding: var(--spacing-6); border: 1px solid var(--border-default);">
+				<h4>Base Surface</h4>
+				<p>The foundational surface for page backgrounds.</p>
+			</div>
+
+			<div class="surface-subtle" style="padding: var(--spacing-6); border: 1px solid var(--border-default);">
+				<h4>Subtle Surface</h4>
+				<p>A subtle background for secondary content areas.</p>
+			</div>
+
+			<div class="surface-muted" style="padding: var(--spacing-6); border: 1px solid var(--border-default);">
+				<h4>Muted Surface</h4>
+				<p>A muted background for disabled or inactive states.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Combined Example -->
+	<section data-testid="combined-section">
+		<h2>Combined Example</h2>
+
+		<div class="surface-card" style="padding: var(--spacing-8); max-width: 500px;">
+			<h3 style="margin-bottom: var(--spacing-4);">Contact Form</h3>
+
+			<form style="display: flex; flex-direction: column; gap: var(--spacing-4);">
+				<div>
+					<label for="name" style="display: block; margin-bottom: var(--spacing-2);">Name</label>
+					<input type="text" id="name" class="input" placeholder="Your name" />
+				</div>
+
+				<div>
+					<label for="email" style="display: block; margin-bottom: var(--spacing-2);">Email</label>
+					<input type="email" id="email" class="input" placeholder="your@email.com" />
+				</div>
+
+				<div>
+					<label for="message" style="display: block; margin-bottom: var(--spacing-2);">Message</label>
+					<textarea id="message" class="input" rows="4" placeholder="Your message..."></textarea>
+				</div>
+
+				<div style="display: flex; gap: var(--spacing-4); justify-content: flex-end;">
+					<button type="button" class="btn btn-ghost">Cancel</button>
+					<button type="submit" class="btn btn-primary">Send Message</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+	<script>
+		document.getElementById('light-mode').addEventListener('click', () => {
+			document.documentElement.style.colorScheme = 'light';
+		});
+		document.getElementById('dark-mode').addEventListener('click', () => {
+			document.documentElement.style.colorScheme = 'dark';
+		});
+	</script>
+</body>
+</html>

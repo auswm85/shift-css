@@ -18,9 +18,21 @@
     "build": "tsx scripts/build.ts",
     "build:tokens": "tsx scripts/generate-colors.ts",
     "dev": "tsx scripts/build.ts --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "bun test",
+    "test:unit": "bun test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "test:visual": "playwright test --project=visual-chrome",
+    "test:visual:all": "playwright test tests/e2e/*.visual.ts",
+    "test:a11y": "playwright test --project=accessibility",
+    "test:contrast": "playwright test --project=contrast",
+    "test:update-snapshots": "playwright test --update-snapshots",
+    "serve-fixtures": "bun run scripts/serve-fixtures.ts"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.50.1",
+    "@types/bun": "^1.2.4",
     "@types/node": "^22.10.5",
     "lightningcss": "^1.30.2",
     "tsx": "^4.21.0",

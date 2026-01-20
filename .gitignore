@@ -36,3 +36,10 @@ logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
+
+# Test artifacts
+test-results/
+playwright-report/
+**/tests/e2e/results/
+**/tests/e2e/snapshots/
+blob-report/

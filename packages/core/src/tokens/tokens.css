@@ -118,7 +118,7 @@
 
     /* TEXT */
     --text-primary: light-dark(var(--color-neutral-900), var(--color-neutral-50));
-    --text-secondary: light-dark(var(--color-neutral-600), var(--color-neutral-400));
+    --text-secondary: light-dark(var(--color-neutral-700), var(--color-neutral-300));
     --text-tertiary: light-dark(var(--color-neutral-500), var(--color-neutral-500));
     --text-inverse: light-dark(var(--color-neutral-50), var(--color-neutral-900));
 
@@ -128,17 +128,17 @@
     --border-strong: light-dark(var(--color-neutral-400), var(--color-neutral-600));
 
     /* INTERACTIVE */
-    --interactive-primary: light-dark(var(--color-primary-600), var(--color-primary-400));
-    --interactive-primary-hover: light-dark(var(--color-primary-700), var(--color-primary-300));
-    --interactive-primary-active: light-dark(var(--color-primary-800), var(--color-primary-200));
-    --interactive-secondary: light-dark(var(--color-secondary-600), var(--color-secondary-400));
+    --interactive-primary: light-dark(var(--color-primary-700), var(--color-primary-300));
+    --interactive-primary-hover: light-dark(var(--color-primary-800), var(--color-primary-200));
+    --interactive-primary-active: light-dark(var(--color-primary-900), var(--color-primary-100));
+    --interactive-secondary: light-dark(var(--color-secondary-700), var(--color-secondary-300));
 
     /* STATE */
-    --state-success: light-dark(var(--color-success-600), var(--color-success-400));
+    --state-success: light-dark(var(--color-success-700), var(--color-success-300));
     --state-success-bg: light-dark(var(--color-success-100), var(--color-success-900));
-    --state-warning: light-dark(var(--color-warning-600), var(--color-warning-400));
+    --state-warning: light-dark(var(--color-warning-700), var(--color-warning-300));
     --state-warning-bg: light-dark(var(--color-warning-100), var(--color-warning-900));
-    --state-danger: light-dark(var(--color-danger-600), var(--color-danger-400));
+    --state-danger: light-dark(var(--color-danger-700), var(--color-danger-300));
     --state-danger-bg: light-dark(var(--color-danger-100), var(--color-danger-900));
 
     /* FOCUS */

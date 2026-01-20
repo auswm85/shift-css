@@ -29,9 +29,9 @@
         "description": "Primary text color"
       },
       "secondary": {
-        "light": { "value": "{color.neutral.600}" },
-        "dark": { "value": "{color.neutral.400}" },
-        "description": "Secondary/muted text"
+        "light": { "value": "{color.neutral.700}" },
+        "dark": { "value": "{color.neutral.300}" },
+        "description": "Secondary/muted text (AA compliant)"
       },
       "tertiary": {
         "light": { "value": "{color.neutral.500}" },
@@ -63,31 +63,31 @@
     },
     "interactive": {
       "primary": {
-        "light": { "value": "{color.primary.600}" },
-        "dark": { "value": "{color.primary.400}" },
-        "description": "Primary interactive elements"
-      },
-      "primaryHover": {
         "light": { "value": "{color.primary.700}" },
         "dark": { "value": "{color.primary.300}" },
+        "description": "Primary interactive elements (AA compliant)"
+      },
+      "primaryHover": {
+        "light": { "value": "{color.primary.800}" },
+        "dark": { "value": "{color.primary.200}" },
         "description": "Primary hover state"
       },
       "primaryActive": {
-        "light": { "value": "{color.primary.800}" },
-        "dark": { "value": "{color.primary.200}" },
+        "light": { "value": "{color.primary.900}" },
+        "dark": { "value": "{color.primary.100}" },
         "description": "Primary active/pressed state"
       },
       "secondary": {
-        "light": { "value": "{color.secondary.600}" },
-        "dark": { "value": "{color.secondary.400}" },
-        "description": "Secondary interactive elements"
+        "light": { "value": "{color.secondary.700}" },
+        "dark": { "value": "{color.secondary.300}" },
+        "description": "Secondary interactive elements (AA compliant)"
       }
     },
     "state": {
       "success": {
-        "light": { "value": "{color.success.600}" },
-        "dark": { "value": "{color.success.400}" },
-        "description": "Success state color"
+        "light": { "value": "{color.success.700}" },
+        "dark": { "value": "{color.success.300}" },
+        "description": "Success state color (AA compliant)"
       },
       "successBg": {
         "light": { "value": "{color.success.100}" },
@@ -95,9 +95,9 @@
         "description": "Success background"
       },
       "warning": {
-        "light": { "value": "{color.warning.600}" },
-        "dark": { "value": "{color.warning.400}" },
-        "description": "Warning state color"
+        "light": { "value": "{color.warning.700}" },
+        "dark": { "value": "{color.warning.300}" },
+        "description": "Warning state color (AA compliant)"
       },
       "warningBg": {
         "light": { "value": "{color.warning.100}" },
@@ -105,9 +105,9 @@
         "description": "Warning background"
       },
       "danger": {
-        "light": { "value": "{color.danger.600}" },
-        "dark": { "value": "{color.danger.400}" },
-        "description": "Danger/error state color"
+        "light": { "value": "{color.danger.700}" },
+        "dark": { "value": "{color.danger.300}" },
+        "description": "Danger/error state color (AA compliant)"
       },
       "dangerBg": {
         "light": { "value": "{color.danger.100}" },
