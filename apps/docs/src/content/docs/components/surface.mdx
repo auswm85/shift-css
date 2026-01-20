@@ -1,124 +1,138 @@
 ---
 title: Surface
-description: Auto-contrast background component with intelligent text color
+description: Layered background component for visual hierarchy
 ---
 
 ## Overview
 
-The `.surface` component provides backgrounds that automatically calculate readable text colors using CSS `contrast-color()`.
+The `s-surface` attribute provides background surfaces with different elevation levels for creating visual hierarchy.
 
 ## Basic Usage
 
 ```html
-<div class="surface">
-  Text color automatically adjusts for readability
+<div s-surface="flat">
+  Default flat surface
 </div>
 ```
 
-## Variants
+## Elevation Variants
 
-### Default Surface
+### Sunken
 
-Uses the base surface color from your theme:
+Recessed appearance, ideal for input areas or inset content:
 
 ```html
-<div class="surface">Default surface</div>
+<div s-surface="sunken">
+  Sunken surface - appears recessed
+</div>
 ```
 
-### Primary Surface
+### Flat
+
+Default level surface:
 
 ```html
-<div class="surface surface--primary">
-  Primary colored surface with auto-contrast text
+<div s-surface="flat">
+  Flat surface - no elevation
 </div>
 ```
 
-### Secondary Surface
+### Raised
+
+Subtle elevation, good for cards and containers:
 
 ```html
-<div class="surface surface--secondary">
-  Secondary colored surface
+<div s-surface="raised">
+  Raised surface - subtle lift
 </div>
 ```
 
-### Accent Surface
+### Floating
+
+Higher elevation for overlays, modals, and dropdowns:
 
 ```html
-<div class="surface surface--accent">
-  Accent colored surface
+<div s-surface="floating">
+  Floating surface - highest elevation
 </div>
 ```
 
-## Elevation Levels
-
-Surfaces support different elevation levels:
+## Comparison
 
 ```html
-<div class="surface surface--raised">
-  Raised surface (higher elevation)
-</div>
-
-<div class="surface surface--sunken">
-  Sunken surface (lower elevation)
-</div>
-```
-
-## Custom Backgrounds
-
-Override the background while maintaining auto-contrast:
-
-```html
-<div class="surface" style="--surface-bg: oklch(0.3 0.1 250);">
-  Custom dark background with automatic light text
-</div>
-
-<div class="surface" style="--surface-bg: oklch(0.9 0.05 90);">
-  Custom light background with automatic dark text
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-space-4);">
+  <div s-surface="sunken" style="padding: var(--s-space-4);">
+    <strong>Sunken</strong>
+    <p>Use for input areas, wells</p>
+  </div>
+  <div s-surface="flat" style="padding: var(--s-space-4);">
+    <strong>Flat</strong>
+    <p>Use for base content</p>
+  </div>
+  <div s-surface="raised" style="padding: var(--s-space-4);">
+    <strong>Raised</strong>
+    <p>Use for cards, sections</p>
+  </div>
+  <div s-surface="floating" style="padding: var(--s-space-4);">
+    <strong>Floating</strong>
+    <p>Use for modals, dropdowns</p>
+  </div>
 </div>
 ```
 
-## How Auto-Contrast Works
+## How It Works
 
-The surface component uses progressive enhancement for text contrast:
+Surfaces use semantic tokens that automatically adapt to light/dark mode:
 
 ```css
-.surface {
-  background-color: var(--surface-bg);
+:where([s-surface]) {
+  border-radius: var(--s-radius);
+}
 
-  /* Primary: CSS Color Level 6 */
-  color: contrast-color(var(--surface-bg));
+[s-surface="sunken"] {
+  background: var(--s-surface-sunken);
+}
 
-  /* Fallback 1: Relative color syntax */
-  @supports not (color: contrast-color(red)) {
-    color: oklch(from var(--surface-bg)
-      clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0);
-  }
+[s-surface="flat"] {
+  background: var(--s-surface-base);
+}
 
-  /* Fallback 2: Semantic token */
-  @supports not (color: oklch(from red l c h)) {
-    color: var(--text-primary);
-  }
+[s-surface="raised"] {
+  background: var(--s-surface-raised);
+  box-shadow: var(--s-shadow-sm);
+}
+
+[s-surface="floating"] {
+  background: var(--s-surface-raised);
+  box-shadow: var(--s-shadow-lg);
 }
 ```
 
-## Container Query Support
+## Dark Mode
 
-Surfaces respond to their container size:
+Surfaces automatically adapt to dark mode via `light-dark()`:
 
-```html
-<div class="surface" style="width: 200px;">
-  Compact padding in narrow containers
-</div>
-
-<div class="surface" style="width: 600px;">
-  Standard padding in wider containers
-</div>
+```css
+:root {
+  --s-surface-base: light-dark(var(--s-neutral-50), var(--s-neutral-900));
+  --s-surface-raised: light-dark(var(--s-neutral-0), var(--s-neutral-800));
+  --s-surface-sunken: light-dark(var(--s-neutral-100), var(--s-neutral-950));
+}
 ```
 
 ## CSS Custom Properties
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--surface-bg` | `var(--surface-base)` | Background color |
-| `--surface-padding` | `var(--spacing-4)` | Internal padding |
-| `--surface-radius` | `var(--radius-base)` | Border radius |
+| Property | Description |
+|----------|-------------|
+| `--s-surface-base` | Default surface background |
+| `--s-surface-raised` | Elevated surface background |
+| `--s-surface-sunken` | Recessed surface background |
+| `--s-shadow-sm` | Small shadow for raised surfaces |
+| `--s-shadow-lg` | Large shadow for floating surfaces |
+
+## Use Cases
+
+- **Sunken**: Input fields, code blocks, inset sections
+- **Flat**: Main content areas, page backgrounds
+- **Raised**: Cards, panels, grouped content
+- **Floating**: Modals, popovers, dropdown menus, tooltips

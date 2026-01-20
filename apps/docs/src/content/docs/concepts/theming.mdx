@@ -22,7 +22,7 @@ Shift CSS uses the native CSS `light-dark()` function. Components automatically 
 
 ```html
 <!-- Just write once -->
-<div class="surface">
+<div s-surface="raised">
   Content automatically adapts to light/dark mode
 </div>
 ```
@@ -35,14 +35,14 @@ Semantic tokens are defined with both light and dark values:
 :root {
   color-scheme: light dark;
 
-  --surface-base: light-dark(
-    var(--color-neutral-50),   /* Light mode */
-    var(--color-neutral-950)   /* Dark mode */
+  --s-surface-base: light-dark(
+    var(--s-neutral-50),   /* Light mode */
+    var(--s-neutral-950)   /* Dark mode */
   );
 
-  --text-primary: light-dark(
-    var(--color-neutral-900),
-    var(--color-neutral-50)
+  --s-text-primary: light-dark(
+    var(--s-neutral-900),
+    var(--s-neutral-50)
   );
 }
 ```
@@ -76,30 +76,23 @@ document.documentElement.style.colorScheme = 'dark';
 
 | Token | Light | Dark | Usage |
 |-------|-------|------|-------|
-| `--surface-base` | neutral-50 | neutral-950 | Default backgrounds |
-| `--surface-raised` | neutral-100 | neutral-900 | Cards, modals |
-| `--surface-sunken` | neutral-200 | neutral-800 | Inputs, wells |
-| `--text-primary` | neutral-900 | neutral-50 | Main text |
-| `--text-secondary` | neutral-600 | neutral-400 | Muted text |
-| `--border-default` | neutral-200 | neutral-800 | Borders |
+| `--s-surface-base` | neutral-50 | neutral-950 | Default backgrounds |
+| `--s-surface-raised` | neutral-100 | neutral-900 | Cards, modals |
+| `--s-surface-sunken` | neutral-200 | neutral-800 | Inputs, wells |
+| `--s-text-primary` | neutral-900 | neutral-50 | Main text |
+| `--s-text-secondary` | neutral-600 | neutral-400 | Muted text |
+| `--s-border-default` | neutral-200 | neutral-800 | Borders |
 
 ## Auto-Contrast Text
 
-Components like `.surface` automatically calculate readable text color:
+Button components automatically calculate readable text color using OKLCH relative color syntax:
 
 ```css
-.surface {
-  background: var(--surface-bg);
-
-  /* Uses contrast-color() with fallbacks */
-  color: contrast-color(var(--surface-bg));
+[s-btn="primary"] {
+  --_bg: var(--s-primary-500);
+  /* Auto-contrast: light text on dark bg, dark text on light bg */
+  --_color: oklch(from var(--_bg) calc(l < 0.6 ? 0.98 : 0.15) 0.01 h);
 }
 ```
 
-Even custom backgrounds get readable text automatically:
-
-```html
-<div class="surface" style="--surface-bg: oklch(0.3 0.1 250);">
-  This text is automatically light on the dark background
-</div>
-```
+This ensures WCAG AA compliant contrast regardless of the primary hue chosen.

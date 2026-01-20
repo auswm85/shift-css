@@ -5,58 +5,48 @@ description: Versatile button component with multiple variants and sizes
 
 ## Overview
 
-The `.btn` component provides accessible, styled buttons with automatic dark mode support.
+The `s-btn` attribute provides accessible, styled buttons with automatic dark mode support and auto-contrast text colors.
 
 ## Basic Usage
 
 ```html
-<button class="btn">Primary Button</button>
+<button s-btn="primary">Primary Button</button>
 ```
 
 ## Variants
 
-### Primary (Default)
+### Primary
 
 ```html
-<button class="btn">Primary</button>
+<button s-btn="primary">Primary</button>
 ```
 
 ### Secondary
 
 ```html
-<button class="btn btn--secondary">Secondary</button>
-```
-
-### Outline
-
-```html
-<button class="btn btn--outline">Outline</button>
+<button s-btn="secondary">Secondary</button>
 ```
 
 ### Ghost
 
 ```html
-<button class="btn btn--ghost">Ghost</button>
+<button s-btn="ghost">Ghost</button>
 ```
 
-### Danger
+### Link
 
 ```html
-<button class="btn btn--danger">Danger</button>
-```
-
-### Success
-
-```html
-<button class="btn btn--success">Success</button>
+<button s-btn="link">Link</button>
 ```
 
 ## Sizes
 
+Use the `s-size` attribute to change button size:
+
 ```html
-<button class="btn btn--sm">Small</button>
-<button class="btn">Default</button>
-<button class="btn btn--lg">Large</button>
+<button s-btn="primary" s-size="sm">Small</button>
+<button s-btn="primary">Default (Medium)</button>
+<button s-btn="primary" s-size="lg">Large</button>
 ```
 
 ## States
@@ -64,84 +54,78 @@ The `.btn` component provides accessible, styled buttons with automatic dark mod
 ### Disabled
 
 ```html
-<button class="btn" disabled>Disabled</button>
+<button s-btn="primary" disabled>Disabled</button>
 ```
 
-### Loading
+### Active
 
 ```html
-<button class="btn btn--loading">Loading...</button>
-```
-
-## Button Groups
-
-```html
-<div class="btn-group">
-  <button class="btn">Left</button>
-  <button class="btn">Center</button>
-  <button class="btn">Right</button>
-</div>
+<button s-btn="primary" active>Active</button>
 ```
 
 ## With Icons
 
 ```html
-<button class="btn">
+<button s-btn="primary">
   <svg><!-- icon --></svg>
   With Icon
 </button>
-
-<button class="btn btn--icon" aria-label="Settings">
-  <svg><!-- icon --></svg>
-</button>
-```
-
-## Full Width
-
-```html
-<button class="btn btn--block">Full Width Button</button>
 ```
 
 ## As Links
 
 ```html
-<a href="/path" class="btn">Link Button</a>
+<a href="/path" s-btn="primary">Link Button</a>
+```
+
+## How It Works
+
+Buttons use the Layered Intent pattern with `:where()` for zero-specificity base styles:
+
+```css
+/* Base styles - easily overridable */
+:where([s-btn]) {
+  --_bg: var(--s-neutral-100);
+  --_color: var(--s-text-primary);
+
+  display: inline-flex;
+  align-items: center;
+  background: var(--_bg);
+  color: var(--_color);
+}
+
+/* Variant styles - intentional specificity */
+[s-btn="primary"] {
+  --_bg: var(--s-primary-500);
+  --_color: oklch(from var(--_bg) calc(l < 0.6 ? 0.98 : 0.15) 0.01 h);
+}
 ```
 
 ## CSS Custom Properties
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--btn-bg` | `var(--interactive-primary)` | Background color |
-| `--btn-color` | `auto-contrast` | Text color |
-| `--btn-radius` | `var(--radius-base)` | Border radius |
-| `--btn-padding-x` | `var(--spacing-4)` | Horizontal padding |
-| `--btn-padding-y` | `var(--spacing-2)` | Vertical padding |
-| `--btn-font-weight` | `var(--font-medium)` | Font weight |
+| Property | Description |
+|----------|-------------|
+| `--_bg` | Background color (private) |
+| `--_color` | Text color (private, auto-contrast) |
+| `--_border` | Border color (private) |
 
 ## Customization Examples
 
-### Pill Buttons
+### Override Primary Color
+
+Change the primary hue to affect all primary buttons:
 
 ```css
-.btn {
-  --btn-radius: var(--radius-full);
+:root {
+  --shift-hue-primary: 280; /* Purple */
 }
 ```
 
-### Custom Brand Color
-
-```html
-<button class="btn" style="--btn-bg: var(--color-accent-500);">
-  Accent Button
-</button>
-```
-
-### Scoped Customization
+### Custom Button Style
 
 ```css
-.my-section .btn {
-  --btn-bg: var(--color-secondary-600);
-  --btn-radius: 0;
+[s-btn="primary"] {
+  --_bg: var(--s-accent-500);
+  border-radius: var(--s-radius-full);
 }
 ```

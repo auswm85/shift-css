@@ -5,171 +5,126 @@ description: Flexible card component for content containers
 
 ## Overview
 
-The `.card` component provides a structured container for content with optional header, body, and footer sections.
+The `s-card` attribute provides a structured container for content with optional header, body, and footer sections.
 
 ## Basic Usage
 
 ```html
-<div class="card">
-  <div class="card__body">
+<article s-card>
+  <div s-card-body>
     Simple card content
   </div>
-</div>
+</article>
 ```
 
 ## Full Structure
 
 ```html
-<div class="card">
-  <div class="card__header">
-    <h3 class="card__title">Card Title</h3>
-    <p class="card__subtitle">Optional subtitle</p>
-  </div>
-  <div class="card__body">
+<article s-card>
+  <header s-card-header>
+    <h3>Card Title</h3>
+  </header>
+  <div s-card-body>
     Main card content goes here.
   </div>
-  <div class="card__footer">
-    <button class="btn btn--sm">Action</button>
+  <footer s-card-footer>
+    <button s-btn="primary" s-size="sm">Action</button>
+  </footer>
+</article>
+```
+
+## Card Sections
+
+| Attribute | Purpose |
+|-----------|---------|
+| `s-card` | Main card container |
+| `s-card-header` | Card header area |
+| `s-card-body` | Main content area |
+| `s-card-footer` | Footer with actions |
+
+## Examples
+
+### Simple Card
+
+```html
+<article s-card>
+  <div s-card-body>
+    <h4>Simple Card</h4>
+    <p>Just a body section with content.</p>
   </div>
-</div>
+</article>
 ```
 
-## Variants
-
-### Elevated
+### Card with All Sections
 
 ```html
-<div class="card card--elevated">
-  Card with shadow elevation
-</div>
-```
-
-### Outlined
-
-```html
-<div class="card card--outlined">
-  Card with border only
-</div>
-```
-
-### Flat
-
-```html
-<div class="card card--flat">
-  Card without elevation or border
-</div>
-```
-
-## With Media
-
-### Image Header
-
-```html
-<div class="card">
-  <img class="card__media" src="image.jpg" alt="Description" />
-  <div class="card__body">
-    Content below the image
+<article s-card>
+  <header s-card-header>
+    <h3>Project Update</h3>
+  </header>
+  <div s-card-body>
+    <p>The project is progressing well with all milestones on track.</p>
   </div>
-</div>
-```
-
-### Horizontal Layout
-
-```html
-<div class="card card--horizontal">
-  <img class="card__media" src="image.jpg" alt="Description" />
-  <div class="card__body">
-    Content beside the image
-  </div>
-</div>
-```
-
-## Interactive Cards
-
-### Clickable Card
-
-```html
-<a href="/path" class="card card--interactive">
-  <div class="card__body">
-    Entire card is clickable
-  </div>
-</a>
-```
-
-### Hover Effects
-
-```html
-<div class="card card--hover">
-  <div class="card__body">
-    Card with hover state
-  </div>
-</div>
-```
-
-## Sizing
-
-### Compact
-
-```html
-<div class="card card--compact">
-  <div class="card__body">
-    Reduced padding
-  </div>
-</div>
-```
-
-### Large
-
-```html
-<div class="card card--lg">
-  <div class="card__body">
-    Increased padding
-  </div>
-</div>
+  <footer s-card-footer>
+    <button s-btn="ghost" s-size="sm">Cancel</button>
+    <button s-btn="primary" s-size="sm">View Details</button>
+  </footer>
+</article>
 ```
 
 ## Card Grid
 
 ```html
-<div class="grid grid-cols-3 gap-4">
-  <div class="card">
-    <div class="card__body">Card 1</div>
-  </div>
-  <div class="card">
-    <div class="card__body">Card 2</div>
-  </div>
-  <div class="card">
-    <div class="card__body">Card 3</div>
-  </div>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-space-4);">
+  <article s-card>
+    <div s-card-body>Card 1</div>
+  </article>
+  <article s-card>
+    <div s-card-body>Card 2</div>
+  </article>
+  <article s-card>
+    <div s-card-body>Card 3</div>
+  </article>
 </div>
 ```
 
-## CSS Custom Properties
+## How It Works
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--card-bg` | `var(--surface-raised)` | Background color |
-| `--card-radius` | `var(--radius-lg)` | Border radius |
-| `--card-padding` | `var(--spacing-4)` | Internal padding |
-| `--card-border` | `var(--border-default)` | Border color |
-| `--card-shadow` | `var(--shadow-md)` | Box shadow |
+Cards use CSS custom properties for consistent styling:
+
+```css
+:where([s-card]) {
+  --_bg: var(--s-surface-raised);
+  --_border: var(--s-border-default);
+  --_radius: var(--s-radius-lg);
+  --_padding: var(--s-space-4);
+
+  background: var(--_bg);
+  border: 1px solid var(--_border);
+  border-radius: var(--_radius);
+}
+
+:where([s-card-body]) {
+  padding: var(--_padding);
+}
+```
 
 ## Customization Examples
 
-### Brand-Colored Cards
+### Custom Background
 
 ```html
-<div class="card" style="--card-bg: var(--color-primary-100);">
-  <div class="card__body">
+<article s-card style="--_bg: var(--s-primary-50);">
+  <div s-card-body>
     Tinted card background
   </div>
-</div>
+</article>
 ```
 
 ### Sharp Corners
 
 ```css
-.card {
-  --card-radius: 0;
+[s-card] {
+  --_radius: 0;
 }
 ```

@@ -63,8 +63,8 @@ Fluid typography that scales with viewport:
 ### Using Color Tokens
 
 ```html
-<p style="color: var(--color-primary-500);">Primary 500</p>
-<p style="color: var(--color-accent-600);">Accent 600</p>
+<p style="color: var(--s-primary-500);">Primary 500</p>
+<p style="color: var(--s-accent-600);">Accent 600</p>
 ```
 
 ## Line Height
@@ -109,17 +109,11 @@ Fluid typography that scales with viewport:
 ## Text Overflow
 
 ```html
-<p class="truncate">
-  Long text that will be truncated with an ellipsis...
-</p>
+<p class="truncate">Long text that will be truncated with an ellipsis...</p>
 
-<p class="text-ellipsis overflow-hidden">
-  Text with ellipsis
-</p>
+<p class="text-ellipsis overflow-hidden">Text with ellipsis</p>
 
-<p class="text-clip overflow-hidden">
-  Text that clips
-</p>
+<p class="text-clip overflow-hidden">Text that clips</p>
 ```
 
 ## Whitespace
@@ -136,7 +130,7 @@ Fluid typography that scales with viewport:
 
 ```html
 <p class="break-normal">Normal word breaking</p>
-<p class="break-words">Break long words</p>
+<p class="wrap-break-word">Break long words</p>
 <p class="break-all">Break anywhere</p>
 ```
 
@@ -167,19 +161,17 @@ For long-form content with good defaults:
 ```css
 :root {
   /* Font families */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Georgia', serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --s-font-sans: "Inter", system-ui, sans-serif;
+  --s-font-serif: "Georgia", serif;
+  --s-font-mono: "JetBrains Mono", monospace;
 
   /* Base size (affects all fluid typography) */
-  --text-base: 1rem;
+  --s-font-base: 1rem;
 }
 ```
 
 ## Responsive Typography
 
 ```html
-<h1 class="text-2xl md:text-3xl lg:text-4xl">
-  Responsive heading
-</h1>
+<h1 class="text-2xl md:text-3xl lg:text-4xl">Responsive heading</h1>
 ```

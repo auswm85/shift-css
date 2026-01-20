@@ -7,10 +7,10 @@ description: Font families, sizes, weights, and line heights
 
 ```css
 :root {
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+  --s-font-sans: system-ui, -apple-system, BlinkMacSystemFont,
                'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
+  --s-font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+  --s-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo,
                Consolas, 'Liberation Mono', monospace;
 }
 ```
@@ -19,8 +19,8 @@ description: Font families, sizes, weights, and line heights
 
 ```css
 :root {
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --s-font-sans: 'Inter', system-ui, sans-serif;
+  --s-font-mono: 'JetBrains Mono', monospace;
 }
 ```
 
@@ -30,29 +30,29 @@ Fluid typography that scales with viewport:
 
 | Token | Min Size | Max Size | Class |
 |-------|----------|----------|-------|
-| `--text-xs` | 0.75rem | 0.75rem | `.text-xs` |
-| `--text-sm` | 0.875rem | 0.875rem | `.text-sm` |
-| `--text-base` | 1rem | 1rem | `.text-base` |
-| `--text-lg` | 1.125rem | 1.125rem | `.text-lg` |
-| `--text-xl` | 1.25rem | 1.25rem | `.text-xl` |
-| `--text-2xl` | 1.5rem | 1.5rem | `.text-2xl` |
-| `--text-3xl` | 1.875rem | 1.875rem | `.text-3xl` |
-| `--text-4xl` | 2.25rem | 2.25rem | `.text-4xl` |
-| `--text-5xl` | 3rem | 3rem | `.text-5xl` |
-| `--text-6xl` | 3.75rem | 3.75rem | `.text-6xl` |
-| `--text-7xl` | 4.5rem | 4.5rem | `.text-7xl` |
-| `--text-8xl` | 6rem | 6rem | `.text-8xl` |
-| `--text-9xl` | 8rem | 8rem | `.text-9xl` |
+| `--s-text-xs` | 0.75rem | 0.75rem | `.text-xs` |
+| `--s-text-sm` | 0.875rem | 0.875rem | `.text-sm` |
+| `--s-text-base` | 1rem | 1rem | `.text-base` |
+| `--s-text-lg` | 1.125rem | 1.125rem | `.text-lg` |
+| `--s-text-xl` | 1.25rem | 1.25rem | `.text-xl` |
+| `--s-text-2xl` | 1.5rem | 1.5rem | `.text-2xl` |
+| `--s-text-3xl` | 1.875rem | 1.875rem | `.text-3xl` |
+| `--s-text-4xl` | 2.25rem | 2.25rem | `.text-4xl` |
+| `--s-text-5xl` | 3rem | 3rem | `.text-5xl` |
+| `--s-text-6xl` | 3.75rem | 3.75rem | `.text-6xl` |
+| `--s-text-7xl` | 4.5rem | 4.5rem | `.text-7xl` |
+| `--s-text-8xl` | 6rem | 6rem | `.text-8xl` |
+| `--s-text-9xl` | 8rem | 8rem | `.text-9xl` |
 
 ### Using Font Size Tokens
 
 ```css
 .headline {
-  font-size: var(--text-4xl);
+  font-size: var(--s-text-4xl);
 }
 
 .caption {
-  font-size: var(--text-sm);
+  font-size: var(--s-text-sm);
 }
 ```
 
@@ -60,25 +60,25 @@ Fluid typography that scales with viewport:
 
 | Token | Value | Class |
 |-------|-------|-------|
-| `--font-thin` | 100 | `.font-thin` |
-| `--font-extralight` | 200 | `.font-extralight` |
-| `--font-light` | 300 | `.font-light` |
-| `--font-normal` | 400 | `.font-normal` |
-| `--font-medium` | 500 | `.font-medium` |
-| `--font-semibold` | 600 | `.font-semibold` |
-| `--font-bold` | 700 | `.font-bold` |
-| `--font-extrabold` | 800 | `.font-extrabold` |
-| `--font-black` | 900 | `.font-black` |
+| `--s-font-thin` | 100 | `.font-thin` |
+| `--s-font-extralight` | 200 | `.font-extralight` |
+| `--s-font-light` | 300 | `.font-light` |
+| `--s-font-normal` | 400 | `.font-normal` |
+| `--s-font-medium` | 500 | `.font-medium` |
+| `--s-font-semibold` | 600 | `.font-semibold` |
+| `--s-font-bold` | 700 | `.font-bold` |
+| `--s-font-extrabold` | 800 | `.font-extrabold` |
+| `--s-font-black` | 900 | `.font-black` |
 
 ### Using Font Weight Tokens
 
 ```css
 .title {
-  font-weight: var(--font-bold);
+  font-weight: var(--s-font-bold);
 }
 
 .subtitle {
-  font-weight: var(--font-medium);
+  font-weight: var(--s-font-medium);
 }
 ```
 
@@ -86,22 +86,22 @@ Fluid typography that scales with viewport:
 
 | Token | Value | Class |
 |-------|-------|-------|
-| `--leading-none` | 1 | `.leading-none` |
-| `--leading-tight` | 1.25 | `.leading-tight` |
-| `--leading-snug` | 1.375 | `.leading-snug` |
-| `--leading-normal` | 1.5 | `.leading-normal` |
-| `--leading-relaxed` | 1.625 | `.leading-relaxed` |
-| `--leading-loose` | 2 | `.leading-loose` |
+| `--s-leading-none` | 1 | `.leading-none` |
+| `--s-leading-tight` | 1.25 | `.leading-tight` |
+| `--s-leading-snug` | 1.375 | `.leading-snug` |
+| `--s-leading-normal` | 1.5 | `.leading-normal` |
+| `--s-leading-relaxed` | 1.625 | `.leading-relaxed` |
+| `--s-leading-loose` | 2 | `.leading-loose` |
 
 ### Using Line Height Tokens
 
 ```css
 .body-text {
-  line-height: var(--leading-relaxed);
+  line-height: var(--s-leading-relaxed);
 }
 
 .display-text {
-  line-height: var(--leading-tight);
+  line-height: var(--s-leading-tight);
 }
 ```
 
@@ -109,12 +109,12 @@ Fluid typography that scales with viewport:
 
 | Token | Value | Class |
 |-------|-------|-------|
-| `--tracking-tighter` | -0.05em | `.tracking-tighter` |
-| `--tracking-tight` | -0.025em | `.tracking-tight` |
-| `--tracking-normal` | 0em | `.tracking-normal` |
-| `--tracking-wide` | 0.025em | `.tracking-wide` |
-| `--tracking-wider` | 0.05em | `.tracking-wider` |
-| `--tracking-widest` | 0.1em | `.tracking-widest` |
+| `--s-tracking-tighter` | -0.05em | `.tracking-tighter` |
+| `--s-tracking-tight` | -0.025em | `.tracking-tight` |
+| `--s-tracking-normal` | 0em | `.tracking-normal` |
+| `--s-tracking-wide` | 0.025em | `.tracking-wide` |
+| `--s-tracking-wider` | 0.05em | `.tracking-wider` |
+| `--s-tracking-widest` | 0.1em | `.tracking-widest` |
 
 ## Typography Presets
 
@@ -122,22 +122,22 @@ Fluid typography that scales with viewport:
 
 ```css
 h1 {
-  font-size: var(--text-4xl);
-  font-weight: var(--font-bold);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
+  font-size: var(--s-text-4xl);
+  font-weight: var(--s-font-bold);
+  line-height: var(--s-leading-tight);
+  letter-spacing: var(--s-tracking-tight);
 }
 
 h2 {
-  font-size: var(--text-3xl);
-  font-weight: var(--font-bold);
-  line-height: var(--leading-tight);
+  font-size: var(--s-text-3xl);
+  font-weight: var(--s-font-bold);
+  line-height: var(--s-leading-tight);
 }
 
 h3 {
-  font-size: var(--text-2xl);
-  font-weight: var(--font-semibold);
-  line-height: var(--leading-snug);
+  font-size: var(--s-text-2xl);
+  font-weight: var(--s-font-semibold);
+  line-height: var(--s-leading-snug);
 }
 ```
 
@@ -145,10 +145,10 @@ h3 {
 
 ```css
 body {
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  font-weight: var(--font-normal);
-  line-height: var(--leading-normal);
+  font-family: var(--s-font-sans);
+  font-size: var(--s-text-base);
+  font-weight: var(--s-font-normal);
+  line-height: var(--s-leading-normal);
 }
 ```
 
@@ -156,8 +156,8 @@ body {
 
 ```css
 code, pre {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-text-sm);
 }
 ```
 
@@ -169,7 +169,7 @@ Changing the base size affects all relative typography:
 
 ```css
 :root {
-  --text-base: 1.125rem;  /* Larger base (18px) */
+  --s-font-base: 1.125rem;  /* Larger base (18px) */
 }
 ```
 
@@ -177,9 +177,9 @@ Changing the base size affects all relative typography:
 
 ```css
 :root {
-  --text-xl: 1.5rem;
-  --text-2xl: 2rem;
-  --text-3xl: 2.5rem;
+  --s-text-xl: 1.5rem;
+  --s-text-2xl: 2rem;
+  --s-text-3xl: 2.5rem;
 }
 ```
 
@@ -200,11 +200,11 @@ Typography utilities support responsive prefixes:
 Use consistent sizing for visual hierarchy:
 
 ```css
-.page-title { font-size: var(--text-4xl); }
-.section-title { font-size: var(--text-2xl); }
-.card-title { font-size: var(--text-lg); }
-.body-text { font-size: var(--text-base); }
-.caption { font-size: var(--text-sm); }
+.page-title { font-size: var(--s-text-4xl); }
+.section-title { font-size: var(--s-text-2xl); }
+.card-title { font-size: var(--s-text-lg); }
+.body-text { font-size: var(--s-text-base); }
+.caption { font-size: var(--s-text-sm); }
 ```
 
 ### Readability

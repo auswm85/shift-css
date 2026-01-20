@@ -27,30 +27,30 @@ Each color has an 11-step scale (50-950):
 
 | Token | Lightness | Usage |
 |-------|-----------|-------|
-| `--color-primary-50` | 0.978 | Lightest backgrounds |
-| `--color-primary-100` | 0.936 | Hover backgrounds |
-| `--color-primary-200` | 0.881 | Subtle borders |
-| `--color-primary-300` | 0.827 | Disabled states |
-| `--color-primary-400` | 0.742 | Secondary elements |
-| `--color-primary-500` | 0.648 | Primary interactive |
-| `--color-primary-600` | 0.573 | Hover states |
-| `--color-primary-700` | 0.469 | Active states |
-| `--color-primary-800` | 0.394 | High contrast |
-| `--color-primary-900` | 0.320 | Near black |
-| `--color-primary-950` | 0.238 | Darkest |
+| `--s-primary-50` | 0.978 | Lightest backgrounds |
+| `--s-primary-100` | 0.936 | Hover backgrounds |
+| `--s-primary-200` | 0.881 | Subtle borders |
+| `--s-primary-300` | 0.827 | Disabled states |
+| `--s-primary-400` | 0.742 | Secondary elements |
+| `--s-primary-500` | 0.648 | Primary interactive |
+| `--s-primary-600` | 0.573 | Hover states |
+| `--s-primary-700` | 0.469 | Active states |
+| `--s-primary-800` | 0.394 | High contrast |
+| `--s-primary-900` | 0.320 | Near black |
+| `--s-primary-950` | 0.238 | Darkest |
 
 ### Using Color Tokens
 
 ```css
 .my-element {
-  background: var(--color-primary-100);
-  color: var(--color-primary-900);
-  border-color: var(--color-primary-300);
+  background: var(--s-primary-100);
+  color: var(--s-primary-900);
+  border-color: var(--s-primary-300);
 }
 ```
 
 ```html
-<div style="background: var(--color-accent-500);">
+<div style="background: var(--s-accent-500);">
   Accent background
 </div>
 ```
@@ -63,52 +63,52 @@ Semantic tokens map to raw colors and adapt to light/dark mode:
 
 | Token | Light Mode | Dark Mode | Usage |
 |-------|------------|-----------|-------|
-| `--surface-base` | neutral-50 | neutral-950 | Default backgrounds |
-| `--surface-raised` | neutral-100 | neutral-900 | Cards, modals |
-| `--surface-sunken` | neutral-200 | neutral-800 | Inputs, wells |
+| `--s-surface-base` | neutral-50 | neutral-950 | Default backgrounds |
+| `--s-surface-raised` | neutral-100 | neutral-900 | Cards, modals |
+| `--s-surface-sunken` | neutral-200 | neutral-800 | Inputs, wells |
 
 ### Text Colors
 
 | Token | Light Mode | Dark Mode | Usage |
 |-------|------------|-----------|-------|
-| `--text-primary` | neutral-900 | neutral-50 | Main text |
-| `--text-secondary` | neutral-600 | neutral-400 | Muted text |
-| `--text-disabled` | neutral-400 | neutral-600 | Disabled text |
+| `--s-text-primary` | neutral-900 | neutral-50 | Main text |
+| `--s-text-secondary` | neutral-600 | neutral-400 | Muted text |
+| `--s-text-disabled` | neutral-400 | neutral-600 | Disabled text |
 
 ### Border Colors
 
 | Token | Light Mode | Dark Mode | Usage |
 |-------|------------|-----------|-------|
-| `--border-default` | neutral-200 | neutral-800 | Default borders |
-| `--border-strong` | neutral-400 | neutral-600 | Emphasized borders |
-| `--border-focus` | primary-500 | primary-400 | Focus rings |
+| `--s-border-default` | neutral-200 | neutral-800 | Default borders |
+| `--s-border-strong` | neutral-400 | neutral-600 | Emphasized borders |
+| `--s-focus-ring` | primary-500 | primary-400 | Focus rings |
 
 ### Interactive Colors
 
 | Token | Light Mode | Dark Mode | Usage |
 |-------|------------|-----------|-------|
-| `--interactive-primary` | primary-600 | primary-400 | Buttons, links |
-| `--interactive-hover` | primary-700 | primary-300 | Hover states |
-| `--interactive-active` | primary-800 | primary-200 | Active states |
+| `--s-interactive-primary` | primary-600 | primary-400 | Buttons, links |
+| `--s-interactive-hover` | primary-700 | primary-300 | Hover states |
+| `--s-interactive-active` | primary-800 | primary-200 | Active states |
 
 ## Status Colors
 
 ### Success
 
 ```css
---color-success-500: oklch(0.648 0.147 145);
+--s-success-500: oklch(0.648 0.147 145);
 ```
 
 ### Warning
 
 ```css
---color-warning-500: oklch(0.648 0.147 45);
+--s-warning-500: oklch(0.648 0.147 45);
 ```
 
 ### Danger
 
 ```css
---color-danger-500: oklch(0.648 0.147 25);
+--s-danger-500: oklch(0.648 0.147 25);
 ```
 
 ## Brand-Tinted Neutrals
@@ -145,7 +145,7 @@ The `--shift-hue-neutral` variable adds a subtle tint to all gray colors:
 ```css
 :root {
   /* Make primary-500 more saturated */
-  --color-primary-500: oklch(0.65 0.2 var(--shift-hue-primary));
+  --s-primary-500: oklch(0.65 0.2 var(--shift-hue-primary));
 }
 ```
 
@@ -153,8 +153,8 @@ The `--shift-hue-neutral` variable adds a subtle tint to all gray colors:
 
 ```css
 :root {
-  --interactive-primary: var(--color-primary-700);
-  --surface-base: var(--color-neutral-100);
+  --s-interactive-primary: var(--s-primary-700);
+  --s-surface-base: var(--s-neutral-100);
 }
 ```
 

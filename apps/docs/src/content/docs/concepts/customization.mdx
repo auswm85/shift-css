@@ -34,10 +34,10 @@ Target individual color steps:
 ```css
 :root {
   /* Make primary-500 more saturated */
-  --color-primary-500: oklch(0.65 0.2 var(--shift-hue-primary));
+  --s-primary-500: oklch(0.65 0.2 var(--shift-hue-primary));
 
   /* Custom semantic mappings */
-  --interactive-primary: var(--color-primary-700);
+  --s-interactive-primary: var(--s-primary-700);
 }
 ```
 
@@ -46,11 +46,11 @@ Target individual color steps:
 ```css
 :root {
   /* Font families */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --s-font-sans: 'Inter', system-ui, sans-serif;
+  --s-font-mono: 'JetBrains Mono', monospace;
 
   /* Base size (affects all fluid typography) */
-  --text-base: 1rem;
+  --s-font-base: 1rem;
 }
 ```
 
@@ -59,10 +59,10 @@ Target individual color steps:
 ```css
 :root {
   /* Override spacing values */
-  --spacing-4: 1.25rem;  /* Default: 1rem */
+  --s-space-4: 1.25rem;  /* Default: 1rem */
 
   /* Or use a different base */
-  --spacing-1: 0.3rem;   /* Tighter spacing */
+  --s-space-1: 0.3rem;   /* Tighter spacing */
 }
 ```
 
@@ -71,30 +71,29 @@ Target individual color steps:
 ```css
 :root {
   /* Rounded corners */
-  --radius-base: 0.5rem;
-  --radius-lg: 1rem;
+  --s-radius: 0.5rem;
+  --s-radius-lg: 1rem;
 
   /* Or go sharp */
-  --radius-base: 0;
-  --radius-lg: 0;
-  --radius-full: 0;
+  --s-radius: 0;
+  --s-radius-lg: 0;
+  --s-radius-full: 0;
 }
 ```
 
 ## Component-Level Customization
 
-Components use internal custom properties:
+Components use internal custom properties (prefixed with `--_`):
 
 ```css
 /* Customize buttons globally */
-.btn {
-  --btn-radius: var(--radius-full);  /* Pill buttons */
-  --btn-font-weight: var(--font-bold);
+[s-btn] {
+  --_radius: var(--s-radius-full);  /* Pill buttons */
 }
 
 /* Or scope to a container */
-.my-section .btn {
-  --btn-bg: var(--color-accent-500);
+.my-section [s-btn] {
+  --_bg: var(--s-accent-500);
 }
 ```
 
@@ -103,12 +102,12 @@ Components use internal custom properties:
 Use inline styles for one-off changes:
 
 ```html
-<button class="btn" style="--btn-bg: var(--color-success-500);">
+<button s-btn="primary" style="--_bg: var(--s-success-500);">
   Success Button
 </button>
 
-<div class="surface" style="--surface-bg: var(--color-primary-900);">
-  Custom dark surface with auto-contrast text
+<div s-surface="raised" style="background: var(--s-primary-100);">
+  Custom tinted surface
 </div>
 ```
 
@@ -116,6 +115,18 @@ Use inline styles for one-off changes:
 
 ```css
 :root {
-  --container-max: 1400px;  /* Default: 80rem (1280px) */
+  --s-container-max: 1400px;  /* Default: 80rem (1280px) */
 }
 ```
+
+## Token Naming Convention
+
+All CSS custom properties follow consistent naming:
+
+| Category | Pattern | Example |
+|----------|---------|---------|
+| Color scales | `--s-{color}-{step}` | `--s-primary-500` |
+| Semantic colors | `--s-{role}` | `--s-surface-base` |
+| Spacing | `--s-space-{n}` | `--s-space-4` |
+| Typography | `--s-font-{property}` | `--s-font-sans` |
+| Radii | `--s-radius-{size}` | `--s-radius-lg` |
