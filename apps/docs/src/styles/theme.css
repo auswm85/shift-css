@@ -335,6 +335,74 @@ pre {
   color: var(--s-neutral-900) !important;
 }
 
+/* Modals - ensure text visibility in dark mode */
+[data-theme="dark"] dialog[s-modal] {
+  background: var(--s-neutral-100) !important;
+  color: var(--s-neutral-900) !important;
+}
+
+[data-theme="dark"] dialog[s-modal] h1,
+[data-theme="dark"] dialog[s-modal] h2,
+[data-theme="dark"] dialog[s-modal] h3,
+[data-theme="dark"] dialog[s-modal] p,
+[data-theme="dark"] dialog[s-modal] li,
+[data-theme="dark"] [s-modal-header] h1,
+[data-theme="dark"] [s-modal-header] h2,
+[data-theme="dark"] [s-modal-header] h3 {
+  color: var(--s-neutral-900) !important;
+}
+
+[data-theme="dark"] [s-modal-header] {
+  border-color: var(--s-neutral-200);
+}
+
+[data-theme="dark"] [s-modal-footer] {
+  border-color: var(--s-neutral-200);
+}
+
+[data-theme="dark"] [s-modal-close] {
+  color: var(--s-neutral-500);
+}
+
+[data-theme="dark"] [s-modal-close]:hover {
+  color: var(--s-neutral-900);
+  background: var(--s-neutral-200);
+}
+
+/* Modals - ensure text visibility in light mode */
+[data-theme="light"] dialog[s-modal] {
+  background: var(--s-neutral-100) !important;
+  color: var(--s-neutral-900) !important;
+}
+
+[data-theme="light"] dialog[s-modal] h1,
+[data-theme="light"] dialog[s-modal] h2,
+[data-theme="light"] dialog[s-modal] h3,
+[data-theme="light"] dialog[s-modal] p,
+[data-theme="light"] dialog[s-modal] li,
+[data-theme="light"] [s-modal-header] h1,
+[data-theme="light"] [s-modal-header] h2,
+[data-theme="light"] [s-modal-header] h3 {
+  color: var(--s-neutral-900) !important;
+}
+
+[data-theme="light"] [s-modal-header] {
+  border-color: var(--s-neutral-200);
+}
+
+[data-theme="light"] [s-modal-footer] {
+  border-color: var(--s-neutral-200);
+}
+
+[data-theme="light"] [s-modal-close] {
+  color: var(--s-neutral-500);
+}
+
+[data-theme="light"] [s-modal-close]:hover {
+  color: var(--s-neutral-900);
+  background: var(--s-neutral-200);
+}
+
 /* Links - plasma colored */
 a:not([s-btn]) {
   text-decoration-color: oklch(from var(--s-primary) l c h / 0.4);
