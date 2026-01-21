@@ -86,6 +86,7 @@ function buildIndividualLayers(): void {
 		{ name: 'card', path: 'components/card.css' },
 		{ name: 'input', path: 'components/input.css' },
 		{ name: 'modal', path: 'components/modal.css' },
+		{ name: 'prose', path: 'components/prose.css' },
 		{ name: 'surface', path: 'components/surface.css' },
 	];
 
