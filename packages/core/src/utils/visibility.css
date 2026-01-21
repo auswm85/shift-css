@@ -7,6 +7,7 @@
  * Usage:
  *   <div s-hidden>Hidden element</div>
  *   <span s-sr-only>Screen reader only</span>
+ *   <a s-sr-only s-focus:not-sr-only href="#main">Skip to content</a>
  *   <div s-hide-on="sm">Hide on small screens</div>
  *   <div s-truncate>Truncated text...</div>
  */
@@ -48,9 +49,46 @@
   border-width: 0;
 }
 
-/* Remove sr-only (for focus states) */
+/* Remove sr-only (for focus states) - legacy attribute value syntax */
 [s-sr-only="focusable"]:focus,
 [s-sr-only="focusable"]:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Undo sr-only - standalone utility */
+[s-not-sr-only] {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus variant: visible when focused (for skip links) */
+[s-focus\:not-sr-only]:focus,
+[s-focus\:not-sr-only]:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus-within variant: visible when child is focused */
+[s-focus-within\:not-sr-only]:focus-within {
   position: static;
   width: auto;
   height: auto;

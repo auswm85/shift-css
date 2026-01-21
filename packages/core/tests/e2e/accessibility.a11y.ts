@@ -222,3 +222,58 @@ test.describe('Accessibility - Semantic Color Messages', () => {
 		expect(contrastViolations).toHaveLength(0);
 	});
 });
+
+test.describe('Accessibility - Screen Reader Utilities', () => {
+	test('sr-only elements are visually hidden but in DOM', async ({ page }) => {
+		await page.goto('/components.html');
+
+		const srOnlyLabel = page.locator('[data-testid="sr-only-label"]');
+
+		// Element should exist in DOM
+		await expect(srOnlyLabel).toBeAttached();
+
+		// Element should have sr-only styling (1px dimensions, clipped)
+		const box = await srOnlyLabel.boundingBox();
+		expect(box?.width).toBeLessThanOrEqual(1);
+		expect(box?.height).toBeLessThanOrEqual(1);
+
+		// Element should contain accessible text
+		await expect(srOnlyLabel).toHaveText('More options');
+	});
+
+	test('skip link becomes visible on focus', async ({ page }) => {
+		await page.goto('/components.html');
+
+		const skipLink = page.locator('[data-testid="skip-link"]');
+
+		// Before focus: should be visually hidden (off-screen or clipped)
+		const initialBox = await skipLink.boundingBox();
+		const isInitiallyHidden =
+			!initialBox || initialBox.width <= 1 || initialBox.height <= 1 || initialBox.y < 0;
+		expect(isInitiallyHidden).toBe(true);
+
+		// Focus the skip link (it's the first focusable element)
+		await skipLink.focus();
+
+		// After focus: should be visible with normal dimensions
+		const focusedBox = await skipLink.boundingBox();
+		expect(focusedBox).not.toBeNull();
+		expect(focusedBox!.width).toBeGreaterThan(1);
+		expect(focusedBox!.height).toBeGreaterThan(1);
+	});
+
+	test('skip link is keyboard accessible', async ({ page }) => {
+		await page.goto('/components.html');
+
+		// Tab to focus the skip link (first focusable element)
+		await page.keyboard.press('Tab');
+
+		const skipLink = page.locator('[data-testid="skip-link"]');
+		await expect(skipLink).toBeFocused();
+
+		// Should now be visible
+		const box = await skipLink.boundingBox();
+		expect(box).not.toBeNull();
+		expect(box!.width).toBeGreaterThan(1);
+	});
+});

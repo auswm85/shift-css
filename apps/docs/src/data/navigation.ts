@@ -48,6 +48,7 @@ const navigationData: NavEntry[] = [
 			{ label: 'Spacing', href: '/utilities/spacing' },
 			{ label: 'Flexbox & Grid', href: '/utilities/layout' },
 			{ label: 'Typography', href: '/utilities/typography' },
+			{ label: 'Visibility', href: '/utilities/visibility' },
 		],
 	},
 	{
