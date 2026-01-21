@@ -87,6 +87,7 @@ function buildIndividualLayers(): void {
 		{ name: 'input', path: 'components/input.css' },
 		{ name: 'modal', path: 'components/modal.css' },
 		{ name: 'prose', path: 'components/prose.css' },
+		{ name: 'skip-link', path: 'components/skip-link.css' },
 		{ name: 'surface', path: 'components/surface.css' },
 	];
 

@@ -1,0 +1,149 @@
+/**
+ * Shift CSS - Skip Link Component
+ *
+ * Accessible skip links for keyboard navigation (WCAG 2.1 Level A - 2.4.1).
+ * Hidden by default, appears prominently when focused via keyboard.
+ *
+ * Usage:
+ *   <a href="#main-content" s-skip-link>Skip to main content</a>
+ *
+ * Multiple skip links:
+ *   <div s-skip-link-group>
+ *     <a href="#main" s-skip-link>Skip to content</a>
+ *     <a href="#nav" s-skip-link>Skip to navigation</a>
+ *   </div>
+ */
+
+/* =============================================================================
+   BASE SKIP LINK
+   ============================================================================= */
+
+:where([s-skip-link]) {
+  /* Skip link CSS properties (customization points) */
+  --_skip-bg: var(--s-primary-600);
+  --_skip-color: white;
+  --_skip-radius: var(--s-radius-md);
+  --_skip-shadow: var(--s-shadow-lg);
+  --_skip-z: 9999;
+
+  /* Hidden state - positioned off-screen */
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--_skip-z);
+
+  /* Styling */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-space-2);
+  padding: var(--s-space-3) var(--s-space-6);
+  background-color: var(--_skip-bg);
+  color: var(--_skip-color);
+  font-size: var(--s-text-sm);
+  font-weight: var(--s-font-semibold);
+  text-decoration: none;
+  border-radius: var(--_skip-radius);
+  box-shadow: var(--_skip-shadow);
+  white-space: nowrap;
+
+  /* Transition for smooth appearance */
+  transition:
+    top var(--s-duration-200) var(--s-ease-out),
+    opacity var(--s-duration-200) var(--s-ease-out);
+  opacity: 0;
+}
+
+/* Visible state on focus */
+[s-skip-link]:focus,
+[s-skip-link]:focus-visible {
+  top: var(--s-space-4);
+  opacity: 1;
+  outline: none;
+
+  /* Double ring focus indicator for high visibility */
+  box-shadow:
+    var(--_skip-shadow),
+    0 0 0 3px white,
+    0 0 0 5px var(--_skip-bg);
+}
+
+/* =============================================================================
+   SKIP LINK GROUP
+   ============================================================================= */
+
+[s-skip-link-group] {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-space-2);
+  padding: var(--s-space-2);
+}
+
+/* Adjust skip links within group */
+[s-skip-link-group] [s-skip-link] {
+  position: relative;
+  top: -200%;
+  left: 0;
+  transform: none;
+}
+
+[s-skip-link-group] [s-skip-link]:focus,
+[s-skip-link-group] [s-skip-link]:focus-visible {
+  top: 0;
+}
+
+/* =============================================================================
+   SKIP LINK VARIANTS
+   ============================================================================= */
+
+/* Secondary/subtle variant */
+[s-skip-link="secondary"] {
+  --_skip-bg: var(--s-neutral-800);
+}
+
+/* High contrast variant */
+[s-skip-link="contrast"] {
+  --_skip-bg: var(--s-neutral-950);
+  --_skip-color: var(--s-neutral-50);
+}
+
+/* =============================================================================
+   REDUCED MOTION
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  [s-skip-link] {
+    transition: none;
+  }
+}
+
+/* =============================================================================
+   DARK MODE ADJUSTMENTS
+   ============================================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :where([s-skip-link]) {
+    --_skip-bg: var(--s-primary-500);
+  }
+
+  [s-skip-link]:focus,
+  [s-skip-link]:focus-visible {
+    box-shadow:
+      var(--_skip-shadow),
+      0 0 0 3px var(--s-neutral-900),
+      0 0 0 5px var(--_skip-bg);
+  }
+}
+
+/* Also support explicit dark mode */
+:root[style*="color-scheme: dark"] :where([s-skip-link]),
+:root[style*="color-scheme:dark"] :where([s-skip-link]) {
+  --_skip-bg: var(--s-primary-500);
+}
