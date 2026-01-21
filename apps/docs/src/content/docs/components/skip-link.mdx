@@ -1,0 +1,247 @@
+---
+title: Skip Link
+description: Accessible skip links for keyboard navigation (WCAG 2.1 compliance)
+---
+
+## Overview
+
+Skip links allow keyboard users to bypass repetitive navigation and jump directly to main content. This is a **WCAG 2.1 Level A requirement** (2.4.1 Bypass Blocks) and essential for accessibility.
+
+The `s-skip-link` component is hidden by default and appears prominently when focused via keyboard navigation.
+
+## Import
+
+```css
+/* Full framework (includes all components) */
+@import "@shift-css/core";
+
+/* Or import just the skip-link component */
+@import "@shift-css/core/components/skip-link";
+```
+
+> **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
+## Basic Usage
+
+Place the skip link as the **first focusable element** in the `<body>`:
+
+```html
+<body>
+  <!-- Skip link - first focusable element -->
+  <a href="#main-content" s-skip-link>Skip to main content</a>
+
+  <header>
+    <nav><!-- Navigation links --></nav>
+  </header>
+
+  <main id="main-content">
+    <!-- Main content here -->
+  </main>
+</body>
+```
+
+When a keyboard user presses `Tab` on page load, the skip link appears at the top of the viewport. Pressing `Enter` jumps to the target element.
+
+## How It Works
+
+1. **Hidden by default**: Positioned off-screen using `top: -100%`
+2. **Visible on focus**: Slides into view at the top of the viewport
+3. **High contrast**: Uses primary color with white text
+4. **Double focus ring**: Clearly visible against any background
+5. **Smooth transition**: Respects `prefers-reduced-motion`
+
+## Multiple Skip Links
+
+For complex pages, provide multiple skip links using the group container:
+
+```html
+<div s-skip-link-group>
+  <a href="#main-content" s-skip-link>Skip to content</a>
+  <a href="#navigation" s-skip-link>Skip to navigation</a>
+  <a href="#footer" s-skip-link>Skip to footer</a>
+</div>
+
+<header>
+  <nav id="navigation"><!-- Nav --></nav>
+</header>
+
+<main id="main-content">
+  <!-- Content -->
+</main>
+
+<footer id="footer">
+  <!-- Footer -->
+</footer>
+```
+
+The group stacks skip links vertically, revealing each one as it receives focus.
+
+## Variants
+
+### Secondary
+
+A more subtle appearance using neutral colors:
+
+```html
+<a href="#main" s-skip-link="secondary">Skip to main content</a>
+```
+
+### High Contrast
+
+Maximum contrast for visibility:
+
+```html
+<a href="#main" s-skip-link="contrast">Skip to main content</a>
+```
+
+## Customization
+
+Override CSS custom properties for custom styling:
+
+```css
+[s-skip-link] {
+  --_skip-bg: var(--s-accent-600);
+  --_skip-color: white;
+  --_skip-radius: var(--s-radius-lg);
+  --_skip-shadow: var(--s-shadow-xl);
+  --_skip-z: 10000;
+}
+```
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--_skip-bg` | `var(--s-primary-600)` | Background color |
+| `--_skip-color` | `white` | Text color |
+| `--_skip-radius` | `var(--s-radius-md)` | Border radius |
+| `--_skip-shadow` | `var(--s-shadow-lg)` | Box shadow |
+| `--_skip-z` | `9999` | Z-index |
+
+## Testing Skip Links
+
+To test your skip link implementation:
+
+1. **Keyboard test**: Load the page and press `Tab`. The skip link should appear.
+2. **Activation test**: Press `Enter` while focused. Focus should move to the target.
+3. **Screen reader test**: Use a screen reader to verify the link is announced.
+
+## Accessibility Best Practices
+
+### Target Element Setup
+
+Ensure target elements can receive focus:
+
+```html
+<!-- Option 1: Use tabindex for non-interactive elements -->
+<main id="main-content" tabindex="-1">
+  <!-- Content -->
+</main>
+
+<!-- Option 2: Target a heading (recommended) -->
+<main>
+  <h1 id="main-content" tabindex="-1">Page Title</h1>
+  <!-- Content -->
+</main>
+```
+
+The `tabindex="-1"` allows the element to receive programmatic focus without being in the tab order.
+
+### Meaningful Link Text
+
+Use descriptive text that explains the destination:
+
+```html
+<!-- Good -->
+<a href="#main" s-skip-link>Skip to main content</a>
+<a href="#search" s-skip-link>Skip to search</a>
+
+<!-- Avoid -->
+<a href="#main" s-skip-link>Skip</a>
+<a href="#content" s-skip-link>Click here</a>
+```
+
+### Placement
+
+Always place skip links as the first focusable element:
+
+```html
+<body>
+  <a href="#main" s-skip-link>Skip to main content</a>  <!-- First! -->
+
+  <!-- Everything else comes after -->
+  <header>...</header>
+  <main id="main">...</main>
+</body>
+```
+
+## Alternative: Using sr-only Utilities
+
+For simpler cases, you can use the `s-sr-only` and `s-focus:not-sr-only` utilities instead of the dedicated component:
+
+```html
+<a href="#main" s-sr-only s-focus:not-sr-only>
+  Skip to main content
+</a>
+```
+
+The dedicated `s-skip-link` component provides:
+- Fixed positioning at viewport top
+- Styled appearance with shadows
+- Smooth transitions
+- Focus ring styling
+- Group support for multiple links
+
+Choose based on your needs—utilities for minimal styling, component for polished UX.
+
+## Dark Mode
+
+The skip link automatically adjusts for dark mode:
+- Background shifts to `--s-primary-500` for better contrast
+- Focus ring adapts to dark backgrounds
+
+No additional configuration needed.
+
+## Common Patterns
+
+### Blog Layout
+
+```html
+<body>
+  <a href="#article" s-skip-link>Skip to article</a>
+
+  <header>
+    <nav><!-- Site navigation --></nav>
+  </header>
+
+  <aside><!-- Sidebar --></aside>
+
+  <article id="article">
+    <h1 tabindex="-1">Article Title</h1>
+    <!-- Article content -->
+  </article>
+</body>
+```
+
+### Dashboard Layout
+
+```html
+<body>
+  <div s-skip-link-group>
+    <a href="#dashboard" s-skip-link>Skip to dashboard</a>
+    <a href="#sidebar" s-skip-link>Skip to sidebar</a>
+  </div>
+
+  <nav><!-- Top nav --></nav>
+
+  <aside id="sidebar"><!-- Sidebar nav --></aside>
+
+  <main id="dashboard">
+    <h1 tabindex="-1">Dashboard</h1>
+    <!-- Dashboard content -->
+  </main>
+</body>
+```
+
+## References
+
+- [WCAG 2.1 - 2.4.1 Bypass Blocks](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks.html)
+- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)

@@ -41,6 +41,7 @@ const navigationData: NavEntry[] = [
 			{ label: 'Input', href: '/components/input' },
 			{ label: 'Modal', href: '/components/modal' },
 			{ label: 'Prose', href: '/components/prose' },
+			{ label: 'Skip Link', href: '/components/skip-link' },
 		],
 	},
 	{
