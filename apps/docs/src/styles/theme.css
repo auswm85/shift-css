@@ -17,17 +17,17 @@
   --s-primary: oklch(70% 0.3 var(--shift-hue-primary));
   --s-accent: oklch(60% 0.35 var(--shift-hue-accent));
 
-  /* === THE "VOID" NEUTRAL SCALE === (using dynamic neutral hue) */
-  --s-neutral-000: oklch(8% 0.02 var(--shift-hue-neutral));
-  --s-neutral-050: oklch(12% 0.025 var(--shift-hue-neutral));
-  --s-neutral-100: oklch(18% 0.04 var(--shift-hue-neutral));
-  --s-neutral-200: oklch(25% 0.04 var(--shift-hue-neutral));
-  --s-neutral-300: oklch(35% 0.03 var(--shift-hue-neutral));
-  --s-neutral-400: oklch(50% 0.025 var(--shift-hue-neutral));
-  --s-neutral-500: oklch(65% 0.02 var(--shift-hue-neutral));
-  --s-neutral-600: oklch(75% 0.015 var(--shift-hue-neutral));
-  --s-neutral-700: oklch(85% 0.01 var(--shift-hue-neutral));
-  --s-neutral-900: oklch(95% 0.01 var(--shift-hue-neutral));
+  /* === THE "VOID" NEUTRAL SCALE === (custom theme scale, doesn't conflict with --s-neutral-*) */
+  --void-000: oklch(8% 0.02 var(--shift-hue-neutral));
+  --void-050: oklch(12% 0.025 var(--shift-hue-neutral));
+  --void-100: oklch(18% 0.04 var(--shift-hue-neutral));
+  --void-200: oklch(25% 0.04 var(--shift-hue-neutral));
+  --void-300: oklch(35% 0.03 var(--shift-hue-neutral));
+  --void-400: oklch(50% 0.025 var(--shift-hue-neutral));
+  --void-500: oklch(65% 0.02 var(--shift-hue-neutral));
+  --void-600: oklch(75% 0.015 var(--shift-hue-neutral));
+  --void-700: oklch(85% 0.01 var(--shift-hue-neutral));
+  --void-900: oklch(95% 0.01 var(--shift-hue-neutral));
 
   /* === THE "GLOW" STATE === */
   --s-glow: 0 0 15px oklch(70% 0.3 var(--shift-hue-primary) / 0.4);
@@ -49,23 +49,23 @@
   color-scheme: dark;
 
   /* Ensure proper contrast for text */
-  --s-text-primary: var(--s-neutral-900);
-  --s-text-secondary: var(--s-neutral-700);
-  --s-text-muted: var(--s-neutral-500);
+  --s-text-primary: var(--void-900);
+  --s-text-secondary: var(--void-700);
+  --s-text-muted: var(--void-500);
 
   /* Surface colors */
-  --s-surface-base: var(--s-neutral-000);
-  --s-surface-subtle: var(--s-neutral-050);
-  --s-surface-sunken: var(--s-neutral-000);
-  --s-surface-hover: var(--s-neutral-100);
+  --s-surface-base: var(--void-000);
+  --s-surface-subtle: var(--void-050);
+  --s-surface-sunken: var(--void-000);
+  --s-surface-hover: var(--void-100);
 
   /* Border colors */
-  --s-border-default: var(--s-neutral-200);
-  --s-border-hover: var(--s-neutral-300);
+  --s-border-default: var(--void-200);
+  --s-border-hover: var(--void-300);
 
   /* Interactive colors */
   --s-interactive-primary: var(--s-primary);
-  --s-text-on-primary: var(--s-neutral-000);
+  --s-text-on-primary: var(--void-000);
 }
 
 /* =============================================================================
@@ -75,42 +75,43 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  /* Invert the neutral scale for light mode (using dynamic neutral hue) */
-  --s-neutral-000: oklch(98% 0.005 var(--shift-hue-neutral));
-  --s-neutral-050: oklch(95% 0.01 var(--shift-hue-neutral));
-  --s-neutral-100: oklch(92% 0.015 var(--shift-hue-neutral));
-  --s-neutral-200: oklch(85% 0.02 var(--shift-hue-neutral));
-  --s-neutral-300: oklch(75% 0.025 var(--shift-hue-neutral));
-  --s-neutral-400: oklch(50% 0.025 var(--shift-hue-neutral));
-  --s-neutral-500: oklch(35% 0.03 var(--shift-hue-neutral));
-  --s-neutral-600: oklch(25% 0.04 var(--shift-hue-neutral));
-  --s-neutral-700: oklch(18% 0.04 var(--shift-hue-neutral));
-  --s-neutral-900: oklch(8% 0.02 var(--shift-hue-neutral));
+  /* Invert the void scale for light mode (using dynamic neutral hue) */
+  --void-000: oklch(98% 0.005 var(--shift-hue-neutral));
+  --void-050: oklch(95% 0.01 var(--shift-hue-neutral));
+  --void-100: oklch(92% 0.015 var(--shift-hue-neutral));
+  --void-200: oklch(85% 0.02 var(--shift-hue-neutral));
+  --void-300: oklch(75% 0.025 var(--shift-hue-neutral));
+  --void-400: oklch(50% 0.025 var(--shift-hue-neutral));
+  --void-500: oklch(35% 0.03 var(--shift-hue-neutral));
+  --void-600: oklch(25% 0.04 var(--shift-hue-neutral));
+  --void-700: oklch(18% 0.04 var(--shift-hue-neutral));
+  --void-900: oklch(8% 0.02 var(--shift-hue-neutral));
 
   /* Plasma colors - darker for light bg (using dynamic hues) */
-  --s-primary: oklch(50% 0.25 var(--shift-hue-primary));
-  --s-accent: oklch(45% 0.3 var(--shift-hue-accent));
+  /* Must be dark enough for 4.5:1 contrast on light backgrounds */
+  --s-primary: oklch(40% 0.2 var(--shift-hue-primary));
+  --s-accent: oklch(35% 0.25 var(--shift-hue-accent));
   --s-glow: 0 0 15px oklch(50% 0.25 var(--shift-hue-primary) / 0.3);
   --s-glow-accent: 0 0 12px oklch(45% 0.3 var(--shift-hue-accent) / 0.25);
 
   /* Ensure proper contrast for text */
-  --s-text-primary: var(--s-neutral-900);
-  --s-text-secondary: var(--s-neutral-700);
-  --s-text-muted: var(--s-neutral-500);
+  --s-text-primary: var(--void-900);
+  --s-text-secondary: var(--void-700);
+  --s-text-muted: var(--void-500);
 
   /* Surface colors */
-  --s-surface-base: var(--s-neutral-000);
-  --s-surface-subtle: var(--s-neutral-050);
-  --s-surface-sunken: var(--s-neutral-100);
-  --s-surface-hover: var(--s-neutral-200);
+  --s-surface-base: var(--void-000);
+  --s-surface-subtle: var(--void-050);
+  --s-surface-sunken: var(--void-100);
+  --s-surface-hover: var(--void-200);
 
   /* Border colors */
-  --s-border-default: var(--s-neutral-200);
-  --s-border-hover: var(--s-neutral-300);
+  --s-border-default: var(--void-200);
+  --s-border-hover: var(--void-300);
 
   /* Interactive colors */
   --s-interactive-primary: var(--s-primary);
-  --s-text-on-primary: var(--s-neutral-000);
+  --s-text-on-primary: var(--void-000);
 }
 
 /* =============================================================================
@@ -130,14 +131,14 @@ select[s-input] {
 [s-btn="primary"] {
   background: var(--s-primary);
   border: var(--s-border-width) solid var(--s-primary);
-  color: var(--s-neutral-100);
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
 
   &:hover {
     background: var(--s-primary);
-    color: var(--s-neutral-000);
+    color: #fff;
     box-shadow: var(--s-glow);
   }
 }
@@ -145,8 +146,8 @@ select[s-input] {
 /* Secondary button - subtle */
 [s-btn="secondary"] {
   background: transparent;
-  border: var(--s-border-width) solid var(--s-neutral-300);
-  color: var(--s-neutral-700);
+  border: var(--s-border-width) solid var(--void-300);
+  color: var(--void-700);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
@@ -162,7 +163,7 @@ select[s-input] {
   letter-spacing: 0.05em;
 
   &:hover {
-    background: var(--s-neutral-100);
+    background: var(--void-100);
   }
 }
 
@@ -174,71 +175,111 @@ select[s-input] {
   text-underline-offset: 0.2em;
 
   &:hover {
-    color: oklch(80% 0.2 var(--shift-hue-primary));
+    color: oklch(40% 0.2 var(--shift-hue-primary));
     text-decoration-color: currentColor;
-    text-shadow: 0 0 8px oklch(70% 0.3 var(--shift-hue-primary) / 0.5);
   }
+}
+
+/* Light mode: darken link buttons for contrast */
+[data-theme="light"] [s-btn="link"] {
+  color: oklch(35% 0.2 var(--shift-hue-primary));
+
+  &:hover {
+    color: oklch(25% 0.25 var(--shift-hue-primary));
+  }
+}
+
+/* Dark mode: explicit button text colors for a11y tools */
+[data-theme="dark"] [s-btn="primary"] {
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] [s-btn="success"],
+[data-theme="dark"] [s-btn="warning"],
+[data-theme="dark"] [s-btn="danger"] {
+  color: #1a1a1a;
+}
+
+[data-theme="dark"] [s-btn="outline"] {
+  color: var(--s-primary);
+}
+
+[data-theme="dark"] [s-btn="secondary"] {
+  color: var(--void-900);
+}
+
+[data-theme="dark"] [s-btn="ghost"] {
+  color: var(--void-900);
 }
 
 /* Cards - sharp with subtle border */
 [s-card] {
-  border: var(--s-border-width) solid var(--s-neutral-200);
-  background: var(--s-neutral-050);
-  color: var(--s-neutral-900);
+  border: var(--s-border-width) solid var(--void-200);
+  background: var(--void-050);
+  color: var(--void-900);
 }
 
 [s-card] p,
 [s-card-body] p,
 [s-card-subtitle] {
-  color: var(--s-neutral-700);
+  color: var(--void-700);
 }
 
 [s-card] h4,
 [s-card-title] {
-  color: var(--s-neutral-900);
+  color: var(--void-900);
 }
 
-/* Surfaces - ensure text visibility */
-[s-surface] {
-  color: var(--s-neutral-900);
+/* Surfaces - text visibility for elevation surfaces only (not brand/state surfaces) */
+[s-surface="flat"],
+[s-surface="sunken"],
+[s-surface="raised"],
+[s-surface="floating"] {
+  color: var(--void-900);
 }
 
-[s-surface] h4 {
-  color: var(--s-neutral-900);
+[s-surface="flat"] h4,
+[s-surface="sunken"] h4,
+[s-surface="raised"] h4,
+[s-surface="floating"] h4 {
+  color: var(--void-900);
 }
 
-[s-surface] p {
-  color: var(--s-neutral-500);
+[s-surface="flat"] p,
+[s-surface="sunken"] p,
+[s-surface="raised"] p,
+[s-surface="floating"] p {
+  color: var(--void-500);
 }
 
 [s-surface="flat"] {
-  background: var(--s-neutral-050);
-  border: var(--s-border-width) solid var(--s-neutral-200);
+  background: var(--void-050);
+  border: var(--s-border-width) solid var(--void-200);
 }
 
 [s-surface="raised"] {
-  background: var(--s-neutral-100);
-  border: var(--s-border-width) solid var(--s-neutral-200);
-  box-shadow: 0 2px 8px oklch(from var(--s-neutral-000) l c h / 0.3);
+  background: var(--void-100);
+  border: var(--s-border-width) solid var(--void-200);
+  box-shadow: 0 2px 8px oklch(from var(--void-000) l c h / 0.3);
 }
 
 [s-surface="sunken"] {
-  background: var(--s-neutral-000);
-  border: var(--s-border-width) solid var(--s-neutral-200);
-  box-shadow: inset 0 1px 3px oklch(from var(--s-neutral-000) l c h / 0.2);
+  background: var(--void-000);
+  border: var(--s-border-width) solid var(--void-200);
+  box-shadow: inset 0 1px 3px oklch(from var(--void-000) l c h / 0.2);
 }
 
 [s-surface="floating"] {
-  background: var(--s-neutral-100);
-  border: var(--s-border-width) solid var(--s-neutral-200);
-  box-shadow: 0 4px 16px oklch(from var(--s-neutral-000) l c h / 0.4);
+  background: var(--void-100);
+  border: var(--s-border-width) solid var(--void-200);
+  box-shadow: 0 4px 16px oklch(from var(--void-000) l c h / 0.4);
 }
 
 /* Inputs - terminal style */
 [s-input],
 select[s-input] {
-  border: var(--s-border-width) solid var(--s-neutral-300);
-  background: var(--s-neutral-000);
+  border: var(--s-border-width) solid var(--void-300);
+  background: var(--void-000);
 
   &:focus {
     border-color: var(--s-primary);
@@ -248,19 +289,19 @@ select[s-input] {
 }
 
 [s-input-addon] {
-  color: var(--s-neutral-600);
-  background: var(--s-neutral-100);
+  color: var(--void-600);
+  background: var(--void-100);
 }
 
 /* Code blocks - softer in dark mode */
 pre {
   border-radius: 0 !important;
-  border: var(--s-border-width) solid var(--s-neutral-200);
+  border: var(--s-border-width) solid var(--void-200);
 }
 
 [data-theme="dark"] pre {
-  background: var(--s-neutral-050) !important;
-  border-color: var(--s-neutral-100);
+  background: var(--void-050) !important;
+  border-color: var(--void-100);
 }
 
 [data-theme="dark"] pre code {
@@ -269,7 +310,7 @@ pre {
 
 [data-theme="dark"] pre .line::before,
 [data-theme="dark"] pre [data-line-numbers]::before {
-  color: var(--s-neutral-300) !important;
+  color: var(--void-300) !important;
 }
 
 /* Hide any gutter/spacing backgrounds */
@@ -282,11 +323,11 @@ pre {
 }
 
 [data-theme="dark"] code {
-  background: var(--s-neutral-100);
+  background: var(--void-100);
 }
 
 [data-theme="dark"] .prose code {
-  background: var(--s-neutral-100);
+  background: var(--void-100);
 }
 
 /* Shiki syntax highlighting - brighten for dark mode */
@@ -296,7 +337,7 @@ pre {
   --shiki-dark-comment: oklch(55% 0.02 var(--shift-hue-neutral));
 
   /* Base text */
-  color: var(--s-neutral-700);
+  color: var(--void-700);
 }
 
 [data-theme="dark"] pre :is(.comment, [style*="--shiki-dark:#6A737D"]) {
@@ -322,23 +363,23 @@ pre {
 }
 
 [data-theme="dark"] pre :is(.punctuation, .operator) {
-  color: var(--s-neutral-600) !important;
+  color: var(--void-600) !important;
 }
 
 /* Plain text / inner content in code blocks */
 [data-theme="dark"] pre span:not([style]) {
-  color: var(--s-neutral-900) !important;
+  color: var(--void-900) !important;
 }
 
 [data-theme="dark"] pre [style*="--shiki-dark:#E1E4E8"],
 [data-theme="dark"] pre [style*="--shiki-dark:#e1e4e8"] {
-  color: var(--s-neutral-900) !important;
+  color: var(--void-900) !important;
 }
 
 /* Modals - ensure text visibility in dark mode */
 [data-theme="dark"] dialog[s-modal] {
-  background: var(--s-neutral-100) !important;
-  color: var(--s-neutral-900) !important;
+  background: var(--void-100) !important;
+  color: var(--void-900) !important;
 }
 
 [data-theme="dark"] dialog[s-modal] h1,
@@ -349,30 +390,30 @@ pre {
 [data-theme="dark"] [s-modal-header] h1,
 [data-theme="dark"] [s-modal-header] h2,
 [data-theme="dark"] [s-modal-header] h3 {
-  color: var(--s-neutral-900) !important;
+  color: var(--void-900) !important;
 }
 
 [data-theme="dark"] [s-modal-header] {
-  border-color: var(--s-neutral-200);
+  border-color: var(--void-200);
 }
 
 [data-theme="dark"] [s-modal-footer] {
-  border-color: var(--s-neutral-200);
+  border-color: var(--void-200);
 }
 
 [data-theme="dark"] [s-modal-close] {
-  color: var(--s-neutral-500);
+  color: var(--void-500);
 }
 
 [data-theme="dark"] [s-modal-close]:hover {
-  color: var(--s-neutral-900);
-  background: var(--s-neutral-200);
+  color: var(--void-900);
+  background: var(--void-200);
 }
 
 /* Modals - ensure text visibility in light mode */
 [data-theme="light"] dialog[s-modal] {
-  background: var(--s-neutral-100) !important;
-  color: var(--s-neutral-900) !important;
+  background: var(--void-100) !important;
+  color: var(--void-900) !important;
 }
 
 [data-theme="light"] dialog[s-modal] h1,
@@ -383,24 +424,24 @@ pre {
 [data-theme="light"] [s-modal-header] h1,
 [data-theme="light"] [s-modal-header] h2,
 [data-theme="light"] [s-modal-header] h3 {
-  color: var(--s-neutral-900) !important;
+  color: var(--void-900) !important;
 }
 
 [data-theme="light"] [s-modal-header] {
-  border-color: var(--s-neutral-200);
+  border-color: var(--void-200);
 }
 
 [data-theme="light"] [s-modal-footer] {
-  border-color: var(--s-neutral-200);
+  border-color: var(--void-200);
 }
 
 [data-theme="light"] [s-modal-close] {
-  color: var(--s-neutral-500);
+  color: var(--void-500);
 }
 
 [data-theme="light"] [s-modal-close]:hover {
-  color: var(--s-neutral-900);
-  background: var(--s-neutral-200);
+  color: var(--void-900);
+  background: var(--void-200);
 }
 
 /* Links - plasma colored */

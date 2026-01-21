@@ -41,8 +41,9 @@
   @supports (color: oklch(from red l c h)) {
     color: oklch(
       from var(--_surface-bg)
-        /* If L < 0.6, use light text (0.95); otherwise dark text (0.15) */
-        clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+        /* If L < 0.55, use light text (0.95); otherwise dark text (0.15)
+           Threshold 0.55 ensures 4.5:1 contrast per WCAG 2.1 AA */
+        clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95) 0 0
     );
   }
 
@@ -115,39 +116,57 @@
    COLOR VARIANTS
    ============================================================================= */
 
-/* Brand color surfaces */
+/* Brand color surfaces - use 700 shade (L≈0.47) for WCAG 4.5:1 with white text */
+/* Hex fallbacks for a11y tools that can't parse OKLCH */
 [s-surface="primary"] {
-  --_surface-bg: var(--s-primary-500);
+  --_surface-bg: var(--s-primary-700);
+  background-color: #0066aa; /* Fallback for OKLCH */
+  background-color: var(--_surface-bg);
+  color: #fff;
 }
 
 [s-surface="secondary"] {
-  --_surface-bg: var(--s-secondary-500);
+  --_surface-bg: var(--s-secondary-700);
+  background-color: #6644aa; /* Fallback for OKLCH */
+  background-color: var(--_surface-bg);
+  color: #fff;
 }
 
 [s-surface="accent"] {
-  --_surface-bg: var(--s-accent-500);
+  --_surface-bg: var(--s-accent-700);
+  background-color: #aa4466; /* Fallback for OKLCH */
+  background-color: var(--_surface-bg);
+  color: #fff;
 }
 
 /* =============================================================================
    STATE SURFACES (for alerts, notifications)
    ============================================================================= */
 
+/* State surfaces use light backgrounds with dark text for notification-style alerts */
+/* Hex fallbacks for a11y tools that can't parse OKLCH/light-dark() */
 [s-surface="success"] {
   --_surface-bg: var(--s-state-success-bg);
+  background-color: #d4edda; /* Light green fallback */
+  background-color: var(--_surface-bg);
   border-left: 4px solid var(--s-state-success);
-  color: var(--s-text-primary);
+  color: #1a1a1a;
 }
 
 [s-surface="warning"] {
   --_surface-bg: var(--s-state-warning-bg);
+  background-color: #fff3cd; /* Light yellow fallback */
+  background-color: var(--_surface-bg);
   border-left: 4px solid var(--s-state-warning);
-  color: var(--s-text-primary);
+  color: #1a1a1a;
 }
 
 [s-surface="danger"] {
   --_surface-bg: var(--s-state-danger-bg);
+  background-color: #f8d7da; /* Light red fallback */
+  background-color: var(--_surface-bg);
   border-left: 4px solid var(--s-state-danger);
-  color: var(--s-text-primary);
+  color: #1a1a1a;
 }
 
 /* =============================================================================

@@ -9,6 +9,19 @@
 	line-height: var(--s-leading-relaxed);
 }
 
+/* Preserve white text on brand/state surfaces (overrides cascade layer priority) */
+.prose [s-surface="primary"],
+.prose [s-surface="secondary"],
+.prose [s-surface="accent"] {
+	color: #fff;
+}
+
+.prose [s-surface="success"],
+.prose [s-surface="warning"],
+.prose [s-surface="danger"] {
+	color: #1a1a1a;
+}
+
 /* =============================================================================
    Headings
    ============================================================================= */

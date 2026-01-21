@@ -34,10 +34,10 @@
   color: var(--_btn-text);
   border: 1px solid var(--_btn-border);
 
-  /* Auto-contrast for custom backgrounds */
+  /* Auto-contrast for custom backgrounds (0.55 threshold for WCAG 4.5:1) */
   @supports (color: oklch(from red l c h)) {
     color: oklch(
-      from var(--_btn-bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+      from var(--_btn-bg) clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95) 0 0
     );
   }
 

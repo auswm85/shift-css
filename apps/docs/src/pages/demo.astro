@@ -59,13 +59,13 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			</div>
 			<div
 				class="color-swatch"
-				style="background: var(--s-primary-500); color: var(--s-primary-50);"
+				style="background: var(--s-primary-500); color: var(--s-primary-950);"
 			>
 				500
 			</div>
 			<div
 				class="color-swatch"
-				style="background: var(--s-primary-600); color: var(--s-primary-50);"
+				style="background: var(--s-primary-600); color: #000;"
 			>
 				600
 			</div>
@@ -126,13 +126,13 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			</div>
 			<div
 				class="color-swatch"
-				style="background: var(--s-neutral-500); color: var(--s-neutral-50);"
+				style="background: var(--s-neutral-500); color: var(--s-neutral-950);"
 			>
 				500
 			</div>
 			<div
 				class="color-swatch"
-				style="background: var(--s-neutral-600); color: var(--s-neutral-50);"
+				style="background: var(--s-neutral-600); color: #000;"
 			>
 				600
 			</div>
@@ -164,9 +164,9 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 		<h3>Status Colors</h3>
 		<div class="demo-row">
-			<div class="status-swatch" style="background: var(--s-success-600); color: white;">Success</div>
-			<div class="status-swatch" style="background: var(--s-warning-500); color: var(--s-warning-950);">Warning</div>
-			<div class="status-swatch" style="background: var(--s-danger-600); color: white;">Danger</div>
+			<div class="status-swatch" style="background: var(--s-success-700); color: white;">Success</div>
+			<div class="status-swatch" style="background: var(--s-warning-300); color: var(--s-warning-900);">Warning</div>
+			<div class="status-swatch" style="background: var(--s-danger-700); color: white;">Danger</div>
 		</div>
 
 		<h2>Surfaces</h2>
@@ -704,13 +704,13 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	.demo-page [s-card] h4,
 	.demo-page [s-card-title] {
-		color: var(--s-neutral-900) !important;
+		color: var(--s-text-primary) !important;
 	}
 
 	.demo-page [s-card] p,
 	.demo-page [s-card-body] p,
 	.demo-page [s-card-subtitle] {
-		color: var(--s-neutral-700) !important;
+		color: var(--s-text-secondary) !important;
 	}
 
 	.demo-page {
@@ -840,10 +840,25 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		margin: 0;
 	}
 
-	.demo-page [s-surface='primary'] p,
-	.demo-page [s-surface='secondary'] p,
-	.demo-page [s-surface='accent'] p {
-		opacity: 0.85;
+	/* Brand surfaces - white text on colored backgrounds */
+	.demo-page [s-surface='primary'] :is(h4, p),
+	.demo-page [s-surface='secondary'] :is(h4, p),
+	.demo-page [s-surface='accent'] :is(h4, p) {
+		color: #fff;
+	}
+
+	.demo-page [s-surface='primary'] code,
+	.demo-page [s-surface='secondary'] code,
+	.demo-page [s-surface='accent'] code {
+		color: #fff;
+		background: transparent;
+	}
+
+	/* State surfaces - dark text in light mode, light text in dark mode */
+	.demo-page [s-surface='success'] :is(h4, p),
+	.demo-page [s-surface='warning'] :is(h4, p),
+	.demo-page [s-surface='danger'] :is(h4, p) {
+		color: light-dark(#1a1a1a, #fff);
 	}
 
 	.demo-page [s-surface] {
