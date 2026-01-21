@@ -1,6 +1,6 @@
 {
   "name": "@shift-css/core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming",
   "type": "module",
   "main": "./dist/shift.css",
