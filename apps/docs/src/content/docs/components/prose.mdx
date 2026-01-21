@@ -1,0 +1,299 @@
+---
+title: Prose
+description: Typography styles for long-form content and markdown rendering
+---
+
+## Overview
+
+The `s-prose` component applies sensible typography defaults to long-form content like articles, blog posts, and markdown-rendered content. Instead of adding classes to every element, wrap your content and let the component handle the styling.
+
+## Import
+
+```css
+/* Full framework (includes all components) */
+@import "@shift-css/core";
+
+/* Or import just the prose component */
+@import "@shift-css/core/components/prose";
+```
+
+> **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
+## Basic Usage
+
+```html
+<article s-prose>
+  <h1>Article Title</h1>
+  <p>This is a paragraph with <a href="#">a link</a> and <code>inline code</code>.</p>
+
+  <h2>Section Heading</h2>
+  <p>More content here...</p>
+
+  <ul>
+    <li>List item one</li>
+    <li>List item two</li>
+  </ul>
+
+  <blockquote>
+    A notable quote or callout.
+  </blockquote>
+
+  <pre><code>const example = "code block";</code></pre>
+</article>
+```
+
+## Features
+
+The prose component automatically styles:
+
+- **Headings** (h1-h6) with proper hierarchy and spacing
+- **Paragraphs** with comfortable line-height and margins
+- **Links** with underlines and hover states
+- **Lists** (ul, ol, dl) with proper indentation and markers
+- **Blockquotes** with left border accent
+- **Code** (inline and blocks) with syntax-appropriate styling
+- **Tables** with borders and hover states
+- **Images and figures** with captions
+- **Horizontal rules** for section breaks
+
+## Variants
+
+### Full Width
+
+By default, prose content is limited to 65 characters for optimal readability. Use the `full` variant to remove this limit:
+
+```html
+<article s-prose="full">
+  <!-- Content spans full container width -->
+</article>
+```
+
+### Size Variants
+
+Adjust the base font size:
+
+```html
+<article s-prose s-size="sm">
+  <!-- Smaller text for compact layouts -->
+</article>
+
+<article s-prose s-size="lg">
+  <!-- Larger text for hero sections -->
+</article>
+```
+
+| Attribute | Base Font Size |
+|-----------|---------------|
+| `s-size="sm"` | `--s-text-sm` (0.875rem) |
+| default | `--s-text-base` (1rem) |
+| `s-size="lg"` | `--s-text-lg` (1.125rem) |
+
+## Element Styling
+
+### Headings
+
+Headings use a clear hierarchy with proper spacing:
+
+```html
+<article s-prose>
+  <h1>Page Title</h1>      <!-- 2.25rem, no top margin -->
+  <h2>Major Section</h2>   <!-- 1.875rem, border-bottom -->
+  <h3>Subsection</h3>      <!-- 1.5rem -->
+  <h4>Minor Heading</h4>   <!-- 1.25rem -->
+  <h5>Small Heading</h5>   <!-- 1.125rem -->
+  <h6>Tiny Heading</h6>    <!-- 1rem, muted color -->
+</article>
+```
+
+### Links
+
+Links are styled with underlines and smooth color transitions:
+
+```html
+<article s-prose>
+  <p>Visit the <a href="/docs">documentation</a> for more info.</p>
+</article>
+```
+
+### Code
+
+Inline code gets a subtle background, while code blocks have a dark theme:
+
+```html
+<article s-prose>
+  <p>Use the <code>s-prose</code> attribute for content.</p>
+
+  <pre><code>// Code blocks use dark background
+const framework = "Shift CSS";</code></pre>
+</article>
+```
+
+### Blockquotes
+
+Blockquotes feature a colored left border and subtle background:
+
+```html
+<article s-prose>
+  <blockquote>
+    <p>Design is not just what it looks like and feels like. Design is how it works.</p>
+    <p>— Steve Jobs</p>
+  </blockquote>
+</article>
+```
+
+### Lists
+
+Both ordered and unordered lists are supported with proper nesting:
+
+```html
+<article s-prose>
+  <ul>
+    <li>First item</li>
+    <li>Second item
+      <ul>
+        <li>Nested item</li>
+      </ul>
+    </li>
+  </ul>
+
+  <ol>
+    <li>Step one</li>
+    <li>Step two</li>
+  </ol>
+
+  <dl>
+    <dt>Term</dt>
+    <dd>Definition of the term</dd>
+  </dl>
+</article>
+```
+
+### Tables
+
+Tables are full-width with hover states:
+
+```html
+<article s-prose>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Primary</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <td>Secondary</td>
+        <td>Teal</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+```
+
+### Images & Figures
+
+Images get rounded corners, and figures support captions:
+
+```html
+<article s-prose>
+  <figure>
+    <img src="/screenshot.png" alt="Screenshot" width="800" height="600" />
+    <figcaption>A screenshot of the interface</figcaption>
+  </figure>
+</article>
+```
+
+## Customization
+
+Override prose CSS properties for custom styling:
+
+```css
+[s-prose] {
+  /* Typography */
+  --_prose-body: var(--s-text-lg);
+  --_prose-leading: 1.8;
+
+  /* Links */
+  --_prose-link-color: var(--s-accent-600);
+  --_prose-link-hover: var(--s-accent-700);
+
+  /* Code */
+  --_prose-code-bg: var(--s-primary-100);
+  --_prose-code-color: var(--s-primary-700);
+  --_prose-pre-bg: var(--s-neutral-800);
+  --_prose-pre-color: var(--s-neutral-100);
+
+  /* Borders & Accents */
+  --_prose-border-color: var(--s-border-muted);
+  --_prose-quote-border: var(--s-accent-500);
+}
+```
+
+## Common Patterns
+
+### Blog Post Layout
+
+```html
+<main s-container="prose">
+  <article s-prose>
+    <header>
+      <h1>Blog Post Title</h1>
+      <p><time datetime="2025-01-21">January 21, 2025</time></p>
+    </header>
+
+    <p>Introduction paragraph...</p>
+
+    <h2>First Section</h2>
+    <p>Content...</p>
+
+    <footer>
+      <hr />
+      <p>Written by <a href="/author">Author Name</a></p>
+    </footer>
+  </article>
+</main>
+```
+
+### Documentation Page
+
+```html
+<div s-flex>
+  <aside><!-- Sidebar navigation --></aside>
+
+  <main s-prose>
+    <h1>API Reference</h1>
+
+    <h2>Installation</h2>
+    <pre><code>npm install @shift-css/core</code></pre>
+
+    <h2>Usage</h2>
+    <p>Import the framework in your CSS:</p>
+    <pre><code>@import "@shift-css/core";</code></pre>
+  </main>
+</div>
+```
+
+### Markdown Content
+
+When rendering markdown (e.g., from a CMS or static site generator), simply wrap the output:
+
+```html
+<article s-prose>
+  {{ content | safe }}
+</article>
+```
+
+## Dark Mode
+
+The prose component automatically adjusts colors for dark mode:
+
+- Link colors become lighter for visibility
+- Code backgrounds shift to darker tones
+- Inline code uses softer accent colors
+
+No additional configuration needed—it works with Shift CSS's automatic `light-dark()` theming.

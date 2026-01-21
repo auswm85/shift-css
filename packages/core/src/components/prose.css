@@ -1,0 +1,336 @@
+/**
+ * Shift CSS - Prose Component
+ *
+ * Typography styles for long-form content like articles, blog posts,
+ * and markdown-rendered content. Applies sensible defaults to child
+ * elements without requiring classes on each element.
+ *
+ * Usage:
+ *   <article s-prose>
+ *     <h1>Title</h1>
+ *     <p>Content with <a href="#">links</a> and <code>code</code>.</p>
+ *   </article>
+ */
+
+/* =============================================================================
+   BASE PROSE CONTAINER
+   ============================================================================= */
+
+:where([s-prose]) {
+  /* Prose CSS properties (customization points) */
+  --_prose-body: var(--s-text-base);
+  --_prose-body-weight: var(--s-font-normal);
+  --_prose-leading: var(--s-leading-relaxed);
+  --_prose-link-color: var(--s-primary-600);
+  --_prose-link-hover: var(--s-primary-700);
+  --_prose-code-bg: var(--s-neutral-100);
+  --_prose-code-color: var(--s-danger-600);
+  --_prose-pre-bg: var(--s-neutral-900);
+  --_prose-pre-color: var(--s-neutral-100);
+  --_prose-border-color: var(--s-border-default);
+  --_prose-quote-border: var(--s-primary-500);
+
+  font-size: var(--_prose-body);
+  font-weight: var(--_prose-body-weight);
+  line-height: var(--_prose-leading);
+  color: var(--s-text-primary);
+
+  /* Limit line length for readability */
+  max-width: 65ch;
+}
+
+/* Full width variant */
+[s-prose="full"] {
+  max-width: none;
+}
+
+/* =============================================================================
+   HEADINGS
+   ============================================================================= */
+
+:where([s-prose]) :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--s-text-primary);
+  font-weight: var(--s-font-bold);
+  line-height: var(--s-leading-tight);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+:where([s-prose]) :where(h1) {
+  font-size: var(--s-text-4xl);
+  margin-top: 0;
+}
+
+:where([s-prose]) :where(h2) {
+  font-size: var(--s-text-3xl);
+  padding-bottom: 0.25em;
+  border-bottom: 1px solid var(--_prose-border-color);
+}
+
+:where([s-prose]) :where(h3) {
+  font-size: var(--s-text-2xl);
+}
+
+:where([s-prose]) :where(h4) {
+  font-size: var(--s-text-xl);
+}
+
+:where([s-prose]) :where(h5) {
+  font-size: var(--s-text-lg);
+}
+
+:where([s-prose]) :where(h6) {
+  font-size: var(--s-text-base);
+  color: var(--s-text-secondary);
+}
+
+/* =============================================================================
+   PARAGRAPHS & BASIC TEXT
+   ============================================================================= */
+
+:where([s-prose]) :where(p) {
+  margin-bottom: 1.25em;
+}
+
+:where([s-prose]) :where(strong, b) {
+  font-weight: var(--s-font-semibold);
+  color: var(--s-text-primary);
+}
+
+:where([s-prose]) :where(em, i) {
+  font-style: italic;
+}
+
+:where([s-prose]) :where(small) {
+  font-size: var(--s-text-sm);
+}
+
+/* =============================================================================
+   LINKS
+   ============================================================================= */
+
+:where([s-prose]) :where(a) {
+  color: var(--_prose-link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color var(--s-duration-150) var(--s-ease-out);
+
+  &:hover {
+    color: var(--_prose-link-hover);
+  }
+}
+
+/* =============================================================================
+   LISTS
+   ============================================================================= */
+
+:where([s-prose]) :where(ul, ol) {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+
+:where([s-prose]) :where(ul) {
+  list-style-type: disc;
+}
+
+:where([s-prose]) :where(ol) {
+  list-style-type: decimal;
+}
+
+:where([s-prose]) :where(li) {
+  margin-bottom: 0.5em;
+
+  &::marker {
+    color: var(--s-text-tertiary);
+  }
+}
+
+:where([s-prose]) :where(li > ul, li > ol) {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+/* Definition lists */
+:where([s-prose]) :where(dl) {
+  margin-bottom: 1.25em;
+}
+
+:where([s-prose]) :where(dt) {
+  font-weight: var(--s-font-semibold);
+  margin-top: 1em;
+}
+
+:where([s-prose]) :where(dd) {
+  margin-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* =============================================================================
+   BLOCKQUOTES
+   ============================================================================= */
+
+:where([s-prose]) :where(blockquote) {
+  margin: 1.5em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid var(--_prose-quote-border);
+  background-color: var(--s-surface-sunken);
+  border-radius: 0 var(--s-radius-md) var(--s-radius-md) 0;
+  font-style: italic;
+  color: var(--s-text-secondary);
+
+  & p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* =============================================================================
+   CODE & PREFORMATTED
+   ============================================================================= */
+
+:where([s-prose]) :where(code) {
+  font-family: var(--s-font-mono);
+  font-size: 0.875em;
+  background-color: var(--_prose-code-bg);
+  color: var(--_prose-code-color);
+  padding: 0.125em 0.375em;
+  border-radius: var(--s-radius-sm);
+}
+
+:where([s-prose]) :where(pre) {
+  margin: 1.5em 0;
+  padding: 1em;
+  background-color: var(--_prose-pre-bg);
+  color: var(--_prose-pre-color);
+  border-radius: var(--s-radius-lg);
+  overflow-x: auto;
+  font-size: var(--s-text-sm);
+  line-height: var(--s-leading-normal);
+
+  /* Reset code styles inside pre */
+  & code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+}
+
+/* Keyboard input */
+:where([s-prose]) :where(kbd) {
+  font-family: var(--s-font-mono);
+  font-size: 0.875em;
+  background-color: var(--s-neutral-200);
+  color: var(--s-text-primary);
+  padding: 0.125em 0.375em;
+  border-radius: var(--s-radius-sm);
+  border: 1px solid var(--s-neutral-300);
+  box-shadow: 0 1px 0 var(--s-neutral-400);
+}
+
+/* =============================================================================
+   HORIZONTAL RULE
+   ============================================================================= */
+
+:where([s-prose]) :where(hr) {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px solid var(--_prose-border-color);
+}
+
+/* =============================================================================
+   IMAGES & FIGURES
+   ============================================================================= */
+
+:where([s-prose]) :where(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--s-radius-lg);
+}
+
+:where([s-prose]) :where(figure) {
+  margin: 1.5em 0;
+}
+
+:where([s-prose]) :where(figcaption) {
+  margin-top: 0.75em;
+  font-size: var(--s-text-sm);
+  color: var(--s-text-secondary);
+  text-align: center;
+}
+
+/* =============================================================================
+   TABLES
+   ============================================================================= */
+
+:where([s-prose]) :where(table) {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: var(--s-text-sm);
+}
+
+:where([s-prose]) :where(thead) {
+  border-bottom: 2px solid var(--_prose-border-color);
+}
+
+:where([s-prose]) :where(th) {
+  font-weight: var(--s-font-semibold);
+  text-align: left;
+  padding: 0.75em 1em;
+  background-color: var(--s-surface-sunken);
+}
+
+:where([s-prose]) :where(td) {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid var(--_prose-border-color);
+}
+
+:where([s-prose]) :where(tbody tr:hover) {
+  background-color: var(--s-surface-sunken);
+}
+
+/* =============================================================================
+   SIZE VARIANTS
+   ============================================================================= */
+
+[s-prose][s-size="sm"] {
+  --_prose-body: var(--s-text-sm);
+}
+
+[s-prose][s-size="lg"] {
+  --_prose-body: var(--s-text-lg);
+}
+
+/* =============================================================================
+   DARK MODE ADJUSTMENTS
+   ============================================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :where([s-prose]) {
+    --_prose-link-color: var(--s-primary-400);
+    --_prose-link-hover: var(--s-primary-300);
+    --_prose-code-bg: var(--s-neutral-800);
+    --_prose-code-color: var(--s-danger-400);
+    --_prose-pre-bg: var(--s-neutral-950);
+    --_prose-pre-color: var(--s-neutral-200);
+  }
+
+  :where([s-prose]) :where(kbd) {
+    background-color: var(--s-neutral-700);
+    border-color: var(--s-neutral-600);
+    box-shadow: 0 1px 0 var(--s-neutral-500);
+  }
+}
+
+/* Also support explicit dark mode via color-scheme */
+:root[style*="color-scheme: dark"] :where([s-prose]),
+:root[style*="color-scheme:dark"] :where([s-prose]) {
+  --_prose-link-color: var(--s-primary-400);
+  --_prose-link-hover: var(--s-primary-300);
+  --_prose-code-bg: var(--s-neutral-800);
+  --_prose-code-color: var(--s-danger-400);
+  --_prose-pre-bg: var(--s-neutral-950);
+  --_prose-pre-color: var(--s-neutral-200);
+}
