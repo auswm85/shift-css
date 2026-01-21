@@ -59,6 +59,8 @@ jobs:
       - name: Publish to npm
         run: npm publish --provenance --access public
         working-directory: packages/core
+        env:
+          NODE_AUTH_TOKEN: ""
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
@@ -101,3 +103,5 @@ jobs:
       - name: Publish to npm
         run: npm publish --provenance --access public
         working-directory: packages/cli
+        env:
+          NODE_AUTH_TOKEN: ""
