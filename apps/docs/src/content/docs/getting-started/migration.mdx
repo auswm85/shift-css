@@ -1,0 +1,174 @@
+---
+title: CLI Setup
+description: Initialize Shift CSS in your project with the CLI
+---
+
+The Shift CSS CLI helps you set up the framework in new or existing projects.
+
+## Quick Start
+
+```bash
+npx shift-css init
+```
+
+The CLI will guide you through:
+
+1. **Project type** - Greenfield (new) or Hybrid (existing CSS)
+2. **Brand color** - Choose a preset or enter your hex code
+3. **Stylesheet path** - Where to create your main CSS file
+
+## What Gets Created
+
+### shift.config.json
+
+Configuration file that stores your project settings:
+
+```json
+{
+  "hues": {
+    "primary": 260,
+    "secondary": 280,
+    "accent": 45,
+    "neutral": 260
+  },
+  "mode": "greenfield",
+  "paths": {
+    "stylesheet": "src/styles/shift.css"
+  },
+  "version": 1
+}
+```
+
+### Main Stylesheet
+
+The CLI scaffolds your entry point with the proper layer hierarchy:
+
+**Greenfield mode:**
+
+```css
+@layer shift.tokens, shift.base, shift.components, shift.utilities;
+
+@import "@shift-css/core/tokens";
+@import "@shift-css/core/base";
+@import "@shift-css/core/components";
+@import "@shift-css/core/utilities";
+
+/* Your custom styles below */
+```
+
+**Hybrid mode** (with existing frameworks):
+
+```css
+@layer legacy, shift.tokens, shift.base, shift.components, shift.utilities;
+
+@import "@shift-css/core/tokens";
+@import "@shift-css/core/base";
+@import "@shift-css/core/components";
+@import "@shift-css/core/utilities";
+
+/* Legacy framework imports - add your existing CSS here */
+@layer legacy {
+  /* @import "bootstrap/dist/css/bootstrap.min.css"; */
+}
+
+/* Your custom styles below */
+```
+
+## Color Presets
+
+The CLI offers curated presets optimized for Shift CSS:
+
+| Preset | Hue | Visual Identity |
+|--------|-----|-----------------|
+| **Plasma** | 260 | Electric Blue - High-tech default |
+| **Laser** | 320 | Cyber-Pink - Neon futurism |
+| **Acid** | 140 | Toxic Green - Engineering edge |
+| **Void** | 0 | Monochrome - Industrial minimal |
+
+### Using Your Brand Color
+
+Don't know OKLCH hues? Just paste your hex code:
+
+```
+◆ Choose your brand color:
+│ ○ Plasma (Electric Blue)
+│ ○ Laser (Cyber-Pink)
+│ ● Custom
+
+ℹ Hue guide: 20=Red, 90=Yellow, 140=Green, 260=Blue, 320=Purple
+
+◆ Enter a hex code (#a855f7) or hue (0-360):
+│ #a855f7
+
+✓ Converted #a855f7 → Purple (Hue: 271)
+```
+
+The CLI auto-converts hex to OKLCH hue, letting you use what you know while initializing the power of perceptually uniform colors.
+
+## Architecture Modes
+
+### Greenfield
+
+For new projects without existing CSS frameworks. Shift CSS has full control over the cascade.
+
+### Hybrid
+
+For projects with existing CSS (Bootstrap, Tailwind, etc.). The `@layer legacy` block gives existing styles the lowest specificity, allowing Shift CSS to override them without `!important`.
+
+## Example Session
+
+```
+🎨 Shift CSS Init
+
+◇ Scanning project...
+│ Detected existing CSS: bootstrap
+
+◆ What type of project is this?
+│ ○ New project (Greenfield)
+│ ● Existing project (Hybrid)
+
+◆ Choose your brand color:
+│ ● Plasma (Electric Blue - High-tech default)
+│ ○ Laser
+│ ○ Acid
+│ ○ Void
+│ ○ Custom
+
+ℹ Plasma → Blue (Hue: 260)
+
+◆ Where should the stylesheet be created?
+│ src/styles/shift.css
+
+◇ Files to create
+│ Config:      shift.config.json
+│ Stylesheet:  src/styles/shift.css
+│ Mode:        Hybrid
+
+◆ Proceed with initialization?
+│ Yes
+
+✓ Created shift.config.json
+✓ Created src/styles/shift.css
+
+✨ Shift CSS initialized!
+```
+
+## Customizing After Init
+
+Override seed hues in your stylesheet:
+
+```css
+:root {
+  --shift-hue-primary: 280; /* Purple */
+  --shift-hue-neutral: 280; /* Purple-tinted grays */
+}
+```
+
+## Next Steps
+
+After initialization:
+
+1. Install the package: `npm install @shift-css/core`
+2. Import your stylesheet in your app
+3. For hybrid mode: uncomment your framework imports in `@layer legacy`
+4. Start using Shift CSS components

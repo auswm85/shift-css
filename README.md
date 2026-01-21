@@ -68,6 +68,24 @@ pnpm add @shift-css/core
 
 That's it. No configuration, no JavaScript, no build step for customization.
 
+## Using the CLI
+
+Initialize Shift CSS with the correct layer hierarchy:
+
+```bash
+npx shift-css init
+```
+
+The CLI will:
+- Ask about your project type (Greenfield or Hybrid)
+- Configure your brand color (OKLCH seed hue)
+- Create `shift.config.json` with your settings
+- Scaffold your main stylesheet with proper cascade layers
+
+For existing projects with Bootstrap/Tailwind, choose "Hybrid" mode to get a `@layer legacy` block for your existing CSS.
+
+See [@shift-css/cli](packages/cli) for full documentation.
+
 ## Features
 
 ### Perceptually Uniform Colors (OKLCH)
@@ -375,14 +393,17 @@ Import only what you need:
 
 ```
 shift-css/
-├── packages/core/          # Main CSS framework
-│   ├── src/
-│   │   ├── base/          # Reset, typography
-│   │   ├── tokens/        # Generated CSS properties
-│   │   ├── components/    # Surface, Button, Card, Input
-│   │   └── utils/         # Layout, spacing, typography
-│   ├── tokens/            # JSON token definitions
-│   └── dist/              # Built output
+├── packages/
+│   ├── core/              # Main CSS framework (@shift-css/core)
+│   │   ├── src/
+│   │   │   ├── base/      # Reset, typography
+│   │   │   ├── tokens/    # Generated CSS properties
+│   │   │   ├── components/# Surface, Button, Card, Input
+│   │   │   └── utils/     # Layout, spacing, typography
+│   │   ├── tokens/        # JSON token definitions
+│   │   └── dist/          # Built output
+│   └── cli/               # CLI tool (@shift-css/cli)
+│       └── src/           # Framework detection & migration
 └── apps/docs/             # Documentation site
 ```
 

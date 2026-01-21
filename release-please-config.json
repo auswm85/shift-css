@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    "packages/core": {
+      "package-name": "@shift-css/core",
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "node"
+    },
+    "packages/cli": {
+      "package-name": "@shift-css/cli",
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "node"
+    }
+  },
+  "separate-pull-requests": true,
+  "group-pull-request-title-pattern": "chore: release ${component}",
+  "pull-request-title-pattern": "chore: release${component} ${version}",
+  "changelog-sections": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "perf", "section": "Performance" },
+    { "type": "docs", "section": "Documentation", "hidden": true },
+    { "type": "chore", "section": "Maintenance", "hidden": true },
+    { "type": "refactor", "section": "Code Refactoring", "hidden": true },
+    { "type": "test", "section": "Tests", "hidden": true },
+    { "type": "ci", "section": "CI/CD", "hidden": true }
+  ]
+}
