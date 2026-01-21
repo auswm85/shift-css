@@ -9,6 +9,16 @@
     "./min": "./dist/shift.min.css",
     "./reset": "./dist/reset.css",
     "./tokens": "./dist/tokens.css",
+    "./components/button": "./dist/components/button.css",
+    "./components/card": "./dist/components/card.css",
+    "./components/input": "./dist/components/input.css",
+    "./components/modal": "./dist/components/modal.css",
+    "./components/surface": "./dist/components/surface.css",
+    "./utils/layout": "./dist/utils/layout.css",
+    "./utils/spacing": "./dist/utils/spacing.css",
+    "./utils/flex": "./dist/utils/flex.css",
+    "./utils/typography": "./dist/utils/typography.css",
+    "./utils/visibility": "./dist/utils/visibility.css",
     "./package.json": "./package.json"
   },
   "files": [

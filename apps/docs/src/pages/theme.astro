@@ -38,48 +38,51 @@ const currentPath = '/theme';
 						<h2 class="panel-title">Seed Hues</h2>
 
 						<div class="hue-control">
-							<div class="hue-label">
+							<label class="hue-label" for="hue-primary">
 								<span>Primary</span>
 								<span class="hue-value" data-hue="primary">200</span>°
-							</div>
+							</label>
 							<input
 								type="range"
 								min="0"
 								max="360"
 								value="200"
 								class="hue-slider"
+								id="hue-primary"
 								data-hue-slider="primary"
 							/>
 							<div class="hue-preview" data-hue-preview="primary"></div>
 						</div>
 
 						<div class="hue-control">
-							<div class="hue-label">
+							<label class="hue-label" for="hue-secondary">
 								<span>Secondary</span>
 								<span class="hue-value" data-hue="secondary">180</span>°
-							</div>
+							</label>
 							<input
 								type="range"
 								min="0"
 								max="360"
 								value="180"
 								class="hue-slider"
+								id="hue-secondary"
 								data-hue-slider="secondary"
 							/>
 							<div class="hue-preview" data-hue-preview="secondary"></div>
 						</div>
 
 						<div class="hue-control">
-							<div class="hue-label">
+							<label class="hue-label" for="hue-accent">
 								<span>Accent</span>
 								<span class="hue-value" data-hue="accent">140</span>°
-							</div>
+							</label>
 							<input
 								type="range"
 								min="0"
 								max="360"
 								value="140"
 								class="hue-slider"
+								id="hue-accent"
 								data-hue-slider="accent"
 							/>
 							<div class="hue-preview" data-hue-preview="accent"></div>
@@ -103,16 +106,17 @@ const currentPath = '/theme';
 							</label>
 
 							<div class="hue-control" data-advanced-control>
-								<div class="hue-label">
+								<label class="hue-label" for="hue-success">
 									<span>Success</span>
 									<span class="hue-value" data-hue="success">145</span>°
-								</div>
+								</label>
 								<input
 									type="range"
 									min="0"
 									max="360"
 									value="145"
 									class="hue-slider"
+									id="hue-success"
 									data-hue-slider="success"
 									disabled
 								/>
@@ -120,16 +124,17 @@ const currentPath = '/theme';
 							</div>
 
 							<div class="hue-control" data-advanced-control>
-								<div class="hue-label">
+								<label class="hue-label" for="hue-warning">
 									<span>Warning</span>
 									<span class="hue-value" data-hue="warning">45</span>°
-								</div>
+								</label>
 								<input
 									type="range"
 									min="0"
 									max="360"
 									value="45"
 									class="hue-slider"
+									id="hue-warning"
 									data-hue-slider="warning"
 									disabled
 								/>
@@ -137,16 +142,17 @@ const currentPath = '/theme';
 							</div>
 
 							<div class="hue-control" data-advanced-control>
-								<div class="hue-label">
+								<label class="hue-label" for="hue-danger">
 									<span>Danger</span>
 									<span class="hue-value" data-hue="danger">25</span>°
-								</div>
+								</label>
 								<input
 									type="range"
 									min="0"
 									max="360"
 									value="25"
 									class="hue-slider"
+									id="hue-danger"
 									data-hue-slider="danger"
 									disabled
 								/>
@@ -154,16 +160,17 @@ const currentPath = '/theme';
 							</div>
 
 							<div class="hue-control" data-advanced-control>
-								<div class="hue-label">
+								<label class="hue-label" for="hue-neutral">
 									<span>Neutral</span>
 									<span class="hue-value" data-hue="neutral">220</span>°
-								</div>
+								</label>
 								<input
 									type="range"
 									min="0"
 									max="360"
 									value="220"
 									class="hue-slider"
+									id="hue-neutral"
 									data-hue-slider="neutral"
 									disabled
 								/>
@@ -435,12 +442,12 @@ const currentPath = '/theme';
 								<h4>Form Inputs</h4>
 								<div class="input-grid">
 									<div s-field>
-										<label s-field-label>Text Input</label>
-										<input s-input type="text" placeholder="Enter text..." />
+										<label s-field-label for="preview-text">Text Input</label>
+										<input s-input type="text" id="preview-text" placeholder="Enter text..." />
 									</div>
 									<div s-field>
-										<label s-field-label>Select</label>
-										<select s-input>
+										<label s-field-label for="preview-select">Select</label>
+										<select s-input id="preview-select">
 											<option>Option 1</option>
 											<option>Option 2</option>
 											<option>Option 3</option>

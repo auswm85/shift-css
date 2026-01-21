@@ -12,15 +12,15 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		<div class="customization-panel">
 			<div class="hue-sliders">
 				<div class="hue-slider">
-					<label>Primary Hue: <span class="hue-value" id="primary-value">200</span>&deg;</label>
+					<label for="primary-slider">Primary Hue: <span class="hue-value" id="primary-value">200</span>&deg;</label>
 					<input type="range" min="0" max="360" value="200" id="primary-slider" />
 				</div>
 				<div class="hue-slider">
-					<label>Neutral Hue: <span class="hue-value" id="neutral-value">220</span>&deg;</label>
+					<label for="neutral-slider">Neutral Hue: <span class="hue-value" id="neutral-value">220</span>&deg;</label>
 					<input type="range" min="0" max="360" value="220" id="neutral-slider" />
 				</div>
 				<div class="hue-slider">
-					<label>Accent Hue: <span class="hue-value" id="accent-value">140</span>&deg;</label>
+					<label for="accent-slider">Accent Hue: <span class="hue-value" id="accent-value">140</span>&deg;</label>
 					<input type="range" min="0" max="360" value="140" id="accent-slider" />
 				</div>
 			</div>
@@ -164,9 +164,9 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 		<h3>Status Colors</h3>
 		<div class="demo-row">
-			<div class="status-swatch" style="background: var(--s-success-500);">Success</div>
-			<div class="status-swatch" style="background: var(--s-warning-500);">Warning</div>
-			<div class="status-swatch" style="background: var(--s-danger-500);">Danger</div>
+			<div class="status-swatch" style="background: var(--s-success-600); color: white;">Success</div>
+			<div class="status-swatch" style="background: var(--s-warning-500); color: var(--s-warning-950);">Warning</div>
+			<div class="status-swatch" style="background: var(--s-danger-600); color: white;">Danger</div>
 		</div>
 
 		<h2>Surfaces</h2>
@@ -265,7 +265,7 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		<div class="demo-row">
 			<button s-btn="primary" disabled>Disabled</button>
 			<button s-btn="primary" s-loading>Loading</button>
-			<button s-btn="primary" s-icon>
+			<button s-btn="primary" s-icon aria-label="Add item">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -322,6 +322,8 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 					<img
 						src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=225&fit=crop"
 						alt="Abstract gradient"
+						width="400"
+						height="225"
 					/>
 				</div>
 				<div s-card-body>
@@ -335,6 +337,8 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 					<img
 						src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200&h=200&fit=crop"
 						alt="Abstract art"
+						width="200"
+						height="200"
 					/>
 				</div>
 				<div s-card-body>
@@ -405,17 +409,17 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		<h3>Text Inputs</h3>
 		<div class="demo-grid">
 			<div s-field>
-				<label s-field-label>Text Input</label>
-				<input s-input type="text" placeholder="Enter text..." />
+				<label s-field-label for="demo-text">Text Input</label>
+				<input s-input type="text" id="demo-text" placeholder="Enter text..." />
 			</div>
 			<div s-field>
-				<label s-field-label>With Hint</label>
-				<input s-input type="email" placeholder="you@example.com" />
+				<label s-field-label for="demo-email">With Hint</label>
+				<input s-input type="email" id="demo-email" placeholder="you@example.com" />
 				<span s-field-hint>We'll never share your email.</span>
 			</div>
 			<div s-field>
-				<label s-field-label>With Error</label>
-				<input s-input type="text" aria-invalid="true" value="Invalid input" />
+				<label s-field-label for="demo-error">With Error</label>
+				<input s-input type="text" id="demo-error" aria-invalid="true" value="Invalid input" />
 				<span s-field-error>This field has an error.</span>
 			</div>
 		</div>
@@ -423,32 +427,32 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		<h3>Input Sizes</h3>
 		<div class="demo-grid">
 			<div s-field>
-				<label s-field-label>Small</label>
-				<input s-input s-size="sm" type="text" placeholder="Small input" />
+				<label s-field-label for="demo-input-sm">Small</label>
+				<input s-input s-size="sm" type="text" id="demo-input-sm" placeholder="Small input" />
 			</div>
 			<div s-field>
-				<label s-field-label>Default</label>
-				<input s-input type="text" placeholder="Default input" />
+				<label s-field-label for="demo-input-md">Default</label>
+				<input s-input type="text" id="demo-input-md" placeholder="Default input" />
 			</div>
 			<div s-field>
-				<label s-field-label>Large</label>
-				<input s-input s-size="lg" type="text" placeholder="Large input" />
+				<label s-field-label for="demo-input-lg">Large</label>
+				<input s-input s-size="lg" type="text" id="demo-input-lg" placeholder="Large input" />
 			</div>
 		</div>
 
 		<h3>Input Groups</h3>
 		<div class="demo-grid">
 			<div s-field>
-				<label s-field-label>URL</label>
+				<label s-field-label for="demo-url">URL</label>
 				<div s-input-group>
 					<span s-input-addon>https://</span>
-					<input s-input type="text" placeholder="example.com" />
+					<input s-input type="text" id="demo-url" placeholder="example.com" />
 				</div>
 			</div>
 			<div s-field>
-				<label s-field-label>Price</label>
+				<label s-field-label for="demo-price">Price</label>
 				<div s-input-group>
-					<input s-input type="number" placeholder="0.00" />
+					<input s-input type="number" id="demo-price" placeholder="0.00" />
 					<span s-input-addon>USD</span>
 				</div>
 			</div>
@@ -457,16 +461,16 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		<h3>Select & Textarea</h3>
 		<div class="demo-grid">
 			<div s-field>
-				<label s-field-label>Select</label>
-				<select s-input>
+				<label s-field-label for="demo-select">Select</label>
+				<select s-input id="demo-select">
 					<option>Option 1</option>
 					<option>Option 2</option>
 					<option>Option 3</option>
 				</select>
 			</div>
 			<div s-field>
-				<label s-field-label>Textarea</label>
-				<textarea s-input rows="3" placeholder="Enter message..."></textarea>
+				<label s-field-label for="demo-textarea">Textarea</label>
+				<textarea s-input id="demo-textarea" rows="3" placeholder="Enter message..."></textarea>
 			</div>
 		</div>
 
@@ -565,16 +569,16 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 				<p>This is a large modal (700px max width), great for forms and detailed content.</p>
 				<div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-space-4); margin-top: var(--s-space-4);">
 					<div s-field>
-						<label s-field-label>First Name</label>
-						<input s-input type="text" placeholder="John" />
+						<label s-field-label for="modal-firstname">First Name</label>
+						<input s-input type="text" id="modal-firstname" placeholder="John" />
 					</div>
 					<div s-field>
-						<label s-field-label>Last Name</label>
-						<input s-input type="text" placeholder="Doe" />
+						<label s-field-label for="modal-lastname">Last Name</label>
+						<input s-input type="text" id="modal-lastname" placeholder="Doe" />
 					</div>
 					<div s-field style="grid-column: span 2;">
-						<label s-field-label>Email</label>
-						<input s-input type="email" placeholder="john@example.com" />
+						<label s-field-label for="modal-email">Email</label>
+						<input s-input type="email" id="modal-email" placeholder="john@example.com" />
 					</div>
 				</div>
 			</div>
@@ -611,16 +615,16 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			</header>
 			<div s-modal-body>
 				<div s-field>
-					<label s-field-label>Name</label>
-					<input s-input type="text" placeholder="Your name" />
+					<label s-field-label for="contact-name">Name</label>
+					<input s-input type="text" id="contact-name" placeholder="Your name" />
 				</div>
 				<div s-field style="margin-top: var(--s-space-4);">
-					<label s-field-label>Email</label>
-					<input s-input type="email" placeholder="you@example.com" />
+					<label s-field-label for="contact-email">Email</label>
+					<input s-input type="email" id="contact-email" placeholder="you@example.com" />
 				</div>
 				<div s-field style="margin-top: var(--s-space-4);">
-					<label s-field-label>Message</label>
-					<textarea s-input rows="4" placeholder="How can we help?"></textarea>
+					<label s-field-label for="contact-message">Message</label>
+					<textarea s-input id="contact-message" rows="4" placeholder="How can we help?"></textarea>
 				</div>
 			</div>
 			<footer s-modal-footer>
@@ -787,7 +791,6 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 	.status-swatch {
 		padding: var(--s-space-3) var(--s-space-4);
 		border-radius: var(--s-radius-md);
-		color: white;
 		font-weight: var(--s-font-medium);
 		font-size: var(--s-text-sm);
 	}

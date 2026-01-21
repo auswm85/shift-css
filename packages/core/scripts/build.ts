@@ -74,17 +74,47 @@ function bundleCSS(entryPath: string, outputPath: string, minify: boolean = fals
 function buildIndividualLayers(): void {
 	console.log('📦 Building individual layers...');
 
+	// Base layers
 	const layers = [
 		{ name: 'reset', path: 'base/reset.css' },
 		{ name: 'tokens', path: 'tokens/tokens.css' },
 	];
 
-	for (const layer of layers) {
-		const inputPath = join(SRC_DIR, layer.path);
-		const outputPath = join(DIST_DIR, `${layer.name}.css`);
+	// Components (for modular imports)
+	const components = [
+		{ name: 'button', path: 'components/button.css' },
+		{ name: 'card', path: 'components/card.css' },
+		{ name: 'input', path: 'components/input.css' },
+		{ name: 'modal', path: 'components/modal.css' },
+		{ name: 'surface', path: 'components/surface.css' },
+	];
+
+	// Utils (for modular imports)
+	const utils = [
+		{ name: 'layout', path: 'utils/layout.css' },
+		{ name: 'spacing', path: 'utils/spacing.css' },
+		{ name: 'flex', path: 'utils/flex.css' },
+		{ name: 'typography', path: 'utils/typography.css' },
+		{ name: 'visibility', path: 'utils/visibility.css' },
+	];
+
+	// Create subdirectories
+	mkdirSync(join(DIST_DIR, 'components'), { recursive: true });
+	mkdirSync(join(DIST_DIR, 'utils'), { recursive: true });
+
+	// Build all modules
+	const allModules = [
+		...layers.map((l) => ({ ...l, outputDir: '' })),
+		...components.map((c) => ({ ...c, outputDir: 'components/' })),
+		...utils.map((u) => ({ ...u, outputDir: 'utils/' })),
+	];
+
+	for (const module of allModules) {
+		const inputPath = join(SRC_DIR, module.path);
+		const outputPath = join(DIST_DIR, `${module.outputDir}${module.name}.css`);
 
 		if (!existsSync(inputPath)) {
-			console.log(`  ⚠ Skipping ${layer.name} (file not found)`);
+			console.log(`  ⚠ Skipping ${module.name} (file not found)`);
 			continue;
 		}
 
@@ -98,9 +128,9 @@ function buildIndividualLayers(): void {
 
 			writeFileSync(outputPath, result.code);
 			const sizeKB = (result.code.length / 1024).toFixed(2);
-			console.log(`  ✓ ${layer.name}.css (${sizeKB} KB)`);
+			console.log(`  ✓ ${module.outputDir}${module.name}.css (${sizeKB} KB)`);
 		} catch (error) {
-			console.error(`  ✗ Error building ${layer.name}:`, error);
+			console.error(`  ✗ Error building ${module.name}:`, error);
 		}
 	}
 }
