@@ -1,0 +1,1623 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/ui/Header.astro';
+import MobileMenu from '../components/navigation/MobileMenu.astro';
+import SearchDialog from '../components/ui/SearchDialog.astro';
+
+const currentPath = '/theme';
+---
+
+<BaseLayout
+	title="Theme Generator"
+	description="Create custom Shift CSS themes by adjusting seed hues. Preview live components and export your configuration."
+>
+	<div class="theme-generator-layout">
+		<Header />
+
+		<main class="theme-generator-main">
+			<div class="theme-generator-header">
+				<h1>Theme Generator</h1>
+				<p>Customize Shift CSS by adjusting seed hues. Changes apply in real-time.</p>
+			</div>
+
+			<div class="theme-generator-grid">
+				<!-- Control Panel -->
+				<aside class="control-panel">
+					<div class="panel-section">
+						<h2 class="panel-title">Presets</h2>
+						<div class="preset-buttons">
+							<button class="preset-btn" data-preset="default">Default</button>
+							<button class="preset-btn" data-preset="plasma">Plasma</button>
+							<button class="preset-btn" data-preset="laser">Laser</button>
+							<button class="preset-btn" data-preset="acid">Acid</button>
+							<button class="preset-btn" data-preset="void">Void</button>
+						</div>
+					</div>
+
+					<div class="panel-section">
+						<h2 class="panel-title">Seed Hues</h2>
+
+						<div class="hue-control">
+							<div class="hue-label">
+								<span>Primary</span>
+								<span class="hue-value" data-hue="primary">200</span>°
+							</div>
+							<input
+								type="range"
+								min="0"
+								max="360"
+								value="200"
+								class="hue-slider"
+								data-hue-slider="primary"
+							/>
+							<div class="hue-preview" data-hue-preview="primary"></div>
+						</div>
+
+						<div class="hue-control">
+							<div class="hue-label">
+								<span>Secondary</span>
+								<span class="hue-value" data-hue="secondary">180</span>°
+							</div>
+							<input
+								type="range"
+								min="0"
+								max="360"
+								value="180"
+								class="hue-slider"
+								data-hue-slider="secondary"
+							/>
+							<div class="hue-preview" data-hue-preview="secondary"></div>
+						</div>
+
+						<div class="hue-control">
+							<div class="hue-label">
+								<span>Accent</span>
+								<span class="hue-value" data-hue="accent">140</span>°
+							</div>
+							<input
+								type="range"
+								min="0"
+								max="360"
+								value="140"
+								class="hue-slider"
+								data-hue-slider="accent"
+							/>
+							<div class="hue-preview" data-hue-preview="accent"></div>
+						</div>
+					</div>
+
+					<div class="panel-section">
+						<button class="advanced-toggle" data-advanced-toggle aria-expanded="false">
+							<span>Advanced Settings</span>
+							<svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="m6 9 6 6 6-6"/>
+							</svg>
+						</button>
+
+						<div class="advanced-content" data-advanced-content hidden>
+							<p class="advanced-hint">These colors have semantic meaning. Defaults follow UX conventions (green/yellow/red). Neutral follows primary for brand consistency.</p>
+
+							<label class="auto-toggle">
+								<input type="checkbox" checked data-auto-semantic />
+								<span>Auto-calculate from primary</span>
+							</label>
+
+							<div class="hue-control" data-advanced-control>
+								<div class="hue-label">
+									<span>Success</span>
+									<span class="hue-value" data-hue="success">145</span>°
+								</div>
+								<input
+									type="range"
+									min="0"
+									max="360"
+									value="145"
+									class="hue-slider"
+									data-hue-slider="success"
+									disabled
+								/>
+								<div class="hue-preview" data-hue-preview="success"></div>
+							</div>
+
+							<div class="hue-control" data-advanced-control>
+								<div class="hue-label">
+									<span>Warning</span>
+									<span class="hue-value" data-hue="warning">45</span>°
+								</div>
+								<input
+									type="range"
+									min="0"
+									max="360"
+									value="45"
+									class="hue-slider"
+									data-hue-slider="warning"
+									disabled
+								/>
+								<div class="hue-preview" data-hue-preview="warning"></div>
+							</div>
+
+							<div class="hue-control" data-advanced-control>
+								<div class="hue-label">
+									<span>Danger</span>
+									<span class="hue-value" data-hue="danger">25</span>°
+								</div>
+								<input
+									type="range"
+									min="0"
+									max="360"
+									value="25"
+									class="hue-slider"
+									data-hue-slider="danger"
+									disabled
+								/>
+								<div class="hue-preview" data-hue-preview="danger"></div>
+							</div>
+
+							<div class="hue-control" data-advanced-control>
+								<div class="hue-label">
+									<span>Neutral</span>
+									<span class="hue-value" data-hue="neutral">220</span>°
+								</div>
+								<input
+									type="range"
+									min="0"
+									max="360"
+									value="220"
+									class="hue-slider"
+									data-hue-slider="neutral"
+									disabled
+								/>
+								<div class="hue-preview" data-hue-preview="neutral"></div>
+							</div>
+						</div>
+
+					<div class="panel-section">
+						<button class="reset-btn" data-reset>Reset to Default</button>
+					</div>
+				</aside>
+
+				<!-- Preview Area -->
+				<div class="preview-area">
+					<!-- Preview Theme Toggle -->
+					<div class="preview-controls">
+						<span class="preview-label">Preview Mode:</span>
+						<div class="theme-toggle-group">
+							<button class="theme-toggle-btn active" data-preview-theme="light">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<circle cx="12" cy="12" r="4"></circle>
+									<path d="M12 2v2"></path>
+									<path d="M12 20v2"></path>
+									<path d="m4.93 4.93 1.41 1.41"></path>
+									<path d="m17.66 17.66 1.41 1.41"></path>
+									<path d="M2 12h2"></path>
+									<path d="M20 12h2"></path>
+									<path d="m6.34 17.66-1.41 1.41"></path>
+									<path d="m19.07 4.93-1.41 1.41"></path>
+								</svg>
+								Light
+							</button>
+							<button class="theme-toggle-btn" data-preview-theme="dark">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+								</svg>
+								Dark
+							</button>
+						</div>
+					</div>
+
+					<!-- Preview Container -->
+					<div class="preview-container" data-preview-container data-theme="light">
+						<!-- Color Scales -->
+						<section class="preview-section">
+							<h3>Color Scales</h3>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Primary</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-primary-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-primary-950);"><span>950</span></div>
+								</div>
+							</div>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Secondary</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-secondary-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-secondary-950);"><span>950</span></div>
+								</div>
+							</div>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Accent</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-accent-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-accent-950);"><span>950</span></div>
+								</div>
+							</div>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Success</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-success-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-success-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-success-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-success-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-success-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-success-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-success-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-success-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-success-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-success-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-success-950);"><span>950</span></div>
+								</div>
+							</div>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Warning</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-warning-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-warning-950);"><span>950</span></div>
+								</div>
+							</div>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Danger</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-danger-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-danger-950);"><span>950</span></div>
+								</div>
+							</div>
+
+							<div class="color-scale-group">
+								<span class="scale-label">Neutral</span>
+								<div class="color-scale">
+									<div class="color-swatch" style="background: var(--s-neutral-50);"><span>50</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-100);"><span>100</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-200);"><span>200</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-300);"><span>300</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-400);"><span>400</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-500);"><span>500</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-600);"><span>600</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-700);"><span>700</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-800);"><span>800</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-900);"><span>900</span></div>
+									<div class="color-swatch" style="background: var(--s-neutral-950);"><span>950</span></div>
+								</div>
+							</div>
+						</section>
+
+						<!-- Component Preview -->
+						<section class="preview-section">
+							<h3>Components</h3>
+
+							<!-- Buttons -->
+							<div class="component-group">
+								<h4>Buttons</h4>
+								<div class="component-row">
+									<button s-btn="primary">Primary</button>
+									<button s-btn="secondary">Secondary</button>
+									<button s-btn="outline">Outline</button>
+									<button s-btn="ghost">Ghost</button>
+								</div>
+								<div class="component-row">
+									<button s-btn="success">Success</button>
+									<button s-btn="warning">Warning</button>
+									<button s-btn="danger">Danger</button>
+								</div>
+							</div>
+
+							<!-- Surfaces -->
+							<div class="component-group">
+								<h4>Surfaces</h4>
+								<div class="surface-grid">
+									<div s-surface="sunken">
+										<strong>Sunken</strong>
+										<p>Recessed surface</p>
+									</div>
+									<div s-surface="flat">
+										<strong>Flat</strong>
+										<p>Base elevation</p>
+									</div>
+									<div s-surface="raised">
+										<strong>Raised</strong>
+										<p>Elevated surface</p>
+									</div>
+									<div s-surface="floating">
+										<strong>Floating</strong>
+										<p>Highest elevation</p>
+									</div>
+								</div>
+								<div class="surface-grid">
+									<div s-surface="primary">
+										<strong>Primary</strong>
+										<p>Brand surface</p>
+									</div>
+									<div s-surface="secondary">
+										<strong>Secondary</strong>
+										<p>Alternate surface</p>
+									</div>
+									<div s-surface="accent">
+										<strong>Accent</strong>
+										<p>Highlight surface</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Cards -->
+							<div class="component-group">
+								<h4>Cards</h4>
+								<div class="card-grid">
+									<article s-card>
+										<div s-card-body>
+											<h5 s-card-title>Card Title</h5>
+											<p s-card-subtitle>Card subtitle</p>
+											<p>Card content with some example text.</p>
+											<button s-btn="primary" s-size="sm">Action</button>
+										</div>
+									</article>
+									<article s-card="outline">
+										<div s-card-body>
+											<h5 s-card-title>Outline Card</h5>
+											<p s-card-subtitle>With border</p>
+											<p>Alternative card style with outline.</p>
+										</div>
+									</article>
+								</div>
+							</div>
+
+							<!-- Inputs -->
+							<div class="component-group">
+								<h4>Form Inputs</h4>
+								<div class="input-grid">
+									<div s-field>
+										<label s-field-label>Text Input</label>
+										<input s-input type="text" placeholder="Enter text..." />
+									</div>
+									<div s-field>
+										<label s-field-label>Select</label>
+										<select s-input>
+											<option>Option 1</option>
+											<option>Option 2</option>
+											<option>Option 3</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-controls-row">
+									<label s-checkbox>
+										<input type="checkbox" checked />
+										Checkbox
+									</label>
+									<label s-radio>
+										<input type="radio" name="demo" checked />
+										Radio
+									</label>
+									<label s-toggle>
+										<input type="checkbox" checked />
+										Toggle
+									</label>
+								</div>
+							</div>
+
+							<!-- Status Indicators -->
+							<div class="component-group">
+								<h4>Status Surfaces</h4>
+								<div class="status-grid">
+									<div s-surface="success">
+										<strong>Success</strong>
+										<p>Operation completed</p>
+									</div>
+									<div s-surface="warning">
+										<strong>Warning</strong>
+										<p>Needs attention</p>
+									</div>
+									<div s-surface="danger">
+										<strong>Danger</strong>
+										<p>Error occurred</p>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+
+					<!-- Export Section -->
+					<section class="export-section">
+						<h3>Export Theme</h3>
+						<div class="export-controls">
+							<div class="export-format-toggle">
+								<button class="format-btn active" data-format="css">CSS</button>
+								<button class="format-btn" data-format="json">JSON</button>
+							</div>
+							<div class="export-actions">
+								<button class="action-btn" data-copy-link>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+										<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+									</svg>
+									Copy Link
+								</button>
+								<button class="action-btn" data-copy>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+										<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+									</svg>
+									Copy
+								</button>
+								<button class="action-btn" data-download>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+										<polyline points="7 10 12 15 17 10"/>
+										<line x1="12" x2="12" y1="15" y2="3"/>
+									</svg>
+									Download
+								</button>
+							</div>
+						</div>
+						<div class="export-preview">
+							<pre><code data-export-code></code></pre>
+						</div>
+					</section>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<MobileMenu currentPath={currentPath} />
+	<SearchDialog />
+</BaseLayout>
+
+<style>
+	/* Layout */
+	.theme-generator-layout {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.theme-generator-main {
+		flex: 1;
+		padding: var(--s-space-6);
+		max-width: 1600px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.theme-generator-header {
+		margin-bottom: var(--s-space-6);
+	}
+
+	.theme-generator-header h1 {
+		font-size: var(--s-text-3xl);
+		font-weight: var(--s-font-bold);
+		margin: 0 0 var(--s-space-2);
+	}
+
+	.theme-generator-header p {
+		color: var(--s-text-secondary);
+		margin: 0;
+	}
+
+	.theme-generator-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--s-space-6);
+	}
+
+	@media (min-width: 1024px) {
+		.theme-generator-grid {
+			grid-template-columns: 320px 1fr;
+		}
+	}
+
+	/* Control Panel */
+	.control-panel {
+		background: var(--s-surface-subtle);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-lg);
+		padding: var(--s-space-5);
+		height: fit-content;
+	}
+
+	@media (min-width: 1024px) {
+		.control-panel {
+			position: sticky;
+			top: calc(var(--docs-header-height) + var(--s-space-6));
+			max-height: calc(100vh - var(--docs-header-height) - var(--s-space-12));
+			overflow-y: auto;
+		}
+	}
+
+	.panel-section {
+		margin-bottom: var(--s-space-6);
+	}
+
+	.panel-section:last-child {
+		margin-bottom: 0;
+	}
+
+	.panel-title {
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-semibold);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--s-text-muted);
+		margin: 0 0 var(--s-space-3);
+	}
+
+	/* Preset Buttons */
+	.preset-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-space-2);
+	}
+
+	.preset-btn {
+		padding: var(--s-space-2) var(--s-space-3);
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		background: var(--s-surface-base);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-md);
+		color: var(--s-text-primary);
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.preset-btn:hover {
+		border-color: var(--s-interactive-primary);
+		background: var(--s-surface-hover);
+	}
+
+	.preset-btn.active {
+		background: var(--s-interactive-primary);
+		border-color: var(--s-interactive-primary);
+		color: var(--s-text-on-primary);
+	}
+
+	/* Hue Controls */
+	.hue-control {
+		margin-bottom: var(--s-space-4);
+	}
+
+	.hue-control:last-child {
+		margin-bottom: 0;
+	}
+
+	.hue-label {
+		display: flex;
+		justify-content: space-between;
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		margin-bottom: var(--s-space-2);
+	}
+
+	.hue-value {
+		font-family: var(--s-font-mono);
+		color: var(--s-text-secondary);
+	}
+
+	.hue-slider {
+		width: 100%;
+		height: 6px;
+		border-radius: var(--s-radius-full);
+		background: linear-gradient(
+			to right,
+			oklch(65% 0.15 0),
+			oklch(65% 0.15 60),
+			oklch(65% 0.15 120),
+			oklch(65% 0.15 180),
+			oklch(65% 0.15 240),
+			oklch(65% 0.15 300),
+			oklch(65% 0.15 360)
+		);
+		-webkit-appearance: none;
+		appearance: none;
+		cursor: pointer;
+	}
+
+	.hue-slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background: white;
+		border: 2px solid var(--s-border-default);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		cursor: grab;
+	}
+
+	.hue-slider::-moz-range-thumb {
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background: white;
+		border: 2px solid var(--s-border-default);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		cursor: grab;
+	}
+
+	.hue-preview {
+		width: 100%;
+		height: 8px;
+		margin-top: var(--s-space-2);
+		border-radius: var(--s-radius-sm);
+		background: var(--s-primary-500);
+	}
+
+	.hue-preview[data-hue-preview="primary"] { background: var(--s-primary-500); }
+	.hue-preview[data-hue-preview="secondary"] { background: var(--s-secondary-500); }
+	.hue-preview[data-hue-preview="accent"] { background: var(--s-accent-500); }
+	.hue-preview[data-hue-preview="success"] { background: var(--s-success-500); }
+	.hue-preview[data-hue-preview="warning"] { background: var(--s-warning-500); }
+	.hue-preview[data-hue-preview="danger"] { background: var(--s-danger-500); }
+	.hue-preview[data-hue-preview="neutral"] { background: var(--s-neutral-500); }
+
+	/* Advanced Toggle */
+	.advanced-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: var(--s-space-3);
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		background: var(--s-surface-base);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-md);
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.advanced-toggle:hover {
+		border-color: var(--s-border-hover);
+		color: var(--s-text-primary);
+	}
+
+	.advanced-toggle[aria-expanded="true"] {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		border-bottom-color: transparent;
+	}
+
+	.advanced-toggle .toggle-icon {
+		transition: transform 0.2s;
+	}
+
+	.advanced-toggle[aria-expanded="true"] .toggle-icon {
+		transform: rotate(180deg);
+	}
+
+	.advanced-content {
+		background: var(--s-surface-base);
+		border: 1px solid var(--s-border-default);
+		border-top: none;
+		border-radius: 0 0 var(--s-radius-md) var(--s-radius-md);
+		padding: var(--s-space-4);
+	}
+
+	.advanced-content[hidden] {
+		display: none;
+	}
+
+	.advanced-hint {
+		font-size: var(--s-text-xs);
+		color: var(--s-text-muted);
+		margin: 0 0 var(--s-space-4);
+		line-height: 1.5;
+	}
+
+	.auto-toggle {
+		display: flex;
+		align-items: center;
+		gap: var(--s-space-2);
+		font-size: var(--s-text-sm);
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		margin-bottom: var(--s-space-4);
+		padding: var(--s-space-2) var(--s-space-3);
+		background: var(--s-surface-subtle);
+		border-radius: var(--s-radius-sm);
+	}
+
+	.auto-toggle input {
+		accent-color: var(--s-interactive-primary);
+	}
+
+	.hue-control[data-advanced-control] {
+		opacity: 1;
+		transition: opacity 0.15s;
+	}
+
+	.hue-control[data-advanced-control].disabled {
+		opacity: 0.5;
+	}
+
+	.hue-slider:disabled {
+		cursor: not-allowed;
+	}
+
+	/* Reset Button */
+	.reset-btn {
+		width: 100%;
+		padding: var(--s-space-3);
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		background: transparent;
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-md);
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.reset-btn:hover {
+		border-color: var(--s-danger-500);
+		color: var(--s-danger-500);
+	}
+
+	/* Preview Area */
+	.preview-area {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-6);
+	}
+
+	/* Preview Controls */
+	.preview-controls {
+		display: flex;
+		align-items: center;
+		gap: var(--s-space-4);
+		padding: var(--s-space-3) var(--s-space-4);
+		background: var(--s-surface-subtle);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-lg);
+	}
+
+	.preview-label {
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		color: var(--s-text-secondary);
+	}
+
+	.theme-toggle-group {
+		display: flex;
+		gap: var(--s-space-1);
+		background: var(--s-surface-base);
+		border-radius: var(--s-radius-md);
+		padding: var(--s-space-1);
+	}
+
+	.theme-toggle-btn {
+		display: flex;
+		align-items: center;
+		gap: var(--s-space-2);
+		padding: var(--s-space-2) var(--s-space-3);
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		background: transparent;
+		border: none;
+		border-radius: var(--s-radius-sm);
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.theme-toggle-btn:hover {
+		color: var(--s-text-primary);
+	}
+
+	.theme-toggle-btn.active {
+		background: var(--s-interactive-primary);
+		color: var(--s-text-on-primary);
+	}
+
+	/* Preview Container */
+	.preview-container {
+		background: var(--s-surface-base);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-lg);
+		padding: var(--s-space-6);
+	}
+
+	.preview-container[data-theme="light"] {
+		color-scheme: only light;
+		/* Override semantic tokens for light mode */
+		--s-surface-base: var(--s-neutral-50);
+		--s-surface-raised: var(--s-neutral-100);
+		--s-surface-sunken: var(--s-neutral-200);
+		--s-surface-subtle: var(--s-neutral-100);
+		--s-surface-hover: var(--s-neutral-100);
+		--s-text-primary: var(--s-neutral-900);
+		--s-text-secondary: var(--s-neutral-700);
+		--s-text-muted: var(--s-neutral-500);
+		--s-border-default: var(--s-neutral-200);
+		--s-border-muted: var(--s-neutral-100);
+		--s-interactive-primary: var(--s-primary-700);
+		--s-interactive-primary-hover: var(--s-primary-800);
+		--s-state-success: var(--s-success-700);
+		--s-state-success-bg: var(--s-success-100);
+		--s-state-warning: var(--s-warning-700);
+		--s-state-warning-bg: var(--s-warning-100);
+		--s-state-danger: var(--s-danger-700);
+		--s-state-danger-bg: var(--s-danger-100);
+	}
+
+	.preview-container[data-theme="dark"] {
+		color-scheme: only dark;
+		/* Override semantic tokens for dark mode */
+		--s-surface-base: var(--s-neutral-950);
+		--s-surface-raised: var(--s-neutral-900);
+		--s-surface-sunken: var(--s-neutral-800);
+		--s-surface-subtle: var(--s-neutral-900);
+		--s-surface-hover: var(--s-neutral-800);
+		--s-text-primary: var(--s-neutral-50);
+		--s-text-secondary: var(--s-neutral-300);
+		--s-text-muted: var(--s-neutral-500);
+		--s-border-default: var(--s-neutral-800);
+		--s-border-muted: var(--s-neutral-900);
+		--s-interactive-primary: var(--s-primary-300);
+		--s-interactive-primary-hover: var(--s-primary-200);
+		--s-state-success: var(--s-success-300);
+		--s-state-success-bg: var(--s-success-900);
+		--s-state-warning: var(--s-warning-300);
+		--s-state-warning-bg: var(--s-warning-900);
+		--s-state-danger: var(--s-danger-300);
+		--s-state-danger-bg: var(--s-danger-900);
+	}
+
+	.preview-section {
+		margin-bottom: var(--s-space-8);
+	}
+
+	.preview-section:last-child {
+		margin-bottom: 0;
+	}
+
+	.preview-section h3 {
+		font-size: var(--s-text-lg);
+		font-weight: var(--s-font-semibold);
+		color: var(--s-text-primary);
+		margin: 0 0 var(--s-space-4);
+		padding-bottom: var(--s-space-2);
+		border-bottom: 1px solid var(--s-border-default);
+	}
+
+	/* Color Scales */
+	.color-scale-group {
+		margin-bottom: var(--s-space-3);
+	}
+
+	.scale-label {
+		display: block;
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		color: var(--s-text-secondary);
+		margin-bottom: var(--s-space-2);
+	}
+
+	.color-scale {
+		display: flex;
+		border-radius: var(--s-radius-md);
+		overflow: hidden;
+	}
+
+	.color-swatch {
+		flex: 1;
+		min-width: 0;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.color-swatch span {
+		font-size: 10px;
+		font-weight: var(--s-font-medium);
+		color: white;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: opacity 0.15s;
+	}
+
+	.color-swatch:hover span {
+		opacity: 1;
+	}
+
+	/* Component Groups */
+	.component-group {
+		margin-bottom: var(--s-space-6);
+	}
+
+	.component-group:last-child {
+		margin-bottom: 0;
+	}
+
+	.component-group h4 {
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-semibold);
+		color: var(--s-text-secondary);
+		margin: 0 0 var(--s-space-3);
+	}
+
+	.component-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-space-3);
+		margin-bottom: var(--s-space-3);
+	}
+
+	.component-row:last-child {
+		margin-bottom: 0;
+	}
+
+	.surface-grid,
+	.status-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+		gap: var(--s-space-3);
+		margin-bottom: var(--s-space-3);
+	}
+
+	.surface-grid:last-child,
+	.status-grid:last-child {
+		margin-bottom: 0;
+	}
+
+	.surface-grid [s-surface],
+	.status-grid [s-surface] {
+		padding: var(--s-space-4);
+	}
+
+	.surface-grid strong,
+	.status-grid strong {
+		display: block;
+		margin-bottom: var(--s-space-1);
+	}
+
+	.surface-grid p,
+	.status-grid p {
+		font-size: var(--s-text-sm);
+		margin: 0;
+		opacity: 0.8;
+	}
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: var(--s-space-4);
+	}
+
+	.card-grid [s-card-body] {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-2);
+	}
+
+	.card-grid [s-card-body] p {
+		margin: 0;
+		font-size: var(--s-text-sm);
+		color: var(--s-text-secondary);
+	}
+
+	.card-grid h5 {
+		margin: 0;
+	}
+
+	.input-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: var(--s-space-4);
+		margin-bottom: var(--s-space-4);
+	}
+
+	.form-controls-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-space-6);
+	}
+
+	/* Export Section */
+	.export-section {
+		background: var(--s-surface-subtle);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-lg);
+		padding: var(--s-space-5);
+	}
+
+	.export-section h3 {
+		font-size: var(--s-text-base);
+		font-weight: var(--s-font-semibold);
+		margin: 0 0 var(--s-space-4);
+	}
+
+	.export-controls {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--s-space-3);
+		margin-bottom: var(--s-space-4);
+	}
+
+	.export-format-toggle {
+		display: flex;
+		background: var(--s-surface-base);
+		border-radius: var(--s-radius-md);
+		padding: var(--s-space-1);
+	}
+
+	.format-btn {
+		padding: var(--s-space-2) var(--s-space-4);
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		background: transparent;
+		border: none;
+		border-radius: var(--s-radius-sm);
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.format-btn:hover {
+		color: var(--s-text-primary);
+	}
+
+	.format-btn.active {
+		background: var(--s-interactive-primary);
+		color: var(--s-text-on-primary);
+	}
+
+	.export-actions {
+		display: flex;
+		gap: var(--s-space-2);
+	}
+
+	.action-btn {
+		display: flex;
+		align-items: center;
+		gap: var(--s-space-2);
+		padding: var(--s-space-2) var(--s-space-3);
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		background: var(--s-surface-base);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-md);
+		color: var(--s-text-primary);
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+
+	.action-btn:hover {
+		border-color: var(--s-interactive-primary);
+		background: var(--s-surface-hover);
+	}
+
+	.export-preview {
+		background: var(--s-surface-base);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-md);
+		overflow: hidden;
+	}
+
+	.export-preview pre {
+		margin: 0;
+		padding: var(--s-space-4);
+		font-size: var(--s-text-sm);
+		line-height: 1.6;
+		overflow-x: auto;
+	}
+
+	.export-preview code {
+		font-family: var(--s-font-mono);
+		color: var(--s-text-primary);
+	}
+</style>
+
+<script>
+	// Theme presets
+	// Default matches docs site branding (theme.css), not framework defaults
+	const presets: Record<string, Record<string, number>> = {
+		default: { primary: 200, secondary: 180, accent: 140, success: 145, warning: 45, danger: 25, neutral: 220 },
+		plasma: { primary: 280, secondary: 320, accent: 45, success: 160, warning: 60, danger: 0, neutral: 280 },
+		laser: { primary: 180, secondary: 200, accent: 140, success: 145, warning: 45, danger: 25, neutral: 200 },
+		acid: { primary: 100, secondary: 80, accent: 60, success: 120, warning: 50, danger: 15, neutral: 100 },
+		void: { primary: 270, secondary: 250, accent: 310, success: 145, warning: 45, danger: 340, neutral: 270 },
+	};
+
+	// URL param mapping
+	const paramMap: Record<string, string> = {
+		p: 'primary',
+		s: 'secondary',
+		a: 'accent',
+		su: 'success',
+		w: 'warning',
+		d: 'danger',
+		n: 'neutral'
+	};
+
+	const reverseParamMap: Record<string, string> = Object.fromEntries(
+		Object.entries(paramMap).map(([k, v]) => [v, k])
+	);
+
+	// Semantic color defaults (UX conventions)
+	const semanticDefaults = {
+		success: 145, // Green
+		warning: 45,  // Yellow/Orange
+		danger: 25,   // Red
+	};
+
+	// Current hue values
+	let currentHues = { ...presets.default };
+
+	// Auto-calculate mode
+	let autoSemanticEnabled = true;
+
+	function initThemeGenerator() {
+		// Load from URL params if present, otherwise use CSS defaults
+		loadFromURL();
+
+		// Set up event listeners
+		setupSliders();
+		setupPresets();
+		setupPreviewToggle();
+		setupExport();
+		setupReset();
+		setupAdvancedToggle();
+		setupAutoSemantic();
+
+		// Initial render
+		updateAllSliders();
+		updateExportCode();
+		updatePresetButtons();
+		updateAdvancedControlsState();
+	}
+
+	function loadFromURL(): boolean {
+		const params = new URLSearchParams(window.location.search);
+		let validCount = 0;
+		let invalidCount = 0;
+
+		for (const [param, hue] of Object.entries(paramMap)) {
+			const value = params.get(param);
+			if (value === null) continue;
+
+			// Security: Strict validation - only allow digits (no signs, decimals, or other chars)
+			if (!/^\d{1,3}$/.test(value)) {
+				invalidCount++;
+				continue;
+			}
+
+			const numValue = parseInt(value, 10);
+
+			// Security: Ensure finite integer in valid hue range
+			if (!Number.isFinite(numValue) || numValue < 0 || numValue > 360) {
+				invalidCount++;
+				continue;
+			}
+
+			currentHues[hue] = numValue;
+			validCount++;
+		}
+
+		// Show notice if URL had theme params but some were invalid
+		if (invalidCount > 0) {
+			// Reset to defaults for consistency
+			currentHues = { ...presets.default };
+			setTimeout(() => {
+				showToast('Invalid theme URL - showing defaults');
+			}, 100);
+			return false;
+		}
+
+		if (validCount > 0) {
+			applyHues();
+			return true;
+		}
+
+		return false;
+	}
+
+	function applyHues() {
+		for (const [hue, value] of Object.entries(currentHues)) {
+			document.documentElement.style.setProperty(`--shift-hue-${hue}`, value.toString());
+		}
+	}
+
+	function updateAllSliders() {
+		for (const [hue, value] of Object.entries(currentHues)) {
+			const slider = document.querySelector(`[data-hue-slider="${hue}"]`) as HTMLInputElement;
+			const display = document.querySelector(`[data-hue="${hue}"]`);
+
+			if (slider) slider.value = value.toString();
+			if (display) display.textContent = value.toString();
+		}
+	}
+
+	function setupSliders() {
+		const sliders = document.querySelectorAll<HTMLInputElement>('[data-hue-slider]');
+
+		sliders.forEach(slider => {
+			slider.addEventListener('input', (e) => {
+				const target = e.target as HTMLInputElement;
+				const hue = target.dataset.hueSlider!;
+				const value = parseInt(target.value, 10);
+
+				currentHues[hue] = value;
+
+				// Update display
+				const display = document.querySelector(`[data-hue="${hue}"]`);
+				if (display) display.textContent = value.toString();
+
+				// If primary changed and auto mode is on, recalculate semantic colors
+				if (hue === 'primary' && autoSemanticEnabled) {
+					calculateSemanticColors();
+					updateAllSliders();
+				}
+
+				// Apply changes
+				applyHues();
+				updateExportCode();
+				updatePresetButtons();
+			});
+		});
+	}
+
+	function setupPresets() {
+		const presetBtns = document.querySelectorAll<HTMLButtonElement>('[data-preset]');
+
+		presetBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const presetName = btn.dataset.preset!;
+				const preset = presets[presetName];
+
+				if (preset) {
+					// Always apply primary, secondary, accent from preset
+					currentHues.primary = preset.primary;
+					currentHues.secondary = preset.secondary;
+					currentHues.accent = preset.accent;
+
+					// If auto mode, recalculate semantic colors; otherwise use preset values
+					if (autoSemanticEnabled) {
+						calculateSemanticColors();
+					} else {
+						currentHues.success = preset.success;
+						currentHues.warning = preset.warning;
+						currentHues.danger = preset.danger;
+						currentHues.neutral = preset.neutral;
+					}
+
+					applyHues();
+					updateAllSliders();
+					updateExportCode();
+					updatePresetButtons();
+				}
+			});
+		});
+	}
+
+	function updatePresetButtons() {
+		const presetBtns = document.querySelectorAll<HTMLButtonElement>('[data-preset]');
+
+		presetBtns.forEach(btn => {
+			const presetName = btn.dataset.preset!;
+			const preset = presets[presetName];
+
+			if (!preset) {
+				btn.classList.remove('active');
+				return;
+			}
+
+			// When auto mode is enabled, only match primary/secondary/accent
+			// When disabled, match all values
+			const keysToMatch = autoSemanticEnabled
+				? ['primary', 'secondary', 'accent']
+				: Object.keys(preset);
+
+			const isMatch = keysToMatch.every(
+				key => currentHues[key] === preset[key]
+			);
+
+			btn.classList.toggle('active', isMatch);
+		});
+	}
+
+	function setupPreviewToggle() {
+		const toggleBtns = document.querySelectorAll<HTMLButtonElement>('[data-preview-theme]');
+		const container = document.querySelector('[data-preview-container]');
+
+		toggleBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				const theme = btn.dataset.previewTheme!;
+
+				toggleBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+
+				if (container) {
+					container.setAttribute('data-theme', theme);
+				}
+			});
+		});
+	}
+
+	function setupExport() {
+		const formatBtns = document.querySelectorAll<HTMLButtonElement>('[data-format]');
+		const copyBtn = document.querySelector('[data-copy]');
+		const copyLinkBtn = document.querySelector('[data-copy-link]');
+		const downloadBtn = document.querySelector('[data-download]');
+
+		let currentFormat = 'css';
+
+		formatBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				currentFormat = btn.dataset.format!;
+				formatBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+				updateExportCode();
+			});
+		});
+
+		copyBtn?.addEventListener('click', async () => {
+			const code = generateExportCode(currentFormat);
+			await navigator.clipboard.writeText(code);
+			showToast('Copied to clipboard!');
+		});
+
+		copyLinkBtn?.addEventListener('click', async () => {
+			const url = generateShareURL();
+			await navigator.clipboard.writeText(url);
+			showToast('Link copied to clipboard!');
+		});
+
+		downloadBtn?.addEventListener('click', () => {
+			const code = generateExportCode(currentFormat);
+			const ext = currentFormat === 'css' ? 'css' : 'json';
+			const mime = currentFormat === 'css' ? 'text/css' : 'application/json';
+			const filename = `shift-theme.${ext}`;
+
+			const blob = new Blob([code], { type: mime });
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = filename;
+			a.click();
+			URL.revokeObjectURL(url);
+		});
+	}
+
+	function generateShareURL(): string {
+		const params = new URLSearchParams();
+		for (const [hue, value] of Object.entries(currentHues)) {
+			params.set(reverseParamMap[hue], value.toString());
+		}
+		return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+	}
+
+	function generateExportCode(format: string): string {
+		if (format === 'css') {
+			return `/* Generated by Shift CSS Theme Generator */
+:root {
+  --shift-hue-primary: ${currentHues.primary};
+  --shift-hue-secondary: ${currentHues.secondary};
+  --shift-hue-accent: ${currentHues.accent};
+  --shift-hue-success: ${currentHues.success};
+  --shift-hue-warning: ${currentHues.warning};
+  --shift-hue-danger: ${currentHues.danger};
+  --shift-hue-neutral: ${currentHues.neutral};
+}`;
+		} else {
+			return JSON.stringify({
+				theme: {
+					hues: {
+						primary: currentHues.primary,
+						secondary: currentHues.secondary,
+						accent: currentHues.accent,
+						success: currentHues.success,
+						warning: currentHues.warning,
+						danger: currentHues.danger,
+						neutral: currentHues.neutral
+					}
+				}
+			}, null, 2);
+		}
+	}
+
+	function updateExportCode() {
+		const codeEl = document.querySelector('[data-export-code]');
+		const activeFormat = document.querySelector('[data-format].active') as HTMLButtonElement;
+		const format = activeFormat?.dataset.format || 'css';
+
+		if (codeEl) {
+			codeEl.textContent = generateExportCode(format);
+		}
+	}
+
+	function setupReset() {
+		const resetBtn = document.querySelector('[data-reset]');
+
+		resetBtn?.addEventListener('click', () => {
+			currentHues = { ...presets.default };
+			autoSemanticEnabled = true;
+			applyHues();
+			updateAllSliders();
+			updateExportCode();
+			updatePresetButtons();
+			updateAdvancedControlsState();
+
+			// Reset the checkbox
+			const autoCheckbox = document.querySelector('[data-auto-semantic]') as HTMLInputElement;
+			if (autoCheckbox) autoCheckbox.checked = true;
+		});
+	}
+
+	function setupAdvancedToggle() {
+		const toggle = document.querySelector('[data-advanced-toggle]');
+		const content = document.querySelector('[data-advanced-content]');
+
+		toggle?.addEventListener('click', () => {
+			const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+			toggle.setAttribute('aria-expanded', (!isExpanded).toString());
+			content?.toggleAttribute('hidden', isExpanded);
+		});
+	}
+
+	function setupAutoSemantic() {
+		const checkbox = document.querySelector('[data-auto-semantic]') as HTMLInputElement;
+
+		if (checkbox) {
+			checkbox.checked = autoSemanticEnabled;
+
+			checkbox.addEventListener('change', () => {
+				autoSemanticEnabled = checkbox.checked;
+				updateAdvancedControlsState();
+
+				if (autoSemanticEnabled) {
+					// Recalculate semantic colors based on primary
+					calculateSemanticColors();
+					applyHues();
+					updateAllSliders();
+					updateExportCode();
+				}
+			});
+		}
+	}
+
+	function updateAdvancedControlsState() {
+		const advancedControls = document.querySelectorAll('[data-advanced-control]');
+		const sliders = document.querySelectorAll('[data-advanced-control] .hue-slider') as NodeListOf<HTMLInputElement>;
+
+		advancedControls.forEach(control => {
+			control.classList.toggle('disabled', autoSemanticEnabled);
+		});
+
+		sliders.forEach(slider => {
+			slider.disabled = autoSemanticEnabled;
+		});
+	}
+
+	function calculateSemanticColors() {
+		// Success, warning, danger stay at their semantic defaults
+		currentHues.success = semanticDefaults.success;
+		currentHues.warning = semanticDefaults.warning;
+		currentHues.danger = semanticDefaults.danger;
+
+		// Neutral follows primary for brand consistency
+		currentHues.neutral = currentHues.primary;
+	}
+
+	function showToast(message: string) {
+		const existing = document.querySelector('.toast-notification');
+		if (existing) existing.remove();
+
+		const toast = document.createElement('div');
+		toast.className = 'toast-notification';
+		toast.textContent = message;
+		toast.style.cssText = `
+			position: fixed;
+			top: 24px;
+			left: 50%;
+			transform: translateX(-50%);
+			background: #1a1a1a;
+			color: #fafafa;
+			padding: 12px 24px;
+			border-radius: 8px;
+			font-size: 14px;
+			font-weight: 500;
+			z-index: 9999;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+			animation: toast-in 0.3s ease-out;
+		`;
+
+		document.body.appendChild(toast);
+
+		setTimeout(() => {
+			toast.style.animation = 'toast-out 0.3s ease-in forwards';
+			setTimeout(() => toast.remove(), 300);
+		}, 5000);
+	}
+
+	// Add toast animations
+	const style = document.createElement('style');
+	style.textContent = `
+		@keyframes toast-in {
+			from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+			to { opacity: 1; transform: translateX(-50%) translateY(0); }
+		}
+		@keyframes toast-out {
+			from { opacity: 1; transform: translateX(-50%) translateY(0); }
+			to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+		}
+	`;
+	document.head.appendChild(style);
+
+	// Initialize on load
+	initThemeGenerator();
+
+	// Re-init after Astro page transitions
+	document.addEventListener('astro:after-swap', initThemeGenerator);
+</script>
