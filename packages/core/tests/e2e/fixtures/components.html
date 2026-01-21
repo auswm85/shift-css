@@ -25,6 +25,11 @@
 	</style>
 </head>
 <body>
+	<!-- Skip link for accessibility testing -->
+	<a href="#main-content" s-sr-only s-focus:not-sr-only data-testid="skip-link">
+		Skip to main content
+	</a>
+
 	<div class="theme-controls">
 		<button id="light-mode" s-btn="secondary">Light</button>
 		<button id="dark-mode" s-btn="secondary">Dark</button>
@@ -38,7 +43,26 @@
 		<a href="/contrast.html">Contrast Tests</a>
 	</nav>
 
-	<h1>Components</h1>
+	<h1 id="main-content">Components</h1>
+
+	<!-- Accessibility Utilities Section -->
+	<section data-testid="accessibility-section">
+		<h2>Accessibility Utilities</h2>
+
+		<h3>Screen Reader Only</h3>
+		<div style="display: flex; gap: var(--s-space-4); align-items: center; margin-bottom: var(--s-space-4);">
+			<button s-btn="ghost" data-testid="icon-button">
+				<svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+					<path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/>
+				</svg>
+				<span s-sr-only data-testid="sr-only-label">More options</span>
+			</button>
+			<span>Icon button with sr-only label (inspect to see hidden text)</span>
+		</div>
+
+		<h3>Focus-Visible Skip Link</h3>
+		<p>Press Tab from the top of the page to see the skip link appear.</p>
+	</section>
 
 	<!-- Buttons Section -->
 	<section data-testid="buttons-section">

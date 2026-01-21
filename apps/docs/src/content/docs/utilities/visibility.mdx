@@ -1,0 +1,239 @@
+---
+title: Visibility
+description: Visibility, screen reader, and display state utilities
+---
+
+## Overview
+
+Shift CSS provides semantic attribute selectors for controlling element visibility, including accessibility utilities for screen readers.
+
+## Import
+
+```css
+/* Full framework (includes all utilities) */
+@import "@shift-css/core";
+
+/* Or import just visibility utilities */
+@import "@shift-css/core/utils/visibility";
+```
+
+> **Note:** When importing individual utilities, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
+## Visibility States
+
+### Basic Visibility
+
+```html
+<div s-hidden>Completely hidden (display: none)</div>
+<div s-visible>Explicitly visible</div>
+<div s-invisible>Invisible but takes space</div>
+<div s-collapse>Collapsed (for tables)</div>
+```
+
+| Attribute | CSS | Use Case |
+|-----------|-----|----------|
+| `s-hidden` | `display: none` | Remove from layout entirely |
+| `s-visible` | `visibility: visible` | Explicitly show |
+| `s-invisible` | `visibility: hidden` | Hide but preserve space |
+| `s-collapse` | `visibility: collapse` | Collapse table rows/columns |
+
+## Screen Reader Utilities
+
+These utilities help create accessible interfaces by hiding content visually while keeping it available to assistive technologies.
+
+### Screen Reader Only
+
+Hide content visually while keeping it accessible to screen readers:
+
+```html
+<!-- Icon button with accessible label -->
+<button s-btn="primary">
+  <svg aria-hidden="true"><!-- icon --></svg>
+  <span s-sr-only>Close menu</span>
+</button>
+
+<!-- Form instructions for screen readers -->
+<label for="password">
+  Password
+  <span s-sr-only>(must be at least 8 characters)</span>
+</label>
+<input s-input type="password" id="password" />
+```
+
+### Focus-Visible Pattern (Skip Links)
+
+Combine `s-sr-only` with `s-focus:not-sr-only` to create elements that appear when focused:
+
+```html
+<!-- Skip link: hidden until focused via keyboard -->
+<a href="#main-content" s-sr-only s-focus:not-sr-only>
+  Skip to main content
+</a>
+
+<nav><!-- Navigation here --></nav>
+
+<main id="main-content">
+  <!-- Main content -->
+</main>
+```
+
+This pattern is essential for **WCAG 2.1 Level A compliance** (2.4.1 Bypass Blocks), allowing keyboard users to skip repetitive navigation.
+
+### Attribute Reference
+
+| Attribute | Description |
+|-----------|-------------|
+| `s-sr-only` | Visually hidden, accessible to screen readers |
+| `s-sr-only="focusable"` | Hidden until focused (legacy syntax) |
+| `s-not-sr-only` | Undo sr-only (standalone utility) |
+| `s-focus:not-sr-only` | Visible when element is focused |
+| `s-focus-within:not-sr-only` | Visible when child element is focused |
+
+### Implementation Details
+
+The `s-sr-only` technique uses a combination of CSS properties that hide content visually while remaining in the accessibility tree:
+
+```css
+[s-sr-only] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+```
+
+> **Why not `display: none`?** Elements with `display: none` or `visibility: hidden` are also hidden from screen readers. The sr-only technique keeps content in the accessibility tree.
+
+## Text Overflow
+
+### Truncation
+
+```html
+<p s-truncate>This text will be truncated with an ellipsis...</p>
+<p s-truncate="2">Multi-line truncation after 2 lines</p>
+<p s-truncate="3">Multi-line truncation after 3 lines</p>
+<p s-truncate="4">Multi-line truncation after 4 lines</p>
+```
+
+| Attribute | Description |
+|-----------|-------------|
+| `s-truncate` | Single line with ellipsis |
+| `s-truncate="2"` | Clamp to 2 lines |
+| `s-truncate="3"` | Clamp to 3 lines |
+| `s-truncate="4"` | Clamp to 4 lines |
+
+## Overflow Control
+
+```html
+<div s-overflow="auto">Scrolls when needed</div>
+<div s-overflow="hidden">Clips overflow</div>
+<div s-overflow="visible">Shows overflow</div>
+<div s-overflow="scroll">Always shows scrollbar</div>
+
+<!-- Axis-specific -->
+<div s-overflow-x="auto">Horizontal scroll only</div>
+<div s-overflow-y="hidden">Hide vertical overflow</div>
+```
+
+## Responsive Visibility
+
+### Hide on Breakpoints
+
+```html
+<div s-hide-on="sm">Hidden on small screens (< 640px)</div>
+<div s-hide-on="md">Hidden on medium screens (640-768px)</div>
+<div s-hide-on="lg">Hidden on large screens (768-1024px)</div>
+<div s-hide-on="xl">Hidden on extra large screens (≥ 1024px)</div>
+
+<!-- Multiple breakpoints -->
+<div s-hide-on="sm lg">Hidden on small AND large</div>
+```
+
+### Show Only on Breakpoints
+
+```html
+<div s-show-on="sm">Only visible on small screens</div>
+<div s-show-on="md">Only visible on medium screens</div>
+<div s-show-on="lg">Only visible on large screens</div>
+<div s-show-on="xl">Only visible on extra large screens</div>
+```
+
+## Pointer Events
+
+```html
+<div s-pointer="none">Click-through (ignores pointer)</div>
+<div s-pointer="auto">Normal pointer behavior</div>
+```
+
+## User Selection
+
+```html
+<p s-select="none">Cannot be selected</p>
+<p s-select="text">Text selection (default)</p>
+<p s-select="all">Select all on click</p>
+<p s-select="auto">Browser default</p>
+```
+
+## Isolation (Stacking Contexts)
+
+```html
+<div s-isolate>Creates new stacking context</div>
+<div s-isolate="auto">Auto isolation</div>
+```
+
+## Common Patterns
+
+### Accessible Icon Button
+
+```html
+<button s-btn="ghost">
+  <svg aria-hidden="true" width="20" height="20">
+    <use href="#icon-menu" />
+  </svg>
+  <span s-sr-only>Open menu</span>
+</button>
+```
+
+### Skip Link Navigation
+
+```html
+<body>
+  <a href="#main" s-sr-only s-focus:not-sr-only>
+    Skip to main content
+  </a>
+  <a href="#nav" s-sr-only s-focus:not-sr-only>
+    Skip to navigation
+  </a>
+
+  <header>
+    <nav id="nav"><!-- Navigation --></nav>
+  </header>
+
+  <main id="main">
+    <!-- Main content -->
+  </main>
+</body>
+```
+
+### Mobile-Only Content
+
+```html
+<p s-hide-on="lg xl">
+  Tap to expand (mobile only hint)
+</p>
+```
+
+### Prevent Text Selection on UI Elements
+
+```html
+<nav s-select="none">
+  <button>Tab 1</button>
+  <button>Tab 2</button>
+  <button>Tab 3</button>
+</nav>
+```
