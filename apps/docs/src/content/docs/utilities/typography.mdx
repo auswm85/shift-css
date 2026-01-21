@@ -7,6 +7,18 @@ description: Text styling and typography utility classes
 
 Typography utilities provide consistent text styling based on design tokens. All classes use the `s-` namespace prefix to avoid conflicts with other CSS frameworks.
 
+## Import
+
+```css
+/* Full framework (includes all utilities) */
+@import "@shift-css/core";
+
+/* Or import just typography utilities */
+@import "@shift-css/core/utils/typography";
+```
+
+> **Note:** When importing individual utilities, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
 ## Font Size
 
 Fluid typography that scales with viewport:

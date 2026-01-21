@@ -44,7 +44,7 @@ Or use the minified version:
 
 ## Subpath Exports
 
-Import only what you need:
+Import only what you need for smaller bundle sizes:
 
 ```css
 /* Full framework */
@@ -56,6 +56,31 @@ Import only what you need:
 /* Individual layers */
 @import "@shift-css/core/reset";
 @import "@shift-css/core/tokens";
+
+/* Individual components */
+@import "@shift-css/core/components/button";
+@import "@shift-css/core/components/card";
+@import "@shift-css/core/components/input";
+@import "@shift-css/core/components/modal";
+@import "@shift-css/core/components/surface";
+
+/* Individual utilities */
+@import "@shift-css/core/utils/layout";
+@import "@shift-css/core/utils/spacing";
+@import "@shift-css/core/utils/flex";
+@import "@shift-css/core/utils/typography";
+@import "@shift-css/core/utils/visibility";
+```
+
+### Minimal Setup Example
+
+For a lightweight setup with just buttons and spacing:
+
+```css
+@import "@shift-css/core/reset";
+@import "@shift-css/core/tokens";
+@import "@shift-css/core/components/button";
+@import "@shift-css/core/utils/spacing";
 ```
 
 ## Using the CLI

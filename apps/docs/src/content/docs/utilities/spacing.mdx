@@ -7,6 +7,18 @@ description: Margin, padding, and gap utility classes
 
 Spacing utilities provide consistent margin, padding, and gap based on the design token scale. All classes use the `s-` namespace prefix to avoid conflicts with other CSS frameworks.
 
+## Import
+
+```css
+/* Full framework (includes all utilities) */
+@import "@shift-css/core";
+
+/* Or import just spacing utilities */
+@import "@shift-css/core/utils/spacing";
+```
+
+> **Note:** When importing individual utilities, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
 ## Spacing Scale
 
 | Token | Value | Padding | Margin | Gap |

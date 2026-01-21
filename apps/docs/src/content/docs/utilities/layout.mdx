@@ -10,6 +10,19 @@ Shift CSS uses **semantic attribute selectors** for structural layout patterns. 
 - **Structural layout** → Attribute selectors (`s-flex`, `s-grid`, `s-container`)
 - **Atomic utilities** → Classes with `s-` prefix (`.s-flex-1`, `.s-w-full`)
 
+## Import
+
+```css
+/* Full framework (includes all utilities) */
+@import "@shift-css/core";
+
+/* Or import just layout utilities */
+@import "@shift-css/core/utils/layout";
+@import "@shift-css/core/utils/flex";
+```
+
+> **Note:** When importing individual utilities, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
 ## Flexbox
 
 ### Basic Flex Container
