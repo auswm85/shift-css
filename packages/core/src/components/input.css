@@ -40,15 +40,15 @@
   }
 
   /* Hover state */
-  &:hover:not(:disabled):not(:focus) {
+  &:hover:not(:disabled):not(:focus-visible) {
     --_input-border: var(--s-border-strong);
   }
 
-  /* Focus state */
-  &:focus {
+  /* Focus state - use :focus-visible to avoid showing ring on mouse click */
+  &:focus-visible {
     --_input-border: var(--s-interactive-primary);
-    outline: none;
-    box-shadow: 0 0 0 3px oklch(from var(--s-interactive-primary) l c h / 0.2);
+    outline: 2px solid var(--s-focus-ring);
+    outline-offset: 2px;
   }
 
   /* Disabled state */
@@ -63,8 +63,8 @@
   &[aria-invalid="true"] {
     --_input-border: var(--s-state-danger);
 
-    &:focus {
-      box-shadow: 0 0 0 3px oklch(from var(--s-state-danger) l c h / 0.2);
+    &:focus-visible {
+      outline-color: var(--s-state-danger);
     }
   }
 }
