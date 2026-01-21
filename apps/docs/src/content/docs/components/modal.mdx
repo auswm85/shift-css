@@ -1,0 +1,388 @@
+---
+title: Modal
+description: CSS-only modal dialog with backdrop, size variants, and entrance animations
+---
+
+## Overview
+
+The `s-modal` attribute provides a CSS-only modal component using the native `<dialog>` element. It includes backdrop styling, size variants, entrance animations, and full accessibility support.
+
+## Basic Usage
+
+```html
+<dialog s-modal>
+  <header s-modal-header>
+    <h2>Modal Title</h2>
+    <button s-modal-close aria-label="Close">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Your content goes here.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="secondary" formmethod="dialog">Cancel</button>
+    <button s-btn="primary">Confirm</button>
+  </footer>
+</dialog>
+```
+
+Open the modal with JavaScript:
+
+```js
+document.querySelector('[s-modal]').showModal();
+```
+
+## Size Variants
+
+### Small
+
+Best for confirmations and simple alerts:
+
+```html
+<dialog s-modal s-size="sm">
+  <!-- 400px max width -->
+</dialog>
+```
+
+### Default
+
+Standard dialog size (500px):
+
+```html
+<dialog s-modal>
+  <!-- 500px max width -->
+</dialog>
+```
+
+### Large
+
+For forms and detailed content:
+
+```html
+<dialog s-modal s-size="lg">
+  <!-- 700px max width -->
+</dialog>
+```
+
+### Full Screen
+
+Takes up the entire viewport:
+
+```html
+<dialog s-modal s-size="full">
+  <!-- 100vw x 100vh -->
+</dialog>
+```
+
+## Position Variants
+
+Modals are **centered by default** (no attribute needed). Use `s-position` to anchor them to a specific edge:
+
+### Top
+
+```html
+<dialog s-modal s-position="top">
+  <!-- Anchored to top of viewport -->
+</dialog>
+```
+
+### Bottom
+
+```html
+<dialog s-modal s-position="bottom">
+  <!-- Anchored to bottom of viewport -->
+</dialog>
+```
+
+### Left / Right
+
+```html
+<dialog s-modal s-position="left">
+  <!-- Anchored to left side -->
+</dialog>
+
+<dialog s-modal s-position="right">
+  <!-- Anchored to right side -->
+</dialog>
+```
+
+## Sub-Components
+
+### Header
+
+Contains the title and close button:
+
+```html
+<header s-modal-header>
+  <h2>Title</h2>
+  <button s-modal-close aria-label="Close">&times;</button>
+</header>
+```
+
+### Body
+
+Scrollable content area:
+
+```html
+<div s-modal-body>
+  <p>Content that scrolls when it overflows.</p>
+</div>
+```
+
+### Footer
+
+Action buttons, typically right-aligned:
+
+```html
+<footer s-modal-footer>
+  <button s-btn="secondary" formmethod="dialog">Cancel</button>
+  <button s-btn="primary">Save</button>
+</footer>
+```
+
+### Close Button
+
+Circular button with hover states:
+
+```html
+<button s-modal-close aria-label="Close">&times;</button>
+```
+
+## Form Integration
+
+Use `formmethod="dialog"` to close the modal when a button is clicked:
+
+```html
+<dialog s-modal>
+  <form method="dialog">
+    <header s-modal-header>
+      <h2>Confirm Action</h2>
+      <button s-modal-close aria-label="Close">&times;</button>
+    </header>
+    <div s-modal-body>
+      <p>Are you sure you want to proceed?</p>
+    </div>
+    <footer s-modal-footer>
+      <button s-btn="secondary" value="cancel">Cancel</button>
+      <button s-btn="primary" value="confirm">Confirm</button>
+    </footer>
+  </form>
+</dialog>
+```
+
+## Scrollable Content
+
+Long content automatically scrolls within the body:
+
+```html
+<dialog s-modal>
+  <header s-modal-header>
+    <h2>Terms of Service</h2>
+    <button s-modal-close aria-label="Close">&times;</button>
+  </header>
+  <div s-modal-body>
+    <!-- Long content scrolls here -->
+    <p>Lorem ipsum...</p>
+    <p>More content...</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" formmethod="dialog">Accept</button>
+  </footer>
+</dialog>
+```
+
+## JavaScript API
+
+The native `<dialog>` element provides built-in methods:
+
+```js
+const modal = document.querySelector('[s-modal]');
+
+// Open as modal (with backdrop)
+modal.showModal();
+
+// Open as non-modal dialog
+modal.show();
+
+// Close the modal
+modal.close();
+
+// Close with a return value
+modal.close('confirmed');
+
+// Listen for close
+modal.addEventListener('close', () => {
+  console.log('Modal closed with:', modal.returnValue);
+});
+
+// Listen for cancel (ESC key)
+modal.addEventListener('cancel', (e) => {
+  // Optionally prevent ESC from closing
+  // e.preventDefault();
+});
+```
+
+## Accessibility
+
+The native `<dialog>` element provides:
+
+- **Focus trapping**: Focus stays within the modal when open
+- **ESC to close**: Press Escape to dismiss the modal
+- **`aria-modal`**: Automatically set when using `showModal()`
+- **Inert background**: Content behind the modal is not interactive
+- **Focus restoration**: Focus returns to the trigger element on close
+
+### WCAG 2.1 Compliance
+
+Shift CSS modals include:
+
+- **Touch targets**: Close button meets 44×44px minimum (WCAG 2.5.5)
+- **Focus indicators**: Visible focus ring for keyboard navigation (WCAG 2.4.7)
+- **Reduced motion**: Animations respect `prefers-reduced-motion` (WCAG 2.3.3)
+- **High contrast**: Supports Windows High Contrast Mode (WCAG 1.4.11)
+
+### Recommended Markup
+
+```html
+<!-- Full accessible modal example -->
+<dialog
+  s-modal
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+>
+  <header s-modal-header>
+    <h2 id="modal-title">Accessible Title</h2>
+    <button s-modal-close aria-label="Close modal">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p id="modal-description">
+      This description helps screen reader users understand the modal's purpose.
+    </p>
+    <!-- Additional content -->
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="secondary" type="submit" formmethod="dialog">Cancel</button>
+    <button s-btn="primary" type="submit">Confirm</button>
+  </footer>
+</dialog>
+```
+
+### Screen Reader Tips
+
+- Always include `aria-labelledby` pointing to the modal title
+- Use `aria-describedby` for modals with important context
+- Ensure the close button has `aria-label="Close modal"` or similar
+
+## Animation
+
+Modals animate in with a scale and fade effect:
+
+```css
+@keyframes s-modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+```
+
+Animation respects `prefers-reduced-motion` (handled globally in reset.css).
+
+## How It Works
+
+Modals use the Layered Intent pattern with `:where()` for zero-specificity base styles:
+
+```css
+:where(dialog[s-modal]) {
+  --_modal-bg: var(--s-surface-raised);
+  --_modal-border: var(--s-border-muted);
+  --_modal-radius: var(--s-radius-xl);
+  --_modal-shadow: var(--s-shadow-2xl);
+  --_modal-padding: var(--s-space-4);
+  --_modal-max-width: 32rem;
+
+  background-color: var(--_modal-bg);
+  border-radius: var(--_modal-radius);
+  box-shadow: var(--_modal-shadow);
+
+  /* Auto-contrast text */
+  @supports (color: oklch(from red l c h)) {
+    color: oklch(
+      from var(--_modal-bg)
+        clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0
+    );
+  }
+}
+```
+
+## CSS Custom Properties
+
+| Property             | Description                  |
+| -------------------- | ---------------------------- |
+| `--_modal-bg`        | Background color (private)   |
+| `--_modal-border`    | Border color (private)       |
+| `--_modal-radius`    | Border radius (private)      |
+| `--_modal-shadow`    | Box shadow (private)         |
+| `--_modal-padding`   | Internal padding (private)   |
+| `--_modal-max-width` | Maximum width (private)      |
+
+## All Attributes
+
+| Attribute        | Purpose               | Values                              |
+| ---------------- | --------------------- | ----------------------------------- |
+| `s-modal`        | Modal container       | Boolean                             |
+| `s-size`         | Modal size variant    | `sm`, `lg`, `full`                  |
+| `s-position`     | Modal position        | `top`, `bottom`, `left`, `right` (centered by default) |
+| `s-modal-header` | Header section        | Boolean                             |
+| `s-modal-body`   | Scrollable body       | Boolean                             |
+| `s-modal-footer` | Footer with actions   | Boolean                             |
+| `s-modal-close`  | Close button          | Boolean                             |
+
+## Customization Examples
+
+### Custom Max Width
+
+```css
+dialog[s-modal] {
+  --_modal-max-width: 40rem;
+}
+```
+
+### Remove Border Radius
+
+```css
+dialog[s-modal] {
+  --_modal-radius: 0;
+}
+```
+
+### Custom Backdrop
+
+```css
+dialog[s-modal]::backdrop {
+  background: oklch(0.2 0.05 280 / 0.8);
+  backdrop-filter: blur(8px);
+}
+```
+
+### Slide-in Animation
+
+```css
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+dialog[s-modal][open] {
+  animation: slide-in var(--s-duration-300) var(--s-ease-out);
+}
+```

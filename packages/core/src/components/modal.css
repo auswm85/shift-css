@@ -1,0 +1,263 @@
+/**
+ * Shift CSS - Modal Component
+ *
+ * CSS-only modal using native <dialog> element with backdrop styling,
+ * size variants, and entrance animations.
+ *
+ * Usage:
+ *   <dialog s-modal>
+ *     <header s-modal-header>
+ *       <h2>Title</h2>
+ *       <button s-modal-close aria-label="Close">&times;</button>
+ *     </header>
+ *     <div s-modal-body>Content</div>
+ *     <footer s-modal-footer>
+ *       <button s-btn formmethod="dialog">Cancel</button>
+ *       <button s-btn="primary">Confirm</button>
+ *     </footer>
+ *   </dialog>
+ *
+ * JavaScript:
+ *   document.querySelector('[s-modal]').showModal();
+ */
+
+/* Ensure closed dialogs are hidden */
+dialog[s-modal]:not([open]) {
+  display: none;
+}
+
+/* Base modal - zero specificity for easy overrides */
+:where(dialog[s-modal]) {
+  /* Modal CSS properties (customization points) */
+  --_modal-bg: var(--s-surface-raised);
+  --_modal-border: var(--s-border-muted);
+  --_modal-radius: var(--s-radius-xl);
+  --_modal-shadow: var(--s-shadow-2xl);
+  --_modal-padding: var(--s-space-4);
+  --_modal-max-width: 32rem;
+
+  /* Reset dialog defaults */
+  border: none;
+  padding: 0;
+  margin: auto; /* Center by default */
+
+  /* Size and positioning */
+  width: min(var(--_modal-max-width), calc(100vw - var(--s-space-4) * 2));
+  max-height: calc(100vh - var(--s-space-4) * 2);
+  max-width: var(--_modal-max-width);
+
+  /* Visual styling */
+  background-color: var(--_modal-bg);
+  border-radius: var(--_modal-radius);
+  box-shadow: var(--_modal-shadow);
+
+  /* Layout - only when open (preserve native display:none when closed) */
+  &[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Text color - use semantic token for reliable light/dark mode support */
+  color: var(--s-text-primary);
+}
+
+/* Open state animation */
+dialog[s-modal][open] {
+  animation: s-modal-scale-in var(--s-duration-200) var(--s-ease-out);
+}
+
+/* Focus visible state for keyboard navigation */
+dialog[s-modal]:focus-visible {
+  outline: 2px solid var(--s-focus-ring);
+  outline-offset: 2px;
+}
+
+@keyframes s-modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* =============================================================================
+   BACKDROP STYLING
+   ============================================================================= */
+
+dialog[s-modal]::backdrop {
+  background: oklch(0 0 0 / 0.5);
+  backdrop-filter: blur(4px);
+  animation: s-modal-backdrop-in var(--s-duration-200) var(--s-ease-out);
+}
+
+@keyframes s-modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =============================================================================
+   SIZE VARIANTS
+   ============================================================================= */
+
+/* Small - confirmations, simple alerts */
+dialog[s-modal][s-size="sm"] {
+  --_modal-max-width: 25rem;
+}
+
+/* Large - forms, detailed content */
+dialog[s-modal][s-size="lg"] {
+  --_modal-max-width: 43.75rem;
+}
+
+/* Full screen */
+dialog[s-modal][s-size="full"] {
+  --_modal-max-width: 100vw;
+  --_modal-radius: 0;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* =============================================================================
+   POSITION VARIANTS
+   ============================================================================= */
+
+/* Top - anchored to top of viewport */
+dialog[s-modal][s-position="top"] {
+  margin-top: var(--s-space-8);
+  margin-bottom: auto;
+}
+
+/* Bottom - anchored to bottom of viewport */
+dialog[s-modal][s-position="bottom"] {
+  margin-top: auto;
+  margin-bottom: var(--s-space-8);
+}
+
+/* Left - anchored to left side */
+dialog[s-modal][s-position="left"] {
+  margin-left: var(--s-space-8);
+  margin-right: auto;
+}
+
+/* Right - anchored to right side */
+dialog[s-modal][s-position="right"] {
+  margin-left: auto;
+  margin-right: var(--s-space-8);
+}
+
+/* =============================================================================
+   SUB-COMPONENTS
+   ============================================================================= */
+
+/* Header - title and close button */
+:where([s-modal-header]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-space-4);
+  padding: var(--_modal-padding, var(--s-space-4));
+  border-bottom: 1px solid var(--s-border-muted);
+
+  /* Typography for title */
+  & > h1,
+  & > h2,
+  & > h3 {
+    margin: 0;
+    font-size: var(--s-text-lg);
+    font-weight: var(--s-font-semibold);
+    line-height: 1.25;
+    color: inherit;
+  }
+}
+
+/* Body - scrollable content area */
+:where([s-modal-body]) {
+  flex: 1;
+  padding: var(--_modal-padding, var(--s-space-4));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Footer - action buttons */
+:where([s-modal-footer]) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-space-3);
+  padding: var(--_modal-padding, var(--s-space-4));
+  border-top: 1px solid var(--s-border-muted);
+}
+
+/* Close button */
+:where([s-modal-close]) {
+  /* Reset button styles */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  /* Size and shape - minimum 44x44px for WCAG 2.1 touch target */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border-radius: var(--s-radius-full);
+
+  /* Typography */
+  font-size: var(--s-text-xl);
+  line-height: 1;
+  color: var(--s-text-secondary);
+
+  /* Transitions */
+  transition:
+    background-color var(--s-duration-150) var(--s-ease-out),
+    color var(--s-duration-150) var(--s-ease-out);
+
+  &:hover {
+    background-color: var(--s-surface-sunken);
+    color: var(--s-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--s-focus-ring);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: var(--s-border-default);
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY & HIGH CONTRAST
+   ============================================================================= */
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  dialog[s-modal] {
+    border: 2px solid CanvasText;
+  }
+
+  dialog[s-modal]::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: none;
+  }
+
+  [s-modal-header],
+  [s-modal-footer] {
+    border-color: CanvasText;
+  }
+
+  [s-modal-close] {
+    border: 1px solid ButtonText;
+  }
+}

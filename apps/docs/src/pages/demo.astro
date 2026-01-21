@@ -377,6 +377,29 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			</article>
 		</div>
 
+		<h2>Modals</h2>
+
+		<h3>Size Variants</h3>
+		<div class="demo-row">
+			<button s-btn="primary" data-open-modal="demo-modal-sm">Small Modal</button>
+			<button s-btn="primary" data-open-modal="demo-modal-default">Default Modal</button>
+			<button s-btn="primary" data-open-modal="demo-modal-lg">Large Modal</button>
+			<button s-btn="secondary" data-open-modal="demo-modal-full">Full Screen</button>
+		</div>
+
+		<h3>Form Modal</h3>
+		<div class="demo-row">
+			<button s-btn="outline" data-open-modal="demo-modal-form">Open Form Modal</button>
+		</div>
+
+		<h3>Position Variants</h3>
+		<div class="demo-row">
+			<button s-btn="secondary" data-open-modal="demo-modal-top">Top</button>
+			<button s-btn="secondary" data-open-modal="demo-modal-bottom">Bottom</button>
+			<button s-btn="secondary" data-open-modal="demo-modal-left">Left</button>
+			<button s-btn="secondary" data-open-modal="demo-modal-right">Right</button>
+		</div>
+
 		<h2>Inputs</h2>
 
 		<h3>Text Inputs</h3>
@@ -492,6 +515,180 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			<p style="font-size: var(--s-text-3xl);">text-3xl: The quick brown fox</p>
 		</div>
 	</div>
+
+	<!-- Modal dialogs (outside page flow) -->
+	<dialog s-modal s-size="sm" id="demo-modal-sm">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Small Modal</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This is a small modal (400px max width), ideal for confirmations and simple alerts.</p>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="secondary" type="submit">Cancel</button>
+				<button s-btn="primary" type="submit">Confirm</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal id="demo-modal-default">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Default Modal</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This is the default modal size (500px max width), suitable for most use cases.</p>
+				<p style="margin-top: var(--s-space-4);">Features include:</p>
+				<ul style="margin-top: var(--s-space-2); padding-left: var(--s-space-6);">
+					<li>Backdrop blur effect</li>
+					<li>Scale-in animation</li>
+					<li>Auto-contrast text</li>
+					<li>Native dialog accessibility</li>
+				</ul>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="ghost" type="submit">Close</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal s-size="lg" id="demo-modal-lg">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Large Modal</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This is a large modal (700px max width), great for forms and detailed content.</p>
+				<div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-space-4); margin-top: var(--s-space-4);">
+					<div s-field>
+						<label s-field-label>First Name</label>
+						<input s-input type="text" placeholder="John" />
+					</div>
+					<div s-field>
+						<label s-field-label>Last Name</label>
+						<input s-input type="text" placeholder="Doe" />
+					</div>
+					<div s-field style="grid-column: span 2;">
+						<label s-field-label>Email</label>
+						<input s-input type="email" placeholder="john@example.com" />
+					</div>
+				</div>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="secondary" type="submit">Cancel</button>
+				<button s-btn="primary" type="submit">Save Changes</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal s-size="full" id="demo-modal-full">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Full Screen Modal</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This modal takes up the entire viewport. Useful for immersive experiences, image galleries, or complex workflows.</p>
+				<div style="margin-top: var(--s-space-6); padding: var(--s-space-8); background: var(--s-surface-sunken); border-radius: var(--s-radius-lg); text-align: center;">
+					<p style="font-size: var(--s-text-xl); color: var(--s-text-secondary);">Full screen content area</p>
+				</div>
+			</div>
+			<footer s-modal-footer style="justify-content: center;">
+				<button s-btn="primary" type="submit">Done</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal id="demo-modal-form">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Contact Us</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<div s-field>
+					<label s-field-label>Name</label>
+					<input s-input type="text" placeholder="Your name" />
+				</div>
+				<div s-field style="margin-top: var(--s-space-4);">
+					<label s-field-label>Email</label>
+					<input s-input type="email" placeholder="you@example.com" />
+				</div>
+				<div s-field style="margin-top: var(--s-space-4);">
+					<label s-field-label>Message</label>
+					<textarea s-input rows="4" placeholder="How can we help?"></textarea>
+				</div>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="secondary" type="submit">Cancel</button>
+				<button s-btn="primary" type="submit">Send Message</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal s-position="top" id="demo-modal-top">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Top Position</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This modal is anchored to the top of the viewport using <code>s-position="top"</code>.</p>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="primary" type="submit">Got it</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal s-position="bottom" id="demo-modal-bottom">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Bottom Position</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This modal is anchored to the bottom of the viewport using <code>s-position="bottom"</code>.</p>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="primary" type="submit">Got it</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal s-position="left" id="demo-modal-left">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Left Position</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This modal is anchored to the left side using <code>s-position="left"</code>.</p>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="primary" type="submit">Got it</button>
+			</footer>
+		</form>
+	</dialog>
+
+	<dialog s-modal s-position="right" id="demo-modal-right">
+		<form method="dialog">
+			<header s-modal-header>
+				<h2>Right Position</h2>
+				<button s-modal-close type="button" aria-label="Close">&times;</button>
+			</header>
+			<div s-modal-body>
+				<p>This modal is anchored to the right side using <code>s-position="right"</code>.</p>
+			</div>
+			<footer s-modal-footer>
+				<button s-btn="primary" type="submit">Got it</button>
+			</footer>
+		</form>
+	</dialog>
 </DocsLayout>
 
 <style>
@@ -682,9 +879,49 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		});
 	}
 
+	function initModals() {
+		// Open modal buttons
+		document.querySelectorAll('[data-open-modal]').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const modalId = btn.getAttribute('data-open-modal');
+				const modal = document.getElementById(modalId!) as HTMLDialogElement;
+				modal?.showModal();
+			});
+		});
+
+		// Close buttons inside modals
+		document.querySelectorAll('[s-modal-close]').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const modal = btn.closest('dialog');
+				modal?.close();
+			});
+		});
+
+		// Close on backdrop click (click outside modal)
+		document.querySelectorAll('dialog[s-modal]').forEach((modal) => {
+			modal.addEventListener('click', (e: Event) => {
+				const mouseEvent = e as MouseEvent;
+				const dialog = e.currentTarget as HTMLDialogElement;
+				const rect = dialog.getBoundingClientRect();
+				const clickedInDialog =
+					mouseEvent.clientX >= rect.left &&
+					mouseEvent.clientX <= rect.right &&
+					mouseEvent.clientY >= rect.top &&
+					mouseEvent.clientY <= rect.bottom;
+				if (!clickedInDialog) {
+					dialog.close();
+				}
+			});
+		});
+	}
+
 	// Initialize on load
 	initDemoSliders();
+	initModals();
 
 	// Re-init after Astro page transitions
-	document.addEventListener('astro:after-swap', initDemoSliders);
+	document.addEventListener('astro:after-swap', () => {
+		initDemoSliders();
+		initModals();
+	});
 </script>
