@@ -129,7 +129,7 @@
    ============================================================================= */
 
 @media (prefers-color-scheme: dark) {
-  :where([s-skip-link]) {
+  :where([s-skip-link]:not([s-skip-link="secondary"]):not([s-skip-link="contrast"])) {
     --_skip-bg: var(--s-primary-500);
   }
 
@@ -143,7 +143,7 @@
 }
 
 /* Also support explicit dark mode */
-:root[style*="color-scheme: dark"] :where([s-skip-link]),
-:root[style*="color-scheme:dark"] :where([s-skip-link]) {
+:root[style*="color-scheme: dark"] :where([s-skip-link]:not([s-skip-link="secondary"]):not([s-skip-link="contrast"])),
+:root[style*="color-scheme:dark"] :where([s-skip-link]:not([s-skip-link="secondary"]):not([s-skip-link="contrast"])) {
   --_skip-bg: var(--s-primary-500);
 }
