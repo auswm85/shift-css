@@ -34,8 +34,9 @@
     "css",
     "cli",
     "shift-css",
-    "migration",
-    "cascade-layers"
+    "init",
+    "cascade-layers",
+    "oklch"
   ],
   "license": "MIT",
   "repository": {

@@ -10,9 +10,10 @@
  */
 
 import pc from 'picocolors';
+import pkg from '../package.json' with { type: 'json' };
 import { initCommand } from './commands/init.ts';
 
-const VERSION = '0.0.1';
+const VERSION = pkg.version;
 
 function showHelp(): void {
 	console.log(`
