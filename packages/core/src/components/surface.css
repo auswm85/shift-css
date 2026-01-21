@@ -88,7 +88,7 @@
   border: 1px solid var(--s-border-default);
 }
 
-/* Interactive surface (hoverable) */
+/* Interactive surface (hoverable, focusable) */
 [s-surface][s-interactive] {
   cursor: pointer;
   transition:
@@ -103,6 +103,11 @@
   &:active {
     transform: translateY(0);
     box-shadow: var(--s-shadow-sm);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--s-focus-ring);
+    outline-offset: 2px;
   }
 }
 
