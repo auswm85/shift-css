@@ -40,7 +40,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shiftcss/shift-css.git",
+    "url": "git+https://github.com/auswm85/shift-css.git",
     "directory": "packages/cli"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/auswm85/shift-css/issues"
+  },
+  "homepage": "https://github.com/auswm85/shift-css#readme"
 }

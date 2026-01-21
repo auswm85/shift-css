@@ -1,12 +1,10 @@
 name: Release Please
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      dry-run:
-        description: 'Preview release without creating PR'
-        type: boolean
-        default: false
 
 permissions:
   contents: write
