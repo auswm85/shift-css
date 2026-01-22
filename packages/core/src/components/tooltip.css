@@ -6,16 +6,17 @@
  *
  * Usage:
  *   <button s-tooltip="Save your changes">Save</button>
- *   <button s-tooltip="Top tooltip" s-tooltip-pos="top">Top</button>
- *   <button s-tooltip="Bottom tooltip" s-tooltip-pos="bottom">Bottom</button>
- *   <button s-tooltip="Left tooltip" s-tooltip-pos="left">Left</button>
- *   <button s-tooltip="Right tooltip" s-tooltip-pos="right">Right</button>
+ *   <button s-tooltip="Bottom" s-tooltip-pos="bottom">Bottom</button>
  *
  * Customization:
  *   [s-tooltip] {
  *     --_tooltip-bg: var(--s-primary-700);
  *     --_tooltip-max-width: 300px;
  *   }
+ *
+ * Accessibility Note:
+ *   Pseudo-element tooltips are not announced by screen readers.
+ *   For critical information, use aria-describedby with a visible element.
  */
 
 /* =============================================================================
@@ -52,7 +53,7 @@
   /* Default position: top - centered above element */
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(4px);
   margin-bottom: var(--_tooltip-offset);
 
   /* Visual styling */
@@ -73,10 +74,11 @@
   /* Prevent tooltip from blocking interactions */
   pointer-events: none;
 
-  /* Animation */
+  /* Animation - fade + translate */
   transition:
     opacity var(--s-duration-150) var(--s-ease-out),
-    visibility var(--s-duration-150) var(--s-ease-out);
+    visibility var(--s-duration-150) var(--s-ease-out),
+    transform var(--s-duration-150) var(--s-ease-out);
 }
 
 /* Arrow via ::before - points toward trigger */
@@ -94,7 +96,7 @@
   /* Default position: top - arrow points down at trigger */
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(4px);
   margin-bottom: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
 
   /* Arrow shape - points down */
@@ -105,10 +107,11 @@
   /* Prevent blocking interactions */
   pointer-events: none;
 
-  /* Animation */
+  /* Animation - fade + translate */
   transition:
     opacity var(--s-duration-150) var(--s-ease-out),
-    visibility var(--s-duration-150) var(--s-ease-out);
+    visibility var(--s-duration-150) var(--s-ease-out),
+    transform var(--s-duration-150) var(--s-ease-out);
 }
 
 /* =============================================================================
@@ -121,6 +124,7 @@
 [s-tooltip]:focus-visible::before {
   visibility: visible;
   opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* =============================================================================
@@ -131,6 +135,7 @@
 [s-tooltip-pos="bottom"]::after {
   bottom: auto;
   top: 100%;
+  transform: translateX(-50%) translateY(-4px);
   margin-bottom: 0;
   margin-top: var(--_tooltip-offset);
 }
@@ -138,6 +143,7 @@
 [s-tooltip-pos="bottom"]::before {
   bottom: auto;
   top: 100%;
+  transform: translateX(-50%) translateY(-4px);
   margin-bottom: 0;
   margin-top: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
 
@@ -146,13 +152,20 @@
   border-bottom: var(--_tooltip-arrow-size) solid var(--_tooltip-bg);
 }
 
+[s-tooltip-pos="bottom"]:hover::after,
+[s-tooltip-pos="bottom"]:hover::before,
+[s-tooltip-pos="bottom"]:focus-visible::after,
+[s-tooltip-pos="bottom"]:focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Left position */
 [s-tooltip-pos="left"]::after {
   bottom: auto;
   left: auto;
   top: 50%;
   right: 100%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(4px);
   margin-bottom: 0;
   margin-right: var(--_tooltip-offset);
 }
@@ -162,7 +175,7 @@
   left: auto;
   top: 50%;
   right: 100%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(4px);
   margin-bottom: 0;
   margin-right: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
 
@@ -173,12 +186,19 @@
   border-right: none;
 }
 
+[s-tooltip-pos="left"]:hover::after,
+[s-tooltip-pos="left"]:hover::before,
+[s-tooltip-pos="left"]:focus-visible::after,
+[s-tooltip-pos="left"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
 /* Right position */
 [s-tooltip-pos="right"]::after {
   bottom: auto;
   left: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(-4px);
   margin-bottom: 0;
   margin-left: var(--_tooltip-offset);
 }
@@ -187,7 +207,7 @@
   bottom: auto;
   left: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(-4px);
   margin-bottom: 0;
   margin-left: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
 
@@ -196,6 +216,13 @@
   border-bottom: var(--_tooltip-arrow-size) solid transparent;
   border-right: var(--_tooltip-arrow-size) solid var(--_tooltip-bg);
   border-left: none;
+}
+
+[s-tooltip-pos="right"]:hover::after,
+[s-tooltip-pos="right"]:hover::before,
+[s-tooltip-pos="right"]:focus-visible::after,
+[s-tooltip-pos="right"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
 }
 
 /* =============================================================================

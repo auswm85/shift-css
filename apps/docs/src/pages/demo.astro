@@ -350,6 +350,7 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		<h3>Position Variants</h3>
 		<p style="font-size: var(--s-text-sm); color: var(--s-text-secondary); margin-bottom: var(--s-space-3);">
 			Hover or focus the buttons to see tooltips. Uses CSS-only implementation with <code>::after</code> pseudo-element.
+			<br><strong>Note:</strong> Pseudo-element tooltips are not announced by screen readers. For critical information, use <code>aria-describedby</code>.
 		</p>
 		<div class="demo-row tooltip-demo">
 			<button s-btn="secondary" s-tooltip="Tooltip on top (default)">Top</button>
