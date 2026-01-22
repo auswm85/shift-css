@@ -3,6 +3,7 @@
 A zero-runtime, OKLCH-native CSS framework with automatic theming.
 
 [![npm version](https://img.shields.io/npm/v/@shift-css/core)](https://www.npmjs.com/package/@shift-css/core)
+[![gzip size](https://img.shields.io/badge/gzip-~12KB-blue)](https://www.npmjs.com/package/@shift-css/core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Installation
@@ -78,9 +79,9 @@ Import only what you need:
 
 | File            | Size   |
 | --------------- | ------ |
-| `shift.css`     | ~55 KB |
-| `shift.min.css` | ~41 KB |
-| Gzipped         | ~10 KB |
+| `shift.css`     | ~83 KB |
+| `shift.min.css` | ~64 KB |
+| Gzipped         | ~12 KB |
 
 ## Browser Support
 
