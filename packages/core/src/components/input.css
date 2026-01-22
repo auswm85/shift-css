@@ -49,6 +49,11 @@
     --_input-border: var(--s-interactive-primary);
     outline: 2px solid var(--s-focus-ring);
     outline-offset: 2px;
+
+    /* RCS: contextual focus ring - 30% alpha of primary color */
+    @supports (color: oklch(from red l c h)) {
+      outline-color: oklch(from var(--s-interactive-primary) l c h / 0.3);
+    }
   }
 
   /* Disabled state */

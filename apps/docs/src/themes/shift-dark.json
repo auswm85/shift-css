@@ -42,22 +42,14 @@
     },
     {
       "name": "Function",
-      "scope": [
-        "entity.name.function",
-        "support.function",
-        "meta.function-call"
-      ],
+      "scope": ["entity.name.function", "support.function", "meta.function-call"],
       "settings": {
         "foreground": "#c4b5fd"
       }
     },
     {
       "name": "Class",
-      "scope": [
-        "entity.name.class",
-        "entity.name.type.class",
-        "support.class"
-      ],
+      "scope": ["entity.name.class", "entity.name.type.class", "support.class"],
       "settings": {
         "foreground": "#fcd34d"
       }
@@ -71,11 +63,7 @@
     },
     {
       "name": "Property",
-      "scope": [
-        "variable.other.property",
-        "support.type.property-name",
-        "meta.object-literal.key"
-      ],
+      "scope": ["variable.other.property", "support.type.property-name", "meta.object-literal.key"],
       "settings": {
         "foreground": "#67e8f9"
       }
@@ -94,10 +82,7 @@
     },
     {
       "name": "CSS Value",
-      "scope": [
-        "support.constant.property-value.css",
-        "meta.property-value.css"
-      ],
+      "scope": ["support.constant.property-value.css", "meta.property-value.css"],
       "settings": {
         "foreground": "#6ee7b7"
       }
@@ -118,10 +103,7 @@
     },
     {
       "name": "Attribute Value",
-      "scope": [
-        "string.quoted.double.html",
-        "string.quoted.single.html"
-      ],
+      "scope": ["string.quoted.double.html", "string.quoted.single.html"],
       "settings": {
         "foreground": "#6ee7b7"
       }
@@ -135,22 +117,14 @@
     },
     {
       "name": "Punctuation",
-      "scope": [
-        "punctuation",
-        "meta.brace",
-        "punctuation.definition.string"
-      ],
+      "scope": ["punctuation", "meta.brace", "punctuation.definition.string"],
       "settings": {
         "foreground": "#a3a3a3"
       }
     },
     {
       "name": "Type",
-      "scope": [
-        "entity.name.type",
-        "support.type",
-        "support.type.primitive"
-      ],
+      "scope": ["entity.name.type", "support.type", "support.type.primitive"],
       "settings": {
         "foreground": "#67e8f9"
       }

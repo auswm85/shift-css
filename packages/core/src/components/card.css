@@ -99,13 +99,15 @@
 [s-card="elevated"],
 [s-card][s-surface="raised"] {
   --_card-shadow: var(--s-shadow-lg);
-  --_card-border: transparent;
+  /* Use oklch transparent for RCS compatibility */
+  --_card-border: oklch(0% 0 0 / 0);
 }
 
 /* Floating card (high elevation) */
 [s-card][s-surface="floating"] {
   --_card-shadow: var(--s-shadow-xl);
-  --_card-border: transparent;
+  /* Use oklch transparent for RCS compatibility */
+  --_card-border: oklch(0% 0 0 / 0);
 }
 
 /* Outline card */
@@ -124,11 +126,17 @@
   cursor: pointer;
   transition:
     transform var(--s-duration-200) var(--s-ease-out),
-    box-shadow var(--s-duration-200) var(--s-ease-out);
+    box-shadow var(--s-duration-200) var(--s-ease-out),
+    border-color var(--s-duration-200) var(--s-ease-out);
 
   &:hover {
     transform: translateY(-4px);
     --_card-shadow: var(--s-shadow-xl);
+
+    /* RCS: interactive depth - border darkens 10% on hover */
+    @supports (color: oklch(from red l c h)) {
+      border-color: oklch(from var(--_card-border) max(calc(l - 0.1), 0.05) c h);
+    }
   }
 
   &:active {

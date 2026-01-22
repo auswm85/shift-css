@@ -91,6 +91,11 @@ dialog[s-modal]::backdrop {
   background: oklch(0 0 0 / 0.5);
   backdrop-filter: blur(4px);
   animation: s-modal-backdrop-in var(--s-duration-200) var(--s-ease-out);
+
+  /* RCS: adaptive backdrop - tinted with brand hue */
+  @supports (color: oklch(from red l c h)) {
+    background: oklch(from var(--s-primary-500) 0.1 0.02 h / 0.5);
+  }
 }
 
 @keyframes s-modal-backdrop-in {

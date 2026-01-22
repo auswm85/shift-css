@@ -63,12 +63,18 @@
   border-radius: var(--_tooltip-radius);
   box-shadow: var(--s-shadow-md);
 
+  /* RCS: tethered tinting - derive border from tooltip background */
+  @supports (color: oklch(from red l c h)) {
+    border: 1px solid oklch(from var(--_tooltip-bg) max(calc(l - 0.1), 0.05) c h);
+  }
+
   /* Typography */
   font-size: var(--s-text-xs);
   font-weight: var(--s-font-medium);
   line-height: var(--s-leading-tight);
   text-align: center;
-  white-space: nowrap;
+  text-wrap: balance;
+  min-width: min(100%, var(--_tooltip-max-width)); /* At least as wide as trigger, capped at max */
   max-width: var(--_tooltip-max-width);
 
   /* Prevent tooltip from blocking interactions */
