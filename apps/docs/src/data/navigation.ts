@@ -36,6 +36,7 @@ const navigationData: NavEntry[] = [
 		label: 'Components',
 		items: [
 			{ label: 'Surface', href: '/components/surface' },
+			{ label: 'Badge', href: '/components/badge' },
 			{ label: 'Button', href: '/components/button' },
 			{ label: 'Card', href: '/components/card' },
 			{ label: 'Input', href: '/components/input' },
