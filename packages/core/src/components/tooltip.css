@@ -65,7 +65,7 @@
 
   /* RCS: tethered tinting - derive border from tooltip background */
   @supports (color: oklch(from red l c h)) {
-    border: 1px solid oklch(from var(--_tooltip-bg) calc(l - 0.1) c h);
+    border: 1px solid oklch(from var(--_tooltip-bg) max(calc(l - 0.1), 0.05) c h);
   }
 
   /* Typography */
@@ -73,7 +73,8 @@
   font-weight: var(--s-font-medium);
   line-height: var(--s-leading-tight);
   text-align: center;
-  white-space: nowrap;
+  text-wrap: balance;
+  min-width: 100%; /* At least as wide as trigger element */
   max-width: var(--_tooltip-max-width);
 
   /* Prevent tooltip from blocking interactions */

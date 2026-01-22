@@ -61,7 +61,7 @@
 
     /* RCS: derive hover from base color (works with custom colors)
        Light mode: darken (l * 0.92), Dark mode: lighten (l * 1.1, capped at 0.95) */
-    @supports (color: oklch(from red l c h)) {
+    @supports (color: oklch(from red l c h)) and (color: light-dark(red, blue)) {
       background-color: light-dark(
         oklch(from var(--_btn-bg) calc(l * 0.92) c h),
         oklch(from var(--_btn-bg) min(calc(l * 1.1), 0.95) c h)
@@ -76,7 +76,7 @@
 
     /* RCS: derive active from base color
        Light mode: darken more, Dark mode: lighten more */
-    @supports (color: oklch(from red l c h)) {
+    @supports (color: oklch(from red l c h)) and (color: light-dark(red, blue)) {
       background-color: light-dark(
         oklch(from var(--_btn-bg) calc(l * 0.85) c h),
         oklch(from var(--_btn-bg) min(calc(l * 1.2), 0.98) c h)
