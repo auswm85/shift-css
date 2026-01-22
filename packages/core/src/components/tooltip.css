@@ -74,7 +74,7 @@
   line-height: var(--s-leading-tight);
   text-align: center;
   text-wrap: balance;
-  min-width: 100%; /* At least as wide as trigger element */
+  min-width: min(100%, var(--_tooltip-max-width)); /* At least as wide as trigger, capped at max */
   max-width: var(--_tooltip-max-width);
 
   /* Prevent tooltip from blocking interactions */
