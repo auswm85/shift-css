@@ -126,6 +126,13 @@ export type ShiftDisplay =
 /** Responsive breakpoints for hide-on */
 export type ShiftBreakpoint = 'sm' | 'md' | 'lg' | 'xl';
 
+// =============================================================================
+// BOOLEAN ATTRIBUTE TYPE
+// =============================================================================
+
+/** Boolean attribute type - accepts true or empty string for presence-only attributes */
+export type ShiftBooleanAttr = true | '';
+
 /** Overflow */
 export type ShiftOverflow = 'auto' | 'hidden' | 'scroll' | 'visible';
 
@@ -145,28 +152,28 @@ export type ShiftSelect = 'none' | 'text' | 'all' | 'auto';
  */
 export interface ShiftAttributes {
 	// Component attributes (with variants)
-	's-btn'?: ShiftButtonVariant | boolean;
-	's-badge'?: ShiftBadgeVariant | boolean;
-	's-surface'?: ShiftSurfaceVariant | boolean;
-	's-modal'?: ShiftModalPosition | boolean;
+	's-btn'?: ShiftButtonVariant | ShiftBooleanAttr;
+	's-badge'?: ShiftBadgeVariant | ShiftBooleanAttr;
+	's-surface'?: ShiftSurfaceVariant | ShiftBooleanAttr;
+	's-modal'?: ShiftModalPosition | ShiftBooleanAttr;
 	's-tooltip'?: string;
 	's-tooltip-pos'?: ShiftTooltipPosition;
-	's-prose'?: ShiftProseVariant | boolean;
-	's-input'?: ShiftInputVariant | boolean;
-	's-card'?: boolean;
-	's-skip-link'?: boolean;
+	's-prose'?: ShiftProseVariant | ShiftBooleanAttr;
+	's-input'?: ShiftInputVariant | ShiftBooleanAttr;
+	's-card'?: ShiftBooleanAttr;
+	's-skip-link'?: ShiftBooleanAttr;
 
 	// Size modifier (composable)
 	's-size'?: ShiftSizeExtended;
 
 	// Layout attributes
-	's-flex'?: ShiftFlexVariant | boolean;
-	's-grid'?: ShiftGridColumns | boolean;
+	's-flex'?: ShiftFlexVariant | ShiftBooleanAttr;
+	's-grid'?: ShiftGridColumns | ShiftBooleanAttr;
 	's-grid-rows'?: ShiftGridRows;
 	's-col-span'?: ShiftColSpan;
 	's-row-span'?: ShiftRowSpan;
-	's-gap'?: ShiftGap | boolean;
-	's-container'?: ShiftContainer | boolean;
+	's-gap'?: ShiftGap | ShiftBooleanAttr;
+	's-container'?: ShiftContainer | ShiftBooleanAttr;
 	's-justify'?: ShiftJustify;
 	's-items'?: ShiftItems;
 	's-content'?: ShiftContent;
@@ -183,45 +190,45 @@ export interface ShiftAttributes {
 	's-select'?: ShiftSelect;
 
 	// Boolean attributes (presence-only)
-	's-block'?: boolean;
-	's-bordered'?: boolean;
-	's-btn-group'?: boolean;
-	's-card-body'?: boolean;
-	's-card-footer'?: boolean;
-	's-card-header'?: boolean;
-	's-card-media'?: boolean;
-	's-card-title'?: boolean;
-	's-card-subtitle'?: boolean;
-	's-card-icon'?: boolean;
-	's-card-grid'?: boolean;
-	's-card-stack'?: boolean;
-	's-checkbox'?: boolean;
-	's-collapse'?: boolean;
-	's-dot'?: boolean;
-	's-field'?: boolean;
-	's-field-label'?: boolean;
-	's-field-hint'?: boolean;
-	's-field-error'?: boolean;
-	's-hidden'?: boolean;
-	's-horizontal'?: boolean;
-	's-icon'?: boolean;
-	's-input-group'?: boolean;
-	's-input-addon'?: boolean;
-	's-interactive'?: boolean;
-	's-invisible'?: boolean;
-	's-isolate'?: boolean;
-	's-link'?: boolean;
-	's-loading'?: boolean;
-	's-modal-body'?: boolean;
-	's-modal-close'?: boolean;
-	's-modal-footer'?: boolean;
-	's-modal-header'?: boolean;
-	's-not-sr-only'?: boolean;
-	's-pill'?: boolean;
-	's-radio'?: boolean;
-	's-skip-link-group'?: boolean;
-	's-sr-only'?: boolean;
-	's-toggle'?: boolean;
-	's-truncate'?: boolean;
-	's-visible'?: boolean;
+	's-block'?: ShiftBooleanAttr;
+	's-bordered'?: ShiftBooleanAttr;
+	's-btn-group'?: ShiftBooleanAttr;
+	's-card-body'?: ShiftBooleanAttr;
+	's-card-footer'?: ShiftBooleanAttr;
+	's-card-header'?: ShiftBooleanAttr;
+	's-card-media'?: ShiftBooleanAttr;
+	's-card-title'?: ShiftBooleanAttr;
+	's-card-subtitle'?: ShiftBooleanAttr;
+	's-card-icon'?: ShiftBooleanAttr;
+	's-card-grid'?: ShiftBooleanAttr;
+	's-card-stack'?: ShiftBooleanAttr;
+	's-checkbox'?: ShiftBooleanAttr;
+	's-collapse'?: ShiftBooleanAttr;
+	's-dot'?: ShiftBooleanAttr;
+	's-field'?: ShiftBooleanAttr;
+	's-field-label'?: ShiftBooleanAttr;
+	's-field-hint'?: ShiftBooleanAttr;
+	's-field-error'?: ShiftBooleanAttr;
+	's-hidden'?: ShiftBooleanAttr;
+	's-horizontal'?: ShiftBooleanAttr;
+	's-icon'?: ShiftBooleanAttr;
+	's-input-group'?: ShiftBooleanAttr;
+	's-input-addon'?: ShiftBooleanAttr;
+	's-interactive'?: ShiftBooleanAttr;
+	's-invisible'?: ShiftBooleanAttr;
+	's-isolate'?: ShiftBooleanAttr;
+	's-link'?: ShiftBooleanAttr;
+	's-loading'?: ShiftBooleanAttr;
+	's-modal-body'?: ShiftBooleanAttr;
+	's-modal-close'?: ShiftBooleanAttr;
+	's-modal-footer'?: ShiftBooleanAttr;
+	's-modal-header'?: ShiftBooleanAttr;
+	's-not-sr-only'?: ShiftBooleanAttr;
+	's-pill'?: ShiftBooleanAttr;
+	's-radio'?: ShiftBooleanAttr;
+	's-skip-link-group'?: ShiftBooleanAttr;
+	's-sr-only'?: ShiftBooleanAttr;
+	's-toggle'?: ShiftBooleanAttr;
+	's-truncate'?: ShiftBooleanAttr;
+	's-visible'?: ShiftBooleanAttr;
 }
