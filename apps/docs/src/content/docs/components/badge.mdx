@@ -101,18 +101,20 @@ Fully rounded badges for counts and tags:
 Small status dots without text:
 
 ```html
-<span s-badge="success" s-dot></span>
-<span s-badge="warning" s-dot></span>
-<span s-badge="danger" s-dot></span>
+<span s-badge="success" s-dot aria-label="Online"></span>
+<span s-badge="warning" s-dot aria-label="Away"></span>
+<span s-badge="danger" s-dot aria-label="Busy"></span>
 ```
 
 Dot sizes:
 
 ```html
-<span s-badge="primary" s-dot s-size="sm"></span>
-<span s-badge="primary" s-dot></span>
-<span s-badge="primary" s-dot s-size="lg"></span>
+<span s-badge="primary" s-dot s-size="sm" aria-label="Status"></span>
+<span s-badge="primary" s-dot aria-label="Status"></span>
+<span s-badge="primary" s-dot s-size="lg" aria-label="Status"></span>
 ```
+
+> **Accessibility:** Dot indicators without visible text should include `aria-label` to convey meaning to screen reader users.
 
 ## Usage in Context
 
@@ -174,7 +176,7 @@ Badges use the Layered Intent pattern with `:where()` for zero-specificity base 
 
 /* Variant styles */
 [s-badge="primary"] {
-  --_badge-bg: var(--s-primary-600);
+  --_badge-bg: var(--s-primary-700);
 }
 ```
 
