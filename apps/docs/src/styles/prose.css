@@ -165,7 +165,7 @@
 .prose pre {
 	margin-bottom: var(--s-space-4);
 	padding: var(--s-space-4);
-	background: var(--s-surface-sunken);
+	/* background handled by Shiki inline styles */
 	border: 1px solid var(--s-border-default);
 	border-radius: var(--s-radius-md);
 	overflow-x: auto;
@@ -180,29 +180,7 @@
 	font-size: inherit;
 }
 
-/* Shiki themes integration */
-.prose pre {
-	background-color: var(--shiki-dark-bg, var(--s-surface-sunken));
-	color: var(--shiki-dark, var(--s-text-primary));
-}
-
-@media (prefers-color-scheme: light) {
-	.prose pre {
-		background-color: var(--shiki-light-bg, var(--s-surface-sunken));
-		color: var(--shiki-light, var(--s-text-primary));
-	}
-}
-
-:root[data-theme='light'] .prose pre {
-	background-color: var(--shiki-light-bg, var(--s-surface-sunken));
-	color: var(--shiki-light, var(--s-text-primary));
-}
-
-:root[data-theme='dark'] .prose pre {
-	background-color: var(--shiki-dark-bg, var(--s-surface-sunken));
-	color: var(--shiki-dark, var(--s-text-primary));
-}
-
+/* Shiki dark mode color switching */
 :root[data-theme='dark'] .prose pre code span[style*="--shiki-dark"] {
 	color: var(--shiki-dark) !important;
 }

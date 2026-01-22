@@ -2,7 +2,19 @@
  * Shiki transformer that converts hex colors to OKLCH
  * This gives us true perceptual uniformity in syntax highlighting
  */
-import type { ShikiTransformer } from 'shiki';
+
+// Inline type definition (shiki is bundled inside Astro, not a direct dependency)
+interface HastElement {
+	properties?: Record<string, unknown>;
+}
+
+interface ShikiTransformer {
+	name?: string;
+	pre?: (node: HastElement) => void;
+	code?: (node: HastElement) => void;
+	line?: (node: HastElement) => void;
+	span?: (node: HastElement) => void;
+}
 
 // Convert sRGB to linear RGB (remove gamma correction)
 function srgbToLinear(c: number): number {
@@ -64,8 +76,9 @@ function hexToOklch(hex: string): string {
 	const hValue = h.toFixed(0);
 
 	// Skip hue for achromatic colors (very low chroma)
-	if (c < 0.005) {
-		return `oklch(${lPercent}% ${cValue} none)`;
+	// Threshold of 0.035 catches grays that appear tinted due to conversion precision
+	if (c < 0.035) {
+		return `oklch(${lPercent}% 0 none)`;
 	}
 
 	return `oklch(${lPercent}% ${cValue} ${hValue})`;
