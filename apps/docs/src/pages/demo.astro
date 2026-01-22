@@ -374,6 +374,91 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			<button s-btn="outline" s-tooltip="This tooltip appears on keyboard focus too!">Tab to me</button>
 		</div>
 
+		<h2>Menus</h2>
+
+		<h3>Basic Menu</h3>
+		<p style="font-size: var(--s-text-sm); color: var(--s-text-secondary); margin-bottom: var(--s-space-3);">
+			Click the trigger to open. Uses native <code>&lt;details&gt;</code> with CSS positioning.
+		</p>
+		<div class="demo-row">
+			<details s-menu>
+				<summary s-menu-trigger s-btn="secondary">Options ▾</summary>
+				<div s-menu-items>
+					<button s-menu-item>Edit</button>
+					<button s-menu-item>Duplicate</button>
+					<button s-menu-item>Archive</button>
+				</div>
+			</details>
+		</div>
+
+		<h3>Position Variants</h3>
+		<div class="demo-row">
+			<details s-menu>
+				<summary s-menu-trigger s-btn="secondary">Default ▾</summary>
+				<div s-menu-items>
+					<button s-menu-item>Bottom-start</button>
+					<button s-menu-item>Aligned left</button>
+				</div>
+			</details>
+			<details s-menu="end">
+				<summary s-menu-trigger s-btn="secondary">End ▾</summary>
+				<div s-menu-items>
+					<button s-menu-item>Bottom-end</button>
+					<button s-menu-item>Aligned right</button>
+				</div>
+			</details>
+			<details s-menu="top">
+				<summary s-menu-trigger s-btn="secondary">Top ▴</summary>
+				<div s-menu-items>
+					<button s-menu-item>Opens above</button>
+					<button s-menu-item>Aligned left</button>
+				</div>
+			</details>
+			<details s-menu="top-end">
+				<summary s-menu-trigger s-btn="secondary">Top End ▴</summary>
+				<div s-menu-items>
+					<button s-menu-item>Opens above</button>
+					<button s-menu-item>Aligned right</button>
+				</div>
+			</details>
+		</div>
+
+		<h3>With Dividers & Labels</h3>
+		<div class="demo-row">
+			<details s-menu>
+				<summary s-menu-trigger s-btn="primary">Actions ▾</summary>
+				<div s-menu-items>
+					<span s-menu-label>Document</span>
+					<button s-menu-item>
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+							<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+						</svg>
+						Edit
+					</button>
+					<button s-menu-item>Duplicate</button>
+					<button s-menu-item>Move to...</button>
+					<hr s-menu-divider>
+					<span s-menu-label>Danger Zone</span>
+					<button s-menu-item>Archive</button>
+					<button s-menu-item s-danger>Delete</button>
+				</div>
+			</details>
+		</div>
+
+		<h3>Danger Menu Item</h3>
+		<div class="demo-row">
+			<details s-menu>
+				<summary s-menu-trigger s-btn="outline">File ▾</summary>
+				<div s-menu-items>
+					<button s-menu-item>Save</button>
+					<button s-menu-item>Export</button>
+					<hr s-menu-divider>
+					<button s-menu-item s-danger>Delete</button>
+				</div>
+			</details>
+		</div>
+
 		<h2>Cards</h2>
 
 		<h3>Basic Cards</h3>
@@ -1021,6 +1106,16 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 		});
 	}
 
+	function initMenus() {
+		// Close menu when clicking an item
+		document.querySelectorAll('[s-menu-item]').forEach((item) => {
+			item.addEventListener('click', () => {
+				const details = item.closest('details[s-menu]') as HTMLDetailsElement;
+				if (details) details.open = false;
+			});
+		});
+	}
+
 	function initModals() {
 		// Open modal buttons
 		document.querySelectorAll('[data-open-modal]').forEach((btn) => {
@@ -1059,11 +1154,13 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	// Initialize on load
 	initDemoSliders();
+	initMenus();
 	initModals();
 
 	// Re-init after Astro page transitions
 	document.addEventListener('astro:after-swap', () => {
 		initDemoSliders();
+		initMenus();
 		initModals();
 	});
 </script>
