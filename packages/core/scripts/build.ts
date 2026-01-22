@@ -11,6 +11,7 @@ import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, watch, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gzipSync } from 'node:zlib';
 import { browserslistToTargets, bundle } from 'lightningcss';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -176,9 +177,9 @@ function build(_options: BuildOptions = {}): void {
 	const minifiedPath = join(DIST_DIR, 'shift.min.css');
 	if (existsSync(minifiedPath)) {
 		const content = readFileSync(minifiedPath);
-		const gzipEstimate = Math.round(content.length * 0.25); // Rough gzip estimate
+		const gzipSize = gzipSync(content).length;
 		console.log(`📊 Bundle size: ${(content.length / 1024).toFixed(2)} KB`);
-		console.log(`📊 Estimated gzip: ~${(gzipEstimate / 1024).toFixed(2)} KB`);
+		console.log(`📊 Gzipped: ${(gzipSize / 1024).toFixed(2)} KB`);
 	}
 }
 
