@@ -267,3 +267,45 @@
     }
   }
 }
+
+/* =============================================================================
+   STYLE QUERIES - Depth-Aware Adaptation
+   Buttons automatically adapt when nested inside surfaces of different depths.
+   ============================================================================= */
+
+@supports (container-type: inline-size) {
+  /**
+   * Inside raised surface (depth: 1)
+   * Secondary buttons need stronger border for definition
+   */
+  @container surface style(--_surface-depth: 1) {
+    :where([s-btn="secondary"]) {
+      --_btn-border: var(--s-border-strong);
+    }
+  }
+
+  /**
+   * Inside floating surface (depth: 2)
+   * All buttons get stronger borders for definition against elevated bg
+   */
+  @container surface style(--_surface-depth: 2) {
+    :where([s-btn="secondary"]) {
+      --_btn-border: var(--s-border-strong);
+      --_btn-bg: var(--s-surface-base);
+    }
+
+    :where([s-btn="ghost"]) {
+      --_btn-border: var(--s-border-muted);
+    }
+  }
+
+  /**
+   * Inside sunken surface (depth: -1)
+   * Buttons use base surface bg to stand out from recessed area
+   */
+  @container surface style(--_surface-depth: -1) {
+    :where([s-btn="secondary"]) {
+      --_btn-bg: var(--s-surface-base);
+    }
+  }
+}

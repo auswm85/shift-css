@@ -290,3 +290,58 @@ select[s-input] {
     }
   }
 }
+
+/* =============================================================================
+   STYLE QUERIES - Depth-Aware Adaptation
+   Inputs automatically adapt when nested inside surfaces of different depths.
+   ============================================================================= */
+
+@supports (container-type: inline-size) {
+  /**
+   * Inside raised surface (depth: 1)
+   * Use sunken background to create visual depth contrast
+   */
+  @container surface style(--_surface-depth: 1) {
+    :where([s-input]) {
+      --_input-bg: var(--s-surface-sunken);
+    }
+
+    :where([s-checkbox]) input,
+    :where([s-radio]) input {
+      background-color: var(--s-surface-sunken);
+    }
+  }
+
+  /**
+   * Inside floating surface (depth: 2)
+   * Stronger sunken appearance with visible border
+   */
+  @container surface style(--_surface-depth: 2) {
+    :where([s-input]) {
+      --_input-bg: var(--s-surface-sunken);
+      --_input-border: var(--s-border-strong);
+    }
+
+    :where([s-checkbox]) input,
+    :where([s-radio]) input {
+      background-color: var(--s-surface-sunken);
+      border-color: var(--s-border-strong);
+    }
+  }
+
+  /**
+   * Inside sunken surface (depth: -1)
+   * Use base background to stand out from recessed area
+   */
+  @container surface style(--_surface-depth: -1) {
+    :where([s-input]) {
+      --_input-bg: var(--s-surface-raised);
+      --_input-border: var(--s-border-muted);
+    }
+
+    :where([s-checkbox]) input,
+    :where([s-radio]) input {
+      background-color: var(--s-surface-raised);
+    }
+  }
+}

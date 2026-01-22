@@ -188,3 +188,39 @@
     border: 1px solid CanvasText;
   }
 }
+
+/* =============================================================================
+   STYLE QUERIES - Depth-Aware Adaptation
+   Badges automatically adapt when nested inside surfaces of different depths.
+   Only affects default (neutral) and outline badges.
+   ============================================================================= */
+
+@supports (container-type: inline-size) {
+  /* Inside raised surface (depth: 1) */
+  @container surface style(--_surface-depth: 1) {
+    :where([s-badge=""]) {
+      --_badge-bg: var(--s-neutral-300);
+    }
+    :where([s-badge="outline"]) {
+      box-shadow: inset 0 0 0 1px var(--s-border-strong);
+    }
+  }
+
+  /* Inside floating surface (depth: 2) */
+  @container surface style(--_surface-depth: 2) {
+    :where([s-badge=""]) {
+      --_badge-bg: var(--s-neutral-300);
+      box-shadow: var(--s-shadow-sm);
+    }
+    :where([s-badge="outline"]) {
+      box-shadow: inset 0 0 0 1px var(--s-border-strong);
+    }
+  }
+
+  /* Inside sunken surface (depth: -1) */
+  @container surface style(--_surface-depth: -1) {
+    :where([s-badge=""]) {
+      --_badge-bg: var(--s-neutral-100);
+    }
+  }
+}

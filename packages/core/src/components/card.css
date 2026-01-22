@@ -224,3 +224,41 @@
   flex-direction: column;
   gap: var(--s-space-4);
 }
+
+/* =============================================================================
+   STYLE QUERIES - Depth-Aware Adaptation
+   Cards automatically adapt when nested inside surfaces of different depths.
+   ============================================================================= */
+
+@supports (container-type: inline-size) {
+  /**
+   * Inside raised surface (depth: 1)
+   * Reduce shadow to avoid visual "shadow stacking"
+   */
+  @container surface style(--_surface-depth: 1) {
+    :where([s-card]) {
+      --_card-shadow: var(--s-shadow-sm);
+    }
+  }
+
+  /**
+   * Inside floating surface (depth: 2)
+   * Remove shadow entirely, use subtle border for definition
+   */
+  @container surface style(--_surface-depth: 2) {
+    :where([s-card]) {
+      --_card-shadow: none;
+      --_card-border: var(--s-border-default);
+    }
+  }
+
+  /**
+   * Inside sunken surface (depth: -1)
+   * Increase shadow for better lift appearance
+   */
+  @container surface style(--_surface-depth: -1) {
+    :where([s-card]) {
+      --_card-shadow: var(--s-shadow-md);
+    }
+  }
+}

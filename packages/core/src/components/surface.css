@@ -13,13 +13,17 @@
 
 /* Base surface - zero specificity for easy overrides */
 :where([s-surface]) {
-  /* Enable container queries */
+  /* Enable container queries (size + style) */
   container-type: inline-size;
+  container-name: surface;
 
   /* Surface CSS properties (customization points) */
   --_surface-bg: var(--s-surface-base);
   --_surface-padding: var(--s-space-4);
   --_surface-radius: var(--s-radius-lg);
+
+  /* Depth indicator for style queries (flat=0, sunken=-1, raised=1, floating=2) */
+  --_surface-depth: 0;
 
   background-color: var(--_surface-bg);
   padding: var(--_surface-padding);
@@ -60,23 +64,27 @@
 /* Flat - default, explicit declaration */
 [s-surface="flat"] {
   --_surface-bg: var(--s-surface-base);
+  --_surface-depth: 0;
 }
 
 /* Sunken - recessed appearance */
 [s-surface="sunken"] {
   --_surface-bg: var(--s-surface-sunken);
+  --_surface-depth: -1;
   box-shadow: var(--s-shadow-inner);
 }
 
 /* Raised - elevated card-like appearance */
 [s-surface="raised"] {
   --_surface-bg: var(--s-surface-raised);
+  --_surface-depth: 1;
   box-shadow: var(--s-shadow-md);
 }
 
 /* Floating - high elevation, for overlays and modals */
 [s-surface="floating"] {
   --_surface-bg: var(--s-surface-raised);
+  --_surface-depth: 2;
   box-shadow: var(--s-shadow-xl);
 }
 
