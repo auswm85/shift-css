@@ -27,7 +27,7 @@
     "./types": "./types/index.d.ts",
     "./types/react": "./types/react.d.ts",
     "./types/vue": "./types/vue.d.ts",
-    "./types/attributes": "./types/attributes.ts",
+    "./types/attributes": "./types/attributes.d.ts",
     "./package.json": "./package.json"
   },
   "files": [
