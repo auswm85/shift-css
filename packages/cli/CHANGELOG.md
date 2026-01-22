@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/auswm85/shift-css/compare/cli-v0.3.0...cli-v0.4.0) (2026-01-22)
+
+
+### Features
+
+* **cli:** add types command for TypeScript setup ([#33](https://github.com/auswm85/shift-css/issues/33)) ([41c8067](https://github.com/auswm85/shift-css/commit/41c8067e24428741360f614e8e8eb00f1da99bf5))
+
 ## [0.3.0](https://github.com/auswm85/shift-css/compare/cli-v0.2.0...cli-v0.3.0) (2026-01-21)
 
 
