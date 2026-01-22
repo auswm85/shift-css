@@ -715,6 +715,7 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	.demo-page {
 		max-width: 900px;
+		overflow-x: hidden;
 	}
 
 	.intro {
@@ -732,8 +733,14 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	.hue-sliders {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: 1fr;
 		gap: var(--s-space-4);
+	}
+
+	@media (min-width: 480px) {
+		.hue-sliders {
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		}
 	}
 
 	.hue-slider label {
@@ -773,19 +780,31 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 	.color-scale {
 		display: flex;
 		border-radius: var(--s-radius-md);
-		overflow: hidden;
+		overflow-x: auto;
 		margin-bottom: var(--s-space-4);
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.color-swatch {
-		flex: 1;
-		min-width: 40px;
+		flex: 1 0 auto;
+		min-width: 2.5rem;
 		height: 48px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-size: var(--s-text-xs);
 		font-weight: var(--s-font-medium);
+	}
+
+	@media (min-width: 640px) {
+		.color-scale {
+			overflow-x: visible;
+		}
+
+		.color-swatch {
+			flex: 1;
+			min-width: 40px;
+		}
 	}
 
 	.status-swatch {
@@ -797,9 +816,15 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	.demo-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		grid-template-columns: 1fr;
 		gap: var(--s-space-4);
 		margin-bottom: var(--s-space-4);
+	}
+
+	@media (min-width: 480px) {
+		.demo-grid {
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		}
 	}
 
 	.demo-row {
