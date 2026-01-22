@@ -1,0 +1,252 @@
+/**
+ * Shift CSS - Tooltip Component
+ *
+ * CSS-only tooltip using ::after pseudo-element with attr() for content.
+ * Supports top, bottom, left, right positions with arrow indicators.
+ *
+ * Usage:
+ *   <button s-tooltip="Save your changes">Save</button>
+ *   <button s-tooltip="Bottom" s-tooltip-pos="bottom">Bottom</button>
+ *
+ * Customization:
+ *   [s-tooltip] {
+ *     --_tooltip-bg: var(--s-primary-700);
+ *     --_tooltip-max-width: 300px;
+ *   }
+ *
+ * Accessibility Note:
+ *   Pseudo-element tooltips are not announced by screen readers.
+ *   For critical information, use aria-describedby with a visible element.
+ */
+
+/* =============================================================================
+   BASE TOOLTIP STYLES
+   ============================================================================= */
+
+:where([s-tooltip]) {
+  /* Tooltip CSS properties (customization points) */
+  --_tooltip-bg: var(--s-surface-overlay);
+  --_tooltip-text: var(--s-text-inverse);
+  --_tooltip-radius: var(--s-radius-md);
+  --_tooltip-padding-x: var(--s-space-3);
+  --_tooltip-padding-y: var(--s-space-1_5);
+  --_tooltip-offset: var(--s-space-2);
+  --_tooltip-max-width: 200px;
+  --_tooltip-arrow-size: 6px;
+
+  /* Required for tooltip positioning */
+  position: relative;
+}
+
+/* Tooltip content via ::after */
+:where([s-tooltip])::after {
+  content: attr(s-tooltip);
+
+  /* Hidden by default */
+  visibility: hidden;
+  opacity: 0;
+
+  /* Positioning */
+  position: absolute;
+  z-index: 9999;
+
+  /* Default position: top - centered above element */
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  margin-bottom: var(--_tooltip-offset);
+
+  /* Visual styling */
+  background-color: var(--_tooltip-bg);
+  color: var(--_tooltip-text);
+  padding: var(--_tooltip-padding-y) var(--_tooltip-padding-x);
+  border-radius: var(--_tooltip-radius);
+  box-shadow: var(--s-shadow-md);
+
+  /* Typography */
+  font-size: var(--s-text-xs);
+  font-weight: var(--s-font-medium);
+  line-height: var(--s-leading-tight);
+  text-align: center;
+  white-space: nowrap;
+  max-width: var(--_tooltip-max-width);
+
+  /* Prevent tooltip from blocking interactions */
+  pointer-events: none;
+
+  /* Animation - fade + translate */
+  transition:
+    opacity var(--s-duration-150) var(--s-ease-out),
+    visibility var(--s-duration-150) var(--s-ease-out),
+    transform var(--s-duration-150) var(--s-ease-out);
+}
+
+/* Arrow via ::before - points toward trigger */
+:where([s-tooltip])::before {
+  content: "";
+
+  /* Hidden by default */
+  visibility: hidden;
+  opacity: 0;
+
+  /* Positioning */
+  position: absolute;
+  z-index: 9999;
+
+  /* Default position: top - arrow points down at trigger */
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  margin-bottom: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
+
+  /* Arrow shape - points down */
+  border-left: var(--_tooltip-arrow-size) solid transparent;
+  border-right: var(--_tooltip-arrow-size) solid transparent;
+  border-top: var(--_tooltip-arrow-size) solid var(--_tooltip-bg);
+
+  /* Prevent blocking interactions */
+  pointer-events: none;
+
+  /* Animation - fade + translate */
+  transition:
+    opacity var(--s-duration-150) var(--s-ease-out),
+    visibility var(--s-duration-150) var(--s-ease-out),
+    transform var(--s-duration-150) var(--s-ease-out);
+}
+
+/* =============================================================================
+   SHOW STATES - Hover and Focus
+   ============================================================================= */
+
+[s-tooltip]:hover::after,
+[s-tooltip]:hover::before,
+[s-tooltip]:focus-visible::after,
+[s-tooltip]:focus-visible::before {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* =============================================================================
+   POSITION VARIANTS
+   ============================================================================= */
+
+/* Bottom position */
+[s-tooltip-pos="bottom"]::after {
+  bottom: auto;
+  top: 100%;
+  transform: translateX(-50%) translateY(-4px);
+  margin-bottom: 0;
+  margin-top: var(--_tooltip-offset);
+}
+
+[s-tooltip-pos="bottom"]::before {
+  bottom: auto;
+  top: 100%;
+  transform: translateX(-50%) translateY(-4px);
+  margin-bottom: 0;
+  margin-top: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
+
+  /* Flip arrow to point up */
+  border-top: none;
+  border-bottom: var(--_tooltip-arrow-size) solid var(--_tooltip-bg);
+}
+
+[s-tooltip-pos="bottom"]:hover::after,
+[s-tooltip-pos="bottom"]:hover::before,
+[s-tooltip-pos="bottom"]:focus-visible::after,
+[s-tooltip-pos="bottom"]:focus-visible::before {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Left position */
+[s-tooltip-pos="left"]::after {
+  bottom: auto;
+  left: auto;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%) translateX(4px);
+  margin-bottom: 0;
+  margin-right: var(--_tooltip-offset);
+}
+
+[s-tooltip-pos="left"]::before {
+  bottom: auto;
+  left: auto;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%) translateX(4px);
+  margin-bottom: 0;
+  margin-right: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
+
+  /* Arrow points right */
+  border-top: var(--_tooltip-arrow-size) solid transparent;
+  border-bottom: var(--_tooltip-arrow-size) solid transparent;
+  border-left: var(--_tooltip-arrow-size) solid var(--_tooltip-bg);
+  border-right: none;
+}
+
+[s-tooltip-pos="left"]:hover::after,
+[s-tooltip-pos="left"]:hover::before,
+[s-tooltip-pos="left"]:focus-visible::after,
+[s-tooltip-pos="left"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Right position */
+[s-tooltip-pos="right"]::after {
+  bottom: auto;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  margin-bottom: 0;
+  margin-left: var(--_tooltip-offset);
+}
+
+[s-tooltip-pos="right"]::before {
+  bottom: auto;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  margin-bottom: 0;
+  margin-left: calc(var(--_tooltip-offset) - var(--_tooltip-arrow-size));
+
+  /* Arrow points left */
+  border-top: var(--_tooltip-arrow-size) solid transparent;
+  border-bottom: var(--_tooltip-arrow-size) solid transparent;
+  border-right: var(--_tooltip-arrow-size) solid var(--_tooltip-bg);
+  border-left: none;
+}
+
+[s-tooltip-pos="right"]:hover::after,
+[s-tooltip-pos="right"]:hover::before,
+[s-tooltip-pos="right"]:focus-visible::after,
+[s-tooltip-pos="right"]:focus-visible::before {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* =============================================================================
+   ACCESSIBILITY
+   ============================================================================= */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [s-tooltip]::after,
+  [s-tooltip]::before {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  [s-tooltip]::after {
+    background-color: Canvas;
+    color: CanvasText;
+    border: 1px solid CanvasText;
+  }
+
+  [s-tooltip]::before {
+    /* Hide arrow in high contrast - borders don't render reliably */
+    display: none;
+  }
+}
