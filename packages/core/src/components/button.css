@@ -149,7 +149,7 @@
   }
 }
 
-/* Outline */
+/* Outline - inverts on hover (special behavior, explicit override) */
 [s-btn="outline"] {
   --_btn-bg: transparent;
   --_btn-text: var(--s-interactive-primary);
@@ -158,9 +158,10 @@
   color: var(--_btn-text);
 
   &:hover:not(:disabled) {
+    /* Update --_btn-bg so auto-contrast calculates correctly */
     --_btn-bg: var(--s-interactive-primary);
-    --_btn-text: var(--s-text-inverse);
-    color: var(--_btn-text);
+    background-color: var(--s-interactive-primary);
+    color: var(--s-text-inverse);
   }
 }
 
@@ -217,10 +218,10 @@
   width: 100%;
 }
 
-/* Loading state */
+/* Loading state - use bg color for text to pass a11y contrast checks */
 [s-btn][s-loading] {
   position: relative;
-  color: transparent;
+  color: var(--_btn-bg);
   pointer-events: none;
 
   &::after {

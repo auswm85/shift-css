@@ -18,7 +18,7 @@ interface ShikiTransformer {
 
 // Convert sRGB to linear RGB (remove gamma correction)
 function srgbToLinear(c: number): number {
-	return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+	return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
 }
 
 // Convert linear RGB to XYZ (D65 illuminant)
@@ -86,13 +86,15 @@ function hexToOklch(hex: string): string {
 
 // Transform both light and dark color values in a style string
 function transformStyleColors(style: string): string {
-	return style.replace(
-		/color:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
-		(_, hex) => `color:${hexToOklch('#' + expandHex(hex))}`
-	).replace(
-		/--shiki-dark:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
-		(_, hex) => `--shiki-dark:${hexToOklch('#' + expandHex(hex))}`
-	);
+	return style
+		.replace(
+			/color:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
+			(_, hex) => `color:${hexToOklch(`#${expandHex(hex)}`)}`
+		)
+		.replace(
+			/--shiki-dark:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
+			(_, hex) => `--shiki-dark:${hexToOklch(`#${expandHex(hex)}`)}`
+		);
 }
 
 // Expand 3-digit hex to 6-digit
@@ -105,9 +107,8 @@ function expandHex(hex: string): string {
 
 // Transform all hex colors in a style string (for pre element)
 function transformAllHexColors(style: string): string {
-	return style.replace(
-		/#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
-		(_, hex) => hexToOklch('#' + expandHex(hex))
+	return style.replace(/#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g, (_, hex) =>
+		hexToOklch(`#${expandHex(hex)}`)
 	);
 }
 
