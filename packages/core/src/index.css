@@ -25,6 +25,7 @@
 @import "./components/prose.css" layer(shift.core);
 @import "./components/skip-link.css" layer(shift.core);
 @import "./components/badge.css" layer(shift.core);
+@import "./components/tooltip.css" layer(shift.core);
 @import "./utils/layout.css" layer(shift.utils);
 @import "./utils/visibility.css" layer(shift.utils);
 @import "./utils/spacing.css" layer(shift.utils);

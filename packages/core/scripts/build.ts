@@ -90,6 +90,7 @@ function buildIndividualLayers(): void {
 		{ name: 'prose', path: 'components/prose.css' },
 		{ name: 'skip-link', path: 'components/skip-link.css' },
 		{ name: 'surface', path: 'components/surface.css' },
+		{ name: 'tooltip', path: 'components/tooltip.css' },
 	];
 
 	// Utils (for modular imports)

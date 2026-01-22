@@ -345,6 +345,34 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			</div>
 		</div>
 
+		<h2>Tooltips</h2>
+
+		<h3>Position Variants</h3>
+		<p style="font-size: var(--s-text-sm); color: var(--s-text-secondary); margin-bottom: var(--s-space-3);">
+			Hover or focus the buttons to see tooltips. Uses CSS-only implementation with <code>::after</code> pseudo-element.
+		</p>
+		<div class="demo-row tooltip-demo">
+			<button s-btn="secondary" s-tooltip="Tooltip on top (default)">Top</button>
+			<button s-btn="secondary" s-tooltip="Tooltip on bottom" s-tooltip-pos="bottom">Bottom</button>
+			<button s-btn="secondary" s-tooltip="Tooltip on left" s-tooltip-pos="left">Left</button>
+			<button s-btn="secondary" s-tooltip="Tooltip on right" s-tooltip-pos="right">Right</button>
+		</div>
+
+		<h3>With Different Elements</h3>
+		<div class="demo-row tooltip-demo">
+			<span s-badge="primary" s-tooltip="Badge with tooltip" tabindex="0">Hover me</span>
+			<a href="#" s-tooltip="Link tooltip" style="color: var(--s-interactive-primary);">Link with tooltip</a>
+			<button s-btn="primary" s-tooltip="Save your changes">Save</button>
+		</div>
+
+		<h3>Keyboard Accessible</h3>
+		<p style="font-size: var(--s-text-sm); color: var(--s-text-secondary); margin-bottom: var(--s-space-3);">
+			Tab to the button and tooltips appear on <code>:focus-visible</code>.
+		</p>
+		<div class="demo-row tooltip-demo">
+			<button s-btn="outline" s-tooltip="This tooltip appears on keyboard focus too!">Tab to me</button>
+		</div>
+
 		<h2>Cards</h2>
 
 		<h3>Basic Cards</h3>
@@ -769,7 +797,6 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	.demo-page {
 		max-width: 900px;
-		overflow-x: hidden;
 	}
 
 	.intro {
@@ -962,6 +989,13 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 
 	.demo-page [s-btn][s-block] {
 		margin-bottom: var(--s-space-4);
+	}
+
+	/* Tooltip demo needs extra padding for tooltips to show without clipping */
+	.tooltip-demo {
+		padding: var(--s-space-10) var(--s-space-12);
+		gap: var(--s-space-8);
+		justify-content: center;
 	}
 </style>
 
