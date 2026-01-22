@@ -14,7 +14,7 @@
   <a href="https://www.npmjs.com/package/@shift-css/core"><img src="https://img.shields.io/npm/v/@shift-css/core?label=core" alt="@shift-css/core"></a>
   <a href="https://www.npmjs.com/package/@shift-css/cli"><img src="https://img.shields.io/npm/v/@shift-css/cli?label=cli" alt="@shift-css/cli"></a>
   <a href="https://github.com/auswm85/shift-css/actions/workflows/ci.yml"><img src="https://github.com/auswm85/shift-css/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://cdn.jsdelivr.net/npm/@shift-css/core/dist/shift.min.css"><img src="https://img.badgesize.io/https://cdn.jsdelivr.net/npm/@shift-css/core/dist/shift.min.css?compression=gzip&label=CSS%20gzip%20size" alt="CSS gzip size"></a>
+  <a href="https://cdn.jsdelivr.net/npm/@shift-css/core@latest/dist/shift.min.css"><img src="https://img.badgesize.io/https://cdn.jsdelivr.net/npm/@shift-css/core@latest/dist/shift.min.css?compression=gzip&label=CSS%20gzip%20size" alt="CSS gzip size"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
 </p>
 
@@ -372,9 +372,9 @@ Shift CSS targets cutting-edge browsers to leverage modern CSS features:
 
 | File            | Size   |
 | --------------- | ------ |
-| `shift.css`     | 54 KB  |
-| `shift.min.css` | 40 KB  |
-| Gzipped         | ~10 KB |
+| `shift.css`     | ~83 KB |
+| `shift.min.css` | ~64 KB |
+| Gzipped         | ~12 KB |
 
 **Target**: Under 15 KB gzipped
 
