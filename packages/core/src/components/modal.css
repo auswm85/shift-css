@@ -143,14 +143,30 @@ dialog[s-modal][s-position="bottom"] {
 
 /* Left - anchored to left side */
 dialog[s-modal][s-position="left"] {
-  margin-left: var(--s-space-8);
+  margin-left: 0;
   margin-right: auto;
+  border-radius: 0 var(--_modal-radius) var(--_modal-radius) 0;
+}
+
+@media (min-width: 640px) {
+  dialog[s-modal][s-position="left"] {
+    margin-left: var(--s-space-8);
+    border-radius: var(--_modal-radius);
+  }
 }
 
 /* Right - anchored to right side */
 dialog[s-modal][s-position="right"] {
   margin-left: auto;
-  margin-right: var(--s-space-8);
+  margin-right: 0;
+  border-radius: var(--_modal-radius) 0 0 var(--_modal-radius);
+}
+
+@media (min-width: 640px) {
+  dialog[s-modal][s-position="right"] {
+    margin-right: var(--s-space-8);
+    border-radius: var(--_modal-radius);
+  }
 }
 
 /* =============================================================================
