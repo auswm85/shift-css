@@ -130,8 +130,8 @@ export type ShiftBreakpoint = 'sm' | 'md' | 'lg' | 'xl';
 // BOOLEAN ATTRIBUTE TYPE
 // =============================================================================
 
-/** Boolean attribute type - accepts true or empty string for presence-only attributes */
-export type ShiftBooleanAttr = true | '';
+/** Boolean attribute type - accepts boolean or empty string for presence-only attributes */
+export type ShiftBooleanAttr = boolean | '';
 
 /** Overflow */
 export type ShiftOverflow = 'auto' | 'hidden' | 'scroll' | 'visible';
