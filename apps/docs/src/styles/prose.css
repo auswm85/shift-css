@@ -203,6 +203,10 @@
 	color: var(--shiki-dark, var(--s-text-primary));
 }
 
+:root[data-theme='dark'] .prose pre code span[style*="--shiki-dark"] {
+	color: var(--shiki-dark) !important;
+}
+
 /* =============================================================================
    Blockquotes
    ============================================================================= */

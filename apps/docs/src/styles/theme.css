@@ -293,20 +293,10 @@ select[s-input] {
   background: var(--void-100);
 }
 
-/* Code blocks - softer in dark mode */
+/* Code blocks */
 pre {
   border-radius: 0 !important;
   border: var(--s-border-width) solid var(--void-200);
-}
-
-/* Light mode syntax highlighting - darken orange for contrast */
-:root:not([data-theme="dark"]) pre [style*="color:#E36209"] {
-  color: oklch(40% 0.18 45) !important;
-}
-
-/* Dark mode - brighten orange property names */
-[data-theme="dark"] pre [style*="--shiki-dark:#FFAB70"] {
-  color: oklch(80% 0.15 55) !important;
 }
 
 [data-theme="dark"] pre {
@@ -323,12 +313,7 @@ pre {
   color: var(--void-300) !important;
 }
 
-/* Hide any gutter/spacing backgrounds */
 [data-theme="dark"] pre .shiki {
-  background: transparent !important;
-}
-
-[data-theme="dark"] pre * {
   background: transparent !important;
 }
 
@@ -338,60 +323,6 @@ pre {
 
 [data-theme="dark"] .prose code {
   background: var(--void-100);
-}
-
-/* Shiki syntax highlighting - brighten for dark mode */
-[data-theme="dark"] pre .shiki,
-[data-theme="dark"] pre code {
-  /* Comments - make more visible */
-  --shiki-dark-comment: oklch(55% 0.02 var(--shift-hue-neutral));
-
-  /* Base text */
-  color: var(--void-900);
-}
-
-[data-theme="dark"] pre :is(.comment, [style*="--shiki-dark:#6A737D"]) {
-  color: oklch(65% 0.02 var(--shift-hue-neutral)) !important;
-}
-
-[data-theme="dark"] pre :is(.tag, .keyword, [style*="--shiki-dark:#F97583"]) {
-  color: oklch(75% 0.15 350) !important;
-}
-
-[data-theme="dark"] pre [style*="--shiki-dark:#85E89D"] {
-  color: oklch(75% 0.15 145) !important;
-}
-
-[data-theme="dark"] pre :is(.attr-name, [style*="--shiki-dark:#B392F0"]) {
-  color: oklch(75% 0.12 280) !important;
-}
-
-[data-theme="dark"]
-  pre
-  :is(.attr-value, .string, [style*="--shiki-dark:#9ECBFF"]) {
-  color: oklch(85% 0.12 200) !important;
-}
-
-[data-theme="dark"] pre [style*="--shiki-dark:#79B8FF"] {
-  color: oklch(80% 0.15 230) !important;
-}
-
-[data-theme="dark"] pre :is(.function, [style*="--shiki-dark:#B392F0"]) {
-  color: oklch(78% 0.12 280) !important;
-}
-
-[data-theme="dark"] pre :is(.punctuation, .operator) {
-  color: var(--void-600) !important;
-}
-
-/* Plain text / inner content in code blocks */
-[data-theme="dark"] pre span:not([style]) {
-  color: var(--void-900) !important;
-}
-
-[data-theme="dark"] pre [style*="--shiki-dark:#E1E4E8"],
-[data-theme="dark"] pre [style*="--shiki-dark:#e1e4e8"] {
-  color: var(--void-900) !important;
 }
 
 /* Modals - ensure text visibility in dark mode */
