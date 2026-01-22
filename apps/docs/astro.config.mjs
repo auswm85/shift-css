@@ -1,8 +1,8 @@
 import mdx from '@astrojs/mdx';
 import { defineConfig } from 'astro/config';
 import critters from 'astro-critters';
-import shiftLight from './src/themes/shift-light.json';
-import shiftDark from './src/themes/shift-dark.json';
+import shiftLight from './src/themes/shift-light.json' with { type: 'json' };
+import shiftDark from './src/themes/shift-dark.json' with { type: 'json' };
 
 export default defineConfig({
 	site: 'https://getshiftcss.com',
