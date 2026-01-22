@@ -12,6 +12,7 @@
 import pc from 'picocolors';
 import pkg from '../package.json' with { type: 'json' };
 import { initCommand } from './commands/init.ts';
+import { typesCommand } from './commands/types.ts';
 
 const VERSION = pkg.version;
 
@@ -25,6 +26,8 @@ ${pc.dim('Usage:')}
 ${pc.dim('Commands:')}
   ${pc.green('init')}     Set up Shift CSS in your project
            Detects existing frameworks and wraps them in @layer legacy
+  ${pc.green('types')}    Generate TypeScript definitions for Shift CSS attributes
+           Detects React/Vue and shows setup instructions
 
 ${pc.dim('Options:')}
   ${pc.yellow('--help, -h')}     Show this help message
@@ -32,7 +35,8 @@ ${pc.dim('Options:')}
 
 ${pc.dim('Examples:')}
   ${pc.cyan('npx shift-css init')}
-  ${pc.cyan('npx shift-css --help')}
+  ${pc.cyan('npx shift-css types')}
+  ${pc.cyan('npx shift-css types --react -o shift.d.ts')}
 
 ${pc.dim('Learn more:')} ${pc.underline('https://getshiftcss.com')}
 `);
@@ -60,6 +64,29 @@ async function main(): Promise<void> {
 	// Handle commands
 	if (command === 'init' || !command) {
 		await initCommand();
+		return;
+	}
+
+	if (command === 'types') {
+		// Parse options for types command
+		const options: { framework?: 'react' | 'vue' | 'svelte'; output?: string } = {};
+
+		for (let i = 1; i < args.length; i++) {
+			const arg = args[i] as string;
+			if (arg === '--react') {
+				options.framework = 'react';
+			} else if (arg === '--vue') {
+				options.framework = 'vue';
+			} else if (arg === '--svelte') {
+				options.framework = 'svelte';
+			} else if ((arg === '-o' || arg === '--output') && args[i + 1]) {
+				options.output = args[++i];
+			} else if (arg.startsWith('--output=')) {
+				options.output = arg.slice('--output='.length);
+			}
+		}
+
+		await typesCommand(options);
 		return;
 	}
 
