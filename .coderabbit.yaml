@@ -1,0 +1,36 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/configuration
+
+language: en-US
+
+reviews:
+  profile: chill
+  high_level_summary: false
+  poem: false
+  review_status: true
+  collapse_walkthrough: true
+  sequence_diagrams: false
+  changed_files_summary: true
+
+  # focus on real issues
+  path_filters:
+    - "!**/*.snap"
+    - "!**/*.png"
+    - "!**/dist/**"
+    - "!**/node_modules/**"
+    - "!bun.lock"
+
+  # Auto-approve minor changes
+  auto_review:
+    enabled: true
+    drafts: false
+    auto_incremental_review: true
+    base_branches:
+      - main
+  request_changes_workflow: true
+  labeling_instructions: []
+
+chat:
+  auto_reply: true
+
+tone_instructions: "Focus on code quality, security and accessibility. Skip minor style nitpicks."
