@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.6.0](https://github.com/auswm85/shift-css/compare/core-v0.5.0...core-v0.6.0) (2026-01-22)
+
+
+### Features
+
+* **core:** add badge component ([#30](https://github.com/auswm85/shift-css/issues/30)) ([fa2ea4a](https://github.com/auswm85/shift-css/commit/fa2ea4a86bb27e0c3651fe7c940b0052978a2ef1))
+* **core:** add depth-aware adaptation for components ([#38](https://github.com/auswm85/shift-css/issues/38)) ([a81ec79](https://github.com/auswm85/shift-css/commit/a81ec79e7b7e3b50af623bc683a6f4089b22457c))
+* **core:** add Menu component with CSS Anchor Positioning ([#39](https://github.com/auswm85/shift-css/issues/39)) ([4e0db13](https://github.com/auswm85/shift-css/commit/4e0db1316fc34f12021e397eb70a6ab8eb310e34))
+* **core:** add tooltip component ([#31](https://github.com/auswm85/shift-css/issues/31)) ([0508a5d](https://github.com/auswm85/shift-css/commit/0508a5d76a2e260cc897f9bb2c79a99fdbc354ae))
+* **core:** add TypeScript type definitions for Shift CSS attributes ([#32](https://github.com/auswm85/shift-css/issues/32)) ([b95f656](https://github.com/auswm85/shift-css/commit/b95f6566c02fdec567965816782795d7af1ac019))
+* **core:** expand Relative Color Syntax across components ([#37](https://github.com/auswm85/shift-css/issues/37)) ([fdef7d8](https://github.com/auswm85/shift-css/commit/fdef7d88914c01e3bd96938dadd6132ca374a3bf))
+
+
+### Bug Fixes
+
+* **core:** adjust modal margins and border-radius for left/right positions ([d3022eb](https://github.com/auswm85/shift-css/commit/d3022eb91b35d2ca56833b165af8d48d58a5f708))
+
 ## [0.5.0](https://github.com/auswm85/shift-css/compare/core-v0.4.0...core-v0.5.0) (2026-01-21)
 
 
