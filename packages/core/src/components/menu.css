@@ -1,0 +1,297 @@
+/**
+ * Shift CSS - Menu Component
+ *
+ * Dropdown menu using CSS Anchor Positioning with anchor-scope for isolation.
+ * Uses details/summary for native disclosure, progressively enhanced with
+ * anchor positioning for auto-flipping in supported browsers.
+ *
+ * Usage:
+ *   <details s-menu>
+ *     <summary s-menu-trigger>Options ▾</summary>
+ *     <div s-menu-items>
+ *       <button s-menu-item>Edit</button>
+ *       <button s-menu-item>Duplicate</button>
+ *       <hr s-menu-divider>
+ *       <button s-menu-item s-danger>Delete</button>
+ *     </div>
+ *   </details>
+ *
+ * Position variants:
+ *   <details s-menu="end">        <!-- Align to end (right in LTR) -->
+ *   <details s-menu="top">        <!-- Open above trigger -->
+ *   <details s-menu="top-end">    <!-- Open above, align end -->
+ *
+ * Browser Support:
+ *   - All browsers: Basic absolute positioning fallback
+ *   - Chrome 131+, Edge 131+: Full anchor positioning with auto-flip
+ *   - Firefox 147+: Full anchor positioning with auto-flip
+ */
+
+/* =============================================================================
+   BASE MENU STYLES
+   ============================================================================= */
+
+:where([s-menu]) {
+  --_menu-bg: var(--s-surface-raised);
+  --_menu-border: var(--s-border-muted);
+  --_menu-radius: var(--s-radius-lg);
+  --_menu-shadow: var(--s-shadow-lg);
+  --_menu-min-width: 10rem;
+  --_menu-padding: var(--s-space-1);
+  --_menu-offset: var(--s-space-1);
+}
+
+[s-menu] {
+  position: relative;
+  display: inline-block;
+
+  /* Scope anchor names to this menu's subtree */
+  anchor-scope: --menu-trigger;
+}
+
+/* Hide default marker */
+[s-menu]::marker,
+[s-menu] ::-webkit-details-marker {
+  display: none;
+}
+
+/* =============================================================================
+   MENU TRIGGER (summary element)
+   ============================================================================= */
+
+[s-menu-trigger] {
+  cursor: pointer;
+  list-style: none;
+
+  /* Register as anchor */
+  anchor-name: --menu-trigger;
+}
+
+[s-menu-trigger]::-webkit-details-marker {
+  display: none;
+}
+
+/* =============================================================================
+   MENU ITEMS CONTAINER
+   ============================================================================= */
+
+[s-menu-items] {
+  /* === FALLBACK: Absolute positioning for browsers without anchor support === */
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  margin-top: var(--_menu-offset);
+
+  /* Visual styling */
+  background-color: var(--_menu-bg);
+  border: 1px solid var(--_menu-border);
+  border-radius: var(--_menu-radius);
+  box-shadow: var(--_menu-shadow);
+  min-width: var(--_menu-min-width);
+  padding: var(--_menu-padding);
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+
+  /* Typography */
+  font-size: var(--s-text-sm);
+  color: var(--s-text-primary);
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: scale(0.95) translateY(-4px);
+  visibility: hidden;
+  transition:
+    opacity var(--s-duration-150) var(--s-ease-out),
+    transform var(--s-duration-150) var(--s-ease-out),
+    visibility var(--s-duration-150);
+}
+
+/* Open state */
+[s-menu][open] > [s-menu-items] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  visibility: visible;
+}
+
+/* =============================================================================
+   POSITION VARIANTS (Fallback)
+   ============================================================================= */
+
+/* End-aligned (right in LTR) */
+[s-menu="end"] > [s-menu-items] {
+  left: auto;
+  right: 0;
+}
+
+/* Top position (opens above) */
+[s-menu="top"] > [s-menu-items] {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: var(--_menu-offset);
+  transform: scale(0.95) translateY(4px);
+}
+
+[s-menu="top"][open] > [s-menu-items] {
+  transform: scale(1) translateY(0);
+}
+
+/* Top-end position */
+[s-menu="top-end"] > [s-menu-items] {
+  top: auto;
+  bottom: 100%;
+  left: auto;
+  right: 0;
+  margin-top: 0;
+  margin-bottom: var(--_menu-offset);
+  transform: scale(0.95) translateY(4px);
+}
+
+[s-menu="top-end"][open] > [s-menu-items] {
+  transform: scale(1) translateY(0);
+}
+
+/* =============================================================================
+   CSS ANCHOR POSITIONING (Progressive Enhancement)
+   ============================================================================= */
+
+@supports (anchor-scope: all) {
+  [s-menu-items] {
+    /* Anchor positioning (still needs position: absolute as base) */
+    position: absolute;
+    position-anchor: --menu-trigger;
+
+    /* Reset fallback positioning */
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: 0;
+
+    /* Default position: bottom-start */
+    inset-block-start: anchor(end);
+    inset-inline-start: anchor(start);
+    margin-block-start: var(--_menu-offset);
+
+    /* Auto-flip when hitting viewport edges */
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+
+  /* End-aligned with anchor */
+  [s-menu="end"] > [s-menu-items] {
+    inset-inline-start: auto;
+    inset-inline-end: anchor(end);
+  }
+
+  /* Top position with anchor */
+  [s-menu="top"] > [s-menu-items] {
+    inset-block-start: auto;
+    inset-block-end: anchor(start);
+    margin-block-start: 0;
+    margin-block-end: var(--_menu-offset);
+  }
+
+  /* Top-end position with anchor */
+  [s-menu="top-end"] > [s-menu-items] {
+    inset-block-start: auto;
+    inset-block-end: anchor(start);
+    inset-inline-start: auto;
+    inset-inline-end: anchor(end);
+    margin-block-start: 0;
+    margin-block-end: var(--_menu-offset);
+  }
+}
+
+/* =============================================================================
+   MENU ITEMS
+   ============================================================================= */
+
+[s-menu-item] {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-2);
+
+  width: 100%;
+  padding: var(--s-space-2) var(--s-space-3);
+  border: none;
+  border-radius: var(--s-radius-md);
+  background: transparent;
+  color: var(--s-text-primary);
+  font-size: inherit;
+  text-align: start;
+  cursor: pointer;
+
+  transition: background-color var(--s-duration-100) var(--s-ease-out);
+}
+
+[s-menu-item]:hover {
+  background-color: var(--s-surface-sunken);
+}
+
+[s-menu-item]:focus-visible {
+  outline: 2px solid var(--s-focus-ring);
+  outline-offset: -2px;
+}
+
+[s-menu-item]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Danger item variant */
+[s-menu-item][s-danger] {
+  color: var(--s-state-danger);
+}
+
+[s-menu-item][s-danger]:hover {
+  background-color: var(--s-state-danger-bg);
+}
+
+/* =============================================================================
+   MENU DIVIDER
+   ============================================================================= */
+
+[s-menu-divider] {
+  height: 1px;
+  margin: var(--s-space-1) 0;
+  background-color: var(--s-border-muted);
+  border: none;
+}
+
+/* =============================================================================
+   MENU LABEL (for grouped sections)
+   ============================================================================= */
+
+[s-menu-label] {
+  display: block;
+  padding: var(--s-space-2) var(--s-space-3);
+  font-size: var(--s-text-xs);
+  font-weight: var(--s-font-semibold);
+  color: var(--s-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--s-tracking-wide);
+}
+
+/* =============================================================================
+   ACCESSIBILITY
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  [s-menu-items] {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  [s-menu-items] {
+    border: 2px solid CanvasText;
+  }
+
+  [s-menu-item]:hover {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
