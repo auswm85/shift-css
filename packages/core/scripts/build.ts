@@ -82,6 +82,7 @@ function buildIndividualLayers(): void {
 
 	// Components (for modular imports)
 	const components = [
+		{ name: 'badge', path: 'components/badge.css' },
 		{ name: 'button', path: 'components/button.css' },
 		{ name: 'card', path: 'components/card.css' },
 		{ name: 'input', path: 'components/input.css' },

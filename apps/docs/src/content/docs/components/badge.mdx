@@ -1,0 +1,218 @@
+---
+title: Badge
+description: Inline status indicators, counts, labels, and tags
+---
+
+## Overview
+
+The `s-badge` attribute provides inline status indicators for counts, labels, and tags with automatic dark mode support and auto-contrast text colors.
+
+## Import
+
+```css
+/* Full framework (includes all components) */
+@import "@shift-css/core";
+
+/* Or import just the badge component */
+@import "@shift-css/core/components/badge";
+```
+
+> **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
+## Basic Usage
+
+```html
+<span s-badge>Default</span>
+```
+
+## Color Variants
+
+### Primary
+
+```html
+<span s-badge="primary">Primary</span>
+```
+
+### Secondary
+
+```html
+<span s-badge="secondary">Secondary</span>
+```
+
+### Accent
+
+```html
+<span s-badge="accent">Accent</span>
+```
+
+### Success
+
+```html
+<span s-badge="success">Active</span>
+```
+
+### Warning
+
+```html
+<span s-badge="warning">Pending</span>
+```
+
+### Danger
+
+```html
+<span s-badge="danger">Failed</span>
+```
+
+## Outline Variants
+
+For a lighter, bordered style:
+
+```html
+<span s-badge="outline">Outline</span>
+<span s-badge="outline-primary">Primary</span>
+<span s-badge="outline-success">Success</span>
+<span s-badge="outline-warning">Warning</span>
+<span s-badge="outline-danger">Danger</span>
+```
+
+## Sizes
+
+Use the `s-size` attribute to change badge size:
+
+```html
+<span s-badge="primary" s-size="sm">Small</span>
+<span s-badge="primary">Default</span>
+<span s-badge="primary" s-size="lg">Large</span>
+```
+
+## Modifiers
+
+### Pill Style
+
+Fully rounded badges for counts and tags:
+
+```html
+<span s-badge="primary" s-pill>Pill</span>
+<span s-badge="danger" s-pill>99+</span>
+```
+
+### Dot Indicator
+
+Small status dots without text:
+
+```html
+<span s-badge="success" s-dot aria-label="Online"></span>
+<span s-badge="warning" s-dot aria-label="Away"></span>
+<span s-badge="danger" s-dot aria-label="Busy"></span>
+```
+
+Dot sizes:
+
+```html
+<span s-badge="primary" s-dot s-size="sm" aria-label="Status"></span>
+<span s-badge="primary" s-dot aria-label="Status"></span>
+<span s-badge="primary" s-dot s-size="lg" aria-label="Status"></span>
+```
+
+> **Accessibility:** Dot indicators without visible text should include `aria-label` to convey meaning to screen reader users.
+
+## Usage in Context
+
+### With Buttons
+
+```html
+<button s-btn="secondary">
+  Notifications <span s-badge="danger" s-pill>5</span>
+</button>
+```
+
+### In Navigation
+
+```html
+<nav>
+  <a href="/inbox">
+    Inbox <span s-badge="primary">12</span>
+  </a>
+</nav>
+```
+
+### Status Indicators
+
+```html
+<div>
+  <span s-badge="success" s-dot></span> Online
+</div>
+<div>
+  <span s-badge="danger" s-dot></span> Offline
+</div>
+```
+
+## How It Works
+
+Badges use the Layered Intent pattern with `:where()` for zero-specificity base styles:
+
+```css
+/* Base styles - easily overridable */
+:where([s-badge]) {
+  --_badge-bg: var(--s-neutral-200);
+  --_badge-text: var(--s-text-primary);
+
+  display: inline-flex;
+  align-items: center;
+  padding: var(--s-space-1) var(--s-space-2);
+  border-radius: var(--s-radius-sm);
+  font-size: var(--s-text-xs);
+
+  background-color: var(--_badge-bg);
+  color: var(--_badge-text);
+
+  /* Auto-contrast for custom backgrounds */
+  @supports (color: oklch(from red l c h)) {
+    color: oklch(
+      from var(--_badge-bg) clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95) 0 0
+    );
+  }
+}
+
+/* Variant styles */
+[s-badge="primary"] {
+  --_badge-bg: var(--s-primary-700);
+}
+```
+
+## CSS Custom Properties
+
+| Property        | Description                          |
+| --------------- | ------------------------------------ |
+| `--_badge-bg`   | Background color (private)           |
+| `--_badge-text` | Text color (private, auto-contrast)  |
+
+## All Attributes
+
+| Attribute  | Purpose          | Values                                                                                                           |
+| ---------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `s-badge`  | Badge variant    | `primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `outline`, `outline-primary`, `outline-success`, `outline-warning`, `outline-danger` |
+| `s-size`   | Badge size       | `sm`, `lg`                                                                                                       |
+| `s-pill`   | Fully rounded    | Boolean                                                                                                          |
+| `s-dot`    | Dot indicator    | Boolean                                                                                                          |
+
+## Customization Examples
+
+### Override Primary Color
+
+Change the primary hue to affect all primary badges:
+
+```css
+:root {
+  --shift-hue-primary: 280; /* Purple */
+}
+```
+
+### Custom Badge Style
+
+```css
+[s-badge="primary"] {
+  --_badge-bg: var(--s-accent-500);
+  border-radius: var(--s-radius-full);
+}
+```

@@ -1,0 +1,190 @@
+/**
+ * Shift CSS - Badge Component
+ *
+ * Inline status indicators, counts, labels, and tags.
+ * Uses s-badge attribute for variants and s-size for scaling.
+ *
+ * Usage:
+ *   <span s-badge>Default</span>
+ *   <span s-badge="primary">Primary</span>
+ *   <span s-badge="success">Active</span>
+ *   <span s-badge="warning">Pending</span>
+ *   <span s-badge="danger">Failed</span>
+ *   <span s-badge="primary" s-size="sm">Small</span>
+ *   <span s-badge="primary" s-pill>Rounded</span>
+ */
+
+/* Base badge - zero specificity for easy overrides */
+:where([s-badge]) {
+  /* Badge CSS properties (customization points) */
+  --_badge-bg: var(--s-neutral-200);
+  --_badge-text: var(--s-text-primary);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-space-1);
+
+  padding: var(--s-space-1) var(--s-space-2);
+  border-radius: var(--s-radius-sm);
+  font-weight: var(--s-font-medium);
+  font-size: var(--s-text-xs);
+  line-height: 1.25;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  background-color: var(--_badge-bg);
+  color: var(--_badge-text);
+
+  /* Auto-contrast for custom backgrounds */
+  @supports (color: oklch(from red l c h)) {
+    color: oklch(
+      from var(--_badge-bg) clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95) 0 0
+    );
+  }
+
+  @supports (color: contrast-color(red)) {
+    color: contrast-color(var(--_badge-bg));
+  }
+}
+
+/* =============================================================================
+   COLOR VARIANTS
+   ============================================================================= */
+
+/* Color variants need explicit color to override auto-contrast */
+
+/* Primary */
+[s-badge="primary"] {
+  --_badge-bg: var(--s-primary-700);
+  background-color: var(--s-primary-700);
+  color: #fff;
+}
+
+/* Secondary */
+[s-badge="secondary"] {
+  --_badge-bg: var(--s-neutral-700);
+  background-color: var(--s-neutral-700);
+  color: #fff;
+}
+
+/* Success */
+[s-badge="success"] {
+  --_badge-bg: var(--s-success-700);
+  background-color: var(--s-success-700);
+  color: #fff;
+}
+
+/* Warning - needs dark text for contrast */
+[s-badge="warning"] {
+  --_badge-bg: var(--s-warning-400);
+  background-color: var(--s-warning-400);
+  color: var(--s-warning-950);
+}
+
+/* Danger */
+[s-badge="danger"] {
+  --_badge-bg: var(--s-danger-700);
+  background-color: var(--s-danger-700);
+  color: #fff;
+}
+
+/* Accent */
+[s-badge="accent"] {
+  --_badge-bg: var(--s-accent-700);
+  background-color: var(--s-accent-700);
+  color: #fff;
+}
+
+/* =============================================================================
+   OUTLINE VARIANTS
+   ============================================================================= */
+
+/* Outline variants need explicit color to override auto-contrast */
+[s-badge="outline"] {
+  --_badge-bg: transparent;
+  background-color: transparent;
+  color: var(--s-text-primary);
+  box-shadow: inset 0 0 0 1px var(--s-border-default);
+}
+
+[s-badge="outline-primary"] {
+  --_badge-bg: transparent;
+  background-color: oklch(from var(--s-primary-500) l c h / 0.1);
+  color: light-dark(var(--s-primary-700), var(--s-primary-300));
+  box-shadow: inset 0 0 0 1px light-dark(var(--s-primary-500), var(--s-primary-400));
+}
+
+[s-badge="outline-success"] {
+  --_badge-bg: transparent;
+  background-color: oklch(from var(--s-success-500) l c h / 0.1);
+  color: light-dark(var(--s-success-700), var(--s-success-300));
+  box-shadow: inset 0 0 0 1px light-dark(var(--s-success-500), var(--s-success-400));
+}
+
+[s-badge="outline-warning"] {
+  --_badge-bg: transparent;
+  background-color: oklch(from var(--s-warning-500) l c h / 0.1);
+  color: light-dark(var(--s-warning-800), var(--s-warning-300));
+  box-shadow: inset 0 0 0 1px light-dark(var(--s-warning-500), var(--s-warning-400));
+}
+
+[s-badge="outline-danger"] {
+  --_badge-bg: transparent;
+  background-color: oklch(from var(--s-danger-500) l c h / 0.1);
+  color: light-dark(var(--s-danger-800), var(--s-danger-300));
+  box-shadow: inset 0 0 0 1px light-dark(var(--s-danger-500), var(--s-danger-400));
+}
+
+/* =============================================================================
+   SIZE VARIANTS
+   ============================================================================= */
+
+/* Small */
+[s-badge][s-size="sm"] {
+  padding: 0.125rem 0.375rem;
+  font-size: 0.625rem;
+}
+
+/* Large */
+[s-badge][s-size="lg"] {
+  padding: var(--s-space-2) var(--s-space-4);
+  font-size: var(--s-text-sm);
+}
+
+/* =============================================================================
+   MODIFIERS
+   ============================================================================= */
+
+/* Pill - fully rounded */
+[s-badge][s-pill] {
+  border-radius: var(--s-radius-full);
+}
+
+/* Dot - small indicator without text */
+[s-badge][s-dot] {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border-radius: var(--s-radius-full);
+}
+
+[s-badge][s-dot][s-size="sm"] {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+[s-badge][s-dot][s-size="lg"] {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* =============================================================================
+   ACCESSIBILITY & HIGH CONTRAST
+   ============================================================================= */
+
+@media (forced-colors: active) {
+  [s-badge] {
+    border: 1px solid CanvasText;
+  }
+}

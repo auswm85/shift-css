@@ -235,6 +235,60 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 			</div>
 		</div>
 
+		<h2>Badges</h2>
+
+		<h3>Color Variants</h3>
+		<div class="demo-row">
+			<span s-badge>Default</span>
+			<span s-badge="primary">Primary</span>
+			<span s-badge="secondary">Secondary</span>
+			<span s-badge="accent">Accent</span>
+			<span s-badge="success">Success</span>
+			<span s-badge="warning">Warning</span>
+			<span s-badge="danger">Danger</span>
+		</div>
+
+		<h3>Outline Variants</h3>
+		<div class="demo-row">
+			<span s-badge="outline">Outline</span>
+			<span s-badge="outline-primary">Primary</span>
+			<span s-badge="outline-success">Success</span>
+			<span s-badge="outline-warning">Warning</span>
+			<span s-badge="outline-danger">Danger</span>
+		</div>
+
+		<h3>Sizes</h3>
+		<div class="demo-row">
+			<span s-badge="primary" s-size="sm">Small</span>
+			<span s-badge="primary">Default</span>
+			<span s-badge="primary" s-size="lg">Large</span>
+		</div>
+
+		<h3>Pill Style</h3>
+		<div class="demo-row">
+			<span s-badge="primary" s-pill>Pill</span>
+			<span s-badge="success" s-pill>Active</span>
+			<span s-badge="danger" s-pill>99+</span>
+		</div>
+
+		<h3>Dot Indicators</h3>
+		<p style="font-size: var(--s-text-sm); color: var(--s-text-secondary); margin-bottom: var(--s-space-2);">Size variants also apply to dots.</p>
+		<div class="demo-row">
+			<span s-badge="success" s-dot aria-label="Success status"></span>
+			<span s-badge="warning" s-dot aria-label="Warning status"></span>
+			<span s-badge="danger" s-dot aria-label="Danger status"></span>
+		</div>
+
+		<h3>In Context</h3>
+		<div class="demo-row">
+			<button s-btn="secondary">
+				Notifications <span s-badge="danger" s-pill>5</span>
+			</button>
+			<button s-btn="outline">
+				Messages <span s-badge="primary">12</span>
+			</button>
+		</div>
+
 		<h2>Buttons</h2>
 
 		<h3>Variants</h3>
@@ -760,17 +814,27 @@ import DocsLayout from '../components/layout/DocsLayout.astro';
 	}
 
 	h2 {
-		margin-top: var(--s-space-10);
-		margin-bottom: var(--s-space-4);
+		margin-top: var(--s-space-16);
+		margin-bottom: var(--s-space-6);
+		padding-top: var(--s-space-8);
 		padding-bottom: var(--s-space-2);
 		border-bottom: 1px solid var(--s-border-default);
+	}
+
+	h2:first-of-type {
+		margin-top: var(--s-space-8);
+		padding-top: 0;
 	}
 
 	h3 {
 		color: var(--s-text-primary);
 		font-size: var(--s-text-base);
-		margin-top: var(--s-space-6);
+		margin-top: var(--s-space-8);
 		margin-bottom: var(--s-space-3);
+	}
+
+	h3:first-of-type {
+		margin-top: var(--s-space-4);
 	}
 
 	h4 {
