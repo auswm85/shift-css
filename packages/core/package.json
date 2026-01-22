@@ -4,25 +4,35 @@
   "description": "Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming",
   "type": "module",
   "main": "./dist/shift.css",
+  "types": "./types/index.d.ts",
   "exports": {
     ".": "./dist/shift.css",
     "./min": "./dist/shift.min.css",
     "./reset": "./dist/reset.css",
     "./tokens": "./dist/tokens.css",
+    "./components/badge": "./dist/components/badge.css",
     "./components/button": "./dist/components/button.css",
     "./components/card": "./dist/components/card.css",
     "./components/input": "./dist/components/input.css",
     "./components/modal": "./dist/components/modal.css",
+    "./components/prose": "./dist/components/prose.css",
+    "./components/skip-link": "./dist/components/skip-link.css",
     "./components/surface": "./dist/components/surface.css",
+    "./components/tooltip": "./dist/components/tooltip.css",
     "./utils/layout": "./dist/utils/layout.css",
     "./utils/spacing": "./dist/utils/spacing.css",
     "./utils/flex": "./dist/utils/flex.css",
     "./utils/typography": "./dist/utils/typography.css",
     "./utils/visibility": "./dist/utils/visibility.css",
+    "./types": "./types/index.d.ts",
+    "./types/react": "./types/react.d.ts",
+    "./types/vue": "./types/vue.d.ts",
+    "./types/attributes": "./types/attributes.d.ts",
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "build": "tsx scripts/build.ts",
