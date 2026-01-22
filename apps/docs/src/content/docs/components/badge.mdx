@@ -3,6 +3,8 @@ title: Badge
 description: Inline status indicators, counts, labels, and tags
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Overview
 
 The `s-badge` attribute provides inline status indicators for counts, labels, and tags with automatic dark mode support and auto-contrast text colors.
@@ -19,71 +21,48 @@ The `s-badge` attribute provides inline status indicators for counts, labels, an
 
 > **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
 
-## Basic Usage
-
-```html
-<span s-badge>Default</span>
-```
-
 ## Color Variants
 
-### Primary
-
-```html
-<span s-badge="primary">Primary</span>
-```
-
-### Secondary
-
-```html
-<span s-badge="secondary">Secondary</span>
-```
-
-### Accent
-
-```html
-<span s-badge="accent">Accent</span>
-```
-
-### Success
-
-```html
-<span s-badge="success">Active</span>
-```
-
-### Warning
-
-```html
-<span s-badge="warning">Pending</span>
-```
-
-### Danger
-
-```html
-<span s-badge="danger">Failed</span>
-```
+<Demo
+	title="All color variants"
+	code={`<div class="demo-row">
+  <span s-badge>Default</span>
+  <span s-badge="primary">Primary</span>
+  <span s-badge="secondary">Secondary</span>
+  <span s-badge="accent">Accent</span>
+  <span s-badge="success">Success</span>
+  <span s-badge="warning">Warning</span>
+  <span s-badge="danger">Danger</span>
+</div>`}
+/>
 
 ## Outline Variants
 
 For a lighter, bordered style:
 
-```html
-<span s-badge="outline">Outline</span>
-<span s-badge="outline-primary">Primary</span>
-<span s-badge="outline-success">Success</span>
-<span s-badge="outline-warning">Warning</span>
-<span s-badge="outline-danger">Danger</span>
-```
+<Demo
+	title="Outline variants"
+	code={`<div class="demo-row">
+  <span s-badge="outline">Outline</span>
+  <span s-badge="outline-primary">Primary</span>
+  <span s-badge="outline-success">Success</span>
+  <span s-badge="outline-warning">Warning</span>
+  <span s-badge="outline-danger">Danger</span>
+</div>`}
+/>
 
 ## Sizes
 
 Use the `s-size` attribute to change badge size:
 
-```html
-<span s-badge="primary" s-size="sm">Small</span>
-<span s-badge="primary">Default</span>
-<span s-badge="primary" s-size="lg">Large</span>
-```
+<Demo
+	title="Size variants"
+	code={`<div class="demo-row">
+  <span s-badge="primary" s-size="sm">Small</span>
+  <span s-badge="primary">Default</span>
+  <span s-badge="primary" s-size="lg">Large</span>
+</div>`}
+/>
 
 ## Modifiers
 
@@ -91,50 +70,45 @@ Use the `s-size` attribute to change badge size:
 
 Fully rounded badges for counts and tags:
 
-```html
-<span s-badge="primary" s-pill>Pill</span>
-<span s-badge="danger" s-pill>99+</span>
-```
+<Demo
+	title="Pill style badges"
+	code={`<div class="demo-row">
+  <span s-badge="primary" s-pill>Pill</span>
+  <span s-badge="success" s-pill>Active</span>
+  <span s-badge="danger" s-pill>99+</span>
+</div>`}
+/>
 
 ### Dot Indicator
 
-Small status dots without text:
+Small status dots without text. Size variants also apply to dots.
 
-```html
-<span s-badge="success" s-dot aria-label="Online"></span>
-<span s-badge="warning" s-dot aria-label="Away"></span>
-<span s-badge="danger" s-dot aria-label="Busy"></span>
-```
+<Demo
+	title="Dot indicators"
+	code={`<div class="demo-row">
+  <span s-badge="success" s-dot role="status" aria-label="Success status"></span>
+  <span s-badge="warning" s-dot role="status" aria-label="Warning status"></span>
+  <span s-badge="danger" s-dot role="status" aria-label="Danger status"></span>
+</div>`}
+/>
 
-Dot sizes:
-
-```html
-<span s-badge="primary" s-dot s-size="sm" aria-label="Status"></span>
-<span s-badge="primary" s-dot aria-label="Status"></span>
-<span s-badge="primary" s-dot s-size="lg" aria-label="Status"></span>
-```
-
-> **Accessibility:** Dot indicators without visible text should include `aria-label` to convey meaning to screen reader users.
+> **Accessibility:** Dot indicators without visible text should include `role="status"` and `aria-label` to convey meaning to screen reader users.
 
 ## Usage in Context
 
 ### With Buttons
 
-```html
-<button s-btn="secondary">
-  Notifications <span s-badge="danger" s-pill>5</span>
-</button>
-```
-
-### In Navigation
-
-```html
-<nav>
-  <a href="/inbox">
-    Inbox <span s-badge="primary">12</span>
-  </a>
-</nav>
-```
+<Demo
+	title="Badges inside buttons"
+	code={`<div class="demo-row">
+  <button s-btn="secondary">
+    Notifications <span s-badge="danger" s-pill>5</span>
+  </button>
+  <button s-btn="outline">
+    Messages <span s-badge="primary">12</span>
+  </button>
+</div>`}
+/>
 
 ### Status Indicators
 

@@ -3,6 +3,8 @@ title: Input
 description: Form input components with consistent styling
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Overview
 
 Form inputs with automatic dark mode support and accessible focus states.
@@ -19,30 +21,131 @@ Form inputs with automatic dark mode support and accessible focus states.
 
 > **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
 
-## Text Input
+## Text Inputs
 
-```html
-<input s-input type="text" placeholder="Enter text..." />
-```
-
-## With Labels
-
-```html
-<div s-field>
-  <label s-field-label for="email">Email</label>
-  <input s-input type="email" id="email" placeholder="you@example.com" />
-</div>
-```
+<Demo
+	title="Basic input fields"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="demo-text">Text Input</label>
+    <input s-input type="text" id="demo-text" placeholder="Enter text..." />
+  </div>
+  <div s-field>
+    <label s-field-label for="demo-email">With Hint</label>
+    <input s-input type="email" id="demo-email" placeholder="you@example.com" />
+    <span s-field-hint>We'll never share your email.</span>
+  </div>
+  <div s-field>
+    <label s-field-label for="demo-error">With Error</label>
+    <input s-input type="text" id="demo-error" aria-invalid="true" value="Invalid input" />
+    <span s-field-error>This field has an error.</span>
+  </div>
+</div>`}
+/>
 
 ## Input Sizes
 
 Use the `s-size` attribute:
 
-```html
-<input s-input s-size="sm" type="text" placeholder="Small" />
-<input s-input type="text" placeholder="Default" />
-<input s-input s-size="lg" type="text" placeholder="Large" />
-```
+<Demo
+	title="Size variants"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="input-sm">Small</label>
+    <input s-input s-size="sm" type="text" id="input-sm" placeholder="Small input" />
+  </div>
+  <div s-field>
+    <label s-field-label for="input-md">Default</label>
+    <input s-input type="text" id="input-md" placeholder="Default input" />
+  </div>
+  <div s-field>
+    <label s-field-label for="input-lg">Large</label>
+    <input s-input s-size="lg" type="text" id="input-lg" placeholder="Large input" />
+  </div>
+</div>`}
+/>
+
+## Input Groups
+
+Combine inputs with addons for prefixes or suffixes:
+
+<Demo
+	title="Input with addons"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="demo-url">URL</label>
+    <div s-input-group>
+      <span s-input-addon>https://</span>
+      <input s-input type="text" id="demo-url" placeholder="example.com" />
+    </div>
+  </div>
+  <div s-field>
+    <label s-field-label for="demo-price">Price</label>
+    <div s-input-group>
+      <input s-input type="number" id="demo-price" placeholder="0.00" />
+      <span s-input-addon>USD</span>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Select & Textarea
+
+<Demo
+	title="Select and textarea"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="demo-select">Select</label>
+    <select s-input id="demo-select">
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </select>
+  </div>
+  <div s-field>
+    <label s-field-label for="demo-textarea">Textarea</label>
+    <textarea s-input id="demo-textarea" rows="3" placeholder="Enter message..."></textarea>
+  </div>
+</div>`}
+/>
+
+## Checkbox, Radio & Toggle
+
+<Demo
+	title="Form controls"
+	code={`<div class="demo-grid">
+  <div class="demo-stack">
+    <label s-checkbox>
+      <input type="checkbox" checked />
+      Checkbox option
+    </label>
+    <label s-checkbox>
+      <input type="checkbox" />
+      Another option
+    </label>
+  </div>
+  <div class="demo-stack">
+    <label s-radio>
+      <input type="radio" name="demo-radio" checked />
+      Radio option 1
+    </label>
+    <label s-radio>
+      <input type="radio" name="demo-radio" />
+      Radio option 2
+    </label>
+  </div>
+  <div class="demo-stack">
+    <label s-toggle>
+      <input type="checkbox" checked />
+      Enable feature
+    </label>
+    <label s-toggle>
+      <input type="checkbox" />
+      Another toggle
+    </label>
+  </div>
+</div>`}
+/>
 
 ## States
 
@@ -52,77 +155,13 @@ Use the `s-size` attribute:
 <input s-input type="text" disabled placeholder="Disabled input" />
 ```
 
-## Input Types
-
-### Password
+### Invalid
 
 ```html
-<input s-input type="password" placeholder="Password" />
+<input s-input type="text" aria-invalid="true" value="Invalid input" />
 ```
 
-### Search
-
-```html
-<input s-input type="search" placeholder="Search..." />
-```
-
-### Number
-
-```html
-<input s-input type="number" placeholder="0" />
-```
-
-## Textarea
-
-```html
-<textarea s-input rows="4" placeholder="Enter message..."></textarea>
-```
-
-## Select
-
-```html
-<select s-input>
-  <option value="">Choose an option</option>
-  <option value="1">Option 1</option>
-  <option value="2">Option 2</option>
-  <option value="3">Option 3</option>
-</select>
-```
-
-## Form Components
-
-### Checkbox
-
-```html
-<label s-checkbox>
-  <input type="checkbox" />
-  Remember me
-</label>
-```
-
-### Radio Buttons
-
-```html
-<label s-radio>
-  <input type="radio" name="option" value="1" />
-  Option 1
-</label>
-<label s-radio>
-  <input type="radio" name="option" value="2" />
-  Option 2
-</label>
-```
-
-### Toggle Switch
-
-```html
-<label s-toggle>
-  <input type="checkbox" />
-  Enable notifications
-</label>
-```
-
-## Form Layout
+## Form Layout Example
 
 ```html
 <form>
@@ -147,37 +186,6 @@ Use the `s-size` attribute:
 </form>
 ```
 
-## Form Attributes
-
-| Attribute       | Purpose               | Example                 |
-| --------------- | --------------------- | ----------------------- |
-| `s-input`       | Text input styling    | `<input s-input>`       |
-| `s-field`       | Form field wrapper    | `<div s-field>`         |
-| `s-field-label` | Field label           | `<label s-field-label>` |
-| `s-field-hint`  | Helper text           | `<span s-field-hint>`   |
-| `s-field-error` | Error message         | `<span s-field-error>`  |
-| `s-checkbox`    | Checkbox wrapper      | `<label s-checkbox>`    |
-| `s-radio`       | Radio button wrapper  | `<label s-radio>`       |
-| `s-toggle`      | Toggle switch wrapper | `<label s-toggle>`      |
-| `s-input-group` | Input with addons     | `<div s-input-group>`   |
-| `s-input-addon` | Addon element         | `<span s-input-addon>`  |
-
-## Input Groups
-
-Combine inputs with addons for prefixes or suffixes:
-
-```html
-<div s-input-group>
-  <span s-input-addon>https://</span>
-  <input s-input type="text" placeholder="example.com" />
-</div>
-
-<div s-input-group>
-  <input s-input type="number" placeholder="0.00" />
-  <span s-input-addon>USD</span>
-</div>
-```
-
 ## How It Works
 
 ```css
@@ -197,6 +205,21 @@ Combine inputs with addons for prefixes or suffixes:
   box-shadow: 0 0 0 3px oklch(from var(--s-interactive-primary) l c h / 0.2);
 }
 ```
+
+## Form Attributes
+
+| Attribute       | Purpose               | Example                 |
+| --------------- | --------------------- | ----------------------- |
+| `s-input`       | Text input styling    | `<input s-input>`       |
+| `s-field`       | Form field wrapper    | `<div s-field>`         |
+| `s-field-label` | Field label           | `<label s-field-label>` |
+| `s-field-hint`  | Helper text           | `<span s-field-hint>`   |
+| `s-field-error` | Error message         | `<span s-field-error>`  |
+| `s-checkbox`    | Checkbox wrapper      | `<label s-checkbox>`    |
+| `s-radio`       | Radio button wrapper  | `<label s-radio>`       |
+| `s-toggle`      | Toggle switch wrapper | `<label s-toggle>`      |
+| `s-input-group` | Input with addons     | `<div s-input-group>`   |
+| `s-input-addon` | Addon element         | `<span s-input-addon>`  |
 
 ## Customization Examples
 

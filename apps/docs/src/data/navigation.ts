@@ -12,7 +12,6 @@ export type NavEntry = NavItem | NavGroup;
 
 // Raw navigation paths (without base URL)
 const navigationData: NavEntry[] = [
-	{ label: 'Live Demo', href: '/demo' },
 	{ label: 'Theme Generator', href: '/theme' },
 	{
 		label: 'Getting Started',
@@ -44,6 +43,7 @@ const navigationData: NavEntry[] = [
 			{ label: 'Modal', href: '/components/modal' },
 			{ label: 'Prose', href: '/components/prose' },
 			{ label: 'Skip Link', href: '/components/skip-link' },
+			{ label: 'Tooltip', href: '/components/tooltip' },
 		],
 	},
 	{

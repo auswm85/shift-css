@@ -1,0 +1,413 @@
+---
+/**
+ * Global theme customizer panel
+ * Allows users to adjust hue values while browsing any page
+ */
+---
+
+<div class="theme-customizer" data-theme-customizer>
+	<button
+		class="customizer-trigger"
+		type="button"
+		aria-label="Open theme customizer"
+		aria-expanded="false"
+		aria-controls="customizer-panel"
+		data-customizer-trigger
+	>
+		<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+			<!-- Three overlapping color swatches -->
+			<circle cx="8" cy="12" r="6" fill="oklch(0.65 0.2 25)" />
+			<circle cx="12" cy="8" r="6" fill="oklch(0.7 0.2 145)" />
+			<circle cx="16" cy="12" r="6" fill="oklch(0.6 0.2 260)" />
+		</svg>
+	</button>
+
+	<div class="customizer-panel" id="customizer-panel" data-customizer-panel hidden>
+		<div class="customizer-header">
+			<h3>Theme Playground</h3>
+			<button
+				class="customizer-close"
+				type="button"
+				aria-label="Close"
+				data-customizer-close
+			>
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M18 6L6 18M6 6l12 12" />
+				</svg>
+			</button>
+		</div>
+
+		<div class="customizer-body">
+			<div class="hue-control">
+				<label for="hue-primary">
+					<span class="hue-label">Primary</span>
+					<span class="hue-value" data-value="primary">200</span>°
+				</label>
+				<input
+					type="range"
+					id="hue-primary"
+					min="0"
+					max="360"
+					value="200"
+					data-hue="primary"
+				/>
+				<div class="hue-preview" data-preview="primary" style="--preview-hue: 200;"></div>
+			</div>
+
+			<div class="hue-control">
+				<label for="hue-neutral">
+					<span class="hue-label">Neutral</span>
+					<span class="hue-value" data-value="neutral">220</span>°
+				</label>
+				<input
+					type="range"
+					id="hue-neutral"
+					min="0"
+					max="360"
+					value="220"
+					data-hue="neutral"
+				/>
+				<div class="hue-preview" data-preview="neutral" style="--preview-hue: 220;"></div>
+			</div>
+
+			<div class="hue-control">
+				<label for="hue-accent">
+					<span class="hue-label">Accent</span>
+					<span class="hue-value" data-value="accent">140</span>°
+				</label>
+				<input
+					type="range"
+					id="hue-accent"
+					min="0"
+					max="360"
+					value="140"
+					data-hue="accent"
+				/>
+				<div class="hue-preview" data-preview="accent" style="--preview-hue: 140;"></div>
+			</div>
+		</div>
+
+		<div class="customizer-footer">
+			<button class="reset-btn" type="button" data-customizer-reset>
+				Reset to defaults
+			</button>
+			<button class="copy-btn" type="button" data-customizer-copy>
+				Copy CSS
+			</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.theme-customizer {
+		position: fixed;
+		bottom: var(--s-space-6);
+		right: var(--s-space-6);
+		z-index: 100;
+	}
+
+	.customizer-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border-radius: var(--s-radius-full);
+		background: var(--s-interactive-primary);
+		color: var(--s-text-inverse);
+		border: none;
+		cursor: pointer;
+		box-shadow: var(--s-shadow-lg);
+		transition: transform 0.2s, box-shadow 0.2s;
+	}
+
+	.customizer-trigger:hover {
+		transform: scale(1.05);
+		box-shadow: var(--s-shadow-xl);
+	}
+
+	.customizer-trigger[aria-expanded="true"] {
+		background: var(--s-neutral-600);
+	}
+
+	.customizer-panel {
+		position: absolute;
+		bottom: calc(100% + var(--s-space-3));
+		right: 0;
+		width: 280px;
+		background: var(--s-surface-raised);
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-xl);
+		box-shadow: var(--s-shadow-xl);
+		overflow: hidden;
+	}
+
+	.customizer-panel[hidden] {
+		display: none;
+	}
+
+	.customizer-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: var(--s-space-3) var(--s-space-4);
+		border-bottom: 1px solid var(--s-border-default);
+		background: var(--s-surface-sunken);
+	}
+
+	.customizer-header h3 {
+		margin: 0;
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-semibold);
+		color: var(--s-text-primary);
+	}
+
+	.customizer-close {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
+		border: none;
+		background: transparent;
+		color: var(--s-text-secondary);
+		cursor: pointer;
+		border-radius: var(--s-radius-sm);
+	}
+
+	.customizer-close:hover {
+		background: var(--s-neutral-200);
+		color: var(--s-text-primary);
+	}
+
+	:global([data-theme="dark"]) .customizer-close:hover {
+		background: var(--s-neutral-700);
+	}
+
+	.customizer-body {
+		padding: var(--s-space-4);
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-4);
+	}
+
+	.hue-control {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-2);
+	}
+
+	.hue-control label {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: var(--s-text-sm);
+		color: var(--s-text-primary);
+	}
+
+	.hue-label {
+		font-weight: var(--s-font-medium);
+	}
+
+	.hue-value {
+		font-family: var(--s-font-mono);
+		font-size: var(--s-text-xs);
+		color: var(--s-text-secondary);
+	}
+
+	.hue-control input[type="range"] {
+		width: 100%;
+		height: 8px;
+		border-radius: var(--s-radius-full);
+		background: linear-gradient(
+			to right,
+			oklch(0.7 0.15 0),
+			oklch(0.7 0.15 60),
+			oklch(0.7 0.15 120),
+			oklch(0.7 0.15 180),
+			oklch(0.7 0.15 240),
+			oklch(0.7 0.15 300),
+			oklch(0.7 0.15 360)
+		);
+		-webkit-appearance: none;
+		appearance: none;
+		cursor: pointer;
+	}
+
+	.hue-control input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		width: 18px;
+		height: 18px;
+		border-radius: var(--s-radius-full);
+		background: white;
+		border: 2px solid var(--s-border-default);
+		box-shadow: var(--s-shadow-md);
+		cursor: grab;
+	}
+
+	.hue-control input[type="range"]::-moz-range-thumb {
+		width: 18px;
+		height: 18px;
+		border-radius: var(--s-radius-full);
+		background: white;
+		border: 2px solid var(--s-border-default);
+		box-shadow: var(--s-shadow-md);
+		cursor: grab;
+	}
+
+	.hue-preview {
+		width: 100%;
+		height: 24px;
+		border-radius: var(--s-radius-sm);
+		background: oklch(0.6 0.15 var(--preview-hue));
+	}
+
+	.customizer-footer {
+		display: flex;
+		gap: var(--s-space-2);
+		padding: var(--s-space-3) var(--s-space-4);
+		border-top: 1px solid var(--s-border-default);
+		background: var(--s-surface-sunken);
+	}
+
+	.customizer-footer button {
+		flex: 1;
+		padding: var(--s-space-2) var(--s-space-3);
+		font-size: var(--s-text-xs);
+		font-weight: var(--s-font-medium);
+		border-radius: var(--s-radius-md);
+		cursor: pointer;
+		transition: background-color 0.15s;
+	}
+
+	.reset-btn {
+		background: transparent;
+		border: 1px solid var(--s-border-default);
+		color: var(--s-text-secondary);
+	}
+
+	.reset-btn:hover {
+		background: var(--s-neutral-100);
+		color: var(--s-text-primary);
+	}
+
+	:global([data-theme="dark"]) .reset-btn:hover {
+		background: var(--s-neutral-800);
+	}
+
+	.copy-btn {
+		background: var(--s-interactive-primary);
+		border: none;
+		color: var(--s-text-inverse);
+	}
+
+	.copy-btn:hover {
+		background: var(--s-primary-600);
+	}
+
+	/* Mobile positioning */
+	@media (max-width: 640px) {
+		.theme-customizer {
+			bottom: var(--s-space-4);
+			right: var(--s-space-4);
+		}
+
+		.customizer-panel {
+			width: calc(100vw - var(--s-space-8));
+			right: calc(-1 * var(--s-space-4) + 24px);
+		}
+	}
+</style>
+
+<script>
+	function initThemeCustomizer() {
+		const customizerEl = document.querySelector('[data-theme-customizer]');
+		if (!customizerEl) return;
+
+		const triggerEl = customizerEl.querySelector('[data-customizer-trigger]');
+		const panelEl = customizerEl.querySelector('[data-customizer-panel]') as HTMLElement | null;
+		const closeBtn = customizerEl.querySelector('[data-customizer-close]');
+		const resetBtn = customizerEl.querySelector('[data-customizer-reset]');
+		const copyBtn = customizerEl.querySelector('[data-customizer-copy]');
+
+		if (!triggerEl || !panelEl) return;
+
+		// Re-assign after guard so TS knows they're non-null in nested functions
+		const customizer = customizerEl;
+		const trigger = triggerEl;
+		const panel = panelEl;
+
+		const defaults = { primary: 200, neutral: 220, accent: 140 };
+
+		function applyHue(name: string, value: number) {
+			document.documentElement.style.setProperty(`--shift-hue-${name}`, String(value));
+
+			const valueDisplay = customizer.querySelector(`[data-value="${name}"]`);
+			if (valueDisplay) valueDisplay.textContent = String(value);
+
+			const preview = customizer.querySelector(`[data-preview="${name}"]`) as HTMLElement | null;
+			if (preview) preview.style.setProperty('--preview-hue', String(value));
+		}
+
+		function togglePanel(open?: boolean) {
+			const isOpen = open !== undefined ? open : panel.hidden;
+			panel.hidden = !isOpen;
+			trigger.setAttribute('aria-expanded', String(isOpen));
+		}
+
+		trigger.addEventListener('click', () => togglePanel());
+		closeBtn?.addEventListener('click', () => togglePanel(false));
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && !panel.hidden) {
+				togglePanel(false);
+			}
+		});
+
+		document.addEventListener('click', (e) => {
+			if (!panel.hidden && !customizer.contains(e.target as Node)) {
+				togglePanel(false);
+			}
+		});
+
+		customizer.querySelectorAll<HTMLInputElement>('[data-hue]').forEach((input) => {
+			input.addEventListener('input', () => {
+				applyHue(input.dataset.hue!, parseInt(input.value, 10));
+			});
+		});
+
+		resetBtn?.addEventListener('click', () => {
+			Object.entries(defaults).forEach(([name, value]) => {
+				applyHue(name, value);
+				const input = customizer.querySelector<HTMLInputElement>(`[data-hue="${name}"]`);
+				if (input) input.value = String(value);
+			});
+			document.documentElement.style.removeProperty('--shift-hue-primary');
+			document.documentElement.style.removeProperty('--shift-hue-neutral');
+			document.documentElement.style.removeProperty('--shift-hue-accent');
+		});
+
+		copyBtn?.addEventListener('click', async () => {
+			const hues: string[] = [];
+			customizer.querySelectorAll<HTMLInputElement>('[data-hue]').forEach((input) => {
+				hues.push(`  --shift-hue-${input.dataset.hue}: ${input.value};`);
+			});
+
+			const css = `:root {\n${hues.join('\n')}\n}`;
+
+			try {
+				await navigator.clipboard.writeText(css);
+				const originalText = copyBtn.textContent;
+				copyBtn.textContent = 'Copied!';
+				setTimeout(() => {
+					copyBtn.textContent = originalText;
+				}, 2000);
+			} catch (e) {
+				console.error('Failed to copy:', e);
+			}
+		});
+	}
+
+	initThemeCustomizer();
+	document.addEventListener('astro:after-swap', initThemeCustomizer);
+</script>

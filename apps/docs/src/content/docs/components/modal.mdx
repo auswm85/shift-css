@@ -3,6 +3,8 @@ title: Modal
 description: CSS-only modal dialog with backdrop, size variants, and entrance animations
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Overview
 
 The `s-modal` attribute provides a CSS-only modal component using the native `<dialog>` element. It includes backdrop styling, size variants, entrance animations, and full accessibility support.
@@ -21,21 +23,26 @@ The `s-modal` attribute provides a CSS-only modal component using the native `<d
 
 ## Basic Usage
 
-```html
-<dialog s-modal>
+<Demo
+  title="Basic modal"
+  code={`<button s-btn="primary" onclick="document.getElementById('demo-basic').showModal()">
+  Open Modal
+</button>
+
+<dialog s-modal id="demo-basic">
   <header s-modal-header>
     <h2>Modal Title</h2>
-    <button s-modal-close aria-label="Close">&times;</button>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
   </header>
   <div s-modal-body>
-    <p>Your content goes here.</p>
+    <p>Your content goes here. Click outside or press Escape to close.</p>
   </div>
   <footer s-modal-footer>
-    <button s-btn="secondary" formmethod="dialog">Cancel</button>
-    <button s-btn="primary">Confirm</button>
+    <button s-btn="secondary" onclick="this.closest('dialog').close()">Cancel</button>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Confirm</button>
   </footer>
-</dialog>
-```
+</dialog>`}
+/>
 
 Open the modal with JavaScript:
 
@@ -45,77 +52,151 @@ document.querySelector('[s-modal]').showModal();
 
 ## Size Variants
 
-### Small
+<Demo
+  title="Size variants"
+  code={`<div class="demo-row">
+  <button s-btn onclick="document.getElementById('demo-sm').showModal()">Small (sm)</button>
+  <button s-btn onclick="document.getElementById('demo-default').showModal()">Default</button>
+  <button s-btn onclick="document.getElementById('demo-lg').showModal()">Large (lg)</button>
+  <button s-btn onclick="document.getElementById('demo-full').showModal()">Full Screen</button>
+</div>
 
-Best for confirmations and simple alerts:
-
-```html
-<dialog s-modal s-size="sm">
-  <!-- 400px max width -->
+<dialog s-modal s-size="sm" id="demo-sm">
+  <header s-modal-header>
+    <h2>Small Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Best for confirmations and simple alerts. Max width: 400px.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Got it</button>
+  </footer>
 </dialog>
-```
 
-### Default
-
-Standard dialog size (500px):
-
-```html
-<dialog s-modal>
-  <!-- 500px max width -->
+<dialog s-modal id="demo-default">
+  <header s-modal-header>
+    <h2>Default Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Standard dialog size for most use cases. Max width: 500px.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="secondary" onclick="this.closest('dialog').close()">Cancel</button>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Confirm</button>
+  </footer>
 </dialog>
-```
 
-### Large
-
-For forms and detailed content:
-
-```html
-<dialog s-modal s-size="lg">
-  <!-- 700px max width -->
+<dialog s-modal s-size="lg" id="demo-lg">
+  <header s-modal-header>
+    <h2>Large Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>For forms and detailed content. Max width: 700px.</p>
+    <p>This size works well when you need more horizontal space for complex layouts or data tables.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="secondary" onclick="this.closest('dialog').close()">Cancel</button>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Save Changes</button>
+  </footer>
 </dialog>
-```
 
-### Full Screen
-
-Takes up the entire viewport:
-
-```html
-<dialog s-modal s-size="full">
-  <!-- 100vw x 100vh -->
-</dialog>
-```
+<dialog s-modal s-size="full" id="demo-full">
+  <header s-modal-header>
+    <h2>Full Screen Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Takes up the entire viewport. Perfect for immersive experiences or complex workflows.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="secondary" onclick="this.closest('dialog').close()">Exit</button>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Continue</button>
+  </footer>
+</dialog>`}
+/>
 
 ## Position Variants
 
 Modals are **centered by default** (no attribute needed). Use `s-position` to anchor them to a specific edge:
 
-### Top
+<Demo
+  title="Position variants"
+  code={`<div class="demo-row">
+  <button s-btn onclick="document.getElementById('demo-center').showModal()">Center (default)</button>
+  <button s-btn onclick="document.getElementById('demo-top').showModal()">Top</button>
+  <button s-btn onclick="document.getElementById('demo-bottom').showModal()">Bottom</button>
+  <button s-btn onclick="document.getElementById('demo-left').showModal()">Left</button>
+  <button s-btn onclick="document.getElementById('demo-right').showModal()">Right</button>
+</div>
 
-```html
-<dialog s-modal s-position="top">
-  <!-- Anchored to top of viewport -->
+<dialog s-modal id="demo-center">
+  <header s-modal-header>
+    <h2>Centered Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Default position - centered in the viewport.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Close</button>
+  </footer>
 </dialog>
-```
 
-### Bottom
-
-```html
-<dialog s-modal s-position="bottom">
-  <!-- Anchored to bottom of viewport -->
-</dialog>
-```
-
-### Left / Right
-
-```html
-<dialog s-modal s-position="left">
-  <!-- Anchored to left side -->
+<dialog s-modal s-position="top" id="demo-top">
+  <header s-modal-header>
+    <h2>Top Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Anchored to the top of the viewport.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Close</button>
+  </footer>
 </dialog>
 
-<dialog s-modal s-position="right">
-  <!-- Anchored to right side -->
+<dialog s-modal s-position="bottom" id="demo-bottom">
+  <header s-modal-header>
+    <h2>Bottom Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Anchored to the bottom of the viewport.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Close</button>
+  </footer>
 </dialog>
-```
+
+<dialog s-modal s-position="left" id="demo-left">
+  <header s-modal-header>
+    <h2>Left Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Anchored to the left side of the viewport. Great for sidebars or navigation panels.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Close</button>
+  </footer>
+</dialog>
+
+<dialog s-modal s-position="right" id="demo-right">
+  <header s-modal-header>
+    <h2>Right Modal</h2>
+    <button s-modal-close aria-label="Close" onclick="this.closest('dialog').close()">&times;</button>
+  </header>
+  <div s-modal-body>
+    <p>Anchored to the right side of the viewport. Perfect for detail panels or settings.</p>
+  </div>
+  <footer s-modal-footer>
+    <button s-btn="primary" onclick="this.closest('dialog').close()">Close</button>
+  </footer>
+</dialog>`}
+/>
 
 ## Sub-Components
 
@@ -161,25 +242,43 @@ Circular button with hover states:
 
 ## Form Integration
 
-Use `formmethod="dialog"` to close the modal when a button is clicked:
+Use `method="dialog"` on a form to automatically close the modal when submitted:
 
-```html
-<dialog s-modal>
+<Demo
+  title="Form modal"
+  code={`<button s-btn="primary" onclick="document.getElementById('demo-form').showModal()">
+  Open Form Modal
+</button>
+
+<dialog s-modal id="demo-form">
   <form method="dialog">
     <header s-modal-header>
-      <h2>Confirm Action</h2>
-      <button s-modal-close aria-label="Close">&times;</button>
+      <h2>Contact Form</h2>
+      <button s-modal-close aria-label="Close" type="button" onclick="this.closest('dialog').close()">&times;</button>
     </header>
     <div s-modal-body>
-      <p>Are you sure you want to proceed?</p>
+      <div class="demo-stack">
+        <div>
+          <label s-field-label for="form-name">Name</label>
+          <input s-input type="text" id="form-name" placeholder="Your name">
+        </div>
+        <div>
+          <label s-field-label for="form-email">Email</label>
+          <input s-input type="email" id="form-email" placeholder="you@example.com">
+        </div>
+        <div>
+          <label s-field-label for="form-message">Message</label>
+          <textarea s-input id="form-message" rows="3" placeholder="Your message"></textarea>
+        </div>
+      </div>
     </div>
     <footer s-modal-footer>
       <button s-btn="secondary" value="cancel">Cancel</button>
-      <button s-btn="primary" value="confirm">Confirm</button>
+      <button s-btn="primary" value="submit">Send Message</button>
     </footer>
   </form>
-</dialog>
-```
+</dialog>`}
+/>
 
 ## Scrollable Content
 

@@ -3,6 +3,8 @@ title: Button
 description: Versatile button component with multiple variants and sizes
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Overview
 
 The `s-btn` attribute provides accessible, styled buttons with automatic dark mode support and auto-contrast text colors.
@@ -19,131 +21,105 @@ The `s-btn` attribute provides accessible, styled buttons with automatic dark mo
 
 > **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
 
-## Basic Usage
-
-```html
-<button s-btn="primary">Primary Button</button>
-```
-
 ## Variants
 
-### Primary
-
-```html
-<button s-btn="primary">Primary</button>
-```
-
-### Secondary
-
-```html
-<button s-btn="secondary">Secondary</button>
-```
-
-### Ghost
-
-```html
-<button s-btn="ghost">Ghost</button>
-```
-
-### Link
-
-```html
-<button s-btn="link">Link</button>
-```
-
-### Outline
-
-```html
-<button s-btn="outline">Outline</button>
-```
+<Demo
+	title="Button variants"
+	code={`<div class="demo-row">
+  <button s-btn="primary">Primary</button>
+  <button s-btn="secondary">Secondary</button>
+  <button s-btn="outline">Outline</button>
+  <button s-btn="ghost">Ghost</button>
+  <button s-btn="link">Link</button>
+</div>`}
+/>
 
 ## State Variants
 
-### Danger
-
-```html
-<button s-btn="danger">Delete</button>
-```
-
-### Success
-
-```html
-<button s-btn="success">Confirm</button>
-```
-
-### Warning
-
-```html
-<button s-btn="warning">Caution</button>
-```
+<Demo
+	title="State variants for actions"
+	code={`<div class="demo-row">
+  <button s-btn="danger">Danger</button>
+  <button s-btn="success">Success</button>
+  <button s-btn="warning">Warning</button>
+</div>`}
+/>
 
 ## Sizes
 
 Use the `s-size` attribute to change button size:
 
-```html
-<button s-btn="primary" s-size="sm">Small</button>
-<button s-btn="primary">Default (Medium)</button>
-<button s-btn="primary" s-size="lg">Large</button>
-<button s-btn="primary" s-size="xl">Extra Large</button>
-```
+<Demo
+	title="Size variants"
+	code={`<div class="demo-row">
+  <button s-btn="primary" s-size="sm">Small</button>
+  <button s-btn="primary">Medium</button>
+  <button s-btn="primary" s-size="lg">Large</button>
+  <button s-btn="primary" s-size="xl">Extra Large</button>
+</div>`}
+/>
 
-## States
+## States & Modifiers
 
-### Disabled
+### Disabled State
 
-```html
-<button s-btn="primary" disabled>Disabled</button>
-```
+<Demo
+	code={`<button s-btn="primary" disabled>Disabled</button>`}
+/>
 
-### Loading
+### Loading State
 
-```html
-<button s-btn="primary" s-loading>Loading...</button>
-```
-
-## Special Modifiers
+<Demo
+	code={`<button s-btn="primary" s-loading>Loading...</button>`}
+/>
 
 ### Icon-Only Button
 
-```html
-<button s-btn="primary" s-icon>
-  <svg><!-- icon --></svg>
-</button>
-```
+<Demo
+	code={`<button s-btn="primary" s-icon aria-label="Add item">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 5v14M5 12h14"></path>
+  </svg>
+</button>`}
+/>
 
-### Full-Width Button
+## Full Width
 
-```html
-<button s-btn="primary" s-block>Full Width</button>
-```
-
-## With Icons
-
-```html
-<button s-btn="primary">
-  <svg><!-- icon --></svg>
-  With Icon
-</button>
-```
-
-## As Links
-
-```html
-<a href="/path" s-btn="primary">Link Button</a>
-```
+<Demo
+	title="Block-level button"
+	code={`<button s-btn="primary" s-block>Full Width Button</button>`}
+/>
 
 ## Button Groups
 
 Group related buttons together:
 
-```html
-<div s-btn-group>
+<Demo
+	title="Grouped buttons"
+	code={`<div s-btn-group>
   <button s-btn="secondary">Left</button>
   <button s-btn="secondary">Center</button>
   <button s-btn="secondary">Right</button>
-</div>
-```
+</div>`}
+/>
+
+## With Icons
+
+<Demo
+	title="Button with icon"
+	code={`<button s-btn="primary">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 5v14M5 12h14"></path>
+  </svg>
+  Add Item
+</button>`}
+/>
+
+## As Links
+
+<Demo
+	code={`<a href="#" s-btn="primary">Link Button</a>`}
+/>
 
 ## How It Works
 

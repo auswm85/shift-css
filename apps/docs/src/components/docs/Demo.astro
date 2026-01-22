@@ -1,0 +1,106 @@
+---
+import { Code } from 'astro:components';
+
+interface Props {
+	/** The HTML code to display (used for code block) */
+	code: string;
+	/** Optional title for the demo */
+	title?: string;
+	/** Whether to show the code block (default: true) */
+	showCode?: boolean;
+	/** Language for syntax highlighting (default: html) */
+	lang?: 'html' | 'css' | 'js';
+}
+
+const { code, title, showCode = true, lang = 'html' } = Astro.props;
+
+// Clean up the code for display (trim whitespace)
+const cleanCode = code.trim();
+---
+
+<div class="demo-container">
+	{title && <p class="demo-title">{title}</p>}
+	<div class="demo-preview">
+		<Fragment set:html={cleanCode} />
+	</div>
+	{showCode && (
+		<div class="demo-code">
+			<Code code={cleanCode} lang={lang} />
+		</div>
+	)}
+</div>
+
+<style>
+	.demo-container {
+		margin: var(--s-space-6) 0;
+		border: 1px solid var(--s-border-default);
+		border-radius: var(--s-radius-lg);
+	}
+
+	.demo-title {
+		padding: var(--s-space-3) var(--s-space-4);
+		margin: 0;
+		font-size: var(--s-text-sm);
+		font-weight: var(--s-font-medium);
+		color: var(--s-text-secondary);
+		background: var(--s-surface-sunken);
+		border-bottom: 1px solid var(--s-border-default);
+	}
+
+	.demo-preview {
+		padding: var(--s-space-6);
+		background: var(--s-surface-default);
+	}
+
+	.demo-code {
+		border-top: 1px solid var(--s-border-default);
+		background: var(--s-surface-sunken);
+	}
+
+	/* Handle border-radius for first/last children */
+	.demo-container > :first-child {
+		border-radius: var(--s-radius-lg) var(--s-radius-lg) 0 0;
+	}
+
+	.demo-container > :last-child {
+		border-radius: 0 0 var(--s-radius-lg) var(--s-radius-lg);
+	}
+
+	.demo-container > :only-child {
+		border-radius: var(--s-radius-lg);
+	}
+
+	/* Override Astro's Code component styling */
+	.demo-code :global(pre) {
+		margin: 0;
+		padding: var(--s-space-4);
+		border-radius: 0;
+		font-size: var(--s-text-sm);
+		overflow-x: auto;
+	}
+
+	/* Ensure demo content doesn't inherit prose styles (except dialogs which need margin: auto) */
+	.demo-preview :global(*:not(dialog)) {
+		margin: 0;
+	}
+
+	/* Common demo patterns */
+	.demo-preview :global(.demo-row) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-space-3);
+		align-items: center;
+	}
+
+	.demo-preview :global(.demo-grid) {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: var(--s-space-4);
+	}
+
+	.demo-preview :global(.demo-stack) {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-space-3);
+	}
+</style>

@@ -1,0 +1,221 @@
+---
+title: Tooltip
+description: CSS-only tooltips with position variants and keyboard accessibility
+---
+
+import Demo from '../../../components/docs/Demo.astro';
+
+## Overview
+
+The `s-tooltip` attribute provides CSS-only tooltips using `::after` pseudo-elements with `attr()` for content. No JavaScript required—works with hover and keyboard focus.
+
+## Import
+
+```css
+/* Full framework (includes all components) */
+@import "@shift-css/core";
+
+/* Or import just the tooltip component */
+@import "@shift-css/core/components/tooltip";
+```
+
+> **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
+## Basic Usage
+
+Hover or focus to see tooltips:
+
+<Demo
+	title="Default tooltip (top)"
+	code={`<div class="demo-row">
+  <button s-btn="primary" s-tooltip="Save your changes">Save</button>
+  <button s-btn="secondary" s-tooltip="Copy to clipboard">Copy</button>
+  <button s-btn="outline" s-tooltip="Delete this item">Delete</button>
+</div>`}
+/>
+
+## Position Variants
+
+<Demo
+	title="Tooltip positions"
+	code={`<div class="demo-row" style="padding: 3rem; justify-content: center;">
+  <button s-btn="secondary" s-tooltip="Tooltip on top" s-tooltip-pos="top">Top</button>
+  <button s-btn="secondary" s-tooltip="Tooltip on bottom" s-tooltip-pos="bottom">Bottom</button>
+  <button s-btn="secondary" s-tooltip="Tooltip on left" s-tooltip-pos="left">Left</button>
+  <button s-btn="secondary" s-tooltip="Tooltip on right" s-tooltip-pos="right">Right</button>
+</div>`}
+/>
+
+> **Note:** The demo container has extra padding to ensure tooltips don't get clipped.
+
+## Keyboard Accessible
+
+Tooltips appear on `:focus-visible` as well as `:hover`, making them accessible via keyboard navigation:
+
+<Demo
+	title="Tab to see tooltips"
+	code={`<div class="demo-row">
+  <button s-btn="primary" s-tooltip="Focused via keyboard">Tab to me</button>
+  <a href="#" s-tooltip="Links work too" style="padding: 0.5rem 1rem;">Focusable Link</a>
+</div>`}
+/>
+
+## How It Works
+
+Tooltips use the `::after` pseudo-element with `attr()` to display content:
+
+```css
+:where([s-tooltip]) {
+  /* Customization points */
+  --_tooltip-bg: var(--s-surface-overlay);
+  --_tooltip-text: var(--s-text-inverse);
+  --_tooltip-radius: var(--s-radius-md);
+  --_tooltip-padding-x: var(--s-space-3);
+  --_tooltip-padding-y: var(--s-space-1_5);
+  --_tooltip-offset: var(--s-space-2);
+  --_tooltip-max-width: 200px;
+
+  position: relative;
+}
+
+[s-tooltip]::after {
+  content: attr(s-tooltip);
+  position: absolute;
+  /* ... positioning and styling */
+}
+
+/* Show on hover and keyboard focus */
+[s-tooltip]:hover::after,
+[s-tooltip]:focus-visible::after {
+  visibility: visible;
+  opacity: 1;
+}
+```
+
+### Arrow Indicator
+
+The `::before` pseudo-element creates an arrow pointing toward the trigger:
+
+```css
+[s-tooltip]::before {
+  content: "";
+  /* Triangle borders create arrow shape */
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--_tooltip-bg);
+}
+```
+
+## CSS Custom Properties
+
+| Property | Default | Description |
+|----------|---------|-------------|
+| `--_tooltip-bg` | `--s-surface-overlay` | Background color |
+| `--_tooltip-text` | `--s-text-inverse` | Text color |
+| `--_tooltip-radius` | `--s-radius-md` | Border radius |
+| `--_tooltip-padding-x` | `--s-space-3` | Horizontal padding |
+| `--_tooltip-padding-y` | `--s-space-1_5` | Vertical padding |
+| `--_tooltip-offset` | `--s-space-2` | Gap from trigger |
+| `--_tooltip-max-width` | `200px` | Maximum width |
+| `--_tooltip-arrow-size` | `6px` | Arrow size |
+
+## All Attributes
+
+| Attribute | Purpose | Values |
+|-----------|---------|--------|
+| `s-tooltip` | Tooltip text content | Any string |
+| `s-tooltip-pos` | Position variant | `top` (default), `bottom`, `left`, `right` |
+
+## Accessibility Notes
+
+**Important:** Pseudo-element tooltips (using `::after`) are **not announced by screen readers**. They only provide visual information.
+
+For critical information that must be accessible:
+
+1. **Use `aria-describedby`** with a visible or visually-hidden element
+2. **Ensure the tooltip text is not the only source** of important information
+
+### Accessible Pattern
+
+```html
+<!-- For non-critical hints, tooltip is fine -->
+<button s-tooltip="Save your changes" aria-label="Save">
+  <svg><!-- save icon --></svg>
+</button>
+
+<!-- For critical info, use aria-describedby -->
+<button aria-describedby="tooltip-1">Hover me</button>
+<span id="tooltip-1" class="sr-only">Critical accessibility information</span>
+```
+
+## Customization Examples
+
+### Custom Background Color
+
+```css
+[s-tooltip] {
+  --_tooltip-bg: var(--s-primary-700);
+}
+```
+
+### Wider Tooltips
+
+```css
+[s-tooltip] {
+  --_tooltip-max-width: 300px;
+}
+```
+
+### Larger Arrow
+
+```css
+[s-tooltip] {
+  --_tooltip-arrow-size: 8px;
+}
+```
+
+### Theme-Aware Tooltips
+
+```css
+/* Light theme: dark tooltip */
+:root {
+  --_tooltip-bg: var(--s-neutral-900);
+  --_tooltip-text: var(--s-neutral-50);
+}
+
+/* Dark theme: light tooltip */
+[data-theme="dark"] {
+  --_tooltip-bg: var(--s-neutral-100);
+  --_tooltip-text: var(--s-neutral-900);
+}
+```
+
+## Browser Support
+
+CSS tooltips work in all modern browsers:
+
+- **Chrome**: Full support
+- **Firefox**: Full support
+- **Safari**: Full support
+- **Edge**: Full support
+
+The `attr()` function for `content` is widely supported. Animations respect `prefers-reduced-motion`.
+
+## High Contrast Mode
+
+Tooltips adapt to Windows High Contrast Mode:
+
+```css
+@media (forced-colors: active) {
+  [s-tooltip]::after {
+    background-color: Canvas;
+    color: CanvasText;
+    border: 1px solid CanvasText;
+  }
+
+  [s-tooltip]::before {
+    /* Arrow hidden - borders unreliable in high contrast */
+    display: none;
+  }
+}
+```

@@ -3,6 +3,8 @@ title: Color Tokens
 description: OKLCH color scales and semantic color tokens
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Seed Hues
 
 Override these variables to regenerate entire color palettes:
@@ -19,25 +21,150 @@ Override these variables to regenerate entire color palettes:
 }
 ```
 
+> **Tip:** Use the floating Theme Customizer (bottom-right corner) to adjust hue values and see changes live across all components.
+
 ## Color Scales
 
-Each color has an 11-step scale (50-950):
+Each color has an 11-step scale (50-950). The scales are generated from seed hues with perceptually uniform lightness steps.
 
-### Primary Colors
+### Primary Scale
+
+<Demo
+	title="Primary color scale"
+	showCode={false}
+	code={`<div style="display: flex; border-radius: var(--s-radius-lg); overflow: hidden;">
+  <div style="flex: 1; height: 48px; background: var(--s-primary-50);" title="50"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-100);" title="100"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-200);" title="200"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-300);" title="300"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-400);" title="400"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-500);" title="500"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-600);" title="600"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-700);" title="700"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-800);" title="800"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-900);" title="900"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-primary-950);" title="950"></div>
+</div>
+<div style="display: flex; font-size: var(--s-text-xs); color: var(--s-text-secondary); margin-top: var(--s-space-1);">
+  <span style="flex: 1; text-align: center;">50</span>
+  <span style="flex: 1; text-align: center;">100</span>
+  <span style="flex: 1; text-align: center;">200</span>
+  <span style="flex: 1; text-align: center;">300</span>
+  <span style="flex: 1; text-align: center;">400</span>
+  <span style="flex: 1; text-align: center;">500</span>
+  <span style="flex: 1; text-align: center;">600</span>
+  <span style="flex: 1; text-align: center;">700</span>
+  <span style="flex: 1; text-align: center;">800</span>
+  <span style="flex: 1; text-align: center;">900</span>
+  <span style="flex: 1; text-align: center;">950</span>
+</div>`}
+/>
+
+### Neutral Scale
+
+<Demo
+	title="Neutral color scale (brand-tinted grays)"
+	showCode={false}
+	code={`<div style="display: flex; border-radius: var(--s-radius-lg); overflow: hidden;">
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-50);" title="50"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-100);" title="100"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-200);" title="200"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-300);" title="300"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-400);" title="400"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-500);" title="500"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-600);" title="600"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-700);" title="700"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-800);" title="800"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-900);" title="900"></div>
+  <div style="flex: 1; height: 48px; background: var(--s-neutral-950);" title="950"></div>
+</div>
+<div style="display: flex; font-size: var(--s-text-xs); color: var(--s-text-secondary); margin-top: var(--s-space-1);">
+  <span style="flex: 1; text-align: center;">50</span>
+  <span style="flex: 1; text-align: center;">100</span>
+  <span style="flex: 1; text-align: center;">200</span>
+  <span style="flex: 1; text-align: center;">300</span>
+  <span style="flex: 1; text-align: center;">400</span>
+  <span style="flex: 1; text-align: center;">500</span>
+  <span style="flex: 1; text-align: center;">600</span>
+  <span style="flex: 1; text-align: center;">700</span>
+  <span style="flex: 1; text-align: center;">800</span>
+  <span style="flex: 1; text-align: center;">900</span>
+  <span style="flex: 1; text-align: center;">950</span>
+</div>`}
+/>
+
+### Status Colors
+
+<Demo
+	title="Success, warning, and danger scales"
+	showCode={false}
+	code={`<div style="display: grid; gap: var(--s-space-4);">
+  <div>
+    <div style="font-size: var(--s-text-sm); font-weight: var(--s-font-medium); margin-bottom: var(--s-space-1);">Success</div>
+    <div style="display: flex; border-radius: var(--s-radius-lg); overflow: hidden;">
+      <div style="flex: 1; height: 32px; background: var(--s-success-50);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-100);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-200);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-300);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-400);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-500);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-600);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-700);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-800);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-900);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-success-950);"></div>
+    </div>
+  </div>
+  <div>
+    <div style="font-size: var(--s-text-sm); font-weight: var(--s-font-medium); margin-bottom: var(--s-space-1);">Warning</div>
+    <div style="display: flex; border-radius: var(--s-radius-lg); overflow: hidden;">
+      <div style="flex: 1; height: 32px; background: var(--s-warning-50);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-100);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-200);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-300);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-400);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-500);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-600);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-700);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-800);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-900);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-warning-950);"></div>
+    </div>
+  </div>
+  <div>
+    <div style="font-size: var(--s-text-sm); font-weight: var(--s-font-medium); margin-bottom: var(--s-space-1);">Danger</div>
+    <div style="display: flex; border-radius: var(--s-radius-lg); overflow: hidden;">
+      <div style="flex: 1; height: 32px; background: var(--s-danger-50);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-100);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-200);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-300);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-400);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-500);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-600);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-700);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-800);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-900);"></div>
+      <div style="flex: 1; height: 32px; background: var(--s-danger-950);"></div>
+    </div>
+  </div>
+</div>`}
+/>
+
+## Scale Reference
 
 | Token | Lightness | Usage |
 |-------|-----------|-------|
-| `--s-primary-50` | 0.978 | Lightest backgrounds |
-| `--s-primary-100` | 0.936 | Hover backgrounds |
-| `--s-primary-200` | 0.881 | Subtle borders |
-| `--s-primary-300` | 0.827 | Disabled states |
-| `--s-primary-400` | 0.742 | Secondary elements |
-| `--s-primary-500` | 0.648 | Primary interactive |
-| `--s-primary-600` | 0.573 | Hover states |
-| `--s-primary-700` | 0.469 | Active states |
-| `--s-primary-800` | 0.394 | High contrast |
-| `--s-primary-900` | 0.320 | Near black |
-| `--s-primary-950` | 0.238 | Darkest |
+| `--s-{color}-50` | 0.978 | Lightest backgrounds |
+| `--s-{color}-100` | 0.936 | Hover backgrounds |
+| `--s-{color}-200` | 0.881 | Subtle borders |
+| `--s-{color}-300` | 0.827 | Disabled states |
+| `--s-{color}-400` | 0.742 | Secondary elements |
+| `--s-{color}-500` | 0.648 | Primary interactive |
+| `--s-{color}-600` | 0.573 | Hover states |
+| `--s-{color}-700` | 0.469 | Active states |
+| `--s-{color}-800` | 0.394 | High contrast |
+| `--s-{color}-900` | 0.320 | Near black |
+| `--s-{color}-950` | 0.238 | Darkest |
 
 ### Using Color Tokens
 
@@ -90,26 +217,6 @@ Semantic tokens map to raw colors and adapt to light/dark mode:
 | `--s-interactive-primary` | primary-600 | primary-400 | Buttons, links |
 | `--s-interactive-hover` | primary-700 | primary-300 | Hover states |
 | `--s-interactive-active` | primary-800 | primary-200 | Active states |
-
-## Status Colors
-
-### Success
-
-```css
---s-success-500: oklch(0.648 0.147 145);
-```
-
-### Warning
-
-```css
---s-warning-500: oklch(0.648 0.147 45);
-```
-
-### Danger
-
-```css
---s-danger-500: oklch(0.648 0.147 25);
-```
 
 ## Brand-Tinted Neutrals
 

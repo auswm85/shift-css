@@ -3,6 +3,8 @@ title: Card
 description: Flexible card component for content containers
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Overview
 
 The `s-card` attribute provides a structured container for content with optional header, body, and footer sections.
@@ -19,27 +21,107 @@ The `s-card` attribute provides a structured container for content with optional
 
 > **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
 
-## Basic Usage
+## Basic Cards
 
-```html
-<article s-card>
-  <div s-card-body>Simple card content</div>
-</article>
-```
+<Demo
+	title="Card with header, body, and footer"
+	code={`<div class="demo-grid">
+  <article s-card>
+    <header s-card-header>
+      <h4 style="margin: 0;">Card with Header</h4>
+    </header>
+    <div s-card-body>
+      <p style="margin: 0;">Card body content goes here.</p>
+    </div>
+    <footer s-card-footer>
+      <button s-btn="primary" s-size="sm">Action</button>
+    </footer>
+  </article>
+  <article s-card>
+    <div s-card-body>
+      <h4 s-card-title>Card Title</h4>
+      <p s-card-subtitle>Card subtitle text</p>
+      <p style="margin: 0;">Using semantic title/subtitle attributes.</p>
+    </div>
+  </article>
+</div>`}
+/>
 
-## Full Structure
+## Media Card
 
-```html
-<article s-card>
-  <header s-card-header>
-    <h3>Card Title</h3>
-  </header>
-  <div s-card-body>Main card content goes here.</div>
-  <footer s-card-footer>
-    <button s-btn="primary" s-size="sm">Action</button>
-  </footer>
-</article>
-```
+<Demo
+	title="Card with image"
+	code={`<div class="demo-grid">
+  <article s-card>
+    <div s-card-media>
+      <img
+        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&h=225&fit=crop"
+        alt="Abstract gradient"
+        width="400"
+        height="225"
+      />
+    </div>
+    <div s-card-body>
+      <h4 s-card-title>Media Card</h4>
+      <p s-card-subtitle>With image container</p>
+      <p style="margin: 0;">Using <code>s-card-media</code> for 16:9 images.</p>
+    </div>
+  </article>
+  <article s-card s-horizontal>
+    <div s-card-media>
+      <img
+        src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200&h=200&fit=crop"
+        alt="Abstract art"
+        width="200"
+        height="200"
+      />
+    </div>
+    <div s-card-body>
+      <h4 s-card-title>Horizontal Card</h4>
+      <p s-card-subtitle>Side-by-side layout</p>
+      <p style="margin: 0;">Using <code>s-horizontal</code> modifier.</p>
+    </div>
+  </article>
+</div>`}
+/>
+
+## Card Variants
+
+<Demo
+	title="Elevation variants"
+	code={`<div class="demo-grid">
+  <article s-card="flat">
+    <div s-card-body>
+      <h4 style="margin: 0 0 var(--s-space-2);">Flat Card</h4>
+      <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-card="flat"</code></p>
+    </div>
+  </article>
+  <article s-card="elevated">
+    <div s-card-body>
+      <h4 style="margin: 0 0 var(--s-space-2);">Elevated Card</h4>
+      <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-card="elevated"</code></p>
+    </div>
+  </article>
+  <article s-card="outline">
+    <div s-card-body>
+      <h4 style="margin: 0 0 var(--s-space-2);">Outline Card</h4>
+      <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-card="outline"</code></p>
+    </div>
+  </article>
+</div>`}
+/>
+
+## Interactive Card
+
+<Demo
+	title="Hoverable card with lift effect"
+	code={`<article s-card s-interactive>
+  <div s-card-body>
+    <h4 style="margin: 0 0 var(--s-space-2);">Hover Me!</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-interactive</code> adds lift on hover.</p>
+  </div>
+</article>`}
+/>
 
 ## Card Sections
 
@@ -80,81 +162,6 @@ The `s-card` attribute provides a structured container for content with optional
     <button s-btn="ghost" s-size="sm">Cancel</button>
     <button s-btn="primary" s-size="sm">View Details</button>
   </footer>
-</article>
-```
-
-### Card with Media
-
-```html
-<article s-card>
-  <div s-card-media>
-    <img src="/image.jpg" alt="Card image" />
-  </div>
-  <div s-card-body>
-    <h4 s-card-title>Card Title</h4>
-    <p s-card-subtitle>A brief description</p>
-    <p>More detailed content here.</p>
-  </div>
-</article>
-```
-
-## Variants
-
-### Flat Card
-
-No shadow, just a border:
-
-```html
-<article s-card="flat">
-  <div s-card-body>Flat card with border</div>
-</article>
-```
-
-### Elevated Card
-
-Higher shadow:
-
-```html
-<article s-card="elevated">
-  <div s-card-body>Elevated card</div>
-</article>
-```
-
-### Outline Card
-
-Transparent with strong border:
-
-```html
-<article s-card="outline">
-  <div s-card-body>Outline card</div>
-</article>
-```
-
-## Modifiers
-
-### Interactive Card
-
-Lift effect on hover:
-
-```html
-<article s-card s-interactive>
-  <div s-card-body>Hover me!</div>
-</article>
-```
-
-### Horizontal Layout
-
-Side-by-side media and content:
-
-```html
-<article s-card s-horizontal>
-  <div s-card-media>
-    <img src="/image.jpg" alt="Card image" />
-  </div>
-  <div s-card-body>
-    <h4 s-card-title>Horizontal Card</h4>
-    <p>Content beside the image.</p>
-  </div>
 </article>
 ```
 
@@ -229,24 +236,6 @@ Cards use CSS custom properties for consistent styling:
 }
 ```
 
-## Customization Examples
-
-### Custom Background
-
-```html
-<article s-card style="--_card-bg: var(--s-primary-50);">
-  <div s-card-body>Tinted card background</div>
-</article>
-```
-
-### Sharp Corners
-
-```css
-[s-card] {
-  --_card-radius: 0;
-}
-```
-
 ## All Attributes
 
 | Attribute         | Purpose           | Values                                              |
@@ -264,3 +253,21 @@ Cards use CSS custom properties for consistent styling:
 | `s-size`          | Card size         | `sm`, `lg`                                          |
 | `s-card-grid`     | Grid container    | N/A                                                 |
 | `s-card-stack`    | Stack container   | N/A                                                 |
+
+## Customization Examples
+
+### Custom Background
+
+```html
+<article s-card style="--_card-bg: var(--s-primary-50);">
+  <div s-card-body>Tinted card background</div>
+</article>
+```
+
+### Sharp Corners
+
+```css
+[s-card] {
+  --_card-radius: 0;
+}
+```

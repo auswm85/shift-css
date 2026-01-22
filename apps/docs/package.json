@@ -15,7 +15,9 @@
     "@shift-css/core": "workspace:*"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "astro-critters": "^2.2.1",
-    "pagefind": "^1.4.0"
+    "pagefind": "^1.4.0",
+    "typescript": "^5.9.3"
   }
 }

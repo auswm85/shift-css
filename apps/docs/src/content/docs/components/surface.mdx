@@ -3,6 +3,8 @@ title: Surface
 description: Layered background component for visual hierarchy
 ---
 
+import Demo from '../../../components/docs/Demo.astro';
+
 ## Overview
 
 The `s-surface` attribute provides background surfaces with different elevation levels for creating visual hierarchy.
@@ -19,13 +21,29 @@ The `s-surface` attribute provides background surfaces with different elevation 
 
 > **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
 
-## Basic Usage
-
-```html
-<div s-surface="flat">Default flat surface</div>
-```
-
 ## Elevation Variants
+
+<Demo
+	title="Elevation hierarchy"
+	code={`<div class="demo-grid">
+  <div s-surface="sunken" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Sunken</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-surface="sunken"</code></p>
+  </div>
+  <div s-surface="flat" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Flat</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-surface="flat"</code></p>
+  </div>
+  <div s-surface="raised" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Raised</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-surface="raised"</code></p>
+  </div>
+  <div s-surface="floating" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Floating</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-surface="floating"</code></p>
+  </div>
+</div>`}
+/>
 
 ### Sunken
 
@@ -59,32 +77,21 @@ Higher elevation for overlays, modals, and dropdowns:
 <div s-surface="floating">Floating surface - highest elevation</div>
 ```
 
-## Comparison
-
-```html
-<div
-  style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-space-4);"
->
-  <div s-surface="sunken" style="padding: var(--s-space-4);">
-    <strong>Sunken</strong>
-    <p>Use for input areas, wells</p>
-  </div>
-  <div s-surface="flat" style="padding: var(--s-space-4);">
-    <strong>Flat</strong>
-    <p>Use for base content</p>
-  </div>
-  <div s-surface="raised" style="padding: var(--s-space-4);">
-    <strong>Raised</strong>
-    <p>Use for cards, sections</p>
-  </div>
-  <div s-surface="floating" style="padding: var(--s-space-4);">
-    <strong>Floating</strong>
-    <p>Use for modals, dropdowns</p>
-  </div>
-</div>
-```
-
 ## Modifiers
+
+<Demo
+	title="Surface modifiers"
+	code={`<div class="demo-grid">
+  <div s-surface="flat" s-bordered style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Bordered</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-bordered</code></p>
+  </div>
+  <div s-surface="raised" s-interactive style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Interactive</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-interactive</code> - hover me!</p>
+  </div>
+</div>`}
+/>
 
 ### Bordered
 
@@ -106,21 +113,45 @@ Make a surface hoverable with lift effect:
 
 ### Brand Colors
 
-```html
-<div s-surface="primary">Primary surface</div>
-<div s-surface="secondary">Secondary surface</div>
-<div s-surface="accent">Accent surface</div>
-```
+<Demo
+	title="Brand color surfaces"
+	code={`<div class="demo-grid">
+  <div s-surface="primary" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2); color: #fff;">Primary</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm); color: #fff;"><code style="color: #fff; background: transparent;">s-surface="primary"</code></p>
+  </div>
+  <div s-surface="secondary" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2); color: #fff;">Secondary</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm); color: #fff;"><code style="color: #fff; background: transparent;">s-surface="secondary"</code></p>
+  </div>
+  <div s-surface="accent" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2); color: #fff;">Accent</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm); color: #fff;"><code style="color: #fff; background: transparent;">s-surface="accent"</code></p>
+  </div>
+</div>`}
+/>
 
 ### State Surfaces
 
 For alerts and notifications:
 
-```html
-<div s-surface="success">Success message</div>
-<div s-surface="warning">Warning message</div>
-<div s-surface="danger">Error message</div>
-```
+<Demo
+	title="State surfaces for feedback"
+	code={`<div class="demo-grid">
+  <div s-surface="success" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Success</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);">For success messages</p>
+  </div>
+  <div s-surface="warning" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Warning</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);">For warning messages</p>
+  </div>
+  <div s-surface="danger" style="padding: var(--s-space-4);">
+    <h4 style="margin: 0 0 var(--s-space-2);">Danger</h4>
+    <p style="margin: 0; font-size: var(--s-text-sm);">For error messages</p>
+  </div>
+</div>`}
+/>
 
 ## How It Works
 
