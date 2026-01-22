@@ -27,6 +27,8 @@ reviews:
     auto_incremental_review: true
     base_branches:
       - main
+    ignore_title_keywords:
+      - "chore: release"
   request_changes_workflow: true
   labeling_instructions: []
 
