@@ -1,6 +1,8 @@
 import mdx from '@astrojs/mdx';
 import { defineConfig } from 'astro/config';
 import critters from 'astro-critters';
+import shiftLight from './src/themes/shift-light.json';
+import shiftDark from './src/themes/shift-dark.json';
 
 export default defineConfig({
 	site: 'https://getshiftcss.com',
@@ -16,8 +18,8 @@ export default defineConfig({
 	markdown: {
 		shikiConfig: {
 			themes: {
-				light: 'github-light',
-				dark: 'github-dark',
+				light: shiftLight,
+				dark: shiftDark,
 			},
 		},
 	},
