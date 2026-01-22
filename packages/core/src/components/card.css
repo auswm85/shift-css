@@ -124,11 +124,17 @@
   cursor: pointer;
   transition:
     transform var(--s-duration-200) var(--s-ease-out),
-    box-shadow var(--s-duration-200) var(--s-ease-out);
+    box-shadow var(--s-duration-200) var(--s-ease-out),
+    border-color var(--s-duration-200) var(--s-ease-out);
 
   &:hover {
     transform: translateY(-4px);
     --_card-shadow: var(--s-shadow-xl);
+
+    /* RCS: interactive depth - border darkens 10% on hover */
+    @supports (color: oklch(from red l c h)) {
+      border-color: oklch(from var(--_card-border) calc(l - 0.1) c h);
+    }
   }
 
   &:active {

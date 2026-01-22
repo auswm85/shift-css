@@ -63,6 +63,11 @@
   border-radius: var(--_tooltip-radius);
   box-shadow: var(--s-shadow-md);
 
+  /* RCS: tethered tinting - derive border from tooltip background */
+  @supports (color: oklch(from red l c h)) {
+    border: 1px solid oklch(from var(--_tooltip-bg) calc(l - 0.1) c h);
+  }
+
   /* Typography */
   font-size: var(--s-text-xs);
   font-weight: var(--s-font-medium);

@@ -56,12 +56,33 @@
 
   /* Hover state */
   &:hover:not(:disabled) {
-    --_btn-bg: var(--s-interactive-primary-hover);
+    /* Fallback: semantic token */
+    background-color: var(--s-interactive-primary-hover);
+
+    /* RCS: derive hover from base color (works with custom colors)
+       Light mode: darken (l * 0.92), Dark mode: lighten (l * 1.1, capped at 0.95) */
+    @supports (color: oklch(from red l c h)) {
+      background-color: light-dark(
+        oklch(from var(--_btn-bg) calc(l * 0.92) c h),
+        oklch(from var(--_btn-bg) min(calc(l * 1.1), 0.95) c h)
+      );
+    }
   }
 
   /* Active state */
   &:active:not(:disabled) {
-    --_btn-bg: var(--s-interactive-primary-active);
+    /* Fallback: semantic token */
+    background-color: var(--s-interactive-primary-active);
+
+    /* RCS: derive active from base color
+       Light mode: darken more, Dark mode: lighten more */
+    @supports (color: oklch(from red l c h)) {
+      background-color: light-dark(
+        oklch(from var(--_btn-bg) calc(l * 0.85) c h),
+        oklch(from var(--_btn-bg) min(calc(l * 1.2), 0.98) c h)
+      );
+    }
+
     transform: scale(0.98);
   }
 
@@ -87,14 +108,6 @@
 [s-btn="primary"] {
   --_btn-bg: var(--s-interactive-primary);
   --_btn-text: var(--s-text-inverse);
-
-  &:hover:not(:disabled) {
-    --_btn-bg: var(--s-interactive-primary-hover);
-  }
-
-  &:active:not(:disabled) {
-    --_btn-bg: var(--s-interactive-primary-active);
-  }
 }
 
 /* Secondary */
@@ -105,10 +118,6 @@
 
   /* Override auto-contrast */
   color: var(--_btn-text);
-
-  &:hover:not(:disabled) {
-    --_btn-bg: var(--s-surface-sunken);
-  }
 }
 
 /* Ghost - transparent background */
@@ -159,43 +168,19 @@
    STATE VARIANTS
    ============================================================================= */
 
-/* Danger */
+/* Danger - hover/active derived via RCS */
 [s-btn="danger"] {
   --_btn-bg: var(--s-state-danger);
-
-  &:hover:not(:disabled) {
-    --_btn-bg: var(--s-danger-800);
-  }
-
-  &:active:not(:disabled) {
-    --_btn-bg: var(--s-danger-900);
-  }
 }
 
-/* Success */
+/* Success - hover/active derived via RCS */
 [s-btn="success"] {
   --_btn-bg: var(--s-state-success);
-
-  &:hover:not(:disabled) {
-    --_btn-bg: var(--s-success-800);
-  }
-
-  &:active:not(:disabled) {
-    --_btn-bg: var(--s-success-900);
-  }
 }
 
-/* Warning */
+/* Warning - hover/active derived via RCS */
 [s-btn="warning"] {
   --_btn-bg: var(--s-state-warning);
-
-  &:hover:not(:disabled) {
-    --_btn-bg: var(--s-warning-800);
-  }
-
-  &:active:not(:disabled) {
-    --_btn-bg: var(--s-warning-900);
-  }
 }
 
 /* =============================================================================
