@@ -27,7 +27,7 @@ ${pc.dim('Commands:')}
   ${pc.green('init')}     Set up Shift CSS in your project
            Detects existing frameworks and wraps them in @layer legacy
   ${pc.green('types')}    Generate TypeScript definitions for Shift CSS attributes
-           Detects React/Vue and shows setup instructions
+           Detects React/Vue/Svelte and shows setup instructions
 
 ${pc.dim('Options:')}
   ${pc.yellow('--help, -h')}     Show this help message

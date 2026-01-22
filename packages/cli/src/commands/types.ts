@@ -137,11 +137,18 @@ function showInstructions(framework: Framework): void {
 		console.log(pc.dim('Option 2: Add reference to any .d.ts file'));
 		console.log();
 		console.log(pc.cyan('  /// <reference types="@shift-css/core/types/vue" />'));
+	} else if (framework === 'svelte') {
+		console.log(pc.dim('Svelte support is coming soon!'));
+		console.log();
+		console.log(pc.dim('For now, you can generate a local .d.ts file:'));
+		console.log();
+		console.log(pc.cyan('  npx shift-css types --svelte -o shift.d.ts'));
 	} else {
 		console.log(pc.dim('Add to your tsconfig.json based on your framework:'));
 		console.log();
-		console.log(pc.cyan('  React: "types": ["@shift-css/core/types/react"]'));
-		console.log(pc.cyan('  Vue:   "types": ["@shift-css/core/types/vue"]'));
+		console.log(pc.cyan('  React:  "types": ["@shift-css/core/types/react"]'));
+		console.log(pc.cyan('  Vue:    "types": ["@shift-css/core/types/vue"]'));
+		console.log(pc.cyan('  Svelte: Coming soon'));
 	}
 
 	console.log();
