@@ -30,8 +30,8 @@
   --void-900: oklch(95% 0.01 var(--shift-hue-neutral));
 
   /* === THE "GLOW" STATE === */
-  --s-glow: 0 0 15px oklch(70% 0.3 var(--shift-hue-primary) / 0.4);
-  --s-glow-accent: 0 0 12px oklch(60% 0.35 var(--shift-hue-accent) / 0.35);
+  --s-glow: 0 0 10px oklch(70% 0.25 var(--shift-hue-primary) / 0.25);
+  --s-glow-accent: 0 0 8px oklch(60% 0.3 var(--shift-hue-accent) / 0.2);
 
   /* Override Shift CSS radius */
   --s-radius-sm: 0;
@@ -91,8 +91,8 @@
   /* Must be dark enough for 4.5:1 contrast on light backgrounds */
   --s-primary: oklch(40% 0.2 var(--shift-hue-primary));
   --s-accent: oklch(35% 0.25 var(--shift-hue-accent));
-  --s-glow: 0 0 15px oklch(50% 0.25 var(--shift-hue-primary) / 0.3);
-  --s-glow-accent: 0 0 12px oklch(45% 0.3 var(--shift-hue-accent) / 0.25);
+  --s-glow: 0 0 10px oklch(50% 0.2 var(--shift-hue-primary) / 0.2);
+  --s-glow-accent: 0 0 8px oklch(45% 0.25 var(--shift-hue-accent) / 0.15);
 
   /* Ensure proper contrast for text */
   --s-text-primary: var(--void-900);
