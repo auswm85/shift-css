@@ -88,10 +88,10 @@ function hexToOklch(hex: string): string {
 function transformStyleColors(style: string): string {
 	return style.replace(
 		/color:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
-		(_, hex) => `color:${hexToOklch(expandHex('#' + hex))}`
+		(_, hex) => `color:${hexToOklch('#' + expandHex(hex))}`
 	).replace(
 		/--shiki-dark:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
-		(_, hex) => `--shiki-dark:${hexToOklch(expandHex('#' + hex))}`
+		(_, hex) => `--shiki-dark:${hexToOklch('#' + expandHex(hex))}`
 	);
 }
 
