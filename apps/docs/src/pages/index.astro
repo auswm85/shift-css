@@ -55,6 +55,7 @@ const quickStartCode = `<!-- Just drop it in -->
 
 			<!-- Features Section -->
 			<section class="features">
+				<h2 s-sr-only>Key Features</h2>
 				<div class="features-grid">
 					<article s-card>
 						<div s-card-body>
@@ -167,6 +168,55 @@ const quickStartCode = `<!-- Just drop it in -->
 							</p>
 						</div>
 					</article>
+				</div>
+			</section>
+
+			<!-- Comparison Section -->
+			<section class="comparison">
+				<h2>Comparison at a Glance</h2>
+				<div class="comparison-grid">
+					<div class="comparison-header legacy-header">Other Frameworks</div>
+					<div class="comparison-header shift-header">Shift CSS</div>
+
+					<div class="comparison-label">Color</div>
+					<div class="comparison-cell legacy-cell">
+						<span class="cell-icon"></span>
+						Random visual weight (HSL/Hex)
+					</div>
+					<div class="comparison-cell shift-cell">
+						<span class="cell-icon">✓</span>
+						Perceptual uniformity (OKLCH)
+					</div>
+
+					<div class="comparison-label">Dark Mode</div>
+					<div class="comparison-cell legacy-cell">
+						<span class="cell-icon"></span>
+						<code>.dark</code> class + JavaScript
+					</div>
+					<div class="comparison-cell shift-cell">
+						<span class="cell-icon">✓</span>
+						Native <code>light-dark()</code>
+					</div>
+
+					<div class="comparison-label">Overrides</div>
+					<div class="comparison-cell legacy-cell">
+						<span class="cell-icon"></span>
+						<code>!important</code> and selector wars
+					</div>
+					<div class="comparison-cell shift-cell">
+						<span class="cell-icon">✓</span>
+						Clean <code>@layer</code> orchestration
+					</div>
+
+					<div class="comparison-label">Responsiveness</div>
+					<div class="comparison-cell legacy-cell">
+						<span class="cell-icon"></span>
+						Viewport-driven (<code>@media</code>)
+					</div>
+					<div class="comparison-cell shift-cell">
+						<span class="cell-icon">✓</span>
+						Context-driven (<code>@container</code>)
+					</div>
 				</div>
 			</section>
 
@@ -302,6 +352,119 @@ const quickStartCode = `<!-- Just drop it in -->
 	.quick-start :global(pre) {
 		border-radius: 0 !important;
 		border: 1px solid var(--s-neutral-200) !important;
+	}
+
+	/* Comparison */
+	.comparison {
+		padding: var(--s-space-12) 0;
+	}
+
+	.comparison h2 {
+		font-size: var(--s-text-2xl);
+		font-weight: var(--s-font-semibold);
+		margin-bottom: var(--s-space-6);
+		text-align: center;
+	}
+
+	.comparison-grid {
+		display: grid;
+		grid-template-columns: auto 1fr 1fr;
+		gap: var(--s-space-2);
+		font-size: var(--s-text-sm);
+	}
+
+	.comparison-header {
+		padding: var(--s-space-3) var(--s-space-4);
+		font-weight: var(--s-font-semibold);
+		text-align: center;
+		border-radius: var(--s-radius-md);
+	}
+
+	.comparison-header:first-child {
+		grid-column: 2;
+	}
+
+	.legacy-header {
+		background: var(--s-surface-subtle);
+		color: var(--s-text-secondary);
+	}
+
+	.shift-header {
+		background: var(--s-interactive-primary);
+		color: light-dark(white, var(--s-primary-950));
+	}
+
+	.comparison-label {
+		display: flex;
+		align-items: center;
+		padding: var(--s-space-3) var(--s-space-4);
+		font-weight: var(--s-font-semibold);
+		color: var(--s-text-primary);
+	}
+
+	.comparison-cell {
+		display: flex;
+		align-items: center;
+		gap: var(--s-space-2);
+		padding: var(--s-space-3) var(--s-space-4);
+		border-radius: var(--s-radius-md);
+	}
+
+	.legacy-cell {
+		background: var(--s-surface-subtle);
+		color: var(--s-text-secondary);
+	}
+
+	.shift-cell {
+		background: var(--s-surface-subtle);
+	}
+
+	.cell-icon {
+		flex-shrink: 0;
+		width: 1.25rem;
+		height: 1.25rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		font-size: var(--s-text-xs);
+		font-weight: var(--s-font-bold);
+	}
+
+	.legacy-cell .cell-icon {
+		background: var(--s-neutral-300);
+		color: var(--s-neutral-600);
+	}
+
+	.shift-cell .cell-icon {
+		background: var(--s-interactive-primary);
+		color: white;
+	}
+
+	.comparison-cell code {
+		font-family: var(--s-font-mono);
+		font-size: 0.85em;
+		background: var(--s-surface-default);
+		color: var(--s-text-primary);
+		padding: 0.1em 0.3em;
+		border-radius: var(--s-radius-sm);
+	}
+
+	@media (max-width: 640px) {
+		.comparison-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.comparison-label {
+			grid-column: 1 / -1;
+			background: var(--s-surface-subtle);
+			border-radius: var(--s-radius-md);
+			margin-top: var(--s-space-2);
+		}
+
+		.comparison-label:first-of-type {
+			margin-top: 0;
+		}
 	}
 
 	/* Bundle Size */

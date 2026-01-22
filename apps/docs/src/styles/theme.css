@@ -299,6 +299,16 @@ pre {
   border: var(--s-border-width) solid var(--void-200);
 }
 
+/* Light mode syntax highlighting - darken orange for contrast */
+:root:not([data-theme="dark"]) pre [style*="color:#E36209"] {
+  color: oklch(40% 0.18 45) !important;
+}
+
+/* Dark mode - brighten orange property names */
+[data-theme="dark"] pre [style*="--shiki-dark:#FFAB70"] {
+  color: oklch(80% 0.15 55) !important;
+}
+
 [data-theme="dark"] pre {
   background: var(--void-050) !important;
   border-color: var(--void-100);
@@ -337,15 +347,19 @@ pre {
   --shiki-dark-comment: oklch(55% 0.02 var(--shift-hue-neutral));
 
   /* Base text */
-  color: var(--void-700);
+  color: var(--void-900);
 }
 
 [data-theme="dark"] pre :is(.comment, [style*="--shiki-dark:#6A737D"]) {
-  color: oklch(55% 0.02 var(--shift-hue-neutral)) !important;
+  color: oklch(65% 0.02 var(--shift-hue-neutral)) !important;
 }
 
 [data-theme="dark"] pre :is(.tag, .keyword, [style*="--shiki-dark:#F97583"]) {
   color: oklch(75% 0.15 350) !important;
+}
+
+[data-theme="dark"] pre [style*="--shiki-dark:#85E89D"] {
+  color: oklch(75% 0.15 145) !important;
 }
 
 [data-theme="dark"] pre :is(.attr-name, [style*="--shiki-dark:#B392F0"]) {
@@ -355,7 +369,11 @@ pre {
 [data-theme="dark"]
   pre
   :is(.attr-value, .string, [style*="--shiki-dark:#9ECBFF"]) {
-  color: oklch(80% 0.1 200) !important;
+  color: oklch(85% 0.12 200) !important;
+}
+
+[data-theme="dark"] pre [style*="--shiki-dark:#79B8FF"] {
+  color: oklch(80% 0.15 230) !important;
 }
 
 [data-theme="dark"] pre :is(.function, [style*="--shiki-dark:#B392F0"]) {
