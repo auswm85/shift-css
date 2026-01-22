@@ -7,6 +7,7 @@ import SearchDialog from '../components/ui/SearchDialog.astro';
 import BundleSize from '../components/BundleSize.astro';
 import shiftLight from '../themes/shift-light.json';
 import shiftDark from '../themes/shift-dark.json';
+import { oklchTransformer } from '../lib/oklch-transformer';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -226,7 +227,7 @@ const quickStartCode = `<!-- Just drop it in -->
 			<section class="quick-start">
 				<h2>Quick Start</h2>
 				<div class="prose">
-					<Code code={quickStartCode} lang="html" themes={{ light: shiftLight as any, dark: shiftDark as any }} />
+					<Code code={quickStartCode} lang="html" themes={{ light: shiftLight as any, dark: shiftDark as any }} transformers={[oklchTransformer]} />
 				</div>
 			</section>
 
