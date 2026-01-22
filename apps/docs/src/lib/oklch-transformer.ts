@@ -87,11 +87,11 @@ function hexToOklch(hex: string): string {
 // Transform both light and dark color values in a style string
 function transformStyleColors(style: string): string {
 	return style.replace(
-		/color:#([0-9a-fA-F]{6})/g,
-		(_, hex) => `color:${hexToOklch('#' + hex)}`
+		/color:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
+		(_, hex) => `color:${hexToOklch(expandHex('#' + hex))}`
 	).replace(
-		/--shiki-dark:#([0-9a-fA-F]{6})/g,
-		(_, hex) => `--shiki-dark:${hexToOklch('#' + hex)}`
+		/--shiki-dark:\s*#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g,
+		(_, hex) => `--shiki-dark:${hexToOklch(expandHex('#' + hex))}`
 	);
 }
 
