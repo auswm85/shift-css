@@ -1,4 +1,5 @@
 ---
+import '../../styles/fonts.css';
 import '@shift-css/core';
 import '../../styles/shiki.css';
 import '../../styles/theme.css';
@@ -39,22 +40,9 @@ const isThemePage = Astro.url.pathname.includes('/theme');
 		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 
-		<!-- Fonts - non-render-blocking with preconnect -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Non-render-blocking font stylesheet -->
-		<link
-			rel="preload"
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-			as="style"
-			onload="this.onload=null;this.rel='stylesheet'"
-		/>
-		<noscript>
-			<link
-				href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-				rel="stylesheet"
-			/>
-		</noscript>
+		<!-- Preload critical fonts for instant rendering -->
+		<link rel="preload" href={`${base}/fonts/inter-latin-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={`${base}/fonts/jetbrains-mono-latin-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
 	</head>
 	<body>
 		<slot />
