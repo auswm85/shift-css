@@ -6,7 +6,10 @@
   "main": "./dist/shift.css",
   "types": "./types/index.d.ts",
   "exports": {
-    ".": "./dist/shift.css",
+    ".": {
+      "style": "./dist/shift.css",
+      "default": "./dist/shift.css"
+    },
     "./min": "./dist/shift.min.css",
     "./reset": "./dist/reset.css",
     "./tokens": "./dist/tokens.css",

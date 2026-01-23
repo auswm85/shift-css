@@ -28,7 +28,7 @@ The `s-card` attribute provides a structured container for content with optional
 	code={`<div class="demo-grid">
   <article s-card>
     <header s-card-header>
-      <h4 style="margin: 0;">Card with Header</h4>
+      <strong style="display: block; margin: 0;">Card with Header</strong>
     </header>
     <div s-card-body>
       <p style="margin: 0;">Card body content goes here.</p>
@@ -39,7 +39,7 @@ The `s-card` attribute provides a structured container for content with optional
   </article>
   <article s-card>
     <div s-card-body>
-      <h4 s-card-title>Card Title</h4>
+      <p s-card-title>Card Title</p>
       <p s-card-subtitle>Card subtitle text</p>
       <p style="margin: 0;">Using semantic title/subtitle attributes.</p>
     </div>
@@ -62,7 +62,7 @@ The `s-card` attribute provides a structured container for content with optional
       />
     </div>
     <div s-card-body>
-      <h4 s-card-title>Media Card</h4>
+      <p s-card-title>Media Card</p>
       <p s-card-subtitle>With image container</p>
       <p style="margin: 0;">Using <code>s-card-media</code> for 16:9 images.</p>
     </div>
@@ -77,7 +77,7 @@ The `s-card` attribute provides a structured container for content with optional
       />
     </div>
     <div s-card-body>
-      <h4 s-card-title>Horizontal Card</h4>
+      <p s-card-title>Horizontal Card</p>
       <p s-card-subtitle>Side-by-side layout</p>
       <p style="margin: 0;">Using <code>s-horizontal</code> modifier.</p>
     </div>
@@ -92,19 +92,19 @@ The `s-card` attribute provides a structured container for content with optional
 	code={`<div class="demo-grid">
   <article s-card="flat">
     <div s-card-body>
-      <h4 style="margin: 0 0 var(--s-space-2);">Flat Card</h4>
+      <strong style="display: block; margin: 0 0 var(--s-space-2);">Flat Card</strong>
       <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-card="flat"</code></p>
     </div>
   </article>
   <article s-card="elevated">
     <div s-card-body>
-      <h4 style="margin: 0 0 var(--s-space-2);">Elevated Card</h4>
+      <strong style="display: block; margin: 0 0 var(--s-space-2);">Elevated Card</strong>
       <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-card="elevated"</code></p>
     </div>
   </article>
   <article s-card="outline">
     <div s-card-body>
-      <h4 style="margin: 0 0 var(--s-space-2);">Outline Card</h4>
+      <strong style="display: block; margin: 0 0 var(--s-space-2);">Outline Card</strong>
       <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-card="outline"</code></p>
     </div>
   </article>
@@ -117,7 +117,7 @@ The `s-card` attribute provides a structured container for content with optional
 	title="Hoverable card with lift effect"
 	code={`<article s-card s-interactive>
   <div s-card-body>
-    <h4 style="margin: 0 0 var(--s-space-2);">Hover Me!</h4>
+    <strong style="display: block; margin: 0 0 var(--s-space-2);">Hover Me!</strong>
     <p style="margin: 0; font-size: var(--s-text-sm);"><code>s-interactive</code> adds lift on hover.</p>
   </div>
 </article>`}
