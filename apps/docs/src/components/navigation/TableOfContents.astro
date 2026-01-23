@@ -36,48 +36,40 @@ const tocHeadings = filterTocHeadings(headings);
 		const tocLinks = document.querySelectorAll('[data-toc-link]');
 		if (tocLinks.length === 0) return;
 
-		const headingIds = Array.from(tocLinks).map((link) => {
-			const href = link.getAttribute('href');
-			return href ? href.slice(1) : '';
-		});
+		function updateFromHash() {
+			const hash = window.location.hash || '';
+			tocLinks.forEach((link, index) => {
+				const href = link.getAttribute('href');
+				// Match hash, or default to first link if no hash
+				const isActive = hash ? href === hash : index === 0;
+				link.setAttribute('aria-current', isActive ? 'true' : 'false');
+			});
+		}
 
-		const headings = headingIds
-			.map((id) => document.getElementById(id))
-			.filter((el): el is HTMLElement => el !== null);
+		// Update on click (immediately, before hash changes)
+		tocLinks.forEach((link, index) => {
+			link.addEventListener('click', (e) => {
+				tocLinks.forEach((l) => l.setAttribute('aria-current', 'false'));
+				link.setAttribute('aria-current', 'true');
 
-		if (headings.length === 0) return;
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				// Find the first visible heading
-				const visibleEntry = entries.find((entry) => entry.isIntersecting);
-
-				if (visibleEntry) {
-					const id = visibleEntry.target.id;
-
-					// Update aria-current on all links
-					tocLinks.forEach((link) => {
-						const href = link.getAttribute('href');
-						const isActive = href === `#${id}`;
-						link.setAttribute('aria-current', isActive ? 'true' : 'false');
-					});
+				// First link scrolls to top of page
+				if (index === 0) {
+					e.preventDefault();
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+					history.pushState(null, '', link.getAttribute('href') || '');
 				}
-			},
-			{
-				rootMargin: '-80px 0px -70% 0px',
-				threshold: 0,
-			}
-		);
-
-		headings.forEach((heading) => {
-			observer.observe(heading);
+			});
 		});
+
+		// Initial state and hash changes
+		updateFromHash();
+		window.addEventListener('hashchange', updateFromHash);
 
 		// Cleanup on page transitions
 		document.addEventListener(
 			'astro:before-swap',
 			() => {
-				observer.disconnect();
+				window.removeEventListener('hashchange', updateFromHash);
 			},
 			{ once: true }
 		);

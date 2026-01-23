@@ -3,6 +3,20 @@
  */
 
 /* =============================================================================
+   Smooth Scrolling & Performance
+   ============================================================================= */
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+/* =============================================================================
    CSS Custom Properties
    ============================================================================= */
 
@@ -37,6 +51,7 @@
 @media (min-width: 1024px) {
 	.docs-layout {
 		grid-template-columns: var(--docs-sidebar-width) 1fr var(--docs-toc-width);
+		align-items: start;
 	}
 }
 
@@ -55,7 +70,7 @@
 	padding-inline: var(--docs-gutter);
 	background: var(--s-surface-base);
 	border-bottom: 1px solid var(--s-border-default);
-	backdrop-filter: blur(8px);
+	transform: translateZ(0); /* GPU acceleration */
 }
 
 @media (min-width: 768px) {
@@ -174,25 +189,29 @@
 
 .docs-toc {
 	display: none;
-	position: sticky;
-	top: var(--docs-header-height);
-	height: calc(100vh - var(--docs-header-height));
-	overflow-y: auto;
-	padding: var(--docs-gutter);
-	font-size: var(--s-text-sm);
-
-	/* Hide scrollbar but keep functionality */
-	scrollbar-width: none; /* Firefox */
-	-ms-overflow-style: none; /* IE/Edge */
-}
-
-.docs-toc::-webkit-scrollbar {
-	display: none; /* Chrome, Safari, Opera */
 }
 
 @media (min-width: 1024px) {
 	.docs-toc {
 		display: block;
+		position: fixed;
+		top: var(--docs-header-height);
+		right: 0;
+		width: var(--docs-toc-width);
+		max-height: calc(100vh - var(--docs-header-height));
+		overflow-y: auto;
+		padding: var(--docs-gutter);
+		padding-bottom: var(--s-space-16);
+		font-size: var(--s-text-sm);
+		transform: translateZ(0); /* GPU acceleration */
+
+		/* Hide scrollbar but keep functionality */
+		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none; /* IE/Edge */
+	}
+
+	.docs-toc::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, Opera */
 	}
 }
 
