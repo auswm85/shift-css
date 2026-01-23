@@ -21,6 +21,7 @@
 @import "./components/button.css" layer(shift.core);
 @import "./components/card.css" layer(shift.core);
 @import "./components/input.css" layer(shift.core);
+@import "./components/select.css" layer(shift.core);
 @import "./components/modal.css" layer(shift.core);
 @import "./components/prose.css" layer(shift.core);
 @import "./components/skip-link.css" layer(shift.core);

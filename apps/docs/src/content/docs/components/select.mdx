@@ -1,0 +1,208 @@
+---
+title: Select
+description: Fully customizable native select with CSS appearance base-select
+---
+
+import Demo from '../../../components/docs/Demo.astro';
+
+## Overview
+
+A fully styleable native `<select>` element using CSS `appearance: base-select`. Get complete control over the dropdown picker, arrow icon, and options—while maintaining native accessibility.
+
+**Browser Support:** Chrome 135+, Edge 135+. Falls back gracefully to standard select styling in unsupported browsers.
+
+## Import
+
+```css
+/* Full framework (includes all components) */
+@import "@shift-css/core";
+
+/* Or import just the select component */
+@import "@shift-css/core/components/select";
+```
+
+> **Note:** When importing individual components, you also need `@shift-css/core/reset` and `@shift-css/core/tokens` for the base styles and design tokens.
+
+## Basic Usage
+
+<Demo
+	title="Customizable select"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="demo-select">Choose an option</label>
+    <select s-select id="demo-select">
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+    </select>
+  </div>
+  <div s-field>
+    <label s-field-label for="demo-select-2">With more options</label>
+    <select s-select id="demo-select-2">
+      <option>React</option>
+      <option>Vue</option>
+      <option>Angular</option>
+      <option>Svelte</option>
+      <option>Solid</option>
+    </select>
+  </div>
+</div>`}
+/>
+
+## Size Variants
+
+Use the `s-size` attribute for different sizes:
+
+<Demo
+	title="Select sizes"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="select-sm">Small</label>
+    <select s-select s-size="sm" id="select-sm">
+      <option>Small select</option>
+      <option>Option 2</option>
+    </select>
+  </div>
+  <div s-field>
+    <label s-field-label for="select-md">Default</label>
+    <select s-select id="select-md">
+      <option>Default select</option>
+      <option>Option 2</option>
+    </select>
+  </div>
+  <div s-field>
+    <label s-field-label for="select-lg">Large</label>
+    <select s-select s-size="lg" id="select-lg">
+      <option>Large select</option>
+      <option>Option 2</option>
+    </select>
+  </div>
+</div>`}
+/>
+
+## States
+
+<Demo
+	title="Select states"
+	code={`<div class="demo-grid">
+  <div s-field>
+    <label s-field-label for="select-normal">Normal</label>
+    <select s-select id="select-normal">
+      <option>Click to open</option>
+      <option>Option 2</option>
+    </select>
+  </div>
+  <div s-field>
+    <label s-field-label for="select-disabled">Disabled</label>
+    <select s-select id="select-disabled" disabled>
+      <option>Disabled</option>
+      <option>Option 2</option>
+    </select>
+  </div>
+</div>`}
+/>
+
+## Comparison: s-select vs s-input
+
+| Feature | `s-select` | `select[s-input]` |
+|---------|-----------|------------------|
+| Dropdown styling | Full control via `::picker(select)` | Browser default |
+| Arrow icon | Styleable via `::picker-icon` | SVG background image |
+| Options styling | Full CSS control | Limited |
+| Checkmark | Customizable `::checkmark` | None |
+| Animation | Open/close transitions | None |
+| Browser support | Chrome 135+ | All browsers |
+
+Use `s-select` for modern browsers with full customization, or `s-input` on `<select>` for maximum compatibility.
+
+## How It Works
+
+The `appearance: base-select` CSS property opts in to the new customizable select rendering:
+
+```css
+/* Opt-in to customizable select */
+[s-select],
+[s-select]::picker(select) {
+  appearance: base-select;
+}
+
+/* Style the dropdown picker */
+[s-select]::picker(select) {
+  background: var(--s-surface-base);
+  border: 2px solid var(--s-border-default);
+  border-radius: var(--s-radius-md);
+  box-shadow: var(--s-shadow-lg);
+}
+
+/* Rotate arrow when open */
+[s-select]::picker-icon {
+  transition: rotate 0.2s;
+}
+
+[s-select]:open::picker-icon {
+  rotate: 180deg;
+}
+
+/* Style individual options */
+[s-select] option {
+  padding: var(--s-space-2) var(--s-space-3);
+}
+
+[s-select] option:checked {
+  background-color: var(--s-interactive-primary);
+  color: var(--s-text-on-primary);
+}
+```
+
+## New CSS Features Used
+
+| Feature | Purpose |
+|---------|---------|
+| `appearance: base-select` | Enables customizable select rendering |
+| `::picker(select)` | Targets the dropdown picker container |
+| `::picker-icon` | Targets the arrow icon |
+| `::checkmark` | Targets the selected option indicator |
+| `:open` | Matches when the select is open |
+| `:checked` | Matches the currently selected option |
+
+## Fallback Behavior
+
+In browsers that don't support `appearance: base-select`, the component falls back to standard select styling with:
+
+- Custom arrow icon via SVG background
+- Consistent border and padding
+- Focus and hover states
+
+```css
+@supports not (appearance: base-select) {
+  [s-select] {
+    appearance: none;
+    background-image: url("data:image/svg+xml,...");
+    /* Standard select styling */
+  }
+}
+```
+
+## Accessibility
+
+The `s-select` component maintains full native accessibility:
+
+- Keyboard navigation (arrow keys, Enter, Escape)
+- Screen reader support
+- Focus management
+- Form integration
+
+No JavaScript required—it's pure CSS enhancement of the native `<select>` element.
+
+## Attributes
+
+| Attribute | Purpose | Example |
+|-----------|---------|---------|
+| `s-select` | Enable customizable select | `<select s-select>` |
+| `s-size="sm"` | Small size variant | `<select s-select s-size="sm">` |
+| `s-size="lg"` | Large size variant | `<select s-select s-size="lg">` |
+
+## Resources
+
+- [Chrome Blog: Customizable Select](https://developer.chrome.com/blog/a-customizable-select)
+- [MDN: Customizable Select](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select)

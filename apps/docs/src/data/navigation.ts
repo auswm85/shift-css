@@ -39,6 +39,7 @@ const navigationData: NavEntry[] = [
 			{ label: 'Button', href: '/components/button' },
 			{ label: 'Card', href: '/components/card' },
 			{ label: 'Input', href: '/components/input' },
+			{ label: 'Select', href: '/components/select' },
 			{ label: 'Menu', href: '/components/menu' },
 			{ label: 'Modal', href: '/components/modal' },
 			{ label: 'Prose', href: '/components/prose' },

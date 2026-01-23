@@ -1,0 +1,236 @@
+/**
+ * Shift CSS - Select Component
+ *
+ * Customizable native select using CSS appearance: base-select
+ * Full styling control while maintaining native accessibility.
+ *
+ * Usage:
+ *   <select s-select>
+ *     <option>Option 1</option>
+ *     <option>Option 2</option>
+ *   </select>
+ *
+ * Browser support: Chrome 135+, Edge 135+
+ * Falls back gracefully to standard select in unsupported browsers.
+ */
+
+/* =============================================================================
+   BASE SELECT - Opt-in to customizable rendering
+   ============================================================================= */
+
+@supports (appearance: base-select) {
+  [s-select],
+  [s-select]::picker(select) {
+    appearance: base-select;
+  }
+
+  /* Select button (closed state) */
+  :where([s-select]) {
+    --_select-bg: var(--s-surface-base);
+    --_select-border: var(--s-border-default);
+    --_select-text: var(--s-text-primary);
+    --_select-radius: var(--s-radius-md);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-space-2);
+    min-width: 10rem;
+
+    padding: var(--s-space-2) var(--s-space-3);
+    background-color: var(--_select-bg);
+    border: 2px solid var(--_select-border);
+    border-radius: var(--_select-radius);
+    color: var(--_select-text);
+    font-size: var(--s-text-sm);
+    line-height: var(--s-leading-normal);
+    cursor: pointer;
+
+    transition:
+      border-color var(--s-duration-150) var(--s-ease-out),
+      box-shadow var(--s-duration-150) var(--s-ease-out);
+
+    /* Hover state */
+    &:hover:not(:disabled) {
+      --_select-border: var(--s-border-strong);
+    }
+
+    /* Open state */
+    &:open {
+      --_select-border: var(--s-interactive-primary);
+    }
+
+    /* Focus state */
+    &:focus-visible {
+      --_select-border: var(--s-interactive-primary);
+      outline: 2px solid var(--s-focus-ring);
+      outline-offset: 2px;
+
+      @supports (color: oklch(from red l c h)) {
+        outline-color: oklch(from var(--s-interactive-primary) l c h / 0.3);
+      }
+    }
+
+    /* Disabled state */
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--s-surface-sunken);
+    }
+  }
+
+  /* =============================================================================
+     PICKER ICON - Arrow with rotation animation
+     ============================================================================= */
+
+  [s-select]::picker-icon {
+    color: var(--s-text-tertiary);
+    transition: rotate var(--s-duration-200) var(--s-ease-out);
+  }
+
+  [s-select]:open::picker-icon {
+    rotate: 180deg;
+  }
+
+  /* =============================================================================
+     DROPDOWN PICKER - The options popover
+     ============================================================================= */
+
+  [s-select]::picker(select) {
+    background: var(--s-surface-base);
+    border: 2px solid var(--s-border-default);
+    border-radius: var(--s-radius-md);
+    box-shadow: var(--s-shadow-lg);
+    padding: var(--s-space-1);
+
+    /* Force dropdown to open below the select */
+    inset: auto;
+    top: anchor(bottom);
+    left: anchor(left);
+    min-width: anchor-size(width);
+  }
+
+  /* =============================================================================
+     OPTIONS - Individual option styling
+     ============================================================================= */
+
+  [s-select] option {
+    display: flex;
+    align-items: center;
+    gap: var(--s-space-2);
+    padding: var(--s-space-2) var(--s-space-3);
+    border-radius: var(--s-radius-sm);
+    color: var(--s-text-primary);
+    cursor: pointer;
+
+    transition: background-color var(--s-duration-150) var(--s-ease-out);
+
+    &:hover {
+      background-color: var(--s-surface-hover);
+    }
+
+    /* Selected option */
+    &:checked {
+      background-color: var(--s-interactive-primary);
+      color: var(--s-text-on-primary);
+    }
+  }
+
+  /* =============================================================================
+     CHECKMARK - Selected indicator
+     ============================================================================= */
+
+  [s-select] option::checkmark {
+    order: 1;
+    margin-left: auto;
+    opacity: 0;
+  }
+
+  [s-select] option:checked::checkmark {
+    opacity: 1;
+  }
+
+  /* =============================================================================
+     SIZE VARIANTS
+     ============================================================================= */
+
+  [s-select][s-size="sm"] {
+    padding: var(--s-space-1) var(--s-space-2);
+    font-size: var(--s-text-xs);
+    min-width: 8rem;
+  }
+
+  [s-select][s-size="lg"] {
+    padding: var(--s-space-3) var(--s-space-4);
+    font-size: var(--s-text-base);
+    min-width: 12rem;
+  }
+
+  /* =============================================================================
+     STYLE QUERIES - Depth-Aware Adaptation
+     ============================================================================= */
+
+  @container surface style(--_surface-depth: 1) {
+    :where([s-select]) {
+      --_select-bg: var(--s-surface-sunken);
+    }
+  }
+
+  @container surface style(--_surface-depth: 2) {
+    :where([s-select]) {
+      --_select-bg: var(--s-surface-sunken);
+      --_select-border: var(--s-border-strong);
+    }
+  }
+
+  @container surface style(--_surface-depth: -1) {
+    :where([s-select]) {
+      --_select-bg: var(--s-surface-raised);
+      --_select-border: var(--s-border-muted);
+    }
+  }
+}
+
+/* =============================================================================
+   FALLBACK - Graceful degradation for unsupported browsers
+   Uses standard [s-input] select styling from input.css
+   ============================================================================= */
+
+@supports not (appearance: base-select) {
+  [s-select] {
+    appearance: none;
+    display: block;
+    width: 100%;
+
+    padding: var(--s-space-2) var(--s-space-3);
+    padding-right: var(--s-space-10);
+    background-color: var(--s-surface-base);
+    border: 2px solid var(--s-border-default);
+    border-radius: var(--s-radius-md);
+    color: var(--s-text-primary);
+    font-size: var(--s-text-sm);
+    line-height: var(--s-leading-normal);
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--s-space-3) center;
+
+    transition:
+      border-color var(--s-duration-150) var(--s-ease-out),
+      box-shadow var(--s-duration-150) var(--s-ease-out);
+
+    &:hover:not(:disabled) {
+      border-color: var(--s-border-strong);
+    }
+
+    &:focus-visible {
+      border-color: var(--s-interactive-primary);
+      outline: 2px solid var(--s-focus-ring);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
