@@ -42,6 +42,7 @@ const isThemePage = Astro.url.pathname.includes('/theme');
 
 		<!-- Preload critical fonts for instant rendering -->
 		<link rel="preload" href={`${base}/fonts/inter-latin-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={`${base}/fonts/inter-latin-400-italic.woff2`} as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href={`${base}/fonts/jetbrains-mono-latin-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
 	</head>
 	<body>
