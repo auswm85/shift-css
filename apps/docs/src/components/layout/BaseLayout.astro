@@ -1,5 +1,6 @@
 ---
 import '@shift-css/core';
+import '../../styles/shiki.css';
 import '../../styles/theme.css';
 import '../../styles/docs.css';
 import '../../styles/prose.css';
@@ -19,8 +20,17 @@ const isThemePage = Astro.url.pathname.includes('/theme');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="color-scheme: light dark">
 	<head>
+		<!-- Theme script: only override if user has explicit preference -->
+		<script is:inline>
+			(function () {
+				var stored = localStorage.getItem('shift-docs-theme');
+				if (stored) {
+					document.documentElement.style.colorScheme = stored;
+				}
+			})();
+		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
@@ -45,16 +55,6 @@ const isThemePage = Astro.url.pathname.includes('/theme');
 				rel="stylesheet"
 			/>
 		</noscript>
-
-		<!-- Theme Script (runs before render to prevent flash) -->
-		<script is:inline>
-			(function () {
-				const stored = localStorage.getItem('shift-docs-theme');
-				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				const theme = stored || (prefersDark ? 'dark' : 'light');
-				document.documentElement.setAttribute('data-theme', theme);
-			})();
-		</script>
 	</head>
 	<body>
 		<slot />

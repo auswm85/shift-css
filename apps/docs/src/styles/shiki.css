@@ -1,0 +1,79 @@
+/**
+ * Shiki Syntax Highlighting Theme
+ *
+ * Defines CSS variables for Astro's Shiki css-variables theme.
+ * Light background in light mode, dark in dark mode.
+ * Token colors adapt via light-dark() for proper contrast in each mode.
+ *
+ */
+
+@layer shiki {
+  :root {
+    /* Base colors - light bg in light mode, dark bg in dark mode */
+    --astro-code-background: light-dark(
+      oklch(92% 0.01 var(--shift-hue-neutral)),
+      oklch(12% 0.02 var(--shift-hue-neutral))
+    );
+    --astro-code-foreground: light-dark(
+      oklch(25% 0.02 var(--shift-hue-neutral)),
+      oklch(90% 0.01 var(--shift-hue-neutral))
+    );
+
+    /* Token colors - darker in light mode, brighter in dark mode */
+    --astro-code-token-keyword: light-dark(
+      oklch(45% 0.2 var(--shift-hue-primary)),
+      oklch(75% 0.18 var(--shift-hue-primary))
+    );
+    --astro-code-token-string: light-dark(
+      oklch(40% 0.12 140),
+      oklch(75% 0.12 140)
+    );
+    --astro-code-token-string-expression: light-dark(
+      oklch(40% 0.12 140),
+      oklch(75% 0.12 140)
+    );
+    --astro-code-token-comment: light-dark(
+      oklch(40% 0.02 var(--shift-hue-neutral)),
+      oklch(60% 0.02 var(--shift-hue-neutral))
+    );
+    --astro-code-token-constant: light-dark(
+      oklch(45% 0.15 var(--shift-hue-accent)),
+      oklch(80% 0.15 var(--shift-hue-accent))
+    );
+    --astro-code-token-parameter: light-dark(
+      oklch(45% 0.12 60),
+      oklch(85% 0.12 60)
+    );
+    --astro-code-token-function: light-dark(
+      oklch(45% 0.15 280),
+      oklch(80% 0.15 280)
+    );
+    --astro-code-token-punctuation: light-dark(
+      oklch(40% 0.02 var(--shift-hue-neutral)),
+      oklch(70% 0.02 var(--shift-hue-neutral))
+    );
+    --astro-code-token-link: light-dark(
+      oklch(45% 0.15 var(--shift-hue-primary)),
+      oklch(70% 0.15 var(--shift-hue-primary))
+    );
+  }
+
+  /* Code block container styling */
+  pre.astro-code {
+    padding: var(--s-space-4);
+    border: 1px solid
+      light-dark(
+        oklch(85% 0.02 var(--shift-hue-neutral)),
+        oklch(25% 0.02 var(--shift-hue-neutral))
+      );
+  }
+
+  /* Line numbers styling */
+  pre.astro-code .line::before,
+  pre.astro-code [data-line-numbers]::before {
+    color: light-dark(
+      oklch(60% 0.02 var(--shift-hue-neutral)),
+      oklch(45% 0.02 var(--shift-hue-neutral))
+    );
+  }
+}

@@ -191,3 +191,37 @@ jobs:
           name: playwright-report
           path: packages/core/playwright-report/
           retention-days: 7
+
+  docs-a11y:
+    name: Docs Accessibility
+    needs: changes
+    if: needs.changes.outputs.docs == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: cd apps/docs && bunx playwright install --with-deps chromium
+
+      - name: Build docs
+        run: cd apps/docs && bun run build
+
+      - name: Run accessibility tests
+        run: cd apps/docs && bun run test:a11y
+
+      - name: Upload test artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-a11y-report
+          path: apps/docs/playwright-report/
+          retention-days: 7

@@ -1,6 +1,7 @@
 /**
  * Shift CSS Docs Theme
  * "Cyber Teal" - Sharp engineering aesthetic with cyan/teal palette
+ * Uses light-dark() for automatic theme switching based on color-scheme
  */
 
 :root {
@@ -13,25 +14,67 @@
   --shift-hue-accent: 140;
   --shift-hue-neutral: 220;
 
-  /* === THE "PLASMA" CORE === (using dynamic hue variables) */
-  --s-primary: oklch(70% 0.3 var(--shift-hue-primary));
-  --s-accent: oklch(60% 0.35 var(--shift-hue-accent));
+  /* === THE "PLASMA" CORE === (adapts to light/dark) */
+  --s-primary: light-dark(
+    oklch(40% 0.2 var(--shift-hue-primary)),
+    oklch(70% 0.3 var(--shift-hue-primary))
+  );
+  --s-accent: light-dark(
+    oklch(35% 0.25 var(--shift-hue-accent)),
+    oklch(60% 0.35 var(--shift-hue-accent))
+  );
 
-  /* === THE "VOID" NEUTRAL SCALE === (custom theme scale, doesn't conflict with --s-neutral-*) */
-  --void-000: oklch(8% 0.02 var(--shift-hue-neutral));
-  --void-050: oklch(12% 0.025 var(--shift-hue-neutral));
-  --void-100: oklch(18% 0.04 var(--shift-hue-neutral));
-  --void-200: oklch(25% 0.04 var(--shift-hue-neutral));
-  --void-300: oklch(35% 0.03 var(--shift-hue-neutral));
-  --void-400: oklch(50% 0.025 var(--shift-hue-neutral));
-  --void-500: oklch(65% 0.02 var(--shift-hue-neutral));
-  --void-600: oklch(75% 0.015 var(--shift-hue-neutral));
-  --void-700: oklch(85% 0.01 var(--shift-hue-neutral));
-  --void-900: oklch(95% 0.01 var(--shift-hue-neutral));
+  /* === THE "VOID" NEUTRAL SCALE === (adapts to light/dark) */
+  --void-000: light-dark(
+    oklch(98% 0.005 var(--shift-hue-neutral)),
+    oklch(8% 0.02 var(--shift-hue-neutral))
+  );
+  --void-050: light-dark(
+    oklch(95% 0.01 var(--shift-hue-neutral)),
+    oklch(12% 0.025 var(--shift-hue-neutral))
+  );
+  --void-100: light-dark(
+    oklch(92% 0.015 var(--shift-hue-neutral)),
+    oklch(18% 0.04 var(--shift-hue-neutral))
+  );
+  --void-200: light-dark(
+    oklch(85% 0.02 var(--shift-hue-neutral)),
+    oklch(25% 0.04 var(--shift-hue-neutral))
+  );
+  --void-300: light-dark(
+    oklch(75% 0.025 var(--shift-hue-neutral)),
+    oklch(35% 0.03 var(--shift-hue-neutral))
+  );
+  --void-400: light-dark(
+    oklch(50% 0.025 var(--shift-hue-neutral)),
+    oklch(50% 0.025 var(--shift-hue-neutral))
+  );
+  --void-500: light-dark(
+    oklch(35% 0.03 var(--shift-hue-neutral)),
+    oklch(65% 0.02 var(--shift-hue-neutral))
+  );
+  --void-600: light-dark(
+    oklch(25% 0.04 var(--shift-hue-neutral)),
+    oklch(75% 0.015 var(--shift-hue-neutral))
+  );
+  --void-700: light-dark(
+    oklch(18% 0.04 var(--shift-hue-neutral)),
+    oklch(85% 0.01 var(--shift-hue-neutral))
+  );
+  --void-900: light-dark(
+    oklch(8% 0.02 var(--shift-hue-neutral)),
+    oklch(95% 0.01 var(--shift-hue-neutral))
+  );
 
   /* === THE "GLOW" STATE === */
-  --s-glow: 0 0 10px oklch(70% 0.25 var(--shift-hue-primary) / 0.25);
-  --s-glow-accent: 0 0 8px oklch(60% 0.3 var(--shift-hue-accent) / 0.2);
+  --s-glow: light-dark(
+    0 0 10px oklch(50% 0.2 var(--shift-hue-primary) / 0.2),
+    0 0 10px oklch(70% 0.25 var(--shift-hue-primary) / 0.25)
+  );
+  --s-glow-accent: light-dark(
+    0 0 8px oklch(45% 0.25 var(--shift-hue-accent) / 0.15),
+    0 0 8px oklch(60% 0.3 var(--shift-hue-accent) / 0.2)
+  );
 
   /* Override Shift CSS radius */
   --s-radius-sm: 0;
@@ -39,77 +82,20 @@
   --s-radius-md: 0;
   --s-radius-lg: 0;
   --s-radius-xl: 0;
-}
 
-/* =============================================================================
-   DARK MODE (Default - "The Void")
-   ============================================================================= */
-
-[data-theme="dark"] {
-  color-scheme: dark;
-
-  /* Ensure proper contrast for text */
+  /* === SEMANTIC TOKENS === (use void scale) */
   --s-text-primary: var(--void-900);
   --s-text-secondary: var(--void-700);
   --s-text-muted: var(--void-500);
 
-  /* Surface colors */
   --s-surface-base: var(--void-000);
   --s-surface-subtle: var(--void-050);
-  --s-surface-sunken: var(--void-000);
-  --s-surface-hover: var(--void-100);
+  --s-surface-sunken: light-dark(var(--void-100), var(--void-000));
+  --s-surface-hover: light-dark(var(--void-200), var(--void-100));
 
-  /* Border colors */
   --s-border-default: var(--void-200);
   --s-border-hover: var(--void-300);
 
-  /* Interactive colors */
-  --s-interactive-primary: var(--s-primary);
-  --s-text-on-primary: var(--void-000);
-}
-
-/* =============================================================================
-   LIGHT MODE ("Inverted Plasma")
-   ============================================================================= */
-
-[data-theme="light"] {
-  color-scheme: light;
-
-  /* Invert the void scale for light mode (using dynamic neutral hue) */
-  --void-000: oklch(98% 0.005 var(--shift-hue-neutral));
-  --void-050: oklch(95% 0.01 var(--shift-hue-neutral));
-  --void-100: oklch(92% 0.015 var(--shift-hue-neutral));
-  --void-200: oklch(85% 0.02 var(--shift-hue-neutral));
-  --void-300: oklch(75% 0.025 var(--shift-hue-neutral));
-  --void-400: oklch(50% 0.025 var(--shift-hue-neutral));
-  --void-500: oklch(35% 0.03 var(--shift-hue-neutral));
-  --void-600: oklch(25% 0.04 var(--shift-hue-neutral));
-  --void-700: oklch(18% 0.04 var(--shift-hue-neutral));
-  --void-900: oklch(8% 0.02 var(--shift-hue-neutral));
-
-  /* Plasma colors - darker for light bg (using dynamic hues) */
-  /* Must be dark enough for 4.5:1 contrast on light backgrounds */
-  --s-primary: oklch(40% 0.2 var(--shift-hue-primary));
-  --s-accent: oklch(35% 0.25 var(--shift-hue-accent));
-  --s-glow: 0 0 10px oklch(50% 0.2 var(--shift-hue-primary) / 0.2);
-  --s-glow-accent: 0 0 8px oklch(45% 0.25 var(--shift-hue-accent) / 0.15);
-
-  /* Ensure proper contrast for text */
-  --s-text-primary: var(--void-900);
-  --s-text-secondary: var(--void-700);
-  --s-text-muted: var(--void-500);
-
-  /* Surface colors */
-  --s-surface-base: var(--void-000);
-  --s-surface-subtle: var(--void-050);
-  --s-surface-sunken: var(--void-100);
-  --s-surface-hover: var(--void-200);
-
-  /* Border colors */
-  --s-border-default: var(--void-200);
-  --s-border-hover: var(--void-300);
-
-  /* Interactive colors */
   --s-interactive-primary: var(--s-primary);
   --s-text-on-primary: var(--void-000);
 }
@@ -126,8 +112,6 @@
 select[s-input] {
   border-radius: var(--s-radius) !important;
 }
-
-/* Button styling now handled by core framework with RCS */
 
 /* Cards - sharp with subtle border */
 [s-card] {
@@ -210,102 +194,48 @@ select[s-input] {
   background: var(--void-100);
 }
 
-/* Code blocks */
+/* Code blocks - theme aesthetic overrides (colors handled by shiki.css layer) */
 pre {
   border-radius: 0 !important;
-  border: var(--s-border-width) solid var(--void-200);
 }
 
-[data-theme="dark"] pre {
-  background: var(--void-050) !important;
-  border-color: var(--void-100);
-}
-
-[data-theme="dark"] pre code {
-  background: transparent !important;
-}
-
-[data-theme="dark"] pre .line::before,
-[data-theme="dark"] pre [data-line-numbers]::before {
-  color: var(--void-300) !important;
-}
-
-[data-theme="dark"] pre .shiki {
-  background: transparent !important;
-}
-
-[data-theme="dark"] code {
+/* Inline code */
+code:not(pre code) {
   background: var(--void-100);
+  padding: 0.125em 0.25em;
+  border-radius: 0;
 }
 
-[data-theme="dark"] .prose code {
-  background: var(--void-100);
-}
-
-/* Modals - ensure text visibility in dark mode */
-[data-theme="dark"] dialog[s-modal] {
+/* Modals - ensure text visibility */
+dialog[s-modal] {
   background: var(--void-100) !important;
   color: var(--void-900) !important;
 }
 
-[data-theme="dark"] dialog[s-modal] h1,
-[data-theme="dark"] dialog[s-modal] h2,
-[data-theme="dark"] dialog[s-modal] h3,
-[data-theme="dark"] dialog[s-modal] p,
-[data-theme="dark"] dialog[s-modal] li,
-[data-theme="dark"] [s-modal-header] h1,
-[data-theme="dark"] [s-modal-header] h2,
-[data-theme="dark"] [s-modal-header] h3 {
+dialog[s-modal] h1,
+dialog[s-modal] h2,
+dialog[s-modal] h3,
+dialog[s-modal] p,
+dialog[s-modal] li,
+[s-modal-header] h1,
+[s-modal-header] h2,
+[s-modal-header] h3 {
   color: var(--void-900) !important;
 }
 
-[data-theme="dark"] [s-modal-header] {
+[s-modal-header] {
   border-color: var(--void-200);
 }
 
-[data-theme="dark"] [s-modal-footer] {
+[s-modal-footer] {
   border-color: var(--void-200);
 }
 
-[data-theme="dark"] [s-modal-close] {
+[s-modal-close] {
   color: var(--void-500);
 }
 
-[data-theme="dark"] [s-modal-close]:hover {
-  color: var(--void-900);
-  background: var(--void-200);
-}
-
-/* Modals - ensure text visibility in light mode */
-[data-theme="light"] dialog[s-modal] {
-  background: var(--void-100) !important;
-  color: var(--void-900) !important;
-}
-
-[data-theme="light"] dialog[s-modal] h1,
-[data-theme="light"] dialog[s-modal] h2,
-[data-theme="light"] dialog[s-modal] h3,
-[data-theme="light"] dialog[s-modal] p,
-[data-theme="light"] dialog[s-modal] li,
-[data-theme="light"] [s-modal-header] h1,
-[data-theme="light"] [s-modal-header] h2,
-[data-theme="light"] [s-modal-header] h3 {
-  color: var(--void-900) !important;
-}
-
-[data-theme="light"] [s-modal-header] {
-  border-color: var(--void-200);
-}
-
-[data-theme="light"] [s-modal-footer] {
-  border-color: var(--void-200);
-}
-
-[data-theme="light"] [s-modal-close] {
-  color: var(--void-500);
-}
-
-[data-theme="light"] [s-modal-close]:hover {
+[s-modal-close]:hover {
   color: var(--void-900);
   background: var(--void-200);
 }

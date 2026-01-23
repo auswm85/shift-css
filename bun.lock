@@ -18,6 +18,8 @@
       },
       "devDependencies": {
         "@astrojs/check": "^0.9.6",
+        "@axe-core/playwright": "^4.10.1",
+        "@playwright/test": "^1.49.1",
         "astro-critters": "^2.2.1",
         "pagefind": "^1.4.0",
         "typescript": "^5.9.3",
@@ -25,7 +27,7 @@
     },
     "packages/cli": {
       "name": "@shift-css/cli",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "bin": {
         "shift-css": "./dist/index.js",
       },
@@ -42,7 +44,7 @@
     },
     "packages/core": {
       "name": "@shift-css/core",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "devDependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@playwright/test": "^1.50.1",

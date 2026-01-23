@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:a11y": "playwright test"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.6",
@@ -16,6 +17,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.49.1",
     "astro-critters": "^2.2.1",
     "pagefind": "^1.4.0",
     "typescript": "^5.9.3"

@@ -79,26 +79,30 @@
 		display: none;
 	}
 
-	/* Show sun in dark mode, moon in light mode */
-	:root[data-theme='dark'] .theme-icon--sun {
-		display: block;
-	}
-
-	:root[data-theme='light'] .theme-icon--moon {
-		display: block;
-	}
-
-	/* Default to system preference icons */
+	/* Show sun in dark mode (system preference, no explicit override) */
 	@media (prefers-color-scheme: dark) {
-		:root:not([data-theme]) .theme-icon--sun {
+		:root:not([style*="color-scheme: light"]):not([style*="color-scheme:light"]) .theme-icon--sun {
 			display: block;
 		}
 	}
 
+	/* Show sun when explicitly set to dark */
+	:root[style*="color-scheme: dark"] .theme-icon--sun,
+	:root[style*="color-scheme:dark"] .theme-icon--sun {
+		display: block;
+	}
+
+	/* Show moon in light mode (system preference, no explicit override) */
 	@media (prefers-color-scheme: light) {
-		:root:not([data-theme]) .theme-icon--moon {
+		:root:not([style*="color-scheme: dark"]):not([style*="color-scheme:dark"]) .theme-icon--moon {
 			display: block;
 		}
+	}
+
+	/* Show moon when explicitly set to light */
+	:root[style*="color-scheme: light"] .theme-icon--moon,
+	:root[style*="color-scheme:light"] .theme-icon--moon {
+		display: block;
 	}
 </style>
 
@@ -108,12 +112,12 @@
 		if (!toggle) return;
 
 		toggle.addEventListener('click', () => {
-			const currentTheme = document.documentElement.getAttribute('data-theme');
+			const currentScheme = document.documentElement.style.colorScheme;
 			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			const effectiveTheme = currentTheme || (prefersDark ? 'dark' : 'light');
+			const effectiveTheme = currentScheme || (prefersDark ? 'dark' : 'light');
 			const newTheme = effectiveTheme === 'dark' ? 'light' : 'dark';
 
-			document.documentElement.setAttribute('data-theme', newTheme);
+			document.documentElement.style.colorScheme = newTheme;
 			localStorage.setItem('shift-docs-theme', newTheme);
 		});
 	}

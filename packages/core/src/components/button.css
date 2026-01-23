@@ -218,10 +218,10 @@
   width: 100%;
 }
 
-/* Loading state - use bg color for text to pass a11y contrast checks */
+/* Loading state - hide text with transparent color */
 [s-btn][s-loading] {
   position: relative;
-  color: var(--_btn-bg);
+  color: transparent;
   pointer-events: none;
 
   &::after {

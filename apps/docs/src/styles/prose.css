@@ -16,11 +16,7 @@
 	color: #fff;
 }
 
-.prose [s-surface="success"],
-.prose [s-surface="warning"],
-.prose [s-surface="danger"] {
-	color: #1a1a1a;
-}
+/* State surfaces use core framework's adaptive color via light-dark() */
 
 /* =============================================================================
    Headings
@@ -180,10 +176,7 @@
 	font-size: inherit;
 }
 
-/* Shiki dark mode color switching */
-:root[data-theme='dark'] .prose pre code span[style*="--shiki-dark"] {
-	color: var(--shiki-dark) !important;
-}
+/* Shiki syntax highlighting handled by shiki.css layer with CSS variables */
 
 /* =============================================================================
    Blockquotes

@@ -151,14 +151,15 @@
    STATE SURFACES (for alerts, notifications)
    ============================================================================= */
 
-/* State surfaces use light backgrounds with dark text for notification-style alerts */
-/* Hex fallbacks for a11y tools that can't parse OKLCH/light-dark() */
+/* State surfaces use tinted backgrounds for notification-style alerts */
+/* Text color adapts via light-dark() - requires color-scheme on :root */
 [s-surface="success"] {
   --_surface-bg: var(--s-state-success-bg);
   background-color: #d4edda; /* Light green fallback */
   background-color: var(--_surface-bg);
   border-left: 4px solid var(--s-state-success);
-  color: #1a1a1a;
+  color: #1a1a1a; /* Fallback */
+  color: light-dark(#1a1a1a, #e5e5e5);
 }
 
 [s-surface="warning"] {
@@ -166,7 +167,8 @@
   background-color: #fff3cd; /* Light yellow fallback */
   background-color: var(--_surface-bg);
   border-left: 4px solid var(--s-state-warning);
-  color: #1a1a1a;
+  color: #1a1a1a; /* Fallback */
+  color: light-dark(#1a1a1a, #e5e5e5);
 }
 
 [s-surface="danger"] {
@@ -174,7 +176,8 @@
   background-color: #f8d7da; /* Light red fallback */
   background-color: var(--_surface-bg);
   border-left: 4px solid var(--s-state-danger);
-  color: #1a1a1a;
+  color: #1a1a1a; /* Fallback */
+  color: light-dark(#1a1a1a, #e5e5e5);
 }
 
 /* =============================================================================
