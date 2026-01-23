@@ -15,6 +15,7 @@ interface Props {
 const { title, description = 'Zero-runtime, OKLCH-native CSS framework with cascade layers and native light-dark() theming' } = Astro.props;
 const siteTitle = title === 'Shift CSS' ? title : `${title} | Shift CSS`;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, 'https://getshiftcss.com');
 
 // Hide ThemeCustomizer on theme generator page (redundant)
 const isThemePage = Astro.url.pathname.includes('/theme');
@@ -36,6 +37,21 @@ const isThemePage = Astro.url.pathname.includes('/theme');
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content={description} />
 		<title>{siteTitle}</title>
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Shift CSS" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={siteTitle} />
+		<meta name="twitter:description" content={description} />
 
 		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />

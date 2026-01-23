@@ -1,0 +1,6 @@
+# Shift CSS Documentation
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://getshiftcss.com/sitemap-index.xml

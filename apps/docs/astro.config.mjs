@@ -1,4 +1,5 @@
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import critters from 'astro-critters';
 
@@ -7,6 +8,7 @@ export default defineConfig({
 	base: '/',
 	integrations: [
 		mdx(),
+		sitemap(),
 		critters({
 			// Inline critical CSS for faster FCP
 			preload: 'swap', // Preload non-critical CSS with font-display swap
