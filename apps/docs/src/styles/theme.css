@@ -4,6 +4,22 @@
  * Uses light-dark() for automatic theme switching based on color-scheme
  */
 
+/* Theme fade transition overlay */
+.theme-transitioning::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: oklch(10% 0 0);
+  animation: theme-fade 0.3s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes theme-fade {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
 :root {
   /* === THE "PRECISION" SCALE === */
   --s-radius: 0px;

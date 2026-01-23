@@ -117,8 +117,15 @@
 			const effectiveTheme = currentScheme || (prefersDark ? 'dark' : 'light');
 			const newTheme = effectiveTheme === 'dark' ? 'light' : 'dark';
 
-			document.documentElement.style.colorScheme = newTheme;
-			localStorage.setItem('shift-docs-theme', newTheme);
+			// Fade transition
+			document.documentElement.classList.add('theme-transitioning');
+			setTimeout(() => {
+				document.documentElement.style.colorScheme = newTheme;
+				localStorage.setItem('shift-docs-theme', newTheme);
+			}, 150);
+			setTimeout(() => {
+				document.documentElement.classList.remove('theme-transitioning');
+			}, 300);
 		});
 	}
 
