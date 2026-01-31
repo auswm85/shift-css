@@ -17,8 +17,9 @@ const siteTitle = title === 'Shift CSS' ? title : `${title} | Shift CSS`;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const canonicalURL = new URL(Astro.url.pathname, 'https://getshiftcss.com');
 
-// Hide ThemeCustomizer on theme generator page (redundant)
+// Hide ThemeCustomizer on theme generator page (redundant) and home page
 const isThemePage = Astro.url.pathname.includes('/theme');
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '';
 ---
 
 <!doctype html>
@@ -63,7 +64,7 @@ const isThemePage = Astro.url.pathname.includes('/theme');
 	</head>
 	<body>
 		<slot />
-		{!isThemePage && <ThemeCustomizer />}
+		{!isThemePage && !isHomePage && <ThemeCustomizer />}
 	</body>
 </html>
 
