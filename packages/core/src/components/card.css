@@ -3,11 +3,16 @@
  *
  * Flexible card component with header, body, footer sections.
  * Uses semantic attribute selectors and supports container queries.
+ * Progressively enhanced with @scope for proper isolation of nested cards.
  *
  * Usage:
  *   <article s-card>Basic card content</article>
  *   <article s-card s-surface="raised">Elevated card</article>
  *   <article s-card s-interactive>Clickable card</article>
+ *
+ * Browser Support:
+ *   - All browsers: Standard attribute selectors
+ *   - Chrome 118+, Safari 17.4+: @scope for nested card isolation
  */
 
 /* Base card - zero specificity for easy overrides */
@@ -259,6 +264,49 @@
   @container surface style(--_surface-depth: -1) {
     :where([s-card]) {
       --_card-shadow: var(--s-shadow-md);
+    }
+  }
+}
+
+/* =============================================================================
+   CSS @SCOPE - Nested Card Isolation (Progressive Enhancement)
+
+   When cards are nested inside other cards, this ensures that parent card
+   styles (like borders and separators) don't bleed into child cards.
+   Uses "donut scope" to exclude nested [s-card] elements.
+   ============================================================================= */
+
+@supports (selector(:scope)) {
+  @scope ([s-card]) to ([s-card]) {
+    /**
+     * Scoped card sections - these styles only apply to direct card sections,
+     * not sections inside nested cards.
+     */
+
+    /* Header with bottom border - only for this card's header */
+    [s-card-header] {
+      border-bottom: 1px solid var(--_card-border, var(--s-border-muted));
+    }
+
+    /* Footer with top border - only for this card's footer */
+    [s-card-footer] {
+      border-top: 1px solid var(--_card-border, var(--s-border-muted));
+    }
+
+    /* Typography inherits from scoped card context */
+    [s-card-title] {
+      color: inherit;
+    }
+
+    [s-card-subtitle] {
+      color: var(--s-text-secondary);
+    }
+
+    /* Actions container scoped to this card */
+    [s-card-actions] {
+      display: flex;
+      gap: var(--s-space-2);
+      margin-top: var(--s-space-4);
     }
   }
 }
