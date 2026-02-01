@@ -1,0 +1,47 @@
+---
+/**
+ * Card Component
+ *
+ * @example
+ * <Card>Simple card content</Card>
+ * <Card variant="elevated">Elevated card</Card>
+ * <Card interactive>Clickable card</Card>
+ */
+
+export interface Props {
+	/** Card variant */
+	variant?: 'flat' | 'elevated' | 'outline';
+	/** Surface depth */
+	surface?: 'raised' | 'floating';
+	/** Card size */
+	size?: 'sm' | 'lg';
+	/** Interactive (hoverable) */
+	interactive?: boolean;
+	/** Horizontal layout */
+	horizontal?: boolean;
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	variant,
+	surface,
+	size,
+	interactive = false,
+	horizontal = false,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<article
+	s-card={variant}
+	s-surface={surface}
+	s-size={size}
+	s-interactive={interactive || undefined}
+	s-horizontal={horizontal || undefined}
+	class={className}
+	{...rest}
+>
+	<slot />
+</article>

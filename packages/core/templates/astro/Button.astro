@@ -1,0 +1,61 @@
+---
+/**
+ * Button Component
+ *
+ * For icon-only buttons, always provide an aria-label for accessibility.
+ *
+ * @example
+ * <Button>Default</Button>
+ * <Button variant="primary">Primary</Button>
+ * <Button variant="secondary" size="lg">Large Secondary</Button>
+ * <Button variant="ghost" disabled>Disabled Ghost</Button>
+ * <Button icon aria-label="Close"><CloseIcon /></Button>
+ */
+
+export interface Props {
+	/** Button variant */
+	variant?: 'primary' | 'secondary' | 'ghost' | 'link' | 'outline' | 'danger' | 'success' | 'warning';
+	/** Button size */
+	size?: 'sm' | 'lg' | 'xl';
+	/** Disabled state */
+	disabled?: boolean;
+	/** Loading state */
+	loading?: boolean;
+	/** Icon-only button */
+	icon?: boolean;
+	/** Full-width button */
+	block?: boolean;
+	/** Button type */
+	type?: 'button' | 'submit' | 'reset';
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	variant = 'primary',
+	size,
+	disabled = false,
+	loading = false,
+	icon = false,
+	block = false,
+	type = 'button',
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<button
+	s-btn={variant}
+	s-size={size}
+	s-icon={icon || undefined}
+	s-block={block || undefined}
+	s-loading={loading || undefined}
+	type={type}
+	disabled={disabled || loading}
+	aria-busy={loading || undefined}
+	aria-disabled={disabled || loading || undefined}
+	class={className}
+	{...rest}
+>
+	<slot />
+</button>

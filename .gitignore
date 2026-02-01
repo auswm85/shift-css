@@ -5,6 +5,7 @@ CLAUDE.md
 .cursor/
 .github/copilot-instructions.md
 .serena
+.playwright-mcp
 
 # Dependencies
 node_modules

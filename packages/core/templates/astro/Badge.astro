@@ -1,0 +1,39 @@
+---
+/**
+ * Badge Component
+ *
+ * @example
+ * <Badge>Default</Badge>
+ * <Badge variant="primary">Primary</Badge>
+ * <Badge variant="success" size="lg">Large Success</Badge>
+ */
+
+export interface Props {
+	/** Badge variant */
+	variant?: 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'accent' | 'outline-primary' | 'outline-success' | 'outline-warning' | 'outline-danger';
+	/** Badge size */
+	size?: 'sm' | 'lg';
+	/** Pill shape (fully rounded) */
+	pill?: boolean;
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	variant = 'default',
+	size,
+	pill = false,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<span
+	s-badge={variant}
+	s-size={size}
+	s-pill={pill || undefined}
+	class={className}
+	{...rest}
+>
+	<slot />
+</span>

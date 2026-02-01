@@ -1,0 +1,69 @@
+---
+/**
+ * Select Component
+ *
+ * @example
+ * <Select name="country" options={[{value: 'us', label: 'United States'}]} />
+ */
+
+export interface Props {
+	/** Select name */
+	name?: string;
+	/** Select id */
+	id?: string;
+	/** Select size */
+	size?: 'sm' | 'lg';
+	/** Disabled state */
+	disabled?: boolean;
+	/** Required field */
+	required?: boolean;
+	/** Placeholder option */
+	placeholder?: string;
+	/** Options array */
+	options?: Array<{ value: string; label: string; disabled?: boolean }>;
+	/** Selected value */
+	value?: string;
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	name,
+	id,
+	size,
+	disabled = false,
+	required = false,
+	placeholder,
+	options = [],
+	value,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<select
+	s-select
+	s-size={size}
+	name={name}
+	id={id}
+	disabled={disabled}
+	required={required}
+	class={className}
+	{...rest}
+>
+	{placeholder && (
+		<option value="" disabled selected={!value}>
+			{placeholder}
+		</option>
+	)}
+	{options.map((option) => (
+		<option
+			value={option.value}
+			disabled={option.disabled}
+			selected={value === option.value}
+		>
+			{option.label}
+		</option>
+	))}
+	<slot />
+</select>

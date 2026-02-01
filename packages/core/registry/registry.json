@@ -1,0 +1,275 @@
+{
+  "$schema": "./schema.json",
+  "version": 1,
+  "components": {
+    "badge": {
+      "name": "badge",
+      "description": "Status indicators and labels with color variants",
+      "category": "feedback",
+      "files": {
+        "css": "components/badge.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": ["--_badge-bg", "--_badge-text"],
+      "attributes": ["s-badge"]
+    },
+    "button": {
+      "name": "button",
+      "description": "Versatile button with variants, sizes, and states",
+      "category": "core",
+      "files": {
+        "css": "components/button.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": ["--_btn-bg", "--_btn-text", "--_btn-border"],
+      "attributes": ["s-btn", "s-size", "s-icon", "s-block", "s-loading", "s-btn-group"]
+    },
+    "card": {
+      "name": "card",
+      "description": "Container with header, body, and footer sections",
+      "category": "layout",
+      "files": {
+        "css": "components/card.css"
+      },
+      "dependencies": [],
+      "registryDependencies": ["surface"],
+      "customizationPoints": [
+        "--_card-bg",
+        "--_card-border",
+        "--_card-radius",
+        "--_card-shadow",
+        "--_card-padding"
+      ],
+      "attributes": [
+        "s-card",
+        "s-card-header",
+        "s-card-body",
+        "s-card-footer",
+        "s-card-media",
+        "s-card-title",
+        "s-card-subtitle",
+        "s-card-actions",
+        "s-interactive",
+        "s-horizontal",
+        "s-card-grid",
+        "s-card-stack"
+      ]
+    },
+    "input": {
+      "name": "input",
+      "description": "Form inputs, textareas, checkboxes, radios, and toggles",
+      "category": "form",
+      "files": {
+        "css": "components/input.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_input-bg",
+        "--_input-border",
+        "--_input-text",
+        "--_input-placeholder",
+        "--_input-radius"
+      ],
+      "attributes": [
+        "s-input",
+        "s-size",
+        "s-autosize",
+        "s-input-group",
+        "s-input-addon",
+        "s-field",
+        "s-field-label",
+        "s-field-hint",
+        "s-field-error",
+        "s-checkbox",
+        "s-radio",
+        "s-toggle"
+      ]
+    },
+    "menu": {
+      "name": "menu",
+      "description": "Dropdown menus with items, dividers, and keyboard navigation",
+      "category": "navigation",
+      "files": {
+        "css": "components/menu.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_menu-bg",
+        "--_menu-border",
+        "--_menu-radius",
+        "--_menu-shadow",
+        "--_menu-padding",
+        "--_menu-offset"
+      ],
+      "attributes": ["s-menu", "s-menu-item", "s-menu-divider", "s-menu-label"]
+    },
+    "modal": {
+      "name": "modal",
+      "description": "Native dialog-based modal with backdrop and animations",
+      "category": "feedback",
+      "files": {
+        "css": "components/modal.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_modal-bg",
+        "--_modal-border",
+        "--_modal-radius",
+        "--_modal-shadow",
+        "--_modal-padding"
+      ],
+      "attributes": [
+        "s-modal",
+        "s-modal-header",
+        "s-modal-body",
+        "s-modal-footer",
+        "s-modal-close",
+        "s-size",
+        "s-position"
+      ]
+    },
+    "prose": {
+      "name": "prose",
+      "description": "Typography styles for long-form content",
+      "category": "typography",
+      "files": {
+        "css": "components/prose.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": ["--_prose-body", "--_prose-leading"],
+      "attributes": ["s-prose", "s-size"]
+    },
+    "select": {
+      "name": "select",
+      "description": "Custom select dropdown using native elements",
+      "category": "form",
+      "files": {
+        "css": "components/select.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_select-bg",
+        "--_select-border",
+        "--_select-text",
+        "--_select-radius"
+      ],
+      "attributes": ["s-select", "s-size"]
+    },
+    "skip-link": {
+      "name": "skip-link",
+      "description": "Accessible skip navigation link",
+      "category": "navigation",
+      "files": {
+        "css": "components/skip-link.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_skip-bg",
+        "--_skip-color",
+        "--_skip-radius",
+        "--_skip-shadow",
+        "--_skip-z"
+      ],
+      "attributes": ["s-skip-link"]
+    },
+    "surface": {
+      "name": "surface",
+      "description": "Adaptive surface with automatic contrast and depth variants",
+      "category": "layout",
+      "files": {
+        "css": "components/surface.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_surface-bg",
+        "--_surface-padding",
+        "--_surface-radius",
+        "--_surface-depth"
+      ],
+      "attributes": ["s-surface", "s-bordered", "s-interactive"]
+    },
+    "tooltip": {
+      "name": "tooltip",
+      "description": "CSS-only tooltips with positioning variants",
+      "category": "feedback",
+      "files": {
+        "css": "components/tooltip.css"
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "customizationPoints": [
+        "--_tooltip-bg",
+        "--_tooltip-text",
+        "--_tooltip-radius",
+        "--_tooltip-offset"
+      ],
+      "attributes": ["s-tooltip", "s-tooltip-text"]
+    }
+  },
+  "templates": {
+    "badge": {
+      "astro": "templates/astro/Badge.astro",
+      "react": "templates/react/Badge.tsx",
+      "vue": "templates/vue/Badge.vue"
+    },
+    "button": {
+      "astro": "templates/astro/Button.astro",
+      "react": "templates/react/Button.tsx",
+      "vue": "templates/vue/Button.vue"
+    },
+    "card": {
+      "astro": "templates/astro/Card.astro",
+      "react": "templates/react/Card.tsx",
+      "vue": "templates/vue/Card.vue"
+    },
+    "input": {
+      "astro": "templates/astro/Input.astro",
+      "react": "templates/react/Input.tsx",
+      "vue": "templates/vue/Input.vue"
+    },
+    "menu": {
+      "astro": "templates/astro/Menu.astro",
+      "react": "templates/react/Menu.tsx",
+      "vue": "templates/vue/Menu.vue"
+    },
+    "modal": {
+      "astro": "templates/astro/Modal.astro",
+      "react": "templates/react/Modal.tsx",
+      "vue": "templates/vue/Modal.vue"
+    },
+    "prose": {
+      "astro": "templates/astro/Prose.astro",
+      "react": "templates/react/Prose.tsx",
+      "vue": "templates/vue/Prose.vue"
+    },
+    "select": {
+      "astro": "templates/astro/Select.astro",
+      "react": "templates/react/Select.tsx",
+      "vue": "templates/vue/Select.vue"
+    },
+    "skip-link": {
+      "astro": "templates/astro/SkipLink.astro",
+      "react": "templates/react/SkipLink.tsx",
+      "vue": "templates/vue/SkipLink.vue"
+    },
+    "surface": {
+      "astro": "templates/astro/Surface.astro",
+      "react": "templates/react/Surface.tsx",
+      "vue": "templates/vue/Surface.vue"
+    },
+    "tooltip": {
+      "astro": "templates/astro/Tooltip.astro",
+      "react": "templates/react/Tooltip.tsx",
+      "vue": "templates/vue/Tooltip.vue"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shiftcss.com/schema/registry.json",
+  "title": "Shift CSS Component Registry",
+  "description": "Schema for the Shift CSS component registry manifest",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this schema"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Registry schema version",
+      "const": 1
+    },
+    "components": {
+      "type": "object",
+      "description": "Map of component names to their definitions",
+      "additionalProperties": {
+        "$ref": "#/$defs/component"
+      }
+    },
+    "templates": {
+      "type": "object",
+      "description": "Map of component names to framework template paths",
+      "additionalProperties": {
+        "$ref": "#/$defs/templateSet"
+      }
+    }
+  },
+  "required": ["version", "components"],
+  "$defs": {
+    "component": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Component identifier (kebab-case)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the component"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["core", "form", "layout", "feedback", "navigation", "typography"],
+          "description": "Component category for organization"
+        },
+        "files": {
+          "type": "object",
+          "properties": {
+            "css": {
+              "type": "string",
+              "description": "Path to component CSS file (relative to src/)"
+            }
+          },
+          "required": ["css"]
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "External npm dependencies required"
+        },
+        "registryDependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Other registry components this component depends on"
+        },
+        "customizationPoints": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "CSS custom properties available for customization"
+        },
+        "attributes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "HTML attributes used by this component"
+        }
+      },
+      "required": ["name", "description", "files"]
+    },
+    "templateSet": {
+      "type": "object",
+      "properties": {
+        "astro": {
+          "type": "string",
+          "description": "Path to Astro template"
+        },
+        "react": {
+          "type": "string",
+          "description": "Path to React template"
+        },
+        "vue": {
+          "type": "string",
+          "description": "Path to Vue template"
+        }
+      }
+    }
+  }
+}

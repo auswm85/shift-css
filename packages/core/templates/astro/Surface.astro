@@ -1,0 +1,42 @@
+---
+/**
+ * Surface Component
+ *
+ * @example
+ * <Surface>Default flat surface</Surface>
+ * <Surface variant="raised">Elevated surface</Surface>
+ * <Surface variant="sunken">Recessed surface</Surface>
+ */
+
+export interface Props {
+	/** Surface variant (depth) */
+	variant?: 'flat' | 'sunken' | 'raised' | 'floating' | 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger';
+	/** Show border */
+	bordered?: boolean;
+	/** Interactive (hoverable) */
+	interactive?: boolean;
+	/** HTML element to render */
+	as?: 'div' | 'section' | 'article' | 'aside' | 'main' | 'header' | 'footer';
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	variant,
+	bordered = false,
+	interactive = false,
+	as: Element = 'div',
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<Element
+	s-surface={variant}
+	s-bordered={bordered || undefined}
+	s-interactive={interactive || undefined}
+	class={className}
+	{...rest}
+>
+	<slot />
+</Element>
