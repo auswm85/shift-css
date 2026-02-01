@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../../components/layout/BaseLayout.astro';
+import ShowcaseLayout from '../../components/layout/ShowcaseLayout.astro';
 
 const currentYear = new Date().getFullYear();
 ---
 
-<BaseLayout
-	title="Landing Page Showcase"
+<ShowcaseLayout
+	title="Landing Page"
 	description="A modern SaaS marketing landing page built with Shift CSS"
 >
 	<!-- Skip link for accessibility -->
@@ -31,11 +31,30 @@ const currentYear = new Date().getFullYear();
 					<a href="#pricing" class="s-text-secondary nav-link">Pricing</a>
 					<a href="#testimonials" class="s-text-secondary nav-link">Testimonials</a>
 				</div>
-				<div s-flex s-gap="sm">
+				<div s-flex s-gap="sm" s-items="center">
 					<button s-btn="ghost" s-hide-on="sm">Sign In</button>
-					<button s-btn="primary">Get Started</button>
+					<button s-btn="primary" s-hide-on="sm">Get Started</button>
+					<!-- Mobile menu button -->
+					<button s-btn="ghost" class="mobile-menu-btn" s-show-on="sm" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+							<line x1="3" y1="6" x2="21" y2="6" />
+							<line x1="3" y1="12" x2="21" y2="12" />
+							<line x1="3" y1="18" x2="21" y2="18" />
+						</svg>
+					</button>
 				</div>
 			</nav>
+			<!-- Mobile menu panel -->
+			<div id="mobile-menu" class="mobile-menu" s-surface="raised" hidden>
+				<div s-flex="col" s-gap="sm" class="s-p-6">
+					<a href="#features" class="mobile-nav-link s-text-lg s-font-medium">Features</a>
+					<a href="#pricing" class="mobile-nav-link s-text-lg s-font-medium">Pricing</a>
+					<a href="#testimonials" class="mobile-nav-link s-text-lg s-font-medium">Testimonials</a>
+					<hr class="s-my-2" style="border-color: var(--s-border-default);" />
+					<button s-btn="ghost" s-size="lg" class="s-justify-start">Sign In</button>
+					<button s-btn="primary" s-size="lg">Get Started</button>
+				</div>
+			</div>
 		</header>
 
 		<!-- Hero Section -->
@@ -86,7 +105,7 @@ const currentYear = new Date().getFullYear();
 									<span class="window-dot"></span>
 									<span class="window-dot"></span>
 								</div>
-								<span class="s-text-xs s-text-tertiary">velocity.app/dashboard</span>
+								<span class="s-text-xs s-text-secondary">velocity.app/dashboard</span>
 							</div>
 							<div s-flex class="preview-content">
 								<div s-surface="sunken" s-flex="col" s-gap="xs" class="s-p-3 preview-sidebar">
@@ -108,13 +127,13 @@ const currentYear = new Date().getFullYear();
 			<!-- Logos Section -->
 			<section s-surface="sunken" class="s-py-6">
 				<div s-container s-flex="col" s-items="center" s-gap="lg" class="s-px-6">
-					<p class="s-text-xs s-uppercase s-tracking-wide s-text-tertiary">Powering engineering teams at</p>
+					<p class="s-text-xs s-uppercase s-tracking-wide s-text-secondary">Powering engineering teams at</p>
 					<div s-flex s-gap="xl" class="logos-grid" s-flex~="wrap" s-justify="center">
-						<span class="s-text-xl s-font-bold s-text-tertiary">Acme Corp</span>
-						<span class="s-text-xl s-font-bold s-text-tertiary">Globex</span>
-						<span class="s-text-xl s-font-bold s-text-tertiary">Initech</span>
-						<span class="s-text-xl s-font-bold s-text-tertiary" s-hide-on="sm">Hooli</span>
-						<span class="s-text-xl s-font-bold s-text-tertiary" s-hide-on="sm">Pied Piper</span>
+						<span class="s-text-xl s-font-bold s-text-secondary">Acme Corp</span>
+						<span class="s-text-xl s-font-bold s-text-secondary">Globex</span>
+						<span class="s-text-xl s-font-bold s-text-secondary">Initech</span>
+						<span class="s-text-xl s-font-bold s-text-secondary" s-hide-on="sm">Hooli</span>
+						<span class="s-text-xl s-font-bold s-text-secondary" s-hide-on="sm">Pied Piper</span>
 					</div>
 				</div>
 			</section>
@@ -356,7 +375,7 @@ const currentYear = new Date().getFullYear();
 								<img src="https://api.dicebear.com/7.x/initials/svg?seed=AC&backgroundColor=0d9488" alt="" width="48" height="48" class="avatar-lg" />
 								<div>
 									<cite class="s-font-semibold s-not-italic">Alex Chen</cite>
-									<p class="s-text-sm s-text-tertiary">Engineering Lead at Acme Corp</p>
+									<p class="s-text-sm s-text-secondary">Engineering Lead at Acme Corp</p>
 								</div>
 							</footer>
 						</div>
@@ -371,7 +390,7 @@ const currentYear = new Date().getFullYear();
 								<img src="https://api.dicebear.com/7.x/initials/svg?seed=JL&backgroundColor=6366f1" alt="" width="48" height="48" class="avatar-lg" />
 								<div>
 									<cite class="s-font-semibold s-not-italic">Jordan Lee</cite>
-									<p class="s-text-sm s-text-tertiary">CTO at Globex</p>
+									<p class="s-text-sm s-text-secondary">CTO at Globex</p>
 								</div>
 							</footer>
 						</div>
@@ -386,7 +405,7 @@ const currentYear = new Date().getFullYear();
 								<img src="https://api.dicebear.com/7.x/initials/svg?seed=TM&backgroundColor=f59e0b" alt="" width="48" height="48" class="avatar-lg" />
 								<div>
 									<cite class="s-font-semibold s-not-italic">Taylor Morgan</cite>
-									<p class="s-text-sm s-text-tertiary">VP Engineering at Initech</p>
+									<p class="s-text-sm s-text-secondary">VP Engineering at Initech</p>
 								</div>
 							</footer>
 						</div>
@@ -447,16 +466,16 @@ const currentYear = new Date().getFullYear();
 					</div>
 				</div>
 				<div s-flex="between" s-items="center" class="s-pt-6 footer-bottom">
-					<p class="s-text-sm s-text-tertiary">&copy; {currentYear} Velocity. All rights reserved.</p>
+					<p class="s-text-sm s-text-secondary">&copy; {currentYear} Velocity. All rights reserved.</p>
 					<div s-flex s-gap="lg">
-						<a href="#" class="s-text-sm s-text-tertiary nav-link">Privacy</a>
-						<a href="#" class="s-text-sm s-text-tertiary nav-link">Terms</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Privacy</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Terms</a>
 					</div>
 				</div>
 			</div>
 		</footer>
 	</div>
-</BaseLayout>
+</ShowcaseLayout>
 
 <style>
 	/* Minimal custom CSS - only what can't be expressed with utilities */
@@ -616,9 +635,16 @@ const currentYear = new Date().getFullYear();
 	.footer-grid {
 		@media (width < 768px) {
 			grid-template-columns: 1fr 1fr;
+			text-align: center;
 		}
 		@media (width < 480px) {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	.footer-grid [s-flex] {
+		@media (width < 768px) {
+			justify-content: center;
 		}
 	}
 
@@ -633,4 +659,62 @@ const currentYear = new Date().getFullYear();
 			flex-direction: column;
 		}
 	}
+
+	/* Mobile menu */
+	.mobile-menu-btn {
+		display: none;
+	}
+
+	@media (width < 640px) {
+		.mobile-menu-btn {
+			display: flex;
+		}
+	}
+
+	.mobile-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		border-top: 1px solid var(--s-border-default);
+		box-shadow: var(--s-shadow-lg);
+		z-index: 50;
+	}
+
+	.mobile-menu[hidden] {
+		display: none;
+	}
+
+	.mobile-nav-link {
+		display: block;
+		padding: var(--s-space-3) var(--s-space-2);
+		color: var(--s-text-primary);
+		text-decoration: none;
+		border-radius: var(--s-radius-md);
+		transition: background-color 0.15s ease;
+	}
+
+	.mobile-nav-link:hover {
+		background: var(--s-surface-sunken);
+	}
 </style>
+
+<script>
+	const menuBtn = document.querySelector('.mobile-menu-btn');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const mobileLinks = mobileMenu?.querySelectorAll('a, button');
+
+	menuBtn?.addEventListener('click', () => {
+		const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+		menuBtn.setAttribute('aria-expanded', String(!isOpen));
+		mobileMenu?.toggleAttribute('hidden', isOpen);
+	});
+
+	// Close menu when clicking a link
+	mobileLinks?.forEach(link => {
+		link.addEventListener('click', () => {
+			menuBtn?.setAttribute('aria-expanded', 'false');
+			mobileMenu?.setAttribute('hidden', '');
+		});
+	});
+</script>

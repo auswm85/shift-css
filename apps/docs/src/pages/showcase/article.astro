@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../../components/layout/BaseLayout.astro';
+import ShowcaseLayout from '../../components/layout/ShowcaseLayout.astro';
 
 const currentYear = new Date().getFullYear();
 
@@ -32,8 +32,8 @@ color: oklch(
 );`;
 ---
 
-<BaseLayout
-	title="Article Showcase"
+<ShowcaseLayout
+	title="Article"
 	description="A clean, typography-focused article page built with Shift CSS"
 >
 	<!-- Skip link for accessibility -->
@@ -79,7 +79,7 @@ color: oklch(
 						<img src="https://api.dicebear.com/7.x/initials/svg?seed=AC&backgroundColor=6366f1" alt="Author" width="48" height="48" class="author-avatar" />
 						<div>
 							<span class="s-font-semibold s-block">Alexandra Chen</span>
-							<span class="s-text-sm s-text-tertiary">January 15, 2025</span>
+							<span class="s-text-sm s-text-secondary">January 15, 2025</span>
 						</div>
 					</div>
 				</header>
@@ -278,7 +278,7 @@ color: oklch(
 
 			<aside s-flex="col" s-gap="lg" class="article-sidebar">
 				<div s-card class="s-p-5">
-					<h3 class="s-text-sm s-font-semibold s-text-tertiary s-uppercase s-tracking-wide s-mb-4">Table of Contents</h3>
+					<h3 class="s-text-sm s-font-semibold s-text-secondary s-uppercase s-tracking-wide s-mb-4">Table of Contents</h3>
 					<nav s-flex="col" s-gap="xs">
 						<a href="#" class="toc-item active">The Rise of Container Queries</a>
 						<a href="#" class="toc-item">OKLCH: Perceptually Uniform Color</a>
@@ -290,19 +290,19 @@ color: oklch(
 				</div>
 
 				<div s-card class="s-p-5">
-					<h3 class="s-text-sm s-font-semibold s-text-tertiary s-uppercase s-tracking-wide s-mb-4">Related Articles</h3>
+					<h3 class="s-text-sm s-font-semibold s-text-secondary s-uppercase s-tracking-wide s-mb-4">Related Articles</h3>
 					<div s-flex="col" s-gap="sm">
 						<a href="#" s-flex="col" class="s-p-3 related-item">
 							<span class="s-text-sm s-font-medium">Understanding CSS Cascade Layers</span>
-							<span class="s-text-xs s-text-tertiary">5 min read</span>
+							<span class="s-text-xs s-text-secondary">5 min read</span>
 						</a>
 						<a href="#" s-flex="col" class="s-p-3 related-item">
 							<span class="s-text-sm s-font-medium">Building Design Systems with Custom Properties</span>
-							<span class="s-text-xs s-text-tertiary">10 min read</span>
+							<span class="s-text-xs s-text-secondary">10 min read</span>
 						</a>
 						<a href="#" s-flex="col" class="s-p-3 related-item">
 							<span class="s-text-sm s-font-medium">A Complete Guide to CSS Color Functions</span>
-							<span class="s-text-xs s-text-tertiary">12 min read</span>
+							<span class="s-text-xs s-text-secondary">12 min read</span>
 						</a>
 					</div>
 				</div>
@@ -320,11 +320,11 @@ color: oklch(
 					</span>
 					<span class="s-font-semibold">Chronicle</span>
 				</div>
-				<p class="s-text-sm s-text-tertiary s-m-0">&copy; {currentYear} Chronicle. All rights reserved.</p>
+				<p class="s-text-sm s-text-secondary s-m-0">&copy; {currentYear} Chronicle. All rights reserved.</p>
 			</div>
 		</footer>
 	</div>
-</BaseLayout>
+</ShowcaseLayout>
 
 <style>
 	/* Minimal custom CSS - layout structure only */
@@ -411,7 +411,32 @@ color: oklch(
 		margin-top: var(--s-space-3);
 		text-align: center;
 		font-size: var(--s-text-sm);
-		color: var(--s-text-tertiary);
+		color: var(--s-text-secondary);
+	}
+
+	/* Inline code styling */
+	code:not(pre code) {
+		background: light-dark(var(--s-neutral-100), var(--s-neutral-800));
+		color: var(--s-text-primary);
+		padding: 0.125em 0.375em;
+		border-radius: var(--s-radius-sm);
+		font-size: 0.9em;
+	}
+
+	/* Code blocks */
+	pre {
+		background: light-dark(var(--s-neutral-100), var(--s-neutral-900));
+		color: var(--s-text-primary);
+		padding: var(--s-space-4);
+		border-radius: var(--s-radius-md);
+		overflow-x: auto;
+		margin: var(--s-space-6) 0;
+	}
+
+	pre code {
+		background: none;
+		padding: 0;
+		font-size: var(--s-text-sm);
 	}
 
 	/* Callouts */
