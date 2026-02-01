@@ -33,3 +33,4 @@
 @import "./utils/spacing.css" layer(shift.utils);
 @import "./utils/flex.css" layer(shift.utils);
 @import "./utils/typography.css" layer(shift.utils);
+@import "./utils/scroll.css" layer(shift.utils);

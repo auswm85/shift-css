@@ -61,26 +61,47 @@ dialog[s-modal]:not([open]) {
   color: var(--s-text-primary);
 }
 
-/* Open state animation */
+/* Open state animation - using @starting-style for cleaner entry animations */
 dialog[s-modal][open] {
-  animation: s-modal-scale-in var(--s-duration-200) var(--s-ease-out);
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition:
+    opacity var(--s-duration-200) var(--s-ease-out),
+    transform var(--s-duration-200) var(--s-ease-out),
+    overlay var(--s-duration-200) var(--s-ease-out) allow-discrete,
+    display var(--s-duration-200) var(--s-ease-out) allow-discrete;
+}
+
+/* Entry animation initial state - CSS @starting-style */
+@starting-style {
+  dialog[s-modal][open] {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+/* Fallback for browsers without @starting-style (using transition-behavior as proxy test) */
+@supports not (transition-behavior: allow-discrete) {
+  dialog[s-modal][open] {
+    animation: s-modal-scale-in var(--s-duration-200) var(--s-ease-out);
+  }
+
+  @keyframes s-modal-scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
 }
 
 /* Focus visible state for keyboard navigation */
 dialog[s-modal]:focus-visible {
   outline: 2px solid var(--s-focus-ring);
   outline-offset: 2px;
-}
-
-@keyframes s-modal-scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
 }
 
 /* =============================================================================
@@ -90,7 +111,11 @@ dialog[s-modal]:focus-visible {
 dialog[s-modal]::backdrop {
   background: oklch(0 0 0 / 0.5);
   backdrop-filter: blur(4px);
-  animation: s-modal-backdrop-in var(--s-duration-200) var(--s-ease-out);
+  opacity: 1;
+  transition:
+    opacity var(--s-duration-200) var(--s-ease-out),
+    overlay var(--s-duration-200) var(--s-ease-out) allow-discrete,
+    display var(--s-duration-200) var(--s-ease-out) allow-discrete;
 
   /* RCS: adaptive backdrop - tinted with brand hue */
   @supports (color: oklch(from red l c h)) {
@@ -98,12 +123,26 @@ dialog[s-modal]::backdrop {
   }
 }
 
-@keyframes s-modal-backdrop-in {
-  from {
+/* Backdrop entry animation */
+@starting-style {
+  dialog[s-modal]::backdrop {
     opacity: 0;
   }
-  to {
-    opacity: 1;
+}
+
+/* Fallback for browsers without @starting-style (using transition-behavior as proxy test) */
+@supports not (transition-behavior: allow-discrete) {
+  dialog[s-modal]::backdrop {
+    animation: s-modal-backdrop-in var(--s-duration-200) var(--s-ease-out);
+  }
+
+  @keyframes s-modal-backdrop-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
 
@@ -261,6 +300,18 @@ dialog[s-modal][s-position="right"] {
 /* =============================================================================
    ACCESSIBILITY & HIGH CONTRAST
    ============================================================================= */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  dialog[s-modal][open] {
+    transition: none;
+    transform: none;
+  }
+
+  dialog[s-modal]::backdrop {
+    transition: none;
+  }
+}
 
 /* High contrast mode support */
 @media (forced-colors: active) {

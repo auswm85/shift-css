@@ -1,0 +1,288 @@
+/**
+ * Shift CSS - Scroll-Driven Animation Utilities
+ *
+ * Modern scroll-linked animations using CSS animation-timeline.
+ * No JavaScript required for scroll-triggered effects.
+ *
+ * Usage:
+ *   <!-- Progress bar that fills as page scrolls -->
+ *   <div s-scroll-progress></div>
+ *
+ *   <!-- Elements that animate when scrolling into view -->
+ *   <div s-scroll-reveal>Fades in when visible</div>
+ *   <div s-scroll-reveal="slide-up">Slides up when visible</div>
+ *
+ * Browser Support:
+ *   - Chrome 115+, Edge 115+: Full support
+ *   - Firefox 127+: Full support (with flag in earlier versions)
+ *   - Safari: Not yet supported (elements remain visible as fallback)
+ */
+
+/* =============================================================================
+   SCROLL PROGRESS INDICATOR
+   A thin bar that shows scroll progress through the page
+   ============================================================================= */
+
+[s-scroll-progress] {
+  --_scroll-progress-z: var(--s-scroll-progress-z, 1000);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: var(--_scroll-progress-z);
+  background: var(--s-interactive-primary);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  [s-scroll-progress] {
+    animation-name: s-scroll-progress-grow;
+    animation-duration: 1ms; /* Required but ignored when using scroll timeline */
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes s-scroll-progress-grow {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Color variants */
+[s-scroll-progress="secondary"] {
+  background: var(--s-secondary-500);
+}
+
+[s-scroll-progress="accent"] {
+  background: var(--s-accent-500);
+}
+
+/* Gradient variant */
+[s-scroll-progress="gradient"] {
+  background: linear-gradient(
+    90deg,
+    var(--s-primary-500),
+    var(--s-secondary-500),
+    var(--s-accent-500)
+  );
+}
+
+/* =============================================================================
+   SCROLL REVEAL ANIMATIONS
+   Elements that animate when they enter the viewport
+   ============================================================================= */
+
+[s-scroll-reveal] {
+  /* Default: fade in */
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  [s-scroll-reveal] {
+    animation: s-scroll-fade-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+
+  @keyframes s-scroll-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Slide up variant */
+  [s-scroll-reveal="slide-up"] {
+    animation-name: s-scroll-slide-up;
+  }
+
+  @keyframes s-scroll-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Slide down variant */
+  [s-scroll-reveal="slide-down"] {
+    animation-name: s-scroll-slide-down;
+  }
+
+  @keyframes s-scroll-slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Slide left variant */
+  [s-scroll-reveal="slide-left"] {
+    animation-name: s-scroll-slide-left;
+  }
+
+  @keyframes s-scroll-slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Slide right variant */
+  [s-scroll-reveal="slide-right"] {
+    animation-name: s-scroll-slide-right;
+  }
+
+  @keyframes s-scroll-slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(-2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Scale up variant */
+  [s-scroll-reveal="scale"] {
+    animation-name: s-scroll-scale-up;
+  }
+
+  @keyframes s-scroll-scale-up {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* =============================================================================
+   SCROLL-LINKED PARALLAX
+   Elements that move at different speeds while scrolling
+   ============================================================================= */
+
+@supports (animation-timeline: scroll()) {
+  [s-scroll-parallax] {
+    animation: s-scroll-parallax-slow linear;
+    animation-timeline: scroll();
+  }
+
+  @keyframes s-scroll-parallax-slow {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10%);
+    }
+  }
+
+  /* Faster parallax */
+  [s-scroll-parallax="fast"] {
+    animation-name: s-scroll-parallax-fast;
+  }
+
+  @keyframes s-scroll-parallax-fast {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-25%);
+    }
+  }
+
+  /* Reverse parallax (moves down as you scroll) */
+  [s-scroll-parallax="reverse"] {
+    animation-name: s-scroll-parallax-reverse;
+  }
+
+  @keyframes s-scroll-parallax-reverse {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(10%);
+    }
+  }
+}
+
+/* =============================================================================
+   SCROLL-LINKED ROTATION
+   Elements that rotate based on scroll position
+   ============================================================================= */
+
+@supports (animation-timeline: scroll()) {
+  [s-scroll-rotate] {
+    animation: s-scroll-rotate linear;
+    animation-timeline: scroll();
+  }
+
+  @keyframes s-scroll-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Counter-clockwise rotation */
+  [s-scroll-rotate="reverse"] {
+    animation-name: s-scroll-rotate-reverse;
+  }
+
+  @keyframes s-scroll-rotate-reverse {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable scroll-driven animations for motion-sensitive users */
+  [s-scroll-reveal],
+  [s-scroll-parallax],
+  [s-scroll-rotate] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Progress bar: show fully filled instantly (no scroll tracking) */
+  [s-scroll-progress] {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+}

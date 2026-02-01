@@ -103,6 +103,7 @@ function buildIndividualLayers(): void {
 		{ name: 'flex', path: 'utils/flex.css' },
 		{ name: 'typography', path: 'utils/typography.css' },
 		{ name: 'visibility', path: 'utils/visibility.css' },
+		{ name: 'scroll', path: 'utils/scroll.css' },
 	];
 
 	// Create subdirectories

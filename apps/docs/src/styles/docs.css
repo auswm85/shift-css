@@ -61,7 +61,7 @@ html {
 
 .docs-header {
 	position: sticky;
-	top: 0;
+	top: 3px; /* Make room for scroll progress bar */
 	z-index: 100;
 	height: var(--docs-header-height);
 	display: flex;
