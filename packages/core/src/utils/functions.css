@@ -130,10 +130,10 @@
 
 /**
  * Legacy fallback for browsers without color-contrast() support
- * Uses 0.6 OKLCH lightness threshold as pragmatic approximation
+ * Uses 0.55 OKLCH lightness threshold (consistent with s-dark-aware)
  */
 @function --s-contrast-text-fallback(--bg) {
-  result: oklch(from var(--bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0);
+  result: oklch(from var(--bg) clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95) 0 0);
 }
 
 /**
