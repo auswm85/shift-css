@@ -29,6 +29,22 @@ html {
 	--docs-header-height: 4rem;
 	--docs-content-max-width: 48rem;
 	--docs-gutter: var(--s-space-6);
+
+	/* Motion-safe transition duration using if() */
+	--docs-transition-duration: 0.15s;
+	--docs-transition-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.15s;
+	);
+
+	/* Backdrop overlay with primary color tint */
+	--docs-backdrop: oklch(0% 0 0 / 0.5);
+}
+
+@supports (color: oklch(from red l c h)) {
+	:root {
+		--docs-backdrop: oklch(from var(--s-primary-950) l 0.02 h / 0.6);
+	}
 }
 
 /* =============================================================================
@@ -150,13 +166,8 @@ html {
 	color: var(--s-text-secondary);
 	text-decoration: none;
 	border-radius: var(--s-radius-sm);
-	/* Motion-safe transitions using if() */
-	transition-property: background, color;
-	transition-duration: 0.15s;
-	transition-duration: if(
-		media(prefers-reduced-motion: reduce): 0s;
-		else: 0.15s;
-	);
+	transition: background var(--docs-transition-duration),
+		color var(--docs-transition-duration);
 }
 
 .docs-sidebar-link:hover {
@@ -250,12 +261,7 @@ html {
 	padding: var(--s-space-1) 0;
 	color: var(--s-text-muted);
 	text-decoration: none;
-	transition-property: color;
-	transition-duration: 0.15s;
-	transition-duration: if(
-		media(prefers-reduced-motion: reduce): 0s;
-		else: 0.15s;
-	);
+	transition: color var(--docs-transition-duration);
 }
 
 .docs-toc-link:hover {
@@ -292,12 +298,8 @@ html {
 	text-decoration: none;
 	border: 1px solid var(--s-border-default);
 	border-radius: var(--s-radius-md);
-	transition-property: border-color, background;
-	transition-duration: 0.15s;
-	transition-duration: if(
-		media(prefers-reduced-motion: reduce): 0s;
-		else: 0.15s;
-	);
+	transition: border-color var(--docs-transition-duration),
+		background var(--docs-transition-duration);
 }
 
 .docs-pagination-link:hover {
@@ -359,12 +361,7 @@ html {
 }
 
 .docs-mobile-menu::backdrop {
-	/* Semi-transparent black backdrop */
-	background: oklch(0% 0 0 / 0.5);
-	/* Enhanced: tint with primary color for brand consistency */
-	@supports (color: oklch(from red l c h)) {
-		background: oklch(from var(--s-primary-950) l 0.02 h / 0.6);
-	}
+	background: var(--docs-backdrop);
 }
 
 .docs-mobile-menu[open] {
@@ -377,14 +374,7 @@ html {
 	background: var(--s-surface-base);
 	padding: var(--docs-gutter);
 	overflow-y: auto;
-	/* Motion-safe animation using if() */
-	animation-name: slide-in;
-	animation-timing-function: ease-out;
-	animation-duration: 0.2s;
-	animation-duration: if(
-		media(prefers-reduced-motion: reduce): 0s;
-		else: 0.2s;
-	);
+	animation: slide-in var(--docs-transition-duration) ease-out;
 }
 
 @keyframes slide-in {
@@ -433,12 +423,7 @@ html {
 	color: var(--s-text-muted);
 	font-size: var(--s-text-sm);
 	cursor: pointer;
-	transition-property: border-color;
-	transition-duration: 0.15s;
-	transition-duration: if(
-		media(prefers-reduced-motion: reduce): 0s;
-		else: 0.15s;
-	);
+	transition: border-color var(--docs-transition-duration);
 }
 
 .docs-search-button:hover {
@@ -473,12 +458,7 @@ html {
 }
 
 .docs-search-dialog::backdrop {
-	/* Semi-transparent black backdrop */
-	background: oklch(0% 0 0 / 0.5);
-	/* Enhanced: tint with primary color for brand consistency */
-	@supports (color: oklch(from red l c h)) {
-		background: oklch(from var(--s-primary-950) l 0.02 h / 0.6);
-	}
+	background: var(--docs-backdrop);
 }
 
 .docs-search-dialog[open] {
