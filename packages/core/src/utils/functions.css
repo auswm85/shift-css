@@ -119,20 +119,18 @@
    ============================================================================= */
 
 /**
- * --s-contrast-text: Auto-pick accessible text color using WCAG 2.2 contrast
- * Uses native color-contrast() to let the browser calculate true luminance
- * and select the highest-contrast option between white and black.
+ * --s-contrast-text: Auto-pick accessible text color based on background
+ * Uses 0.55 OKLCH lightness threshold (consistent with s-dark-aware).
+ * Returns near-black (L=0.15) for light backgrounds, near-white (L=0.95) for dark.
+ *
+ * For native WCAG 2.2 contrast calculation, use contrast-color() at rule level:
+ *   @supports (color: contrast-color(red)) {
+ *     color: contrast-color(var(--bg));
+ *   }
+ *
  * @param --bg: The background color
  */
 @function --s-contrast-text(--bg) {
-  result: color-contrast(var(--bg) vs oklch(0.98 0 0), oklch(0.15 0 0));
-}
-
-/**
- * Legacy fallback for browsers without color-contrast() support
- * Uses 0.55 OKLCH lightness threshold (consistent with s-dark-aware)
- */
-@function --s-contrast-text-fallback(--bg) {
   result: oklch(from var(--bg) clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95) 0 0);
 }
 
