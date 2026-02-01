@@ -24,12 +24,14 @@
    ============================================================================= */
 
 [s-scroll-progress] {
+  --_scroll-progress-z: var(--s-scroll-progress-z, 1000);
+
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  z-index: 9999;
+  z-index: var(--_scroll-progress-z);
   background: var(--s-interactive-primary);
   transform-origin: left;
   transform: scaleX(0);

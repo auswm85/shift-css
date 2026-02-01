@@ -301,6 +301,18 @@ dialog[s-modal][s-position="right"] {
    ACCESSIBILITY & HIGH CONTRAST
    ============================================================================= */
 
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  dialog[s-modal][open] {
+    transition: none;
+    transform: none;
+  }
+
+  dialog[s-modal]::backdrop {
+    transition: none;
+  }
+}
+
 /* High contrast mode support */
 @media (forced-colors: active) {
   dialog[s-modal] {
