@@ -1,0 +1,33 @@
+---
+/**
+ * Menu Component
+ *
+ * Dropdown menu container. Use with popover or JavaScript for visibility control.
+ *
+ * @example
+ * <Menu>
+ *   <MenuItem>Action 1</MenuItem>
+ *   <MenuDivider />
+ *   <MenuItem>Action 2</MenuItem>
+ * </Menu>
+ */
+
+export interface Props {
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<div
+	s-menu
+	role="menu"
+	class={className}
+	{...rest}
+>
+	<slot />
+</div>

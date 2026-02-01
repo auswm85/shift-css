@@ -1,0 +1,34 @@
+---
+/**
+ * Tooltip Component
+ *
+ * @example
+ * <Tooltip text="Helpful info">Hover me</Tooltip>
+ * <Tooltip text="Top tooltip" position="top">Hover</Tooltip>
+ */
+
+export interface Props {
+	/** Tooltip text */
+	text: string;
+	/** Tooltip position */
+	position?: 'top' | 'bottom' | 'left' | 'right';
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	text,
+	position,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<span
+	s-tooltip={position}
+	s-tooltip-text={text}
+	class={className}
+	{...rest}
+>
+	<slot />
+</span>

@@ -13,8 +13,9 @@
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
     "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
     "types": ["bun"]
   },
-  "include": ["scripts/**/*.ts", "tests/**/*.ts"],
+  "include": ["scripts/**/*.ts", "tests/**/*.ts", "templates/**/*.tsx"],
   "exclude": ["node_modules", "dist"]
 }

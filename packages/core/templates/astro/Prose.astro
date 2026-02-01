@@ -1,0 +1,38 @@
+---
+/**
+ * Prose Component
+ *
+ * Applies typography styles to long-form content like articles and documentation.
+ *
+ * @example
+ * <Prose>
+ *   <h1>Article Title</h1>
+ *   <p>Content with proper typography...</p>
+ * </Prose>
+ */
+
+export interface Props {
+	/** Prose size */
+	size?: 'sm' | 'lg';
+	/** HTML element to render */
+	as?: 'div' | 'article' | 'section';
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	size,
+	as: Element = 'div',
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<Element
+	s-prose
+	s-size={size}
+	class={className}
+	{...rest}
+>
+	<slot />
+</Element>

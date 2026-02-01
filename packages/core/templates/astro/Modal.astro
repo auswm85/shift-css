@@ -1,0 +1,48 @@
+---
+/**
+ * Modal Component
+ *
+ * Uses native <dialog> element. Open with JavaScript:
+ * document.querySelector('dialog[s-modal]').showModal()
+ *
+ * @example
+ * <Modal id="my-modal">
+ *   <ModalHeader>Title</ModalHeader>
+ *   <ModalBody>Content</ModalBody>
+ *   <ModalFooter>
+ *     <Button variant="secondary" formmethod="dialog">Cancel</Button>
+ *     <Button variant="primary">Confirm</Button>
+ *   </ModalFooter>
+ * </Modal>
+ */
+
+export interface Props {
+	/** Modal id for targeting */
+	id?: string;
+	/** Modal size */
+	size?: 'sm' | 'lg' | 'full';
+	/** Modal position */
+	position?: 'top' | 'bottom' | 'left' | 'right';
+	/** Additional classes */
+	class?: string;
+}
+
+const {
+	id,
+	size,
+	position,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<dialog
+	s-modal
+	s-size={size}
+	s-position={position}
+	id={id}
+	class={className}
+	{...rest}
+>
+	<slot />
+</dialog>
