@@ -90,6 +90,13 @@
   color: var(--s-text-secondary);
 }
 
+/* Card actions (base fallback for browsers without @scope) */
+[s-card-actions] {
+  display: flex;
+  gap: var(--s-space-2);
+  margin-top: var(--s-space-4);
+}
+
 /* =============================================================================
    CARD VARIANTS
    ============================================================================= */

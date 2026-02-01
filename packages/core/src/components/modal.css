@@ -80,8 +80,8 @@ dialog[s-modal][open] {
   }
 }
 
-/* Fallback for browsers without @starting-style */
-@supports not (selector(&):starting-style) {
+/* Fallback for browsers without @starting-style (using transition-behavior as proxy test) */
+@supports not (transition-behavior: allow-discrete) {
   dialog[s-modal][open] {
     animation: s-modal-scale-in var(--s-duration-200) var(--s-ease-out);
   }
@@ -130,8 +130,8 @@ dialog[s-modal]::backdrop {
   }
 }
 
-/* Fallback for browsers without @starting-style */
-@supports not (selector(&):starting-style) {
+/* Fallback for browsers without @starting-style (using transition-behavior as proxy test) */
+@supports not (transition-behavior: allow-discrete) {
   dialog[s-modal]::backdrop {
     animation: s-modal-backdrop-in var(--s-duration-200) var(--s-ease-out);
   }

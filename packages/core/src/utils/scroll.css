@@ -269,7 +269,7 @@
    ============================================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  [s-scroll-progress],
+  /* Disable scroll-driven animations for motion-sensitive users */
   [s-scroll-reveal],
   [s-scroll-parallax],
   [s-scroll-rotate] {
@@ -278,8 +278,9 @@
     transform: none !important;
   }
 
-  /* Keep progress bar functional but instant */
+  /* Progress bar: show fully filled instantly (no scroll tracking) */
   [s-scroll-progress] {
+    animation: none !important;
     transform: scaleX(1);
   }
 }
