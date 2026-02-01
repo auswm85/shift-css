@@ -145,7 +145,7 @@
 @function --s-fluid(--min, --max) {
   result: clamp(
     var(--min),
-    calc(var(--min) + (var(--max) - var(--min)) * ((100vw - 320px) / (1200 - 320))),
+    calc(var(--min) + (var(--max) - var(--min)) * ((100vw - 320px) / (1200px - 320px))),
     var(--max)
   );
 }
