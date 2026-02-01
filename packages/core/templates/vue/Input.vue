@@ -9,7 +9,7 @@
  */
 
 export interface InputProps {
-	/** Input size */
+	/** Input size (omit for default medium size) */
 	size?: 'sm' | 'lg';
 	/** Input type */
 	type?: string;

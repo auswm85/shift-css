@@ -14,7 +14,9 @@ export interface TooltipProps {
 	position?: 'top' | 'bottom' | 'left' | 'right';
 }
 
-defineProps<TooltipProps>();
+withDefaults(defineProps<TooltipProps>(), {
+	position: 'top',
+});
 </script>
 
 <template>
