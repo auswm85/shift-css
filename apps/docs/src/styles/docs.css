@@ -1,5 +1,8 @@
 /**
  * Shift CSS Documentation Layout Styles
+ *
+ * Uses native CSS functions (if(), @function) for dynamic styling.
+ * Fallbacks provided for browsers without support.
  */
 
 /* =============================================================================
@@ -7,13 +10,13 @@
    ============================================================================= */
 
 html {
+	/* Fallback for browsers without if() */
 	scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
+	/* Enhanced: inline conditional for reduced motion */
+	scroll-behavior: if(
+		media(prefers-reduced-motion: reduce): auto;
+		else: smooth;
+	);
 }
 
 /* =============================================================================
@@ -26,6 +29,33 @@ html {
 	--docs-header-height: 4rem;
 	--docs-content-max-width: 48rem;
 	--docs-gutter: var(--s-space-6);
+
+	/* Motion-safe transition duration using if() */
+	--docs-transition-duration: 0.15s;
+	--docs-transition-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.15s;
+	);
+
+	/* Backdrop overlay with primary color tint */
+	--docs-backdrop: oklch(0% 0 0 / 0.5);
+}
+
+@supports (color: oklch(from red l c h)) {
+	:root {
+		--docs-backdrop: oklch(from var(--s-primary-950) l 0.02 h / 0.6);
+	}
+}
+
+/* Fallback for reduced-motion in browsers without if() support */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	:root {
+		--docs-transition-duration: 0s;
+	}
 }
 
 /* =============================================================================
@@ -147,7 +177,8 @@ html {
 	color: var(--s-text-secondary);
 	text-decoration: none;
 	border-radius: var(--s-radius-sm);
-	transition: background 0.15s, color 0.15s;
+	transition: background var(--docs-transition-duration),
+		color var(--docs-transition-duration);
 }
 
 .docs-sidebar-link:hover {
@@ -241,7 +272,7 @@ html {
 	padding: var(--s-space-1) 0;
 	color: var(--s-text-muted);
 	text-decoration: none;
-	transition: color 0.15s;
+	transition: color var(--docs-transition-duration);
 }
 
 .docs-toc-link:hover {
@@ -278,7 +309,8 @@ html {
 	text-decoration: none;
 	border: 1px solid var(--s-border-default);
 	border-radius: var(--s-radius-md);
-	transition: border-color 0.15s, background 0.15s;
+	transition: border-color var(--docs-transition-duration),
+		background var(--docs-transition-duration);
 }
 
 .docs-pagination-link:hover {
@@ -340,7 +372,7 @@ html {
 }
 
 .docs-mobile-menu::backdrop {
-	background: oklch(0% 0 0 / 0.5);
+	background: var(--docs-backdrop);
 }
 
 .docs-mobile-menu[open] {
@@ -353,7 +385,7 @@ html {
 	background: var(--s-surface-base);
 	padding: var(--docs-gutter);
 	overflow-y: auto;
-	animation: slide-in 0.2s ease-out;
+	animation: slide-in var(--docs-transition-duration) ease-out;
 }
 
 @keyframes slide-in {
@@ -402,7 +434,7 @@ html {
 	color: var(--s-text-muted);
 	font-size: var(--s-text-sm);
 	cursor: pointer;
-	transition: border-color 0.15s;
+	transition: border-color var(--docs-transition-duration);
 }
 
 .docs-search-button:hover {
@@ -437,7 +469,7 @@ html {
 }
 
 .docs-search-dialog::backdrop {
-	background: oklch(0% 0 0 / 0.5);
+	background: var(--docs-backdrop);
 }
 
 .docs-search-dialog[open] {

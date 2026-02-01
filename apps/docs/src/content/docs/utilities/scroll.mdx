@@ -1,0 +1,178 @@
+---
+title: Scroll Animations
+description: CSS-only scroll-driven animations and effects
+---
+
+import Demo from '../../../components/docs/Demo.astro';
+
+## Overview
+
+Scroll-driven animations allow elements to animate based on scroll position using native CSS `animation-timeline`. No JavaScript required.
+
+## Browser Support
+
+| Browser | Version | Support |
+|---------|---------|---------|
+| Chrome | 115+ | ✅ Full |
+| Edge | 115+ | ✅ Full |
+| Firefox | 127+ | ✅ Full |
+| Safari | — | ❌ Fallback (elements visible) |
+
+## Import
+
+```css
+/* Full framework (includes all utilities) */
+@import "@shift-css/core";
+
+/* Or import just scroll utilities */
+@import "@shift-css/core/utils/scroll";
+```
+
+## Scroll Progress Indicator
+
+A thin bar that shows how far the user has scrolled through the page.
+
+```html
+<div s-scroll-progress></div>
+```
+
+Place at the top of your `<body>` for a page progress indicator.
+
+### Color Variants
+
+```html
+<div s-scroll-progress></div>
+<div s-scroll-progress="secondary"></div>
+<div s-scroll-progress="accent"></div>
+<div s-scroll-progress="gradient"></div>
+```
+
+### Customization
+
+Override the z-index if needed:
+
+```css
+:root {
+  --s-scroll-progress-z: 500;
+}
+```
+
+## Scroll Reveal
+
+Elements that animate when they enter the viewport.
+
+### Fade In (Default)
+
+```html
+<div s-scroll-reveal>
+  Fades in when scrolling into view
+</div>
+```
+
+### Slide Variants
+
+```html
+<div s-scroll-reveal="slide-up">Slides up</div>
+<div s-scroll-reveal="slide-down">Slides down</div>
+<div s-scroll-reveal="slide-left">Slides from right</div>
+<div s-scroll-reveal="slide-right">Slides from left</div>
+```
+
+### Scale
+
+```html
+<div s-scroll-reveal="scale">Scales up when visible</div>
+```
+
+## Scroll Parallax
+
+Elements that move at different speeds while scrolling.
+
+```html
+<div s-scroll-parallax>
+  Moves slower than scroll (subtle effect)
+</div>
+
+<div s-scroll-parallax="fast">
+  Moves faster (more dramatic effect)
+</div>
+
+<div s-scroll-parallax="reverse">
+  Moves opposite direction
+</div>
+```
+
+## Scroll Rotate
+
+Elements that rotate based on scroll position.
+
+```html
+<div s-scroll-rotate>
+  Rotates 360° as you scroll the page
+</div>
+
+<div s-scroll-rotate="reverse">
+  Rotates counter-clockwise
+</div>
+```
+
+Great for decorative elements, loading spinners, or playful UI accents.
+
+## Accessibility
+
+All scroll animations respect `prefers-reduced-motion`:
+
+- **Scroll reveal**: Elements appear instantly (no animation)
+- **Scroll parallax/rotate**: Effects disabled, elements remain static
+- **Scroll progress**: Bar shows fully filled (no scroll tracking)
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  [s-scroll-reveal],
+  [s-scroll-parallax],
+  [s-scroll-rotate] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [s-scroll-progress] {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+}
+```
+
+## Combining Effects
+
+You can combine scroll utilities with other Shift components:
+
+```html
+<article s-card s-scroll-reveal="slide-up">
+  <div s-card-body>
+    Card that slides up when scrolling into view
+  </div>
+</article>
+```
+
+## How It Works
+
+Scroll animations use the CSS `animation-timeline` property:
+
+- **`scroll()`**: Links animation to the page scroll position
+- **`view()`**: Links animation to an element's visibility in the viewport
+
+```css
+/* Page scroll progress */
+[s-scroll-progress] {
+  animation-timeline: scroll();
+}
+
+/* Viewport visibility */
+[s-scroll-reveal] {
+  animation-timeline: view();
+  animation-range: entry 0% entry 100%;
+}
+```
+
+The `animation-range` property controls when the animation starts and ends relative to the element entering/exiting the viewport.

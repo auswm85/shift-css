@@ -1,0 +1,298 @@
+---
+title: CSS Functions
+description: Native CSS functions and conditional logic for dynamic styling
+---
+
+import Demo from "../../../components/docs/Demo.astro";
+
+## Overview
+
+Shift CSS includes a powerful set of native CSS functions using the `@function` rule and `if()` conditional logic. These enable dynamic, self-healing components without JavaScript or preprocessors.
+
+## Browser Support
+
+| Browser | Version      | Support        |
+| ------- | ------------ | -------------- |
+| Chrome  | 139+         | ✅ Full        |
+| Edge    | 139+         | ✅ Full        |
+| Firefox | Experimental | 🔄 Behind flag |
+| Safari  | Experimental | 🔄 Behind flag |
+
+## Import
+
+```css
+/* Full framework (includes all utilities) */
+@import "@shift-css/core";
+
+/* Or import just functions */
+@import "@shift-css/core/utils/functions";
+```
+
+## Color Functions
+
+### --s-alpha
+
+Add transparency to any color.
+
+```css
+.overlay {
+  background: --s-alpha(var(--s-primary-500), 0.5);
+}
+```
+
+**Parameters:**
+
+- `--color`: The base color
+- `--opacity`: Opacity value (0-1)
+
+### --s-lighten / --s-darken
+
+Adjust the lightness of a color using OKLCH.
+
+```css
+.hover-state {
+  background: --s-lighten(var(--s-primary-500), 0.1);
+}
+
+.pressed-state {
+  background: --s-darken(var(--s-primary-500), 0.1);
+}
+```
+
+**Parameters:**
+
+- `--color`: The base color
+- `--amount`: Amount to adjust (0-1, e.g., 0.1 = 10%)
+
+### --s-saturate / --s-desaturate
+
+Adjust the chroma (saturation) of a color.
+
+```css
+.vibrant {
+  color: --s-saturate(var(--s-primary-500), 0.1);
+}
+
+.muted {
+  color: --s-desaturate(var(--s-primary-500), 0.1);
+}
+```
+
+### --s-hue-rotate
+
+Shift the hue of a color by degrees.
+
+```css
+.shifted {
+  background: --s-hue-rotate(var(--s-primary-500), 30);
+}
+```
+
+### --s-complement
+
+Get the complementary color (180° hue shift).
+
+```css
+.accent {
+  border-color: --s-complement(var(--s-primary-500));
+}
+```
+
+## Effect Functions
+
+### --s-glow
+
+Generate a multi-layered glowing box-shadow.
+
+```css
+.glowing-card {
+  box-shadow: --s-glow(var(--s-primary-500), 2);
+}
+
+.intense-glow {
+  box-shadow: --s-glow(var(--s-accent-500), 4);
+}
+```
+
+**Parameters:**
+
+- `--color`: The glow color
+- `--intensity`: Intensity multiplier (1-5)
+
+### --s-text-shadow-glow
+
+Generate a text glow effect.
+
+```css
+.neon-text {
+  text-shadow: --s-text-shadow-glow(var(--s-accent-500), 2);
+}
+```
+
+## Contrast Functions
+
+### --s-contrast-text
+
+Automatically return black or white text based on background lightness. Uses a 0.6 OKLCH lightness threshold as a pragmatic heuristic for contrast.
+
+> **Note:** WCAG contrast ratios use relative luminance (sRGB) with a different crossover point (~0.179). This function provides a practical OKLCH-based approximation, not a true WCAG luminance calculation.
+
+```css
+.auto-text {
+  background: var(--dynamic-bg);
+  color: --s-contrast-text(var(--dynamic-bg));
+}
+```
+
+### --s-readable-on
+
+Ensure text is readable on a given background by adjusting its lightness.
+
+```css
+.readable {
+  color: --s-readable-on(var(--bg-color), var(--text-color));
+}
+```
+
+## Conditional Styling with if()
+
+The `if()` function enables inline conditional logic based on media queries, style queries, or feature queries.
+
+### Responsive Values
+
+Replace media queries with inline conditionals:
+
+```css
+[s-responsive-padding] {
+  padding: if(
+    media(width < 640px): var(--s-space-2) ;
+      media(width < 1024px): var(--s-space-4) ; else: var(--s-space-6) ;
+  );
+}
+```
+
+### Motion Preferences
+
+Respect user motion preferences inline:
+
+```css
+[s-motion-safe] {
+  transition-duration: if(
+    media(prefers-reduced-motion: reduce): 0ms; else: var(--s-duration-200) ;
+  );
+}
+```
+
+### Dark Mode Awareness
+
+Adapt to color scheme preferences:
+
+```css
+[s-dark-aware] {
+  background-color: if(
+    media(prefers-color-scheme: dark): var(--s-surface-sunken) ;
+      else: var(--s-surface-raised) ;
+  );
+}
+```
+
+### Size Variants with Style Queries
+
+Create size-aware components using custom property state:
+
+```css
+[s-size-aware] {
+  --size: md; /* default */
+
+  padding: if(
+    style(--size: sm): var(--s-space-2) ; style(--size: lg): var(--s-space-6) ;
+      else: var(--s-space-4) ;
+  );
+
+  font-size: if(
+    style(--size: sm): var(--s-text-sm) ; style(--size: lg): var(--s-text-lg) ;
+      else: var(--s-text-base) ;
+  );
+}
+```
+
+```html
+<div s-size-aware style="--size: lg">Large size variant</div>
+<div s-size-aware style="--size: sm">Small size variant</div>
+```
+
+## Built-in Utility Attributes
+
+### s-auto-contrast
+
+Cards with automatic text contrast based on background:
+
+```html
+<article s-card s-auto-contrast style="--_card-bg: var(--s-primary-500)">
+  Text automatically contrasts with the background
+</article>
+```
+
+### s-responsive-padding
+
+Responsive padding without media queries:
+
+```html
+<div s-responsive-padding>Padding adjusts based on viewport width</div>
+```
+
+### s-motion-safe
+
+Respects reduced motion preferences:
+
+```html
+<div s-motion-safe>Transitions disabled for motion-sensitive users</div>
+```
+
+### s-dark-aware
+
+Adapts background to color scheme:
+
+```html
+<div s-dark-aware>Background changes in dark mode</div>
+```
+
+## Creating Custom Functions
+
+Define your own reusable CSS functions:
+
+```css
+@function --my-shadow(--color, --size) {
+  result: 0 calc(var(--size) * 2px) calc(var(--size) * 4px)
+    oklch(from var(--color) l c h / 0.3);
+}
+
+.custom-card {
+  box-shadow: --my-shadow(var(--s-primary-500), 4);
+}
+```
+
+## Fallback Strategies
+
+For browsers without `@function` or `if()` support, provide fallbacks:
+
+```css
+/* Fallback value first, enhanced value second */
+.element {
+  color: var(--s-text-primary);
+  /* Browsers without @function support ignore invalid values */
+  color: --s-contrast-text(var(--bg));
+}
+```
+
+Or use `@supports` to detect `@function` support:
+
+```css
+@supports at-rule(@function) {
+  .element {
+    color: --s-contrast-text(var(--bg));
+  }
+}
+```
+
+> **Note:** The cascade approach (fallback first, function second) is generally preferred as it's simpler and doesn't require feature detection.
