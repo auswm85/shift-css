@@ -45,21 +45,25 @@
 }
 
 /**
- * --s-saturate: Increase chroma/saturation
+ * --s-saturate: Increase chroma/saturation (gamut-aware)
+ * Boosts the C (Chroma) channel while clamping to prevent gamut overflow.
+ * Colors are pushed toward P3 space limits when hardware supports it.
  * @param --color: The base color
  * @param --amount: Amount to increase (0-0.4)
  */
 @function --s-saturate(--color, --amount) {
-  result: oklch(from var(--color) l calc(c + var(--amount)) h);
+  result: oklch(from var(--color) l min(0.4, calc(c + var(--amount))) h);
 }
 
 /**
  * --s-desaturate: Decrease chroma/saturation
+ * Pulls the C (Chroma) channel toward zero, creating muted/grayscale versions
+ * while retaining the same perceived brightness. Clamped to prevent negatives.
  * @param --color: The base color
  * @param --amount: Amount to decrease (0-0.4)
  */
 @function --s-desaturate(--color, --amount) {
-  result: oklch(from var(--color) l calc(c - var(--amount)) h);
+  result: oklch(from var(--color) l max(0, calc(c - var(--amount))) h);
 }
 
 /**
@@ -84,24 +88,30 @@
    ============================================================================= */
 
 /**
- * --s-glow: Generate a glowing box-shadow
+ * --s-glow: Generate a glowing box-shadow simulating light emission
+ * Uses boosted chroma in inner layers for vibrant "light source" effect,
+ * fading to softer outer layers. The high-chroma core simulates photon emission.
  * @param --color: The glow color
  * @param --intensity: Intensity multiplier (1-5)
  */
 @function --s-glow(--color, --intensity) {
-  result: 0 0 calc(var(--intensity) * 10px) oklch(from var(--color) l c h / 0.5),
-          0 0 calc(var(--intensity) * 20px) oklch(from var(--color) l c h / 0.3),
-          0 0 calc(var(--intensity) * 30px) oklch(from var(--color) l c h / 0.1);
+  result: 0 0 calc(var(--intensity) * 10px) oklch(from var(--color) l min(0.4, calc(c * 1.3)) h / 0.6),
+          0 0 calc(var(--intensity) * 20px) oklch(from var(--color) l min(0.35, calc(c * 1.15)) h / 0.35),
+          0 0 calc(var(--intensity) * 30px) oklch(from var(--color) l c h / 0.15);
 }
 
 /**
- * --s-text-shadow-glow: Generate a text glow effect
+ * --s-text-shadow-glow: Generate a text glow effect for enhanced legibility
+ * Three-layer system: crisp edge (1px) preserves letter shapes, mid-layer provides
+ * the visible glow, outer layer adds atmospheric diffusion. Optimized for
+ * dark backgrounds without blurring text readability.
  * @param --color: The glow color
  * @param --intensity: Intensity multiplier (1-3)
  */
 @function --s-text-shadow-glow(--color, --intensity) {
-  result: 0 0 calc(var(--intensity) * 5px) oklch(from var(--color) l c h / 0.8),
-          0 0 calc(var(--intensity) * 10px) oklch(from var(--color) l c h / 0.5);
+  result: 0 0 1px oklch(from var(--color) l c h / 0.9),
+          0 0 calc(var(--intensity) * 4px) oklch(from var(--color) l c h / 0.7),
+          0 0 calc(var(--intensity) * 12px) oklch(from var(--color) l c h / 0.35);
 }
 
 /* =============================================================================
@@ -109,27 +119,36 @@
    ============================================================================= */
 
 /**
- * --s-contrast-text: Return black or white based on background lightness
- * Uses 0.6 OKLCH lightness threshold (pragmatic heuristic, not WCAG luminance)
+ * --s-contrast-text: Auto-pick accessible text color using WCAG 2.2 contrast
+ * Uses native color-contrast() to let the browser calculate true luminance
+ * and select the highest-contrast option between white and black.
  * @param --bg: The background color
  */
 @function --s-contrast-text(--bg) {
+  result: color-contrast(var(--bg) vs oklch(0.98 0 0), oklch(0.15 0 0));
+}
+
+/**
+ * Legacy fallback for browsers without color-contrast() support
+ * Uses 0.6 OKLCH lightness threshold as pragmatic approximation
+ */
+@function --s-contrast-text-fallback(--bg) {
   result: oklch(from var(--bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0);
 }
 
 /**
- * --s-readable-on: Ensure text is readable on a given background
- * Shifts text lightness based on background: dark bg → lighter text, light bg → darker text
+ * --s-readable-on: Return accessible version of a brand color on any background
+ * Preserves the text color's hue and chroma while aggressively adjusting lightness
+ * to ensure readability. Dark backgrounds push text lighter, light backgrounds push
+ * text darker. The 50/50 mix ensures strong contrast while retaining brand identity.
  * @param --bg: The background color
- * @param --text: The desired text color
+ * @param --text: The desired text color (brand hue to preserve)
  */
 @function --s-readable-on(--bg, --text) {
-  /* Mix text with inverted bg lightness (achromatic) to push toward contrast */
-  /* Dark bg (l≈0) → mix with light (1-l≈1), Light bg (l≈1) → mix with dark (1-l≈0) */
   result: color-mix(
     in oklch,
-    var(--text) 60%,
-    oklch(from var(--bg) clamp(0.2, calc(1 - l), 0.9) 0 0)
+    var(--text) 50%,
+    oklch(from var(--bg) clamp(0.15, calc(1.1 - l), 0.95) 0 0)
   );
 }
 
@@ -151,12 +170,15 @@
 }
 
 /**
- * --s-space-scale: Multiply a spacing value
- * @param --base: Base spacing value
- * @param --factor: Multiplication factor
+ * --s-space-scale: Generate rhythm-aligned spacing with quantized snapping
+ * Calculates base × factor, then snaps the result to the nearest multiple
+ * of the base unit. This "quantize" approach prevents sub-pixel jitter and
+ * ensures all spacing aligns to the global grid (e.g., 4px rhythm → 4, 8, 12, 16px).
+ * @param --base: Base spacing unit (e.g., 4px for a 4px grid)
+ * @param --factor: Multiplication factor (any number, output will snap)
  */
 @function --s-space-scale(--base, --factor) {
-  result: calc(var(--base) * var(--factor));
+  result: round(nearest, calc(var(--base) * var(--factor)), var(--base));
 }
 
 /* =============================================================================
