@@ -105,3 +105,22 @@ export interface InitResult {
 }
 
 export type UserAction = 'apply' | 'copy' | 'skip';
+
+/**
+ * Supported framework types for component templates
+ */
+export type ComponentFramework = 'astro' | 'react' | 'vue';
+
+/**
+ * Configuration for the add command
+ */
+export interface AddConfig {
+	/** Directory for ejected CSS files */
+	stylesDir: string;
+	/** Directory for ejected component templates */
+	componentsDir: string;
+	/** CSS layer name to wrap components in */
+	layer: string;
+	/** Framework for component templates */
+	framework?: ComponentFramework;
+}
