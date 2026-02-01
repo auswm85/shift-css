@@ -143,6 +143,19 @@ export type ShiftPointer = 'none' | 'auto';
 export type ShiftSelect = 'none' | 'text' | 'all' | 'auto';
 
 // =============================================================================
+// TOUCH & MOBILE ATTRIBUTES
+// =============================================================================
+
+/** Safe area inset directions */
+export type ShiftSafeInset = 'top' | 'bottom' | 'left' | 'right' | 'x' | 'y';
+
+/** Touch action values */
+export type ShiftTouchAction = 'none' | 'pan-x' | 'pan-y' | 'pinch-zoom';
+
+/** Tap target sizes */
+export type ShiftTapTarget = 'lg' | 'xl';
+
+// =============================================================================
 // COMPLETE ATTRIBUTE MAP
 // =============================================================================
 
@@ -231,4 +244,9 @@ export interface ShiftAttributes {
 	's-toggle'?: ShiftBooleanAttr;
 	's-truncate'?: ShiftBooleanAttr;
 	's-visible'?: ShiftBooleanAttr;
+
+	// Touch & mobile attributes
+	's-safe-inset'?: ShiftSafeInset | ShiftBooleanAttr;
+	's-touch-action'?: ShiftTouchAction | ShiftBooleanAttr;
+	's-tap-target'?: ShiftTapTarget | ShiftBooleanAttr;
 }

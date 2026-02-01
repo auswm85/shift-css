@@ -104,6 +104,7 @@ function buildIndividualLayers(): void {
 		{ name: 'typography', path: 'utils/typography.css' },
 		{ name: 'visibility', path: 'utils/visibility.css' },
 		{ name: 'scroll', path: 'utils/scroll.css' },
+		{ name: 'touch', path: 'utils/touch.css' },
 		{ name: 'functions', path: 'utils/functions.css' },
 	];
 

@@ -1,0 +1,114 @@
+/**
+ * Touch & Mobile Utilities
+ *
+ * Three "invisible" helpers that prevent the "janky web" feel on real devices.
+ * Zero-cost on desktop, essential for mobile UX.
+ */
+
+/* ==========================================================================
+   s-safe-inset — Safe Area Padding
+   ==========================================================================
+   Applies env(safe-area-inset-*) for notch/Dynamic Island support.
+   Uses max() to never override developer's intentional padding.
+
+   Set --s-safe-padding-* to preserve your base padding:
+
+   .header {
+     --s-safe-padding-top: var(--s-space-4);
+   }
+*/
+
+[s-safe-inset] {
+	padding-top: max(var(--s-safe-padding-top, 0px), env(safe-area-inset-top, 0px));
+	padding-right: max(var(--s-safe-padding-right, 0px), env(safe-area-inset-right, 0px));
+	padding-bottom: max(var(--s-safe-padding-bottom, 0px), env(safe-area-inset-bottom, 0px));
+	padding-left: max(var(--s-safe-padding-left, 0px), env(safe-area-inset-left, 0px));
+}
+
+[s-safe-inset="top"] {
+	padding-top: max(var(--s-safe-padding-top, 0px), env(safe-area-inset-top, 0px));
+}
+
+[s-safe-inset="bottom"] {
+	padding-bottom: max(var(--s-safe-padding-bottom, 0px), env(safe-area-inset-bottom, 0px));
+}
+
+[s-safe-inset="left"] {
+	padding-left: max(var(--s-safe-padding-left, 0px), env(safe-area-inset-left, 0px));
+}
+
+[s-safe-inset="right"] {
+	padding-right: max(var(--s-safe-padding-right, 0px), env(safe-area-inset-right, 0px));
+}
+
+[s-safe-inset="x"] {
+	padding-left: max(var(--s-safe-padding-left, 0px), env(safe-area-inset-left, 0px));
+	padding-right: max(var(--s-safe-padding-right, 0px), env(safe-area-inset-right, 0px));
+}
+
+[s-safe-inset="y"] {
+	padding-top: max(var(--s-safe-padding-top, 0px), env(safe-area-inset-top, 0px));
+	padding-bottom: max(var(--s-safe-padding-bottom, 0px), env(safe-area-inset-bottom, 0px));
+}
+
+/* ==========================================================================
+   s-touch-action — Remove 300ms Click Delay
+   ==========================================================================
+   Tells the browser "don't wait for double-tap" for instant button response.
+   Essential for making zero-JS frameworks feel native.
+*/
+
+[s-touch-action] {
+	touch-action: manipulation;
+}
+
+[s-touch-action="none"] {
+	touch-action: none;
+}
+
+[s-touch-action="pan-x"] {
+	touch-action: pan-x;
+}
+
+[s-touch-action="pan-y"] {
+	touch-action: pan-y;
+}
+
+[s-touch-action="pinch-zoom"] {
+	touch-action: pinch-zoom;
+}
+
+/* ==========================================================================
+   s-tap-target — Accessible Touch Targets
+   ==========================================================================
+   Ensures minimum 48x48px hit area (WCAG 2.2 / Google requirement)
+   without growing the visual icon size.
+
+   Uses an invisible ::after pseudo-element with negative inset.
+*/
+
+[s-tap-target] {
+	position: relative;
+}
+
+[s-tap-target]::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	min-width: 48px;
+	min-height: 48px;
+	width: 100%;
+	height: 100%;
+}
+
+[s-tap-target="lg"]::after {
+	min-width: 56px;
+	min-height: 56px;
+}
+
+[s-tap-target="xl"]::after {
+	min-width: 64px;
+	min-height: 64px;
+}
