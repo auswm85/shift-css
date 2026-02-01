@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.7.0](https://github.com/auswm85/shift-css/compare/core-v0.6.0...core-v0.7.0) (2026-02-01)
+
+
+### Features
+
+* **core:** add CSS functions and conditional styling utilities ([#42](https://github.com/auswm85/shift-css/issues/42)) ([259c681](https://github.com/auswm85/shift-css/commit/259c681248d4716da4115716f5590f741c4c644d))
+* **core:** add select component ([68739b6](https://github.com/auswm85/shift-css/commit/68739b65da7576ba600b2cfb4bcda463c64ae365))
+* **scroll:** add scroll-driven animation utilities ([#41](https://github.com/auswm85/shift-css/issues/41)) ([9f4751e](https://github.com/auswm85/shift-css/commit/9f4751e53476363736085c91c874f4de771243e6))
+
+
+### Bug Fixes
+
+* **build:** update gzip size calculation for output bundle ([35510d1](https://github.com/auswm85/shift-css/commit/35510d16d12dec1e1410ec7cd798d6d7a3b0b62d))
+* **docs:** update card component titles to use strong tags ([e0ead02](https://github.com/auswm85/shift-css/commit/e0ead026171ddbaac82e968476f63cee0db4c898))
+
 ## [0.6.0](https://github.com/auswm85/shift-css/compare/core-v0.5.0...core-v0.6.0) (2026-01-22)
 
 
