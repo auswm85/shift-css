@@ -1,0 +1,720 @@
+---
+import ShowcaseLayout from '../../components/layout/ShowcaseLayout.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<ShowcaseLayout
+	title="Landing Page"
+	description="A modern SaaS marketing landing page built with Shift CSS"
+>
+	<!-- Skip link for accessibility -->
+	<a href="#main-content" s-skip-link>Skip to main content</a>
+
+	<!-- Scroll progress indicator -->
+	<div s-scroll-progress="gradient"></div>
+
+	<div class="landing-page">
+		<!-- Navigation -->
+		<header class="landing-header">
+			<nav s-container s-flex="between" s-items="center" class="s-py-4 s-px-6">
+				<div s-flex s-items="center" class="s-gap-3">
+					<span s-btn="primary" class="s-p-2">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</span>
+					<span class="s-font-bold s-text-lg">Velocity</span>
+				</div>
+				<div s-flex s-gap="lg" class="nav-links" s-hide-on="sm">
+					<a href="#features" class="s-text-secondary nav-link">Features</a>
+					<a href="#pricing" class="s-text-secondary nav-link">Pricing</a>
+					<a href="#testimonials" class="s-text-secondary nav-link">Testimonials</a>
+				</div>
+				<div s-flex s-gap="sm" s-items="center">
+					<button s-btn="ghost" s-hide-on="sm">Sign In</button>
+					<button s-btn="primary" s-hide-on="sm">Get Started</button>
+					<!-- Mobile menu button -->
+					<button s-btn="ghost" class="mobile-menu-btn" s-show-on="sm" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+							<line x1="3" y1="6" x2="21" y2="6" />
+							<line x1="3" y1="12" x2="21" y2="12" />
+							<line x1="3" y1="18" x2="21" y2="18" />
+						</svg>
+					</button>
+				</div>
+			</nav>
+			<!-- Mobile menu panel -->
+			<div id="mobile-menu" class="mobile-menu" s-surface="raised" hidden>
+				<div s-flex="col" s-gap="sm" class="s-p-6">
+					<a href="#features" class="mobile-nav-link s-text-lg s-font-medium">Features</a>
+					<a href="#pricing" class="mobile-nav-link s-text-lg s-font-medium">Pricing</a>
+					<a href="#testimonials" class="mobile-nav-link s-text-lg s-font-medium">Testimonials</a>
+					<hr class="s-my-2" style="border-color: var(--s-border-default);" />
+					<button s-btn="ghost" s-size="lg" class="s-justify-start">Sign In</button>
+					<button s-btn="primary" s-size="lg">Get Started</button>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero Section -->
+		<main id="main-content">
+			<section s-container class="hero s-py-8 s-px-6">
+				<div s-grid="2" s-gap="xl" s-items="center" class="hero-grid">
+					<div s-scroll-reveal>
+						<span s-badge="primary" s-pill class="s-mb-4">Now in public beta</span>
+						<h1 class="s-text-5xl s-font-bold s-leading-tight s-mb-6">
+							Ship products faster with AI-powered workflows
+						</h1>
+						<p class="s-text-lg s-text-secondary s-mb-8 s-leading-relaxed">
+							Velocity automates your development pipeline, from code review to deployment. Focus on building, we'll handle the rest.
+						</p>
+						<div s-flex s-gap="md" class="s-mb-8 hero-actions">
+							<button s-btn="primary" s-size="lg">
+								Start Free Trial
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<line x1="5" y1="12" x2="19" y2="12" />
+									<polyline points="12 5 19 12 12 19" />
+								</svg>
+							</button>
+							<button s-btn="outline" s-size="lg">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polygon points="5 3 19 12 5 21 5 3" />
+								</svg>
+								Watch Demo
+							</button>
+						</div>
+						<div s-flex s-items="center" s-gap="md">
+							<div class="avatar-stack" s-flex>
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=JD&backgroundColor=0d9488" alt="" width="40" height="40" class="avatar" />
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=MK&backgroundColor=6366f1" alt="" width="40" height="40" class="avatar" />
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=SR&backgroundColor=f59e0b" alt="" width="40" height="40" class="avatar" />
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=AL&backgroundColor=ec4899" alt="" width="40" height="40" class="avatar" />
+								<span s-badge="primary" s-pill class="avatar-count">+2.4k</span>
+							</div>
+							<p class="s-text-sm s-text-secondary">
+								Trusted by <strong class="s-text-primary">2,400+</strong> teams
+							</p>
+						</div>
+					</div>
+					<div s-scroll-reveal="slide-left" class="hero-visual" s-hide-on="sm">
+						<div s-card class="dashboard-preview">
+							<div s-surface="sunken" s-flex s-items="center" s-gap="md" class="s-p-3">
+								<div s-flex s-gap="xs">
+									<span class="window-dot"></span>
+									<span class="window-dot"></span>
+									<span class="window-dot"></span>
+								</div>
+								<span class="s-text-xs s-text-secondary">velocity.app/dashboard</span>
+							</div>
+							<div s-flex class="preview-content">
+								<div s-surface="sunken" s-flex="col" s-gap="xs" class="s-p-3 preview-sidebar">
+									<div class="preview-nav active"></div>
+									<div class="preview-nav"></div>
+									<div class="preview-nav"></div>
+								</div>
+								<div s-grid="2" s-gap="sm" class="s-p-4 preview-main">
+									<div s-surface="sunken" class="preview-card"></div>
+									<div s-surface="sunken" class="preview-card"></div>
+									<div s-surface="sunken" class="preview-card wide" s-col-span="2"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Logos Section -->
+			<section s-surface="sunken" class="s-py-6">
+				<div s-container s-flex="col" s-items="center" s-gap="lg" class="s-px-6">
+					<p class="s-text-xs s-uppercase s-tracking-wide s-text-secondary">Powering engineering teams at</p>
+					<div s-flex s-gap="xl" class="logos-grid" s-flex~="wrap" s-justify="center">
+						<span class="s-text-xl s-font-bold s-text-secondary">Acme Corp</span>
+						<span class="s-text-xl s-font-bold s-text-secondary">Globex</span>
+						<span class="s-text-xl s-font-bold s-text-secondary">Initech</span>
+						<span class="s-text-xl s-font-bold s-text-secondary" s-hide-on="sm">Hooli</span>
+						<span class="s-text-xl s-font-bold s-text-secondary" s-hide-on="sm">Pied Piper</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Features Section -->
+			<section id="features" s-container class="s-px-6" style="padding-block: var(--s-space-20);">
+				<header s-flex="col" s-items="center" class="s-text-center" style="margin-bottom: var(--s-space-16);">
+					<span s-badge="primary" s-pill class="s-mb-6">Features</span>
+					<h2 class="s-text-4xl s-font-bold s-mb-8">Everything you need to ship faster</h2>
+					<p class="s-text-lg s-text-secondary s-mb-8" style="max-width: 600px;">
+						From automated code reviews to one-click deployments, Velocity streamlines your entire development workflow.
+					</p>
+				</header>
+
+				<div s-grid="3" s-gap="lg" class="features-grid">
+					<article s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<div s-surface="primary" s-flex="center" class="feature-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+									<polyline points="16 18 22 12 16 6" />
+									<polyline points="8 6 2 12 8 18" />
+								</svg>
+							</div>
+							<h3 class="s-text-lg s-font-semibold">AI Code Review</h3>
+							<p class="s-text-secondary s-leading-relaxed">
+								Get instant feedback on your pull requests with context-aware suggestions.
+							</p>
+						</div>
+					</article>
+
+					<article s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<div s-surface="primary" s-flex="center" class="feature-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+									<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+								</svg>
+							</div>
+							<h3 class="s-text-lg s-font-semibold">Instant Previews</h3>
+							<p class="s-text-secondary s-leading-relaxed">
+								Every pull request gets its own preview environment to share with stakeholders.
+							</p>
+						</div>
+					</article>
+
+					<article s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<div s-surface="primary" s-flex="center" class="feature-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+									<circle cx="12" cy="12" r="10" />
+									<polyline points="12 6 12 12 16 14" />
+								</svg>
+							</div>
+							<h3 class="s-text-lg s-font-semibold">Zero-Config CI/CD</h3>
+							<p class="s-text-secondary s-leading-relaxed">
+								Automatic builds, tests, and deployments. No YAML files to maintain.
+							</p>
+						</div>
+					</article>
+
+					<article s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<div s-surface="primary" s-flex="center" class="feature-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+									<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+								</svg>
+							</div>
+							<h3 class="s-text-lg s-font-semibold">Security Scanning</h3>
+							<p class="s-text-secondary s-leading-relaxed">
+								Automated vulnerability detection and dependency auditing on every commit.
+							</p>
+						</div>
+					</article>
+
+					<article s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<div s-surface="primary" s-flex="center" class="feature-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+									<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+									<circle cx="9" cy="7" r="4" />
+									<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+									<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+								</svg>
+							</div>
+							<h3 class="s-text-lg s-font-semibold">Team Collaboration</h3>
+							<p class="s-text-secondary s-leading-relaxed">
+								Real-time presence, threaded discussions, and seamless handoffs.
+							</p>
+						</div>
+					</article>
+
+					<article s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<div s-surface="primary" s-flex="center" class="feature-icon">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+									<line x1="18" y1="20" x2="18" y2="10" />
+									<line x1="12" y1="20" x2="12" y2="4" />
+									<line x1="6" y1="20" x2="6" y2="14" />
+								</svg>
+							</div>
+							<h3 class="s-text-lg s-font-semibold">Analytics Dashboard</h3>
+							<p class="s-text-secondary s-leading-relaxed">
+								Track deployment frequency, lead time, and DORA metrics.
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- Pricing Section -->
+			<section id="pricing" s-surface="sunken" style="padding-block: var(--s-space-20);">
+				<div s-container class="s-px-6">
+					<header s-flex="col" s-items="center" class="s-text-center" style="margin-bottom: var(--s-space-16);">
+						<span s-badge="primary" s-pill class="s-mb-6">Pricing</span>
+						<h2 class="s-text-4xl s-font-bold s-mb-8">Simple, transparent pricing</h2>
+						<p class="s-text-lg s-text-secondary s-mb-8">Start free, scale as you grow. No hidden fees.</p>
+					</header>
+
+					<div s-grid="3" s-gap="lg" class="pricing-grid">
+						<!-- Starter -->
+						<article s-card s-scroll-reveal>
+							<div s-card-body s-flex="col" class="s-gap-6">
+								<div>
+									<h3 class="s-text-xl s-font-bold">Starter</h3>
+									<p class="s-text-sm s-text-secondary">Perfect for side projects</p>
+								</div>
+								<div>
+									<span class="s-text-4xl s-font-bold">$0</span>
+									<span class="s-text-secondary">/month</span>
+								</div>
+								<ul s-flex="col" s-gap="sm" class="plan-features">
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">Up to 3 team members</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">5 preview environments</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">Basic analytics</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">Community support</span>
+									</li>
+								</ul>
+								<button s-btn="outline" class="s-mt-auto">Get Started</button>
+							</div>
+						</article>
+
+						<!-- Pro (Featured) -->
+						<article s-card class="pricing-featured" s-scroll-reveal>
+							<span s-badge="accent" s-pill class="featured-badge">Most Popular</span>
+							<div s-card-body s-surface="primary" s-flex="col" class="s-gap-6">
+								<div>
+									<h3 class="s-text-xl s-font-bold">Pro</h3>
+									<p class="s-text-sm">For growing teams</p>
+								</div>
+								<div>
+									<span class="s-text-4xl s-font-bold">$29</span>
+									<span style="opacity: 0.8;">/user/month</span>
+								</div>
+								<ul s-flex="col" s-gap="sm" class="plan-features">
+									<li s-flex s-items="center" s-gap="sm">
+										<span class="check-icon">✓</span>
+										<span class="s-text-sm">Unlimited team members</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span class="check-icon">✓</span>
+										<span class="s-text-sm">Unlimited previews</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span class="check-icon">✓</span>
+										<span class="s-text-sm">AI code review</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span class="check-icon">✓</span>
+										<span class="s-text-sm">Advanced analytics</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span class="check-icon">✓</span>
+										<span class="s-text-sm">Priority support</span>
+									</li>
+								</ul>
+								<button s-btn="secondary" class="s-mt-auto">Start Free Trial</button>
+							</div>
+						</article>
+
+						<!-- Enterprise -->
+						<article s-card s-scroll-reveal>
+							<div s-card-body s-flex="col" class="s-gap-6">
+								<div>
+									<h3 class="s-text-xl s-font-bold">Enterprise</h3>
+									<p class="s-text-sm s-text-secondary">For large organizations</p>
+								</div>
+								<div>
+									<span class="s-text-4xl s-font-bold">Custom</span>
+								</div>
+								<ul s-flex="col" s-gap="sm" class="plan-features">
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">Everything in Pro</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">SSO & SAML</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">Dedicated support</span>
+									</li>
+									<li s-flex s-items="center" s-gap="sm">
+										<span s-badge="success" s-dot></span>
+										<span class="s-text-sm">Custom SLA</span>
+									</li>
+								</ul>
+								<button s-btn="outline" class="s-mt-auto">Contact Sales</button>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- Testimonials -->
+			<section id="testimonials" s-container class="s-px-6" style="padding-block: var(--s-space-20);">
+				<header s-flex="col" s-items="center" class="s-text-center" style="margin-bottom: var(--s-space-16);">
+					<span s-badge="primary" s-pill class="s-mb-6">Testimonials</span>
+					<h2 class="s-text-4xl s-font-bold">Loved by developers worldwide</h2>
+				</header>
+
+				<div s-grid="3" s-gap="lg" class="testimonials-grid">
+					<blockquote s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<p class="s-text-lg s-leading-relaxed">
+								"Velocity cut our deployment time from hours to minutes. The AI code review catches issues before they reach production."
+							</p>
+							<footer s-flex s-items="center" s-gap="sm" class="s-mt-auto">
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=AC&backgroundColor=0d9488" alt="" width="48" height="48" class="avatar-lg" />
+								<div>
+									<cite class="s-font-semibold s-not-italic">Alex Chen</cite>
+									<p class="s-text-sm s-text-secondary">Engineering Lead at Acme Corp</p>
+								</div>
+							</footer>
+						</div>
+					</blockquote>
+
+					<blockquote s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<p class="s-text-lg s-leading-relaxed">
+								"Finally, a CI/CD tool that just works. We onboarded our entire team in a day without any configuration."
+							</p>
+							<footer s-flex s-items="center" s-gap="sm" class="s-mt-auto">
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=JL&backgroundColor=6366f1" alt="" width="48" height="48" class="avatar-lg" />
+								<div>
+									<cite class="s-font-semibold s-not-italic">Jordan Lee</cite>
+									<p class="s-text-sm s-text-secondary">CTO at Globex</p>
+								</div>
+							</footer>
+						</div>
+					</blockquote>
+
+					<blockquote s-card s-scroll-reveal>
+						<div s-card-body s-flex="col" s-gap="md">
+							<p class="s-text-lg s-leading-relaxed">
+								"The preview environments are a game-changer. Designers review changes without local setup."
+							</p>
+							<footer s-flex s-items="center" s-gap="sm" class="s-mt-auto">
+								<img src="https://api.dicebear.com/7.x/initials/svg?seed=TM&backgroundColor=f59e0b" alt="" width="48" height="48" class="avatar-lg" />
+								<div>
+									<cite class="s-font-semibold s-not-italic">Taylor Morgan</cite>
+									<p class="s-text-sm s-text-secondary">VP Engineering at Initech</p>
+								</div>
+							</footer>
+						</div>
+					</blockquote>
+				</div>
+			</section>
+
+			<!-- CTA Section -->
+			<section s-container class="s-px-6" style="padding-block: var(--s-space-20);">
+				<div s-surface="primary" s-flex="col" s-items="center" class="s-text-center cta-box" style="padding: var(--s-space-16);" s-scroll-reveal="scale">
+					<h2 class="s-text-4xl s-font-bold s-mb-8">Ready to ship faster?</h2>
+					<p class="s-text-lg" style="max-width: 500px; margin-bottom: var(--s-space-8);">
+						Join thousands of teams who've transformed their development workflow with Velocity.
+					</p>
+					<div s-flex s-gap="md" class="cta-actions">
+						<button s-btn="secondary" s-size="lg">Start Free Trial</button>
+						<button s-btn="outline" s-size="lg" class="cta-outline-btn">Schedule Demo</button>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer s-surface="sunken" class="s-py-8">
+			<div s-container class="s-px-6">
+				<div s-grid="4" s-gap="xl" class="footer-grid s-mb-6">
+					<div>
+						<div s-flex s-items="center" class="s-gap-3 s-mb-4">
+							<span s-btn="primary" class="s-p-2">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+									<path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</span>
+							<span class="s-font-bold">Velocity</span>
+						</div>
+						<p class="s-text-sm s-text-secondary">Ship products faster with AI-powered workflows.</p>
+					</div>
+					<div s-flex="col" s-gap="sm">
+						<span class="s-text-sm s-font-semibold s-mb-2 footer-heading">Product</span>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Features</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Pricing</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Changelog</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Roadmap</a>
+					</div>
+					<div s-flex="col" s-gap="sm">
+						<span class="s-text-sm s-font-semibold s-mb-2 footer-heading">Company</span>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">About</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Blog</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Careers</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Contact</a>
+					</div>
+					<div s-flex="col" s-gap="sm">
+						<span class="s-text-sm s-font-semibold s-mb-2 footer-heading">Resources</span>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Documentation</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">API Reference</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Status</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Support</a>
+					</div>
+				</div>
+				<div s-flex="between" s-items="center" class="s-pt-6 footer-bottom">
+					<p class="s-text-sm s-text-secondary">&copy; {currentYear} Velocity. All rights reserved.</p>
+					<div s-flex s-gap="lg">
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Privacy</a>
+						<a href="#" class="s-text-sm s-text-secondary nav-link">Terms</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</ShowcaseLayout>
+
+<style>
+	/* Minimal custom CSS - only what can't be expressed with utilities */
+
+	.landing-header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: oklch(from var(--s-surface-base) l c h / 0.9);
+		backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--s-border-default);
+	}
+
+	.nav-link {
+		text-decoration: none;
+		transition: color var(--s-duration-150) var(--s-ease-out);
+	}
+
+	.nav-link:hover {
+		color: var(--s-interactive-primary);
+	}
+
+	/* Avatar stack */
+	.avatar {
+		border-radius: 50%;
+		border: 3px solid var(--s-surface-base);
+		margin-left: -12px;
+	}
+
+	.avatar:first-child {
+		margin-left: 0;
+	}
+
+	.avatar-count {
+		margin-left: -8px;
+	}
+
+	.avatar-lg {
+		border-radius: 50%;
+	}
+
+	/* Hero visual */
+	.dashboard-preview {
+		box-shadow: var(--s-shadow-xl);
+		overflow: hidden;
+	}
+
+	.window-dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: var(--s-neutral-300);
+	}
+
+	.preview-sidebar {
+		width: 60px;
+	}
+
+	.preview-nav {
+		height: 8px;
+		border-radius: var(--s-radius-sm);
+		background: var(--s-neutral-300);
+	}
+
+	.preview-nav.active {
+		background: var(--s-primary-500);
+	}
+
+	.preview-main {
+		flex: 1;
+	}
+
+	.preview-card {
+		height: 60px;
+		border-radius: var(--s-radius-md);
+	}
+
+	.preview-content {
+		height: 250px;
+	}
+
+	/* Feature icons */
+	.feature-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: var(--s-radius-md);
+	}
+
+	/* Pricing */
+	.pricing-featured {
+		position: relative;
+		overflow: visible;
+	}
+
+	.featured-badge {
+		position: absolute;
+		top: -12px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 1;
+	}
+
+	.check-icon {
+		font-weight: bold;
+	}
+
+	.plan-features {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	/* CTA */
+	.cta-box {
+		border-radius: var(--s-radius-xl);
+	}
+
+	.cta-outline-btn {
+		color: #fff !important;
+		border-color: rgba(255, 255, 255, 0.5) !important;
+	}
+
+	.cta-outline-btn:hover {
+		background: rgba(255, 255, 255, 0.1) !important;
+		border-color: #fff !important;
+	}
+
+	/* Footer */
+	.footer-heading {
+		display: block;
+	}
+
+	.footer-bottom {
+		border-top: 1px solid var(--s-border-default);
+	}
+
+	/* Responsive */
+	.hero-grid {
+		/* Prevent grid items from overflowing */
+		& > * {
+			min-width: 0;
+		}
+
+		@media (width < 1024px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.features-grid,
+	.pricing-grid,
+	.testimonials-grid {
+		@media (width < 1024px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.footer-grid {
+		@media (width < 768px) {
+			grid-template-columns: 1fr 1fr;
+			text-align: center;
+		}
+		@media (width < 480px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.footer-grid [s-flex] {
+		@media (width < 768px) {
+			justify-content: center;
+		}
+	}
+
+	.hero-actions {
+		@media (width < 480px) {
+			flex-direction: column;
+		}
+	}
+
+	.cta-actions {
+		@media (width < 480px) {
+			flex-direction: column;
+		}
+	}
+
+	/* Mobile menu */
+	.mobile-menu-btn {
+		display: none;
+	}
+
+	@media (width < 640px) {
+		.mobile-menu-btn {
+			display: flex;
+		}
+	}
+
+	.mobile-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		border-top: 1px solid var(--s-border-default);
+		box-shadow: var(--s-shadow-lg);
+		z-index: 50;
+	}
+
+	.mobile-menu[hidden] {
+		display: none;
+	}
+
+	.mobile-nav-link {
+		display: block;
+		padding: var(--s-space-3) var(--s-space-2);
+		color: var(--s-text-primary);
+		text-decoration: none;
+		border-radius: var(--s-radius-md);
+		transition: background-color 0.15s ease;
+	}
+
+	.mobile-nav-link:hover {
+		background: var(--s-surface-sunken);
+	}
+</style>
+
+<script>
+	const menuBtn = document.querySelector('.mobile-menu-btn');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const mobileLinks = mobileMenu?.querySelectorAll('a, button');
+
+	menuBtn?.addEventListener('click', () => {
+		const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+		menuBtn.setAttribute('aria-expanded', String(!isOpen));
+		mobileMenu?.toggleAttribute('hidden', isOpen);
+	});
+
+	// Close menu when clicking a link
+	mobileLinks?.forEach(link => {
+		link.addEventListener('click', () => {
+			menuBtn?.setAttribute('aria-expanded', 'false');
+			mobileMenu?.setAttribute('hidden', '');
+		});
+	});
+</script>

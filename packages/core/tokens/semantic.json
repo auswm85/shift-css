@@ -35,8 +35,8 @@
       },
       "tertiary": {
         "light": { "value": "{color.neutral.500}" },
-        "dark": { "value": "{color.neutral.500}" },
-        "description": "Tertiary/disabled text"
+        "dark": { "value": "{color.neutral.400}" },
+        "description": "Tertiary/disabled text (AA compliant)"
       },
       "inverse": {
         "light": { "value": "{color.neutral.50}" },

@@ -119,7 +119,7 @@
     /* TEXT */
     --s-text-primary: light-dark(var(--s-neutral-900), var(--s-neutral-50));
     --s-text-secondary: light-dark(var(--s-neutral-700), var(--s-neutral-300));
-    --s-text-tertiary: light-dark(var(--s-neutral-500), var(--s-neutral-500));
+    --s-text-tertiary: light-dark(var(--s-neutral-500), var(--s-neutral-400));
     --s-text-inverse: light-dark(var(--s-neutral-50), var(--s-neutral-900));
 
     /* BORDER */

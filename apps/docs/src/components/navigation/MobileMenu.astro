@@ -51,15 +51,24 @@ const navigation = getNavigation(base);
 										const isActive =
 											item.href === currentPath ||
 											item.href === currentPath.replace(/\/$/, '');
+										const isShowcase = item.href.includes('/showcase/');
 
 										return (
 											<a
 												href={item.href}
 												class="docs-sidebar-link"
 												aria-current={isActive ? 'page' : undefined}
+												target={isShowcase ? '_blank' : undefined}
+												rel={isShowcase ? 'noopener' : undefined}
 												data-mobile-link
 											>
 												{item.label}
+												{isShowcase && (
+													<>
+														<span s-sr-only>(opens in new tab)</span>
+														<span class="external-icon" aria-hidden="true">↗</span>
+													</>
+												)}
 											</a>
 										);
 									})}
@@ -92,6 +101,12 @@ const navigation = getNavigation(base);
 		display: flex;
 		flex-direction: column;
 		gap: var(--s-space-1);
+	}
+
+	.external-icon {
+		font-size: 0.75em;
+		opacity: 0.6;
+		margin-left: var(--s-space-1);
 	}
 </style>
 

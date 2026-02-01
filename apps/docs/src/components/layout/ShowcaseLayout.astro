@@ -1,0 +1,141 @@
+---
+import '../../styles/fonts.css';
+import '@shift-css/core';
+import ThemeToggle from '../ui/ThemeToggle.astro';
+import ThemeCustomizer from '../ui/ThemeCustomizer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Shift CSS Showcase' } = Astro.props;
+const siteTitle = `${title} | Shift CSS Showcase`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalURL = new URL(Astro.url.pathname, 'https://getshiftcss.com');
+---
+
+<!doctype html>
+<html lang="en" style="color-scheme: light dark">
+	<head>
+		<script is:inline>
+			(function () {
+				var stored = localStorage.getItem('shift-docs-theme');
+				if (stored) {
+					document.documentElement.style.colorScheme = stored;
+				}
+			})();
+		</script>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<title>{siteTitle}</title>
+
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Shift CSS" />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={siteTitle} />
+		<meta name="twitter:description" content={description} />
+
+		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+
+		<link rel="preload" href={`${base}/fonts/inter-latin-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={`${base}/fonts/jetbrains-mono-latin-400-normal.woff2`} as="font" type="font/woff2" crossorigin />
+	</head>
+	<body>
+		<slot />
+		<div class="showcase-controls">
+			<ThemeToggle />
+		</div>
+		<ThemeCustomizer />
+	</body>
+</html>
+
+<style is:global>
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family:
+			'Inter',
+			var(--s-font-sans),
+			system-ui,
+			-apple-system,
+			sans-serif;
+		background: var(--s-surface-base);
+		color: var(--s-text-primary);
+		overflow-x: hidden;
+	}
+
+	code,
+	pre,
+	kbd {
+		font-family:
+			'JetBrains Mono',
+			var(--s-font-mono),
+			ui-monospace,
+			monospace;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--s-interactive-primary);
+		outline-offset: 2px;
+	}
+
+	/* Theme toggle positioning */
+	.showcase-controls {
+		position: fixed;
+		bottom: var(--s-space-6);
+		left: var(--s-space-6);
+		z-index: 100;
+	}
+
+	.showcase-controls .theme-toggle {
+		background: var(--s-surface-raised);
+		border: 1px solid var(--s-border-default);
+		box-shadow: var(--s-shadow-lg);
+		width: 48px;
+		height: 48px;
+		border-radius: var(--s-radius-full);
+	}
+
+	/* Theme fade transition */
+	.theme-transitioning::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		background: oklch(10% 0 0);
+		animation: theme-fade 0.3s ease-in-out forwards;
+		pointer-events: none;
+	}
+
+	@keyframes theme-fade {
+		0%, 100% { opacity: 0; }
+		50% { opacity: 1; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.showcase-controls {
+			bottom: var(--s-space-4);
+			left: var(--s-space-4);
+		}
+	}
+</style>
