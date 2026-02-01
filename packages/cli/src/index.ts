@@ -11,6 +11,7 @@
 
 import pc from 'picocolors';
 import pkg from '../package.json' with { type: 'json' };
+import { addCommand, listComponents } from './commands/add.ts';
 import { initCommand } from './commands/init.ts';
 import { typesCommand } from './commands/types.ts';
 
@@ -26,6 +27,8 @@ ${pc.dim('Usage:')}
 ${pc.dim('Commands:')}
   ${pc.green('init')}     Set up Shift CSS in your project
            Detects existing frameworks and wraps them in @layer legacy
+  ${pc.green('add')}      Add components to your project (shadcn-style ejection)
+           Copies component CSS wrapped in @layer for customization
   ${pc.green('types')}    Generate TypeScript definitions for Shift CSS attributes
            Detects React/Vue/Svelte and shows setup instructions
 
@@ -33,9 +36,15 @@ ${pc.dim('Options:')}
   ${pc.yellow('--help, -h')}     Show this help message
   ${pc.yellow('--version, -v')}  Show version number
 
+${pc.dim('Add Options:')}
+  ${pc.yellow('--all')}          Add all available components
+  ${pc.yellow('--force')}        Overwrite existing files without prompting
+  ${pc.yellow('--framework')}    Framework for templates (astro, react, vue)
+
 ${pc.dim('Examples:')}
   ${pc.cyan('npx shift-css init')}
-  ${pc.cyan('npx shift-css types')}
+  ${pc.cyan('npx shift-css add button card')}
+  ${pc.cyan('npx shift-css add --all')}
   ${pc.cyan('npx shift-css types --react -o shift.d.ts')}
 
 ${pc.dim('Learn more:')} ${pc.underline('https://getshiftcss.com')}
@@ -64,6 +73,33 @@ async function main(): Promise<void> {
 	// Handle commands
 	if (command === 'init' || !command) {
 		await initCommand();
+		return;
+	}
+
+	if (command === 'add') {
+		// Parse options for add command
+		const addOptions: { all?: boolean; force?: boolean; framework?: string } = {};
+		const componentNames: string[] = [];
+
+		for (let i = 1; i < args.length; i++) {
+			const arg = args[i] as string;
+			if (arg === '--all') {
+				addOptions.all = true;
+			} else if (arg === '--force' || arg === '-f') {
+				addOptions.force = true;
+			} else if (arg === '--framework' && args[i + 1]) {
+				addOptions.framework = args[++i];
+			} else if (arg.startsWith('--framework=')) {
+				addOptions.framework = arg.slice('--framework='.length);
+			} else if (arg === '--list' || arg === '-l') {
+				await listComponents();
+				return;
+			} else if (!arg.startsWith('-')) {
+				componentNames.push(arg);
+			}
+		}
+
+		await addCommand(componentNames, addOptions);
 		return;
 	}
 
