@@ -4,21 +4,21 @@
  *
  * @example
  * <SkipLink />
- * <SkipLink target="#content">Skip to content</SkipLink>
+ * <SkipLink href="#content">Skip to content</SkipLink>
  */
 
 export interface SkipLinkProps {
-	/** Target element ID to skip to */
-	target?: string;
+	/** Element ID to skip to (e.g., "#main") */
+	href?: string;
 }
 
 withDefaults(defineProps<SkipLinkProps>(), {
-	target: '#main',
+	href: '#main',
 });
 </script>
 
 <template>
-	<a s-skip-link="" :href="target">
+	<a s-skip-link="" :href="href">
 		<slot>Skip to main content</slot>
 	</a>
 </template>

@@ -31,12 +31,15 @@ const dialogRef = ref<HTMLDialogElement | null>(null);
 watch(
 	() => props.open,
 	(isOpen) => {
-		if (isOpen) {
-			dialogRef.value?.showModal();
-		} else {
-			dialogRef.value?.close();
+		const dialog = dialogRef.value;
+		if (!dialog) return;
+		if (isOpen && !dialog.open) {
+			dialog.showModal();
+		} else if (!isOpen && dialog.open) {
+			dialog.close();
 		}
-	}
+	},
+	{ immediate: true, flush: 'post' }
 );
 
 function handleClose() {
