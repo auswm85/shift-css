@@ -153,9 +153,29 @@ export function validateCss(css: string): { valid: boolean; error?: string } {
 	let braceCount = 0;
 	let inString = false;
 	let stringChar = '';
+	let inComment = false;
 
 	for (let i = 0; i < css.length; i++) {
 		const char = css[i] as string;
+		const nextChar = css[i + 1];
+
+		// Handle comment state
+		if (inComment) {
+			// Look for comment end: */
+			if (char === '*' && nextChar === '/') {
+				inComment = false;
+				i++; // Skip past '/'
+			}
+			continue;
+		}
+
+		// Detect comment start: /*
+		if (char === '/' && nextChar === '*') {
+			inComment = true;
+			i++; // Skip past '*'
+			continue;
+		}
+
 		const prevChar = css[i - 1];
 
 		// Track string state
@@ -177,6 +197,10 @@ export function validateCss(css: string): { valid: boolean; error?: string } {
 		if (braceCount < 0) {
 			return { valid: false, error: 'Unexpected closing brace' };
 		}
+	}
+
+	if (inComment) {
+		return { valid: false, error: 'Unterminated comment' };
 	}
 
 	if (braceCount !== 0) {
