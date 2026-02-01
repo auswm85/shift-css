@@ -28,7 +28,7 @@ defineEmits<{
 </script>
 
 <template>
-	<select s-select="" :s-size="size" :aria-invalid="error || undefined" :value="modelValue"
+	<select s-select :s-size="size" :aria-invalid="error || undefined" :value="modelValue"
 		@change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)">
 		<slot />
 	</select>

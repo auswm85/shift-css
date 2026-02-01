@@ -18,7 +18,7 @@ defineProps<ProseProps>();
 </script>
 
 <template>
-	<div s-prose="" :s-size="size">
+	<div s-prose :s-size="size">
 		<slot />
 	</div>
 </template>

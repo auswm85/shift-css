@@ -7,7 +7,7 @@ export interface ProseProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Prose = forwardRef<HTMLDivElement, ProseProps>(({ size, children, ...rest }, ref) => {
 	return (
-		<div ref={ref} s-prose="" s-size={size} {...rest}>
+		<div ref={ref} s-prose s-size={size} {...rest}>
 			{children}
 		</div>
 	);

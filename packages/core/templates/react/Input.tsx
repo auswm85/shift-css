@@ -12,7 +12,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 		return (
 			<input
 				ref={ref}
-				s-input=""
+				s-input
 				s-size={size}
 				aria-invalid={error || undefined}
 				type={type}

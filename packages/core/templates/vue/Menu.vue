@@ -20,7 +20,7 @@ defineProps<MenuProps>();
 </script>
 
 <template>
-	<nav s-menu="" :s-size="size" role="menu" :aria-label="ariaLabel">
+	<nav s-menu :s-size="size" role="menu" :aria-label="ariaLabel">
 		<slot />
 	</nav>
 </template>

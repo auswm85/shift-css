@@ -34,6 +34,6 @@ function handleInput(event: Event) {
 </script>
 
 <template>
-	<input s-input="" :s-size="size" :type="type" :aria-invalid="error || undefined" :value="modelValue"
+	<input s-input :s-size="size" :type="type" :aria-invalid="error || undefined" :value="modelValue"
 		@input="handleInput" />
 </template>

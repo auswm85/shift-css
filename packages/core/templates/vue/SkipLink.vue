@@ -18,7 +18,7 @@ withDefaults(defineProps<SkipLinkProps>(), {
 </script>
 
 <template>
-	<a s-skip-link="" :href="href">
+	<a s-skip-link :href="href">
 		<slot>Skip to main content</slot>
 	</a>
 </template>

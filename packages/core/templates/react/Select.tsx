@@ -10,7 +10,7 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 	({ size, error = false, children, ...rest }, ref) => {
 		return (
-			<select ref={ref} s-select="" s-size={size} aria-invalid={error || undefined} {...rest}>
+			<select ref={ref} s-select s-size={size} aria-invalid={error || undefined} {...rest}>
 				{children}
 			</select>
 		);

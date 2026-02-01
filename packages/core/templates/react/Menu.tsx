@@ -7,7 +7,7 @@ export interface MenuProps extends HTMLAttributes<HTMLElement> {
 
 export const Menu = forwardRef<HTMLElement, MenuProps>(({ size, children, ...rest }, ref) => {
 	return (
-		<nav ref={ref} s-menu="" s-size={size} {...rest}>
+		<nav ref={ref} s-menu s-size={size} {...rest}>
 			{children}
 		</nav>
 	);
