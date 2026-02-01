@@ -3,9 +3,10 @@
  * Menu Component
  *
  * Dropdown menu container. Use with popover or JavaScript for visibility control.
+ * Requires either aria-label or aria-labelledby for accessibility.
  *
  * @example
- * <Menu>
+ * <Menu aria-label="Actions menu">
  *   <MenuItem>Action 1</MenuItem>
  *   <MenuDivider />
  *   <MenuItem>Action 2</MenuItem>
@@ -15,23 +16,33 @@
 export interface Props {
 	/** Accessible label for the menu */
 	'aria-label'?: string;
+	/** ID of element that labels the menu */
+	'aria-labelledby'?: string;
 	/** Additional classes */
 	class?: string;
 }
 
 const {
 	'aria-label': ariaLabel,
+	'aria-labelledby': ariaLabelledby,
 	class: className,
 	...rest
 } = Astro.props;
+
+if (!ariaLabel && !ariaLabelledby) {
+	console.warn('[Menu] Accessibility warning: Menu requires either aria-label or aria-labelledby');
+}
 ---
 
-<div
-	s-menu
-	role="menu"
-	aria-label={ariaLabel}
-	class={className}
-	{...rest}
->
-	<slot />
-</div>
+{(ariaLabel || ariaLabelledby) && (
+	<div
+		s-menu
+		role="menu"
+		aria-label={ariaLabel}
+		aria-labelledby={ariaLabelledby}
+		class={className}
+		{...rest}
+	>
+		<slot />
+	</div>
+)}
