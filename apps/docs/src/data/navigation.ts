@@ -54,6 +54,8 @@ const navigationData: NavEntry[] = [
 			{ label: 'Flexbox & Grid', href: '/utilities/layout' },
 			{ label: 'Typography', href: '/utilities/typography' },
 			{ label: 'Visibility', href: '/utilities/visibility' },
+			{ label: 'Scroll Animations', href: '/utilities/scroll' },
+			{ label: 'CSS Functions', href: '/utilities/functions' },
 		],
 	},
 	{

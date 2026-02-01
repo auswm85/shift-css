@@ -1,5 +1,8 @@
 /**
  * Shift CSS Documentation Layout Styles
+ *
+ * Uses native CSS functions (if(), @function) for dynamic styling.
+ * Fallbacks provided for browsers without support.
  */
 
 /* =============================================================================
@@ -7,13 +10,13 @@
    ============================================================================= */
 
 html {
+	/* Fallback for browsers without if() */
 	scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
+	/* Enhanced: inline conditional for reduced motion */
+	scroll-behavior: if(
+		media(prefers-reduced-motion: reduce): auto;
+		else: smooth;
+	);
 }
 
 /* =============================================================================
@@ -147,7 +150,13 @@ html {
 	color: var(--s-text-secondary);
 	text-decoration: none;
 	border-radius: var(--s-radius-sm);
-	transition: background 0.15s, color 0.15s;
+	/* Motion-safe transitions using if() */
+	transition-property: background, color;
+	transition-duration: 0.15s;
+	transition-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.15s;
+	);
 }
 
 .docs-sidebar-link:hover {
@@ -241,7 +250,12 @@ html {
 	padding: var(--s-space-1) 0;
 	color: var(--s-text-muted);
 	text-decoration: none;
-	transition: color 0.15s;
+	transition-property: color;
+	transition-duration: 0.15s;
+	transition-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.15s;
+	);
 }
 
 .docs-toc-link:hover {
@@ -278,7 +292,12 @@ html {
 	text-decoration: none;
 	border: 1px solid var(--s-border-default);
 	border-radius: var(--s-radius-md);
-	transition: border-color 0.15s, background 0.15s;
+	transition-property: border-color, background;
+	transition-duration: 0.15s;
+	transition-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.15s;
+	);
 }
 
 .docs-pagination-link:hover {
@@ -340,7 +359,12 @@ html {
 }
 
 .docs-mobile-menu::backdrop {
+	/* Semi-transparent black backdrop */
 	background: oklch(0% 0 0 / 0.5);
+	/* Enhanced: tint with primary color for brand consistency */
+	@supports (color: oklch(from red l c h)) {
+		background: oklch(from var(--s-primary-950) l 0.02 h / 0.6);
+	}
 }
 
 .docs-mobile-menu[open] {
@@ -353,7 +377,14 @@ html {
 	background: var(--s-surface-base);
 	padding: var(--docs-gutter);
 	overflow-y: auto;
-	animation: slide-in 0.2s ease-out;
+	/* Motion-safe animation using if() */
+	animation-name: slide-in;
+	animation-timing-function: ease-out;
+	animation-duration: 0.2s;
+	animation-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.2s;
+	);
 }
 
 @keyframes slide-in {
@@ -402,7 +433,12 @@ html {
 	color: var(--s-text-muted);
 	font-size: var(--s-text-sm);
 	cursor: pointer;
-	transition: border-color 0.15s;
+	transition-property: border-color;
+	transition-duration: 0.15s;
+	transition-duration: if(
+		media(prefers-reduced-motion: reduce): 0s;
+		else: 0.15s;
+	);
 }
 
 .docs-search-button:hover {
@@ -437,7 +473,12 @@ html {
 }
 
 .docs-search-dialog::backdrop {
+	/* Semi-transparent black backdrop */
 	background: oklch(0% 0 0 / 0.5);
+	/* Enhanced: tint with primary color for brand consistency */
+	@supports (color: oklch(from red l c h)) {
+		background: oklch(from var(--s-primary-950) l 0.02 h / 0.6);
+	}
 }
 
 .docs-search-dialog[open] {
