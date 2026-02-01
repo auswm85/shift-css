@@ -12,25 +12,24 @@ import ShowcaseLayout from '../../components/layout/ShowcaseLayout.astro';
 	<!-- Scroll progress indicator -->
 	<div s-scroll-progress></div>
 
-	<!-- Mobile menu toggle (CSS-only, no JS) -->
-	<input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-checkbox" s-sr-only aria-label="Toggle navigation menu" />
+	<!-- Mobile menu toggle -->
+	<input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-checkbox" s-sr-only />
 
 	<div class="dashboard-layout">
 		<!-- Mobile menu button - only visible on small screens -->
-		<label for="mobile-menu-toggle" class="mobile-menu-btn" s-btn="ghost" s-tooltip="Open menu">
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+		<button type="button" class="mobile-menu-btn" s-btn="ghost" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-sidebar">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 				<line x1="3" y1="6" x2="21" y2="6" />
 				<line x1="3" y1="12" x2="21" y2="12" />
 				<line x1="3" y1="18" x2="21" y2="18" />
 			</svg>
-			<span s-sr-only>Open menu</span>
-		</label>
+		</button>
 
 		<!-- Overlay for closing mobile menu -->
-		<label for="mobile-menu-toggle" class="mobile-menu-overlay"></label>
+		<button type="button" class="mobile-menu-overlay" aria-label="Close menu" tabindex="-1"></button>
 
 		<!-- Sidebar -->
-		<aside s-surface class="sidebar">
+		<aside id="mobile-sidebar" s-surface class="sidebar">
 			<div s-flex="col" s-gap="lg" class="s-p-4">
 				<!-- Logo with mobile close button -->
 				<div s-flex="between" s-items="center">
@@ -44,13 +43,12 @@ import ShowcaseLayout from '../../components/layout/ShowcaseLayout.astro';
 						<span class="s-font-bold s-text-lg">Velocity</span>
 					</div>
 					<!-- Close button for mobile -->
-					<label for="mobile-menu-toggle" class="mobile-close-btn" s-btn="ghost" s-size="sm">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<button type="button" class="mobile-close-btn" s-btn="ghost" s-size="sm" aria-label="Close menu">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 							<line x1="18" y1="6" x2="6" y2="18" />
 							<line x1="6" y1="6" x2="18" y2="18" />
 						</svg>
-						<span s-sr-only>Close menu</span>
-					</label>
+					</button>
 				</div>
 
 				<!-- Navigation -->
@@ -650,3 +648,21 @@ import ShowcaseLayout from '../../components/layout/ShowcaseLayout.astro';
 		}
 	}
 </style>
+
+<script>
+	// Mobile menu toggle script
+	const checkbox = document.getElementById('mobile-menu-toggle') as HTMLInputElement;
+	const openBtn = document.querySelector('.mobile-menu-btn');
+	const closeBtn = document.querySelector('.mobile-close-btn');
+	const overlay = document.querySelector('.mobile-menu-overlay');
+
+	function toggleMenu() {
+		if (!checkbox) return;
+		checkbox.checked = !checkbox.checked;
+		openBtn?.setAttribute('aria-expanded', String(checkbox.checked));
+	}
+
+	openBtn?.addEventListener('click', toggleMenu);
+	closeBtn?.addEventListener('click', toggleMenu);
+	overlay?.addEventListener('click', toggleMenu);
+</script>
