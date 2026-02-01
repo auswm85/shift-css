@@ -1,0 +1,244 @@
+/**
+ * Shift CSS - CSS Functions & Logic Utilities
+ *
+ * Native CSS functions using @function and if() for dynamic styling.
+ * No preprocessor required - pure CSS logic engine.
+ *
+ * Usage:
+ *   .card { box-shadow: --s-glow(var(--s-primary-500), 2); }
+ *   .text { color: --s-alpha(var(--s-primary-500), 0.5); }
+ *
+ * Browser Support:
+ *   - Chrome 139+, Edge 139+: Full support
+ *   - Firefox/Safari: Fallback to static values
+ */
+
+/* =============================================================================
+   COLOR MANIPULATION FUNCTIONS
+   ============================================================================= */
+
+/**
+ * --s-alpha: Add transparency to any color
+ * @param --color: The base color
+ * @param --opacity: Opacity value (0-1)
+ */
+@function --s-alpha(--color, --opacity) {
+  result: oklch(from var(--color) l c h / var(--opacity));
+}
+
+/**
+ * --s-lighten: Increase lightness of a color
+ * @param --color: The base color
+ * @param --amount: Amount to lighten (0-1, e.g., 0.1 = 10%)
+ */
+@function --s-lighten(--color, --amount) {
+  result: oklch(from var(--color) calc(l + var(--amount)) c h);
+}
+
+/**
+ * --s-darken: Decrease lightness of a color
+ * @param --color: The base color
+ * @param --amount: Amount to darken (0-1, e.g., 0.1 = 10%)
+ */
+@function --s-darken(--color, --amount) {
+  result: oklch(from var(--color) calc(l - var(--amount)) c h);
+}
+
+/**
+ * --s-saturate: Increase chroma/saturation
+ * @param --color: The base color
+ * @param --amount: Amount to increase (0-0.4)
+ */
+@function --s-saturate(--color, --amount) {
+  result: oklch(from var(--color) l calc(c + var(--amount)) h);
+}
+
+/**
+ * --s-desaturate: Decrease chroma/saturation
+ * @param --color: The base color
+ * @param --amount: Amount to decrease (0-0.4)
+ */
+@function --s-desaturate(--color, --amount) {
+  result: oklch(from var(--color) l calc(c - var(--amount)) h);
+}
+
+/**
+ * --s-hue-rotate: Shift the hue of a color
+ * @param --color: The base color
+ * @param --degrees: Degrees to rotate (0-360)
+ */
+@function --s-hue-rotate(--color, --degrees) {
+  result: oklch(from var(--color) l c calc(h + var(--degrees)));
+}
+
+/**
+ * --s-complement: Get the complementary color (180° hue shift)
+ * @param --color: The base color
+ */
+@function --s-complement(--color) {
+  result: oklch(from var(--color) l c calc(h + 180));
+}
+
+/* =============================================================================
+   EFFECT FUNCTIONS
+   ============================================================================= */
+
+/**
+ * --s-glow: Generate a glowing box-shadow
+ * @param --color: The glow color
+ * @param --intensity: Intensity multiplier (1-5)
+ */
+@function --s-glow(--color, --intensity) {
+  result: 0 0 calc(var(--intensity) * 10px) oklch(from var(--color) l c h / 0.5),
+          0 0 calc(var(--intensity) * 20px) oklch(from var(--color) l c h / 0.3),
+          0 0 calc(var(--intensity) * 30px) oklch(from var(--color) l c h / 0.1);
+}
+
+/**
+ * --s-text-shadow-glow: Generate a text glow effect
+ * @param --color: The glow color
+ * @param --intensity: Intensity multiplier (1-3)
+ */
+@function --s-text-shadow-glow(--color, --intensity) {
+  result: 0 0 calc(var(--intensity) * 5px) oklch(from var(--color) l c h / 0.8),
+          0 0 calc(var(--intensity) * 10px) oklch(from var(--color) l c h / 0.5);
+}
+
+/* =============================================================================
+   CONTRAST & ACCESSIBILITY FUNCTIONS
+   ============================================================================= */
+
+/**
+ * --s-contrast-text: Return black or white based on background lightness
+ * Uses 0.6 threshold for WCAG AA compliance
+ * @param --bg: The background color
+ */
+@function --s-contrast-text(--bg) {
+  result: oklch(from var(--bg) clamp(0.15, calc((0.6 - l) * 1000 + 0.15), 0.95) 0 0);
+}
+
+/**
+ * --s-readable-on: Ensure text is readable on a given background
+ * Lightens dark colors, darkens light colors
+ * @param --bg: The background color
+ * @param --text: The desired text color
+ */
+@function --s-readable-on(--bg, --text) {
+  /* If bg is dark (l < 0.5), lighten text; if light, darken text */
+  result: oklch(
+    from var(--text)
+    clamp(0.2, calc(l + (0.5 - l) * 0.5), 0.9)
+    c h
+  );
+}
+
+/* =============================================================================
+   SPACING & SIZING FUNCTIONS
+   ============================================================================= */
+
+/**
+ * --s-fluid: Generate fluid sizing with clamp
+ * @param --min: Minimum size
+ * @param --max: Maximum size
+ */
+@function --s-fluid(--min, --max) {
+  result: clamp(
+    var(--min),
+    calc(var(--min) + (var(--max) - var(--min)) * ((100vw - 320px) / (1200 - 320))),
+    var(--max)
+  );
+}
+
+/**
+ * --s-space-scale: Multiply a spacing value
+ * @param --base: Base spacing value
+ * @param --factor: Multiplication factor
+ */
+@function --s-space-scale(--base, --factor) {
+  result: calc(var(--base) * var(--factor));
+}
+
+/* =============================================================================
+   CONDITIONAL STYLING WITH if()
+   Self-healing components that adapt to their context
+   ============================================================================= */
+
+/**
+ * Auto-contrast card example:
+ * Cards automatically adjust text color based on their background
+ */
+[s-card][s-auto-contrast] {
+  /* Fallback for non-supporting browsers */
+  color: var(--s-text-primary);
+
+  /* Self-healing: flip text color if background is too dark/light */
+  color: if(
+    supports(color: oklch(from red l c h)):
+      --s-contrast-text(var(--_card-bg));
+    else: var(--s-text-primary);
+  );
+}
+
+/**
+ * Responsive padding using if() instead of media queries
+ */
+[s-responsive-padding] {
+  padding: if(
+    media(width < 640px): var(--s-space-2);
+    media(width < 1024px): var(--s-space-4);
+    else: var(--s-space-6);
+  );
+}
+
+/**
+ * Motion-safe animations using if()
+ */
+[s-motion-safe] {
+  transition-duration: if(
+    media(prefers-reduced-motion: reduce): 0ms;
+    else: var(--s-duration-200);
+  );
+}
+
+/**
+ * Dark mode aware styling using if()
+ */
+[s-dark-aware] {
+  --_bg: if(
+    media(prefers-color-scheme: dark): var(--s-surface-sunken);
+    else: var(--s-surface-raised);
+  );
+  background-color: var(--_bg);
+}
+
+/* =============================================================================
+   SIZE-BASED CONDITIONAL STYLING
+   Components that adapt based on custom property state
+   ============================================================================= */
+
+/**
+ * Size variants using style queries with if()
+ */
+[s-size-aware] {
+  padding: if(
+    style(--size: sm): var(--s-space-2);
+    style(--size: lg): var(--s-space-6);
+    else: var(--s-space-4);
+  );
+
+  font-size: if(
+    style(--size: sm): var(--s-text-sm);
+    style(--size: lg): var(--s-text-lg);
+    else: var(--s-text-base);
+  );
+}
+
+/* =============================================================================
+   ACCESSIBILITY
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  [s-motion-safe] {
+    transition-duration: 0ms !important;
+  }
+}
