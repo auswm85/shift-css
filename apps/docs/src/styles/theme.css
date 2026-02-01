@@ -136,8 +136,8 @@ select[s-input] {
   color: var(--void-900);
 }
 
-[s-card] p,
-[s-card-body] p,
+[s-card] > p,
+[s-card-body] > p,
 [s-card-subtitle] {
   color: var(--void-700);
 }
@@ -162,10 +162,10 @@ select[s-input] {
   color: var(--void-900);
 }
 
-[s-surface="flat"] p,
-[s-surface="sunken"] p,
-[s-surface="raised"] p,
-[s-surface="floating"] p {
+[s-surface="flat"] > p,
+[s-surface="sunken"] > p,
+[s-surface="raised"] > p,
+[s-surface="floating"] > p {
   color: var(--void-500);
 }
 

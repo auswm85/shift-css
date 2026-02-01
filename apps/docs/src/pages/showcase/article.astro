@@ -1,0 +1,485 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+
+const currentYear = new Date().getFullYear();
+
+// Code examples stored as variables to avoid Astro's curly brace parsing
+const containerQueryCode = `.card-container {
+  container-type: inline-size;
+}
+
+@container (min-width: 400px) {
+  .card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+}`;
+
+const functionCode = `@function --spacing(--multiplier) {
+  result: calc(var(--base-unit) * var(--multiplier));
+}
+
+.element {
+  padding: --spacing(2);
+  margin-bottom: --spacing(4);
+}`;
+
+const contrastCode = `/* Automatically pick black or white text */
+color: oklch(
+  from var(--bg)
+  clamp(0.15, calc((0.55 - l) * 1000 + 0.15), 0.95)
+  0 0
+);`;
+---
+
+<BaseLayout
+	title="Article Showcase"
+	description="A clean, typography-focused article page built with Shift CSS"
+>
+	<!-- Skip link for accessibility -->
+	<a href="#main-content" s-skip-link>Skip to main content</a>
+
+	<!-- Scroll progress indicator -->
+	<div s-scroll-progress></div>
+
+	<div class="article-page">
+		<header class="article-header">
+			<nav s-container s-flex="between" s-items="center" class="s-py-4 s-px-6">
+				<a href="/" s-flex s-items="center" class="s-gap-3 nav-brand">
+					<span s-btn="primary" class="s-p-2">
+						<svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+							<path d="M8 22V10l8 6-8 6z" fill="currentColor" />
+							<path d="M16 22V10l8 6-8 6z" fill="currentColor" opacity="0.6" />
+						</svg>
+					</span>
+					<span class="s-font-bold s-text-lg">Chronicle</span>
+				</a>
+				<div s-flex s-gap="md" class="nav-links">
+					<a href="#" class="s-text-secondary s-text-sm nav-link">Technology</a>
+					<a href="#" class="s-text-secondary s-text-sm nav-link">Design</a>
+					<a href="#" class="s-text-secondary s-text-sm nav-link">Business</a>
+					<a href="#" class="s-text-secondary s-text-sm nav-link">About</a>
+				</div>
+			</nav>
+		</header>
+
+		<main id="main-content" class="article-main">
+			<article class="article-content" s-prose>
+				<header class="s-mb-8">
+					<div s-flex s-gap="sm" class="s-mb-4">
+						<span s-badge="primary" s-pill>Technology</span>
+						<span s-badge s-pill>8 min read</span>
+					</div>
+					<h1 class="s-text-4xl s-font-bold s-leading-tight s-mb-4">The Future of CSS: How Modern Features Are Changing Web Development</h1>
+					<p class="s-text-xl s-text-secondary s-leading-relaxed s-mb-6">
+						From container queries to native color functions, CSS is evolving faster than ever.
+						Here's what developers need to know about the features reshaping how we build for the web.
+					</p>
+					<div s-flex s-items="center" s-gap="md" class="s-pt-6 author-divider">
+						<img src="https://api.dicebear.com/7.x/initials/svg?seed=AC&backgroundColor=6366f1" alt="Author" width="48" height="48" class="author-avatar" />
+						<div>
+							<span class="s-font-semibold s-block">Alexandra Chen</span>
+							<span class="s-text-sm s-text-tertiary">January 15, 2025</span>
+						</div>
+					</div>
+				</header>
+
+				<figure class="hero-image">
+					<div class="image-placeholder">
+						<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+							<rect x="3" y="3" width="18" height="18" rx="2" />
+							<circle cx="8.5" cy="8.5" r="1.5" />
+							<path d="M21 15l-5-5L5 21" />
+						</svg>
+					</div>
+					<figcaption>Modern CSS enables designs that were previously impossible without JavaScript.</figcaption>
+				</figure>
+
+				<p>
+					The web platform has undergone a remarkable transformation in recent years. What once required
+					complex JavaScript libraries or preprocessing tools is now possible with native CSS. This shift
+					isn't just about convenience—it's fundamentally changing how we think about styling web applications.
+				</p>
+
+				<h2>The Rise of Container Queries</h2>
+
+				<p>
+					For years, developers relied on viewport-based media queries to create responsive designs. While
+					effective, this approach had a significant limitation: components couldn't adapt based on their
+					own container's size. A sidebar component and a main content area might have the same viewport
+					width, but vastly different available space.
+				</p>
+
+				<p>
+					Container queries solve this elegantly. By allowing elements to respond to their parent container's
+					dimensions rather than the viewport, we can create truly modular components that work anywhere
+					they're placed.
+				</p>
+
+				<pre><code set:text={containerQueryCode}></code></pre>
+
+				<p>
+					This paradigm shift enables component libraries to be truly portable. A card component can
+					intelligently switch between a stacked mobile layout and a horizontal desktop layout based
+					entirely on where it's placed in the DOM.
+				</p>
+
+				<aside class="callout">
+					<strong>Browser Support:</strong> Container queries are now supported in all major browsers,
+					with global usage exceeding 90% as of late 2024.
+				</aside>
+
+				<h2>OKLCH: Perceptually Uniform Color</h2>
+
+				<p>
+					Traditional color models like RGB and HSL have a fundamental problem: they don't match human
+					perception. A "50% lightness" blue looks dramatically different from a "50% lightness" yellow,
+					making it difficult to create harmonious color palettes programmatically.
+				</p>
+
+				<p>
+					OKLCH (Oklah Lightness Chroma Hue) changes this. Based on human perception research, OKLCH
+					provides a color space where numeric values correspond to perceived differences. When you
+					increase the lightness value by 10%, the color actually looks 10% lighter—regardless of hue.
+				</p>
+
+				<blockquote>
+					<p>
+						"OKLCH represents the most significant advancement in web color since CSS3 introduced HSL.
+						It's the color model CSS should have had from the beginning."
+					</p>
+					<cite>— Lea Verou, CSS Working Group</cite>
+				</blockquote>
+
+				<p>
+					This perceptual uniformity has profound implications for design systems. You can generate
+					entire color scales from a single seed hue, confident that each step will look proportionally
+					different. Accessibility calculations become more predictable, and brand colors can be
+					programmatically adapted without manual adjustment.
+				</p>
+
+				<h2>Native CSS Functions</h2>
+
+				<p>
+					Perhaps the most exciting development is the emergence of native CSS functions through the
+					<code>@function</code> rule. While still in early stages, this feature promises to bring
+					the power of Sass mixins and functions directly into the browser.
+				</p>
+
+				<pre><code set:text={functionCode}></code></pre>
+
+				<p>
+					Combined with the <code>if()</code> function for conditional logic, CSS is becoming a
+					genuinely programmable styling language. Components can make intelligent decisions about
+					their own styling without any JavaScript runtime.
+				</p>
+
+				<h3>Automatic Contrast</h3>
+
+				<p>
+					One practical application of these new capabilities is automatic text contrast. Using OKLCH
+					color manipulation, we can calculate whether text should be light or dark based on its
+					background color:
+				</p>
+
+				<pre><code set:text={contrastCode}></code></pre>
+
+				<p>
+					This technique examines the background color's lightness value and flips the text color
+					accordingly. No JavaScript required, no manual color definitions—just pure CSS that
+					adapts to any background you throw at it.
+				</p>
+
+				<h2>The Zero-Runtime Future</h2>
+
+				<p>
+					These advancements point toward a future where CSS handles much of what currently requires
+					JavaScript. Theme switching, responsive behavior, color manipulation, and conditional
+					styling can all happen at the CSS level.
+				</p>
+
+				<p>
+					The benefits are substantial:
+				</p>
+
+				<ul>
+					<li><strong>Performance:</strong> No JavaScript parsing, execution, or hydration delays</li>
+					<li><strong>Reliability:</strong> Styling works even if JavaScript fails to load</li>
+					<li><strong>Simplicity:</strong> Fewer moving parts mean fewer potential bugs</li>
+					<li><strong>Accessibility:</strong> Native browser features often have better accessibility support</li>
+				</ul>
+
+				<p>
+					This doesn't mean JavaScript is going away. Rather, we're seeing a healthy rebalancing where
+					each technology handles what it does best. CSS for styling and layout, JavaScript for
+					interactivity and state management.
+				</p>
+
+				<h2>Practical Implications</h2>
+
+				<p>
+					For teams adopting these features today, the transition requires some adjustment. Traditional
+					CSS-in-JS solutions may need reconsideration. Build pipelines that heavily process CSS might
+					become unnecessary. Design tokens can be expressed directly in CSS custom properties rather
+					than requiring compilation steps.
+				</p>
+
+				<p>
+					The learning curve is modest for developers already comfortable with CSS. The new features
+					build naturally on existing concepts—container queries extend media queries, OKLCH extends
+					color functions, and native functions extend custom properties.
+				</p>
+
+				<aside class="callout info">
+					<strong>Getting Started:</strong> The best way to learn these features is to experiment.
+					Start with container queries on a single component, then gradually expand to color
+					manipulation and beyond.
+				</aside>
+
+				<h2>Looking Ahead</h2>
+
+				<p>
+					The CSS Working Group continues to push boundaries. Proposals for scroll-driven animations,
+					anchor positioning, and even more powerful conditional logic are in various stages of
+					development. The trajectory is clear: CSS is becoming a more capable, more expressive
+					language with each passing year.
+				</p>
+
+				<p>
+					For web developers, this is an exciting time. The tools we've wished for are arriving,
+					and the platform is maturing in ways that make building for the web more enjoyable than
+					ever before.
+				</p>
+
+				<hr />
+
+				<footer class="s-mt-8 s-pt-8 article-footer-border">
+					<div s-flex s-items="center" s-gap="md" class="s-mb-8">
+						<span class="s-text-sm s-text-secondary">Share this article:</span>
+						<div s-flex s-gap="xs">
+							<button s-btn="ghost" s-size="sm">Twitter</button>
+							<button s-btn="ghost" s-size="sm">LinkedIn</button>
+							<button s-btn="ghost" s-size="sm">Copy Link</button>
+						</div>
+					</div>
+
+					<div s-card s-surface="sunken" s-flex s-gap="md" class="s-p-6">
+						<img src="https://api.dicebear.com/7.x/initials/svg?seed=AC&backgroundColor=6366f1" alt="Alexandra Chen" width="80" height="80" class="author-avatar-lg" />
+						<div>
+							<strong class="s-block s-mb-2">Alexandra Chen</strong>
+							<p class="s-text-sm s-text-secondary s-m-0">
+								Alexandra is a frontend architect and CSS enthusiast. She writes about web
+								standards, design systems, and the future of styling on the web.
+							</p>
+						</div>
+					</div>
+				</footer>
+			</article>
+
+			<aside s-flex="col" s-gap="lg" class="article-sidebar">
+				<div s-card class="s-p-5">
+					<h3 class="s-text-sm s-font-semibold s-text-tertiary s-uppercase s-tracking-wide s-mb-4">Table of Contents</h3>
+					<nav s-flex="col" s-gap="xs">
+						<a href="#" class="toc-item active">The Rise of Container Queries</a>
+						<a href="#" class="toc-item">OKLCH: Perceptually Uniform Color</a>
+						<a href="#" class="toc-item">Native CSS Functions</a>
+						<a href="#" class="toc-item">The Zero-Runtime Future</a>
+						<a href="#" class="toc-item">Practical Implications</a>
+						<a href="#" class="toc-item">Looking Ahead</a>
+					</nav>
+				</div>
+
+				<div s-card class="s-p-5">
+					<h3 class="s-text-sm s-font-semibold s-text-tertiary s-uppercase s-tracking-wide s-mb-4">Related Articles</h3>
+					<div s-flex="col" s-gap="sm">
+						<a href="#" s-flex="col" class="s-p-3 related-item">
+							<span class="s-text-sm s-font-medium">Understanding CSS Cascade Layers</span>
+							<span class="s-text-xs s-text-tertiary">5 min read</span>
+						</a>
+						<a href="#" s-flex="col" class="s-p-3 related-item">
+							<span class="s-text-sm s-font-medium">Building Design Systems with Custom Properties</span>
+							<span class="s-text-xs s-text-tertiary">10 min read</span>
+						</a>
+						<a href="#" s-flex="col" class="s-p-3 related-item">
+							<span class="s-text-sm s-font-medium">A Complete Guide to CSS Color Functions</span>
+							<span class="s-text-xs s-text-tertiary">12 min read</span>
+						</a>
+					</div>
+				</div>
+			</aside>
+		</main>
+
+		<footer s-surface="sunken" class="s-py-6">
+			<div s-container s-flex="between" s-items="center" class="s-px-6">
+				<div s-flex s-items="center" s-gap="sm">
+					<span s-btn="primary" class="s-p-1">
+						<svg width="16" height="16" viewBox="0 0 32 32" fill="none">
+							<path d="M8 22V10l8 6-8 6z" fill="currentColor" />
+							<path d="M16 22V10l8 6-8 6z" fill="currentColor" opacity="0.6" />
+						</svg>
+					</span>
+					<span class="s-font-semibold">Chronicle</span>
+				</div>
+				<p class="s-text-sm s-text-tertiary s-m-0">&copy; {currentYear} Chronicle. All rights reserved.</p>
+			</div>
+		</footer>
+	</div>
+</BaseLayout>
+
+<style>
+	/* Minimal custom CSS - layout structure only */
+	.article-page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.article-header {
+		border-bottom: 1px solid var(--s-border-default);
+	}
+
+	.nav-brand {
+		text-decoration: none;
+		color: var(--s-text-primary);
+	}
+
+	.nav-link {
+		text-decoration: none;
+		transition: color var(--s-duration-150) var(--s-ease-out);
+	}
+
+	.nav-link:hover {
+		color: var(--s-interactive-primary);
+	}
+
+	/* Main grid layout */
+	.article-main {
+		display: grid;
+		grid-template-columns: 1fr 280px;
+		gap: var(--s-space-12);
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: var(--s-space-12) var(--s-space-6);
+		flex: 1;
+		overflow: hidden;
+	}
+
+	.article-main > * {
+		min-width: 0;
+	}
+
+	.article-content {
+		max-width: 720px;
+		min-width: 0; /* Prevent grid blowout */
+		overflow: hidden;
+	}
+
+	/* Author avatar styling */
+	.author-avatar,
+	.author-avatar-lg {
+		border-radius: 50%;
+	}
+
+	.author-divider {
+		border-top: 1px solid var(--s-border-default);
+	}
+
+	.article-footer-border {
+		border-top: 1px solid var(--s-border-default);
+	}
+
+	/* Hero image placeholder */
+	.hero-image {
+		margin: var(--s-space-8) 0;
+		max-width: 100%;
+		overflow: hidden;
+	}
+
+	.image-placeholder {
+		aspect-ratio: 16 / 9;
+		width: 100%;
+		max-width: 100%;
+		background: linear-gradient(135deg, var(--s-primary-100), var(--s-accent-100));
+		border-radius: var(--s-radius-lg);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--s-primary-400);
+	}
+
+	.hero-image figcaption {
+		margin-top: var(--s-space-3);
+		text-align: center;
+		font-size: var(--s-text-sm);
+		color: var(--s-text-tertiary);
+	}
+
+	/* Callouts */
+	.callout {
+		padding: var(--s-space-4);
+		background: light-dark(var(--s-primary-100), var(--s-primary-900));
+		border-left: 4px solid var(--s-primary-500);
+		border-radius: 0 var(--s-radius-md) var(--s-radius-md) 0;
+		margin: var(--s-space-6) 0;
+	}
+
+	.callout.info {
+		background: light-dark(var(--s-accent-100), var(--s-accent-900));
+		border-left-color: var(--s-accent-500);
+	}
+
+	/* Sidebar sticky positioning */
+	.article-sidebar {
+		position: sticky;
+		top: var(--s-space-6);
+		height: fit-content;
+	}
+
+	/* TOC and related items */
+	.toc-item {
+		font-size: var(--s-text-sm);
+		color: var(--s-text-secondary);
+		text-decoration: none;
+		padding: var(--s-space-2);
+		border-radius: var(--s-radius-sm);
+		transition: all var(--s-duration-150);
+	}
+
+	.toc-item:hover {
+		color: var(--s-text-primary);
+		background: var(--s-surface-sunken);
+	}
+
+	.toc-item.active {
+		color: var(--s-interactive-primary);
+		background: oklch(from var(--s-interactive-primary) l c h / 0.1);
+	}
+
+	.related-item {
+		text-decoration: none;
+		border-radius: var(--s-radius-md);
+		transition: background var(--s-duration-150);
+	}
+
+	.related-item:hover {
+		background: var(--s-surface-sunken);
+	}
+
+	/* Responsive */
+	@media (max-width: 1024px) {
+		.article-main {
+			grid-template-columns: 1fr;
+		}
+
+		.article-sidebar {
+			position: static;
+			order: 1; /* Move sidebar after article */
+		}
+	}
+
+	@media (max-width: 640px) {
+		.article-main {
+			padding: var(--s-space-6) var(--s-space-4);
+		}
+	}
+</style>

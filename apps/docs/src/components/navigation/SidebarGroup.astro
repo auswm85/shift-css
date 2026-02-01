@@ -16,14 +16,18 @@ const { group, currentPath } = Astro.props;
 			group.items.map((item) => {
 				const isActive =
 					item.href === currentPath || item.href === currentPath.replace(/\/$/, '');
+				const isShowcase = item.href.includes('/showcase/');
 
 				return (
 					<a
 						href={item.href}
 						class="docs-sidebar-link"
 						aria-current={isActive ? 'page' : undefined}
+						target={isShowcase ? '_blank' : undefined}
+						rel={isShowcase ? 'noopener' : undefined}
 					>
 						{item.label}
+						{isShowcase && <span class="external-icon" aria-hidden="true">↗</span>}
 					</a>
 				);
 			})
@@ -36,5 +40,11 @@ const { group, currentPath } = Astro.props;
 		display: flex;
 		flex-direction: column;
 		gap: var(--s-space-1);
+	}
+
+	.external-icon {
+		font-size: 0.75em;
+		opacity: 0.6;
+		margin-left: var(--s-space-1);
 	}
 </style>

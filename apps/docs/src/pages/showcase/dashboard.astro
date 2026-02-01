@@ -1,0 +1,644 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Dashboard Showcase"
+	description="A SaaS dashboard built with Shift CSS using minimal custom CSS"
+>
+	<!-- Skip link for accessibility -->
+	<a href="#main-content" s-skip-link>Skip to main content</a>
+
+	<!-- Scroll progress indicator -->
+	<div s-scroll-progress></div>
+
+	<!-- Mobile menu toggle (CSS-only, no JS) -->
+	<input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-checkbox" s-sr-only aria-label="Toggle navigation menu" />
+
+	<div class="dashboard-layout">
+		<!-- Mobile menu button - only visible on small screens -->
+		<label for="mobile-menu-toggle" class="mobile-menu-btn" s-btn="ghost" s-tooltip="Open menu">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="3" y1="6" x2="21" y2="6" />
+				<line x1="3" y1="12" x2="21" y2="12" />
+				<line x1="3" y1="18" x2="21" y2="18" />
+			</svg>
+			<span s-sr-only>Open menu</span>
+		</label>
+
+		<!-- Overlay for closing mobile menu -->
+		<label for="mobile-menu-toggle" class="mobile-menu-overlay"></label>
+
+		<!-- Sidebar -->
+		<aside s-surface class="sidebar">
+			<div s-flex="col" s-gap="lg" class="s-p-4">
+				<!-- Logo with mobile close button -->
+				<div s-flex="between" s-items="center">
+					<div s-flex s-items="center" class="s-gap-3">
+						<div s-surface="primary" class="s-p-2" style="border-radius: var(--s-radius-md);">
+							<svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+								<path d="M8 22V10l8 6-8 6z" fill="white" />
+								<path d="M16 22V10l8 6-8 6z" fill="white" fill-opacity="0.6" />
+							</svg>
+						</div>
+						<span class="s-font-bold s-text-lg">Velocity</span>
+					</div>
+					<!-- Close button for mobile -->
+					<label for="mobile-menu-toggle" class="mobile-close-btn" s-btn="ghost" s-size="sm">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<line x1="18" y1="6" x2="6" y2="18" />
+							<line x1="6" y1="6" x2="18" y2="18" />
+						</svg>
+						<span s-sr-only>Close menu</span>
+					</label>
+				</div>
+
+				<!-- Navigation -->
+				<nav s-flex="col" s-gap="xs">
+					<a href="#" s-surface="raised" s-flex s-items="center" class="nav-item active s-gap-3 s-p-3">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect x="3" y="3" width="7" height="7" rx="1" />
+							<rect x="14" y="3" width="7" height="7" rx="1" />
+							<rect x="3" y="14" width="7" height="7" rx="1" />
+							<rect x="14" y="14" width="7" height="7" rx="1" />
+						</svg>
+						<span>Dashboard</span>
+					</a>
+					<a href="#" s-flex s-items="center" class="nav-item s-gap-3 s-p-3">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+							<circle cx="9" cy="7" r="4" />
+							<path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+							<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+						</svg>
+						<span>Customers</span>
+						<span s-badge="primary" s-pill class="s-ml-auto">12</span>
+					</a>
+					<a href="#" s-flex s-items="center" class="nav-item s-gap-3 s-p-3">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+							<line x1="3" y1="6" x2="21" y2="6" />
+							<path d="M16 10a4 4 0 01-8 0" />
+						</svg>
+						<span>Orders</span>
+					</a>
+					<a href="#" s-flex s-items="center" class="nav-item s-gap-3 s-p-3">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<line x1="18" y1="20" x2="18" y2="10" />
+							<line x1="12" y1="20" x2="12" y2="4" />
+							<line x1="6" y1="20" x2="6" y2="14" />
+						</svg>
+						<span>Analytics</span>
+					</a>
+					<a href="#" s-flex s-items="center" class="nav-item s-gap-3 s-p-3">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="12" r="3" />
+							<path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+						</svg>
+						<span>Settings</span>
+					</a>
+				</nav>
+
+				<!-- User profile at bottom -->
+				<div class="s-mt-auto">
+					<div s-surface="sunken" s-flex s-items="center" class="s-gap-3 s-p-3" style="border-radius: var(--s-radius-lg);">
+						<img src="https://i.pravatar.cc/40?img=12" alt="User avatar" width="40" height="40" style="border-radius: 50%;" />
+						<div s-flex="col" s-gap="none">
+							<span class="s-font-medium s-text-sm">Sarah Chen</span>
+							<span class="s-text-xs s-text-secondary">Admin</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</aside>
+
+		<!-- Main content -->
+		<main id="main-content" s-flex="col" s-gap="lg" class="s-p-6">
+			<!-- Header -->
+			<header s-flex="between" s-flex~="wrap" s-gap="md">
+				<div>
+					<h1 class="s-text-2xl s-font-bold s-mb-1">Dashboard</h1>
+					<p class="s-text-secondary">Welcome back, Sarah. Here's what's happening.</p>
+				</div>
+				<div s-flex s-gap="sm">
+					<button s-btn="outline" s-tooltip="Download report" s-tooltip-pos="bottom">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+							<polyline points="7 10 12 15 17 10" />
+							<line x1="12" y1="15" x2="12" y2="3" />
+						</svg>
+						<span s-hide-on="sm">Export</span>
+					</button>
+					<button s-btn="primary">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<line x1="12" y1="5" x2="12" y2="19" />
+							<line x1="5" y1="12" x2="19" y2="12" />
+						</svg>
+						<span s-hide-on="sm">New Order</span>
+					</button>
+				</div>
+			</header>
+
+			<!-- Stats Grid using s-grid -->
+			<section s-grid="4" s-gap="md" class="stats-grid">
+				<article s-card s-scroll-reveal>
+					<div s-card-body s-flex="between" s-items="start">
+						<div>
+							<p class="s-text-xs s-uppercase s-tracking-wide s-text-secondary s-mb-1">Revenue</p>
+							<p class="s-text-2xl s-font-bold">$45,231</p>
+							<p class="s-text-xs s-text-success s-mt-1">+20.1% from last month</p>
+						</div>
+						<span s-badge="outline-success" s-pill>
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+							</svg>
+						</span>
+					</div>
+				</article>
+
+				<article s-card s-scroll-reveal>
+					<div s-card-body s-flex="between" s-items="start">
+						<div>
+							<p class="s-text-xs s-uppercase s-tracking-wide s-text-secondary s-mb-1">Orders</p>
+							<p class="s-text-2xl s-font-bold">+2,350</p>
+							<p class="s-text-xs s-text-success s-mt-1">+12.5% from last month</p>
+						</div>
+						<span s-badge="outline-primary" s-pill>
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+								<line x1="3" y1="6" x2="21" y2="6" />
+							</svg>
+						</span>
+					</div>
+				</article>
+
+				<article s-card s-scroll-reveal>
+					<div s-card-body s-flex="between" s-items="start">
+						<div>
+							<p class="s-text-xs s-uppercase s-tracking-wide s-text-secondary s-mb-1">Customers</p>
+							<p class="s-text-2xl s-font-bold">+573</p>
+							<p class="s-text-xs s-text-warning s-mt-1">+2.4% from last month</p>
+						</div>
+						<span s-badge="outline-warning" s-pill>
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+								<circle cx="9" cy="7" r="4" />
+							</svg>
+						</span>
+					</div>
+				</article>
+
+				<article s-card s-scroll-reveal>
+					<div s-card-body s-flex="between" s-items="start">
+						<div>
+							<p class="s-text-xs s-uppercase s-tracking-wide s-text-secondary s-mb-1">Active Now</p>
+							<p class="s-text-2xl s-font-bold">+573</p>
+							<p class="s-text-xs s-text-secondary s-mt-1">Last 24 hours</p>
+						</div>
+						<span s-badge="success" s-dot s-size="lg" s-tooltip="Online"></span>
+					</div>
+				</article>
+			</section>
+
+			<!-- Chart Section -->
+			<section s-grid="2" s-gap="lg" class="chart-grid">
+				<!-- Revenue Chart -->
+				<article s-card s-scroll-reveal="slide-up">
+					<header s-card-header s-flex="between" s-items="center">
+						<h2 s-card-title class="s-mb-0">Revenue Overview</h2>
+						<div s-flex s-gap="xs">
+							<button s-btn="ghost" s-size="sm" class="chart-period active">7D</button>
+							<button s-btn="ghost" s-size="sm" class="chart-period">30D</button>
+							<button s-btn="ghost" s-size="sm" class="chart-period">90D</button>
+						</div>
+					</header>
+					<div s-card-body>
+						<!-- CSS-only bar chart with tooltips -->
+						<div class="chart-container" s-flex s-items="end" s-gap="sm">
+							<div class="chart-bar" style="--bar-height: 45%;" s-tooltip="$6,420"></div>
+							<div class="chart-bar" style="--bar-height: 72%;" s-tooltip="$10,280"></div>
+							<div class="chart-bar" style="--bar-height: 58%;" s-tooltip="$8,320"></div>
+							<div class="chart-bar" style="--bar-height: 85%;" s-tooltip="$12,150"></div>
+							<div class="chart-bar" style="--bar-height: 65%;" s-tooltip="$9,280"></div>
+							<div class="chart-bar" style="--bar-height: 40%;" s-tooltip="$5,720"></div>
+							<div class="chart-bar highlight" style="--bar-height: 92%;" s-tooltip="$13,150"></div>
+						</div>
+						<div s-flex="between" class="s-mt-3 s-text-xs s-text-secondary">
+							<span>Mon</span>
+							<span>Tue</span>
+							<span>Wed</span>
+							<span>Thu</span>
+							<span>Fri</span>
+							<span>Sat</span>
+							<span>Sun</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- Traffic Sources -->
+				<article s-card s-scroll-reveal="slide-up">
+					<header s-card-header>
+						<h2 s-card-title class="s-mb-0">Traffic Sources</h2>
+					</header>
+					<div s-card-body s-flex="col" s-gap="md">
+						<div s-flex="between" s-items="center">
+							<div s-flex s-items="center" s-gap="sm">
+								<span s-badge="primary" s-dot></span>
+								<span class="s-text-sm">Organic Search</span>
+							</div>
+							<div s-flex s-items="center" s-gap="sm">
+								<div class="progress-bar"><div class="progress-fill" style="width: 68%;"></div></div>
+								<span class="s-text-sm s-font-medium">68%</span>
+							</div>
+						</div>
+						<div s-flex="between" s-items="center">
+							<div s-flex s-items="center" s-gap="sm">
+								<span s-badge="secondary" s-dot></span>
+								<span class="s-text-sm">Direct</span>
+							</div>
+							<div s-flex s-items="center" s-gap="sm">
+								<div class="progress-bar"><div class="progress-fill secondary" style="width: 45%;"></div></div>
+								<span class="s-text-sm s-font-medium">45%</span>
+							</div>
+						</div>
+						<div s-flex="between" s-items="center">
+							<div s-flex s-items="center" s-gap="sm">
+								<span s-badge="accent" s-dot></span>
+								<span class="s-text-sm">Referral</span>
+							</div>
+							<div s-flex s-items="center" s-gap="sm">
+								<div class="progress-bar"><div class="progress-fill accent" style="width: 32%;"></div></div>
+								<span class="s-text-sm s-font-medium">32%</span>
+							</div>
+						</div>
+						<div s-flex="between" s-items="center">
+							<div s-flex s-items="center" s-gap="sm">
+								<span s-badge="warning" s-dot></span>
+								<span class="s-text-sm">Social</span>
+							</div>
+							<div s-flex s-items="center" s-gap="sm">
+								<div class="progress-bar"><div class="progress-fill warning" style="width: 18%;"></div></div>
+								<span class="s-text-sm s-font-medium">18%</span>
+							</div>
+						</div>
+					</div>
+				</article>
+			</section>
+
+			<!-- Main content grid -->
+			<section s-grid="3" s-gap="lg" class="main-grid">
+				<!-- Recent orders (spans 2 columns) -->
+				<article s-card s-col-span="2" s-scroll-reveal="slide-up">
+					<header s-card-header s-flex="between" s-items="center">
+						<h2 s-card-title class="s-mb-0">Recent Orders</h2>
+						<button s-btn="ghost" s-size="sm">View All</button>
+					</header>
+					<div s-card-body class="s-p-0">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th class="s-text-left s-text-xs s-uppercase s-text-secondary">Customer</th>
+									<th class="s-text-left s-text-xs s-uppercase s-text-secondary" s-hide-on="sm">Product</th>
+									<th class="s-text-left s-text-xs s-uppercase s-text-secondary">Status</th>
+									<th class="s-text-right s-text-xs s-uppercase s-text-secondary">Amount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td s-flex s-items="center" s-gap="sm">
+										<img src="https://i.pravatar.cc/32?img=1" alt="" width="32" height="32" style="border-radius: 50%;" />
+										<div>
+											<p class="s-font-medium">Emma Wilson</p>
+											<p class="s-text-xs s-text-secondary">emma@email.com</p>
+										</div>
+									</td>
+									<td class="s-text-secondary" s-hide-on="sm">Pro Plan</td>
+									<td><span s-badge="success" s-size="sm">Completed</span></td>
+									<td class="s-text-right s-font-medium">$250.00</td>
+								</tr>
+								<tr>
+									<td s-flex s-items="center" s-gap="sm">
+										<img src="https://i.pravatar.cc/32?img=2" alt="" width="32" height="32" style="border-radius: 50%;" />
+										<div>
+											<p class="s-font-medium">James Miller</p>
+											<p class="s-text-xs s-text-secondary">james@email.com</p>
+										</div>
+									</td>
+									<td class="s-text-secondary" s-hide-on="sm">Team Plan</td>
+									<td><span s-badge="warning" s-size="sm">Pending</span></td>
+									<td class="s-text-right s-font-medium">$150.00</td>
+								</tr>
+								<tr>
+									<td s-flex s-items="center" s-gap="sm">
+										<img src="https://i.pravatar.cc/32?img=3" alt="" width="32" height="32" style="border-radius: 50%;" />
+										<div>
+											<p class="s-font-medium">Sophia Davis</p>
+											<p class="s-text-xs s-text-secondary">sophia@email.com</p>
+										</div>
+									</td>
+									<td class="s-text-secondary" s-hide-on="sm">Basic Plan</td>
+									<td><span s-badge="success" s-size="sm">Completed</span></td>
+									<td class="s-text-right s-font-medium">$99.00</td>
+								</tr>
+								<tr>
+									<td s-flex s-items="center" s-gap="sm">
+										<img src="https://i.pravatar.cc/32?img=4" alt="" width="32" height="32" style="border-radius: 50%;" />
+										<div>
+											<p class="s-font-medium">Liam Johnson</p>
+											<p class="s-text-xs s-text-secondary">liam@email.com</p>
+										</div>
+									</td>
+									<td class="s-text-secondary" s-hide-on="sm">Pro Plan</td>
+									<td><span s-badge="danger" s-size="sm">Failed</span></td>
+									<td class="s-text-right s-font-medium">$250.00</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</article>
+
+				<!-- Activity feed -->
+				<article s-card s-scroll-reveal="slide-up">
+					<header s-card-header>
+						<h2 s-card-title class="s-mb-0">Activity</h2>
+					</header>
+					<div s-card-body s-flex="col" s-gap="md">
+						<div s-flex s-gap="sm">
+							<span s-badge="primary" s-dot></span>
+							<div>
+								<p class="s-text-sm">New user signed up</p>
+								<p class="s-text-xs s-text-secondary">2 minutes ago</p>
+							</div>
+						</div>
+						<div s-flex s-gap="sm">
+							<span s-badge="success" s-dot></span>
+							<div>
+								<p class="s-text-sm">Order #1234 completed</p>
+								<p class="s-text-xs s-text-secondary">15 minutes ago</p>
+							</div>
+						</div>
+						<div s-flex s-gap="sm">
+							<span s-badge="warning" s-dot></span>
+							<div>
+								<p class="s-text-sm">Server load at 85%</p>
+								<p class="s-text-xs s-text-secondary">1 hour ago</p>
+							</div>
+						</div>
+						<div s-flex s-gap="sm">
+							<span s-badge="danger" s-dot></span>
+							<div>
+								<p class="s-text-sm">Payment failed for #1198</p>
+								<p class="s-text-xs s-text-secondary">2 hours ago</p>
+							</div>
+						</div>
+						<div s-flex s-gap="sm">
+							<span s-badge="primary" s-dot></span>
+							<div>
+								<p class="s-text-sm">New feature deployed</p>
+								<p class="s-text-xs s-text-secondary">3 hours ago</p>
+							</div>
+						</div>
+					</div>
+				</article>
+			</section>
+
+			<!-- Quick actions -->
+			<section s-grid="auto-fit" s-gap="md" s-scroll-reveal>
+				<div s-card s-interactive s-flex="center" s-gap="sm" class="s-py-8" s-tooltip="Create new invoice">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+						<polyline points="14 2 14 8 20 8" />
+						<line x1="12" y1="18" x2="12" y2="12" />
+						<line x1="9" y1="15" x2="15" y2="15" />
+					</svg>
+					<span class="s-font-medium">New Invoice</span>
+				</div>
+				<div s-card s-interactive s-flex="center" s-gap="sm" class="s-py-8" s-tooltip="Add team member">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+						<circle cx="9" cy="7" r="4" />
+						<line x1="19" y1="8" x2="19" y2="14" />
+						<line x1="22" y1="11" x2="16" y2="11" />
+					</svg>
+					<span class="s-font-medium">Add Member</span>
+				</div>
+				<div s-card s-interactive s-flex="center" s-gap="sm" class="s-py-8" s-tooltip="View reports">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="18" y1="20" x2="18" y2="10" />
+						<line x1="12" y1="20" x2="12" y2="4" />
+						<line x1="6" y1="20" x2="6" y2="14" />
+					</svg>
+					<span class="s-font-medium">Reports</span>
+				</div>
+				<div s-card s-interactive s-flex="center" s-gap="sm" class="s-py-8" s-tooltip="Configure settings">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<circle cx="12" cy="12" r="3" />
+						<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+					</svg>
+					<span class="s-font-medium">Settings</span>
+				</div>
+			</section>
+		</main>
+	</div>
+</BaseLayout>
+
+<style>
+	/* Layout - only structural CSS that can't be expressed as attributes */
+	.dashboard-layout {
+		display: grid;
+		grid-template-columns: 260px 1fr;
+		min-height: 100vh;
+	}
+
+	.sidebar {
+		border-right: 1px solid var(--s-border-default);
+		height: 100vh;
+		position: sticky;
+		top: 0;
+	}
+
+	/* Prevent grid blowout and ensure main fills space */
+	#main-content {
+		min-width: 0;
+		width: 100%;
+	}
+
+	/* Navigation items - minimal styling */
+	.nav-item {
+		border-radius: var(--s-radius-md);
+		color: var(--s-text-secondary);
+		text-decoration: none;
+		transition: all var(--s-duration-150) var(--s-ease-out);
+	}
+
+	.nav-item:hover,
+	.nav-item.active {
+		color: var(--s-text-primary);
+	}
+
+	/* Responsive stats grid */
+	.stats-grid {
+		@media (width < 1024px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media (width < 640px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Responsive main grid */
+	.main-grid {
+		@media (width < 1024px) {
+			grid-template-columns: 1fr;
+		}
+		[s-col-span="2"] {
+			@media (width < 1024px) {
+				grid-column: span 1;
+			}
+		}
+	}
+
+	/* Chart section responsive */
+	.chart-grid {
+		@media (width < 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Bar chart */
+	.chart-container {
+		height: 180px;
+	}
+
+	.chart-bar {
+		flex: 1;
+		height: var(--bar-height, 50%);
+		background: var(--s-primary-500);
+		border-radius: var(--s-radius-sm) var(--s-radius-sm) 0 0;
+		transition: height var(--s-duration-300) var(--s-ease-out);
+	}
+
+	.chart-bar.highlight {
+		background: var(--s-primary-600);
+	}
+
+	.chart-bar:hover {
+		background: var(--s-primary-400);
+	}
+
+	.chart-period.active {
+		background: var(--s-primary-100);
+		color: var(--s-primary-700);
+	}
+
+	/* Progress bars */
+	.progress-bar {
+		width: 100px;
+		height: 6px;
+		background: var(--s-neutral-200);
+		border-radius: var(--s-radius-full);
+		overflow: hidden;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: var(--s-primary-500);
+		border-radius: var(--s-radius-full);
+	}
+
+	.progress-fill.secondary {
+		background: var(--s-secondary-500);
+	}
+
+	.progress-fill.accent {
+		background: var(--s-accent-500);
+	}
+
+	.progress-fill.warning {
+		background: var(--s-warning-500);
+	}
+
+	/* Data table - minimal styles needed */
+	.data-table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th, td {
+			padding: var(--s-space-3) var(--s-space-4);
+		}
+
+		thead tr {
+			border-bottom: 1px solid var(--s-border-default);
+		}
+
+		tbody tr {
+			border-bottom: 1px solid var(--s-border-muted);
+		}
+
+		tbody tr:last-child {
+			border-bottom: none;
+		}
+	}
+
+	/* Mobile menu - hidden by default */
+	.mobile-menu-btn,
+	.mobile-close-btn {
+		display: none;
+	}
+
+	.mobile-menu-overlay {
+		display: none;
+		position: fixed;
+		inset: 0;
+		background: oklch(0 0 0 / 0.5);
+		z-index: 998;
+		cursor: pointer;
+	}
+
+	/* Mobile layout */
+	@media (width < 768px) {
+		.dashboard-layout {
+			grid-template-columns: 1fr;
+		}
+
+		/* Show hamburger button */
+		.mobile-menu-btn {
+			display: flex;
+			position: fixed;
+			top: var(--s-space-4);
+			left: var(--s-space-4);
+			z-index: 100;
+		}
+
+		/* Show close button in sidebar */
+		.mobile-close-btn {
+			display: flex;
+		}
+
+		/* Sidebar becomes slide-out drawer */
+		.sidebar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			width: 280px;
+			z-index: 999;
+			transform: translateX(-100%);
+			transition: transform var(--s-duration-300) var(--s-ease-out);
+		}
+
+		/* When checkbox is checked, show sidebar and overlay */
+		.mobile-menu-checkbox:checked ~ .dashboard-layout .sidebar {
+			transform: translateX(0);
+		}
+
+		.mobile-menu-checkbox:checked ~ .dashboard-layout .mobile-menu-overlay {
+			display: block;
+		}
+
+		/* Add padding to main content for the hamburger button */
+		#main-content {
+			padding-top: calc(var(--s-space-6) + 48px);
+		}
+	}
+</style>

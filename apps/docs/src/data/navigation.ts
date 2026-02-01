@@ -66,6 +66,14 @@ const navigationData: NavEntry[] = [
 			{ label: 'Typography', href: '/tokens/typography' },
 		],
 	},
+	{
+		label: 'Showcase',
+		items: [
+			{ label: 'Dashboard', href: '/showcase/dashboard' },
+			{ label: 'Landing Page', href: '/showcase/landing' },
+			{ label: 'Article', href: '/showcase/article' },
+		],
+	},
 ];
 
 export function isNavGroup(entry: NavEntry): entry is NavGroup {
