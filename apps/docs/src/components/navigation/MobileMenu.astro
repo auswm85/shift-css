@@ -63,7 +63,12 @@ const navigation = getNavigation(base);
 												data-mobile-link
 											>
 												{item.label}
-												{isShowcase && <span class="external-icon" aria-hidden="true">↗</span>}
+												{isShowcase && (
+													<>
+														<span s-sr-only>(opens in new tab)</span>
+														<span class="external-icon" aria-hidden="true">↗</span>
+													</>
+												)}
 											</a>
 										);
 									})}
