@@ -250,11 +250,15 @@
 [s-theme="dark"] {
   --_theme-is-dark: 1;
   color-scheme: dark;
+  background-color: var(--s-surface-sunken, oklch(12% 0.02 220));
+  color: var(--s-text-primary, oklch(95% 0.01 220));
 }
 
 [s-theme="light"] {
   --_theme-is-dark: 0;
   color-scheme: light;
+  background-color: var(--s-surface-raised, oklch(98% 0.005 220));
+  color: var(--s-text-primary, oklch(15% 0.02 220));
 }
 
 /* =============================================================================
