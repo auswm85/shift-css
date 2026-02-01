@@ -24,18 +24,16 @@ withDefaults(defineProps<InputProps>(), {
 	error: false,
 });
 
-defineEmits<{
+const emit = defineEmits<{
 	'update:modelValue': [value: string];
 }>();
+
+function handleInput(event: Event) {
+	emit('update:modelValue', (event.target as HTMLInputElement).value);
+}
 </script>
 
 <template>
-	<input
-		s-input=""
-		:s-size="size"
-		:type="type"
-		:aria-invalid="error || undefined"
-		:value="modelValue"
-		@input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-	/>
+	<input s-input="" :s-size="size" :type="type" :aria-invalid="error || undefined" :value="modelValue"
+		@input="handleInput" />
 </template>

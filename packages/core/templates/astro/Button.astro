@@ -49,6 +49,8 @@ const {
 	s-loading={loading || undefined}
 	type={type}
 	disabled={disabled || loading}
+	aria-busy={loading || undefined}
+	aria-disabled={disabled || loading || undefined}
 	class={className}
 	{...rest}
 >

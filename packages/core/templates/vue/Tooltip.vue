@@ -18,7 +18,7 @@ defineProps<TooltipProps>();
 </script>
 
 <template>
-	<span :s-tooltip="position" :s-tooltip-text="text">
+	<span :s-tooltip="position" :s-tooltip-text="text" :title="text">
 		<slot />
 	</span>
 </template>

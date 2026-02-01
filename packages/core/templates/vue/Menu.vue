@@ -12,13 +12,15 @@
 export interface MenuProps {
 	/** Menu size */
 	size?: 'sm' | 'lg';
+	/** Accessible label for the menu */
+	ariaLabel?: string;
 }
 
 defineProps<MenuProps>();
 </script>
 
 <template>
-	<nav s-menu="" :s-size="size">
+	<nav s-menu="" :s-size="size" role="menu" :aria-label="ariaLabel">
 		<slot />
 	</nav>
 </template>

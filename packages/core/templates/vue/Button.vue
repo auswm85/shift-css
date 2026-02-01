@@ -38,7 +38,8 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 <template>
 	<button :s-btn="variant" :s-size="size" :s-icon="icon || undefined" :s-block="block || undefined"
-		:s-loading="loading || undefined" :type="type" :disabled="props.disabled || props.loading">
+		:s-loading="loading || undefined" :type="type" :disabled="props.disabled || props.loading"
+		:aria-busy="loading || undefined" :aria-disabled="props.disabled || props.loading || undefined">
 		<slot />
 	</button>
 </template>

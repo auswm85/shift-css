@@ -10,7 +10,7 @@ export interface ModalProps extends DialogHTMLAttributes<HTMLDialogElement> {
 export const Modal = forwardRef<HTMLDialogElement, ModalProps>(
 	({ size, position, children, ...rest }, ref) => {
 		return (
-			<dialog ref={ref} s-modal="" s-size={size} s-position={position} {...rest}>
+			<dialog ref={ref} s-modal="" s-size={size} s-position={position} aria-modal="true" {...rest}>
 				{children}
 			</dialog>
 		);

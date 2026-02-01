@@ -13,11 +13,14 @@
  */
 
 export interface Props {
+	/** Accessible label for the menu */
+	'aria-label'?: string;
 	/** Additional classes */
 	class?: string;
 }
 
 const {
+	'aria-label': ariaLabel,
 	class: className,
 	...rest
 } = Astro.props;
@@ -26,6 +29,7 @@ const {
 <div
 	s-menu
 	role="menu"
+	aria-label={ariaLabel}
 	class={className}
 	{...rest}
 >

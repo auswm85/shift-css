@@ -48,7 +48,7 @@ function handleClose() {
 </script>
 
 <template>
-	<dialog ref="dialogRef" s-modal="" :s-size="size" :s-position="position" @close="handleClose">
+	<dialog ref="dialogRef" s-modal="" :s-size="size" :s-position="position" aria-modal="true" @close="handleClose">
 		<slot />
 	</dialog>
 </template>

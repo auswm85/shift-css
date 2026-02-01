@@ -10,7 +10,7 @@ export interface TooltipProps extends HTMLAttributes<HTMLSpanElement> {
 export const Tooltip = forwardRef<HTMLSpanElement, TooltipProps>(
 	({ text, position, children, ...rest }, ref) => {
 		return (
-			<span ref={ref} s-tooltip={position} s-tooltip-text={text} {...rest}>
+			<span ref={ref} s-tooltip={position} s-tooltip-text={text} title={text} {...rest}>
 				{children}
 			</span>
 		);
