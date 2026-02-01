@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.8.0](https://github.com/auswm85/shift-css/compare/core-v0.7.0...core-v0.8.0) (2026-02-01)
+
+
+### Features
+
+* **core:** add component registry and framework templates ([#43](https://github.com/auswm85/shift-css/issues/43)) ([0522574](https://github.com/auswm85/shift-css/commit/05225743d00b8a07f74a0cb605ae247ebb76f104))
+* **core:** add touch & mobile utilities ([ce4ed1a](https://github.com/auswm85/shift-css/commit/ce4ed1ad18f1f3bfd7a4ffd89ff08848da7df051))
+* **core:** enhance dark-aware component with theming ([#47](https://github.com/auswm85/shift-css/issues/47)) ([bc8e5f5](https://github.com/auswm85/shift-css/commit/bc8e5f5a7df5287fcc871d4374598531010320e9))
+* **core:** refine CSS functions for perceptual uniformity ([#48](https://github.com/auswm85/shift-css/issues/48)) ([d7ecb2a](https://github.com/auswm85/shift-css/commit/d7ecb2a4a08572195bb1b6c339a11faf57337a10))
+* **docs:** add showcase pages demonstrating Shift CSS features ([#49](https://github.com/auswm85/shift-css/issues/49)) ([cf5285d](https://github.com/auswm85/shift-css/commit/cf5285da91ce8051d04181d8c543142373802789))
+
 ## [0.7.0](https://github.com/auswm85/shift-css/compare/core-v0.6.0...core-v0.7.0) (2026-02-01)
 
 
