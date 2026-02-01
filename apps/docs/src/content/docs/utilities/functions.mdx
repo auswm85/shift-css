@@ -251,11 +251,75 @@ Respects reduced motion preferences:
 
 ### s-dark-aware
 
-Adapts background to color scheme:
+A sophisticated dark-awareness system that goes beyond simple color swaps. It provides:
+
+1. **Container-Relative Theming** - Uses CSS style queries to detect parent theme context, not just system preference
+2. **OKLCH Perceptual Contrast** - Auto-computes readable text color based on background lightness
+3. **Visual Adaptations** - Subtle border glow prevents bleeding, font weight adjusts for halation
+
+<Demo
+  title="Dark-Aware in Both Themes"
+  theme="split"
+  code={`<div s-dark-aware style="padding: 1rem;">
+  <h4 style="margin-bottom: 0.5rem;">Self-Healing Card</h4>
+  <p>Text contrast, border glow, and font weight all adapt automatically.</p>
+</div>`}
+/>
+
+#### Theme Containers
+
+Create "dark islands" on light pages (or vice versa) with `s-theme`:
 
 ```html
-<div s-dark-aware>Background changes in dark mode</div>
+<!-- Explicit dark container on a light page -->
+<aside s-theme="dark">
+  <div s-dark-aware>Inherits dark context from parent</div>
+</aside>
+
+<!-- Follows system preference -->
+<div s-dark-aware>Falls back to OS preference</div>
 ```
+
+<Demo
+  title="Theme Islands"
+  code={`<div style="display: flex; gap: 1rem;">
+  <div s-theme="light" style="flex: 1; padding: 1rem; border: 1px solid oklch(0.8 0 0);">
+    <div s-dark-aware style="padding: 1rem;">
+      <strong>Light Island</strong>
+      <p style="margin-top: 0.25rem;">Forced light context</p>
+    </div>
+  </div>
+  <div s-theme="dark" style="flex: 1; padding: 1rem; border: 1px solid oklch(0.3 0 0);">
+    <div s-dark-aware style="padding: 1rem;">
+      <strong>Dark Island</strong>
+      <p style="margin-top: 0.25rem;">Forced dark context</p>
+    </div>
+  </div>
+</div>`}
+/>
+
+#### Variants
+
+```html
+<!-- Default: background, text, glow, weight adjustment -->
+<div s-dark-aware>Full adaptation</div>
+
+<!-- Subtle: text and weight only, no background -->
+<div s-dark-aware="subtle">For inline elements</div>
+
+<!-- Strong: more pronounced glow for hero sections -->
+<div s-dark-aware="strong">Maximum visual separation</div>
+```
+
+#### Technical Details
+
+| Feature | Light Mode | Dark Mode |
+|---------|------------|-----------|
+| Text Color | OKLCH L=0.15 | OKLCH L=0.95 |
+| Border Glow | None | 0.5px white @ 8% |
+| Font Weight | Base | Base - 50 |
+
+The font weight reduction counters **halation** - the optical illusion where light text on dark backgrounds appears "fatter" due to light bleed in human vision.
 
 ## Creating Custom Functions
 
