@@ -110,7 +110,7 @@
 
 /**
  * --s-contrast-text: Return black or white based on background lightness
- * Uses 0.6 threshold for WCAG AA compliance
+ * Uses 0.6 OKLCH lightness threshold (pragmatic heuristic, not WCAG luminance)
  * @param --bg: The background color
  */
 @function --s-contrast-text(--bg) {
@@ -119,16 +119,17 @@
 
 /**
  * --s-readable-on: Ensure text is readable on a given background
- * Lightens dark colors, darkens light colors
+ * Shifts text lightness based on background: dark bg → lighter text, light bg → darker text
  * @param --bg: The background color
  * @param --text: The desired text color
  */
 @function --s-readable-on(--bg, --text) {
-  /* If bg is dark (l < 0.5), lighten text; if light, darken text */
-  result: oklch(
-    from var(--text)
-    clamp(0.2, calc(l + (0.5 - l) * 0.5), 0.9)
-    c h
+  /* Mix text with inverted bg lightness (achromatic) to push toward contrast */
+  /* Dark bg (l≈0) → mix with light (1-l≈1), Light bg (l≈1) → mix with dark (1-l≈0) */
+  result: color-mix(
+    in oklch,
+    var(--text) 60%,
+    oklch(from var(--bg) clamp(0.2, calc(1 - l), 0.9) 0 0)
   );
 }
 
@@ -183,6 +184,9 @@
  * Responsive padding using if() instead of media queries
  */
 [s-responsive-padding] {
+  /* Fallback for non-supporting browsers */
+  padding: var(--s-space-4);
+
   padding: if(
     media(width < 640px): var(--s-space-2);
     media(width < 1024px): var(--s-space-4);
@@ -194,6 +198,9 @@
  * Motion-safe animations using if()
  */
 [s-motion-safe] {
+  /* Fallback for non-supporting browsers */
+  transition-duration: var(--s-duration-200);
+
   transition-duration: if(
     media(prefers-reduced-motion: reduce): 0ms;
     else: var(--s-duration-200);
@@ -204,6 +211,10 @@
  * Dark mode aware styling using if()
  */
 [s-dark-aware] {
+  /* Fallback for non-supporting browsers */
+  --_bg: var(--s-surface-raised);
+  background-color: var(--_bg);
+
   --_bg: if(
     media(prefers-color-scheme: dark): var(--s-surface-sunken);
     else: var(--s-surface-raised);
@@ -220,6 +231,10 @@
  * Size variants using style queries with if()
  */
 [s-size-aware] {
+  /* Fallback for non-supporting browsers */
+  padding: var(--s-space-4);
+  font-size: var(--s-text-base);
+
   padding: if(
     style(--size: sm): var(--s-space-2);
     style(--size: lg): var(--s-space-6);

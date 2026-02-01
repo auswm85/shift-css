@@ -47,6 +47,17 @@ html {
 	}
 }
 
+/* Fallback for reduced-motion in browsers without if() support */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	:root {
+		--docs-transition-duration: 0s;
+	}
+}
+
 /* =============================================================================
    Main Layout Grid
    ============================================================================= */

@@ -133,7 +133,9 @@ Generate a text glow effect.
 
 ### --s-contrast-text
 
-Automatically return black or white text based on background lightness. Uses WCAG-compliant 0.6 threshold.
+Automatically return black or white text based on background lightness. Uses a 0.6 OKLCH lightness threshold as a pragmatic heuristic for contrast.
+
+> **Note:** WCAG contrast ratios use relative luminance (sRGB) with a different crossover point (~0.179). This function provides a practical OKLCH-based approximation, not a true WCAG luminance calculation.
 
 ```css
 .auto-text {
@@ -275,20 +277,22 @@ Define your own reusable CSS functions:
 For browsers without `@function` or `if()` support, provide fallbacks:
 
 ```css
-/* Fallback value first */
+/* Fallback value first, enhanced value second */
 .element {
   color: var(--s-text-primary);
-  /* Enhanced value for supporting browsers */
+  /* Browsers without @function support ignore invalid values */
   color: --s-contrast-text(var(--bg));
 }
 ```
 
-Or use `@supports`:
+Or use `@supports` to detect `@function` support:
 
 ```css
-@supports (result: 1) {
+@supports at-rule(@function) {
   .element {
     color: --s-contrast-text(var(--bg));
   }
 }
 ```
+
+> **Note:** The cascade approach (fallback first, function second) is generally preferred as it's simpler and doesn't require feature detection.

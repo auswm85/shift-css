@@ -27,6 +27,8 @@
     "./utils/flex": "./dist/utils/flex.css",
     "./utils/typography": "./dist/utils/typography.css",
     "./utils/visibility": "./dist/utils/visibility.css",
+    "./utils/scroll": "./dist/utils/scroll.css",
+    "./utils/functions": "./dist/utils/functions.css",
     "./types": "./types/index.d.ts",
     "./types/react": "./types/react.d.ts",
     "./types/vue": "./types/vue.d.ts",
