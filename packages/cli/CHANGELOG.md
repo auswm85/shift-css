@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/auswm85/shift-css/compare/cli-v0.4.0...cli-v0.5.0) (2026-02-01)
+
+
+### Features
+
+* **cli:** add shift add command for component ejection ([#44](https://github.com/auswm85/shift-css/issues/44)) ([90043a9](https://github.com/auswm85/shift-css/commit/90043a9b727e221d1581051c6b6197b5364b14d6))
+
 ## [0.4.0](https://github.com/auswm85/shift-css/compare/cli-v0.3.0...cli-v0.4.0) (2026-01-22)
 
 
