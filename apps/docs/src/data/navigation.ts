@@ -29,6 +29,7 @@ const navigationData: NavEntry[] = [
 			{ label: 'Cascade Layers', href: '/concepts/cascade-layers' },
 			{ label: 'Light/Dark Theming', href: '/concepts/theming' },
 			{ label: 'Customization', href: '/concepts/customization' },
+			{ label: 'Design Integration', href: '/concepts/design-integration' },
 		],
 	},
 	{

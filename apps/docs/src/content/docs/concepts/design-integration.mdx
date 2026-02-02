@@ -1,0 +1,85 @@
+---
+title: Design Integration
+description: Using Shift CSS colors in Figma and other design tools
+---
+
+## The Hue-Based Advantage
+
+Shift CSS generates entire color palettes from single hue values (0-360°). This means designers only need **7 numbers** to recreate your complete theme in any design tool:
+
+| Token | Default Hue |
+|-------|-------------|
+| Primary | 250 |
+| Secondary | 180 |
+| Accent | 30 |
+| Success | 145 |
+| Warning | 45 |
+| Danger | 25 |
+| Neutral | 250 |
+
+Use the [Theme Generator](/theme) to customize these values and export them.
+
+## Figma Workflow Options
+
+### Option 1: OKLCH Plugins (Recommended)
+
+For perceptually accurate colors that match your CSS, use Figma plugins that understand OKLCH:
+
+**[Derek's OKLCH Variables](https://www.figma.com/community/plugin/1589313910917476495/dereks-oklch-variables)**
+Syncs CSS containing `oklch()` values directly to Figma variables. Export CSS from the Theme Generator and paste it into the plugin.
+
+**[OKLCH Palette Generator](https://www.figma.com/community/plugin/1583211869437365830/oklch-palette-generator)**
+Build color scales from hue values with the same perceptual uniformity as Shift CSS.
+
+### Option 2: Use Hue Values Directly
+
+The Theme Generator exports hue values (0-360°) that you can use with any OKLCH-aware tool:
+
+1. Export JSON from the Theme Generator
+2. Use the hue values with the [OKLCH Palette Generator](https://www.figma.com/community/plugin/1583211869437365830/oklch-palette-generator) plugin
+3. Or enter values manually using the lightness/chroma table below
+
+### Option 3: Manual Recreation
+
+Recreate the Shift CSS color system in any design tool that supports OKLCH. Use these lightness and chroma values with your custom hue:
+
+| Step | Lightness (L) | Chroma (C) |
+|------|---------------|------------|
+| 50 | 0.9778 | 0.0108 |
+| 100 | 0.9356 | 0.0321 |
+| 200 | 0.8811 | 0.0636 |
+| 300 | 0.8267 | 0.0951 |
+| 400 | 0.7422 | 0.1211 |
+| 500 | 0.6478 | 0.1472 |
+| 600 | 0.5733 | 0.1383 |
+| 700 | 0.4689 | 0.1178 |
+| 800 | 0.3944 | 0.0894 |
+| 900 | 0.3200 | 0.0720 |
+| 950 | 0.2378 | 0.0540 |
+
+For example, to create `primary-500` with a hue of 280:
+```
+oklch(0.6478 0.1472 280)
+```
+
+## Other Design Tools
+
+### Sketch
+Sketch supports OKLCH natively in its color picker. Enter values directly using the lightness/chroma table above with your chosen hue.
+
+### Adobe XD / Illustrator
+These tools don't support OKLCH natively. Use [oklch.com](https://oklch.com) to convert your OKLCH values to hex, then enter the hex codes manually.
+
+### Penpot
+Penpot supports OKLCH in its color picker. Enter values directly using the format `oklch(L C H)` with the values from the table above.
+
+## Keeping Design and Code in Sync
+
+The simplest workflow:
+
+1. **Designer** adjusts hues in the Theme Generator
+2. **Designer** shares the URL (contains all hue values)
+3. **Developer** copies CSS from the same URL
+4. Both design and code use identical color values
+
+The Theme Generator's shareable URLs encode all customizations, making handoff seamless.
