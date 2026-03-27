@@ -17,7 +17,7 @@
     "astro": "^5.16.11"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
+    "@astrojs/check": "^0.9.8",
     "@axe-core/playwright": "^4.10.1",
     "@playwright/test": "^1.49.1",
     "astro-critters": "^2.2.1",
