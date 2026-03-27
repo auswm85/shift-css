@@ -20,7 +20,7 @@ const cssPath = resolve(__dirname, '../../../../packages/core/dist', file);
 let sizeKB = '?';
 try {
 	const css = readFileSync(cssPath);
-	const gzipped = gzipSync(css);
+	const gzipped = gzipSync(Uint8Array.from(css));
 	const kb = gzipped.length / 1024;
 	sizeKB = kb < 10 ? `~${kb.toFixed(1)}KB` : `~${Math.round(kb)}KB`;
 } catch (e) {
