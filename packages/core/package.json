@@ -68,7 +68,7 @@
     "lightningcss": "^1.31.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vue": "^3.5.27"
+    "vue": "^3.5.31"
   },
   "keywords": [
     "css",
