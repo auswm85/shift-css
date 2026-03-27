@@ -4,7 +4,7 @@
  * Tests WCAG 2.1 compliance including color contrast requirements.
  */
 
-import AxeBuilder from '@axe-core/playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 test.describe('Accessibility - Color Contrast', () => {
@@ -25,7 +25,7 @@ test.describe('Accessibility - Color Contrast', () => {
 
 		// Only check AA contrast (4.5:1), not AAA (7:1)
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -46,7 +46,7 @@ test.describe('Accessibility - Color Contrast', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -62,7 +62,7 @@ test.describe('Accessibility - Color Contrast', () => {
 		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		// Log any violations for debugging
@@ -89,7 +89,7 @@ test.describe('Accessibility - Color Contrast', () => {
 		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		if (contrastViolations.length > 0) {
@@ -156,7 +156,7 @@ test.describe('Accessibility - Components', () => {
 			.analyze();
 
 		const labelViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'label' || v.id === 'label-title-only'
+			(v: { id: string }) => v.id === 'label' || v.id === 'label-title-only'
 		);
 
 		expect(labelViolations).toHaveLength(0);
@@ -216,7 +216,7 @@ test.describe('Accessibility - Semantic Color Messages', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);

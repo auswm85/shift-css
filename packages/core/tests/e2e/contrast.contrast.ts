@@ -5,7 +5,7 @@
  * Uses axe-core for accurate WCAG-compliant contrast validation.
  */
 
-import AxeBuilder from '@axe-core/playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 test.describe('Tinted Gray Contrast - Axe Validation', () => {
@@ -23,7 +23,7 @@ test.describe('Tinted Gray Contrast - Axe Validation', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -43,7 +43,7 @@ test.describe('Tinted Gray Contrast - Axe Validation', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -65,7 +65,7 @@ test.describe('Semantic Token Contrast', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -85,7 +85,7 @@ test.describe('Semantic Token Contrast', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -106,7 +106,7 @@ test.describe('Large Text Contrast Requirements', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -182,7 +182,7 @@ test.describe('Custom Hue Contrast Preservation', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
@@ -200,7 +200,7 @@ test.describe('Custom Hue Contrast Preservation', () => {
 		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		// Log any violations for debugging hue-specific issues
@@ -232,7 +232,7 @@ test.describe('State Color Contrast', () => {
 			.analyze();
 
 		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v) => v.id === 'color-contrast'
+			(v: { id: string }) => v.id === 'color-contrast'
 		);
 
 		expect(contrastViolations).toHaveLength(0);
