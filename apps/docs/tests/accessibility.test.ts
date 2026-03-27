@@ -4,7 +4,7 @@
  * Crawls the documentation site and tests each page for WCAG 2.1 AA compliance.
  */
 
-import AxeBuilder from '@axe-core/playwright';
+import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 interface PageResult {

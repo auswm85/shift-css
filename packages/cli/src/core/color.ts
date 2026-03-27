@@ -22,12 +22,15 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 	if (fullHex.length !== 6) return null;
 
 	const result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
-	if (!result) return null;
+	if (!result || result.length < 4) return null;
+
+	const [, rHex, gHex, bHex] = result;
+	if (!rHex || !gHex || !bHex) return null;
 
 	return {
-		r: Number.parseInt(result[1]!, 16),
-		g: Number.parseInt(result[2]!, 16),
-		b: Number.parseInt(result[3]!, 16),
+		r: Number.parseInt(rHex, 16),
+		g: Number.parseInt(gHex, 16),
+		b: Number.parseInt(bHex, 16),
 	};
 }
 

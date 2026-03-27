@@ -1,20 +1,12 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import critters from '@critters-rs/astro';
 import { defineConfig } from 'astro/config';
-import critters from 'astro-critters';
 
 export default defineConfig({
 	site: 'https://getshiftcss.com',
 	base: '/',
-	integrations: [
-		mdx(),
-		sitemap(),
-		critters({
-			// Inline critical CSS for faster FCP
-			preload: 'swap', // Preload non-critical CSS with font-display swap
-			pruneSource: true, // Remove inlined CSS from external stylesheets
-		}),
-	],
+	integrations: [mdx(), sitemap(), critters()],
 	markdown: {
 		shikiConfig: {
 			theme: 'css-variables',

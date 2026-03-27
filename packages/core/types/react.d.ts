@@ -18,6 +18,5 @@
 import type { ShiftAttributes } from './attributes';
 
 declare module 'react' {
-	// biome-ignore lint/correctness/noUnusedVariables: T must match React's HTMLAttributes<T> signature
-	interface HTMLAttributes<T> extends ShiftAttributes {}
+	interface HTMLAttributes<_T> extends ShiftAttributes {}
 }

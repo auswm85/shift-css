@@ -108,6 +108,7 @@ export async function askPrimaryHue(): Promise<number> {
 			message: 'Enter a hex code (#a855f7) or hue (0-360):',
 			placeholder: '#a855f7 or 260',
 			validate: (value) => {
+				if (!value) return 'Value is required';
 				const trimmed = value.trim();
 
 				// Check if hex color
@@ -164,6 +165,7 @@ export async function askStylesheetPath(defaultPath: string): Promise<string> {
 		placeholder: defaultPath,
 		defaultValue: defaultPath,
 		validate: (value) => {
+			if (!value) return 'Value is required';
 			if (!value) return 'Please enter a path';
 			if (!value.endsWith('.css')) return 'Path must end with .css';
 			return undefined;

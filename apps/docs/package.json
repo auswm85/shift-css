@@ -11,16 +11,16 @@
     "test:a11y": "playwright test"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.2.6",
+    "@astrojs/mdx": "^5.0.3",
     "@astrojs/sitemap": "^3.7.0",
     "@shift-css/core": "workspace:*",
-    "astro": "^5.16.11"
+    "astro": "^6.1.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@axe-core/playwright": "^4.10.1",
-    "@playwright/test": "^1.49.1",
-    "astro-critters": "^2.2.1",
+    "@astrojs/check": "^0.9.8",
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.2",
+    "@critters-rs/astro": "^1.2.0",
     "pagefind": "^1.4.0",
     "typescript": "^5.9.3"
   }

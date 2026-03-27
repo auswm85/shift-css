@@ -9,6 +9,10 @@ on:
       - 'packages/cli/**'
   workflow_dispatch:
 
+# Opt into Node.js 24 for actions that don't have native support yet
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
   pull-requests: write
@@ -39,7 +43,7 @@ jobs:
       id-token: write # Required for OIDC
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -47,7 +51,7 @@ jobs:
           bun-version: latest
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '24'
           registry-url: "https://registry.npmjs.org"
@@ -81,7 +85,7 @@ jobs:
       id-token: write # Required for OIDC
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -89,7 +93,7 @@ jobs:
           bun-version: latest
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '24'
           registry-url: "https://registry.npmjs.org"

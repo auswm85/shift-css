@@ -9,6 +9,10 @@ on:
       - "packages/core/tokens/**"
   workflow_dispatch:
 
+# Opt into Node.js 24 for actions that don't have native support yet
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
@@ -24,7 +28,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
