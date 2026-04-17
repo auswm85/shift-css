@@ -17,7 +17,7 @@
     "test:docker:update": "docker build -f Dockerfile.test -t shift-css-test . && docker run --rm -v $(pwd)/packages/core/tests/e2e/snapshots:/app/packages/core/tests/e2e/snapshots shift-css-test sh -c 'cd packages/core && bunx playwright test --update-snapshots --project=visual-chrome'"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.9"
+    "@biomejs/biome": "2.4.12"
   },
   "engines": {
     "node": ">=22.0.0"
