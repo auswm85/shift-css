@@ -7,14 +7,9 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Button Components', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('/components.html');
-	});
-
 	test('buttons section - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('buttons-section');
@@ -22,9 +17,8 @@ test.describe('Button Components', () => {
 	});
 
 	test('buttons section - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('buttons-section');
@@ -32,9 +26,8 @@ test.describe('Button Components', () => {
 	});
 
 	test('button hover state', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 
 		const primaryBtn = page.locator('[s-btn="primary"]').first();
 		await primaryBtn.hover();
@@ -44,9 +37,8 @@ test.describe('Button Components', () => {
 	});
 
 	test('button focus state', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 
 		const primaryBtn = page.locator('[s-btn="primary"]').first();
 		await primaryBtn.focus();
@@ -57,14 +49,9 @@ test.describe('Button Components', () => {
 });
 
 test.describe('Card Components', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('/components.html');
-	});
-
 	test('cards section - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('cards-section');
@@ -72,9 +59,8 @@ test.describe('Card Components', () => {
 	});
 
 	test('cards section - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('cards-section');
@@ -83,14 +69,9 @@ test.describe('Card Components', () => {
 });
 
 test.describe('Form Inputs', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('/components.html');
-	});
-
 	test('inputs section - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('inputs-section');
@@ -98,9 +79,8 @@ test.describe('Form Inputs', () => {
 	});
 
 	test('inputs section - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('inputs-section');
@@ -108,9 +88,8 @@ test.describe('Form Inputs', () => {
 	});
 
 	test('input focus state', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 
 		const input = page.locator('#text-input');
 		await input.focus();
@@ -120,9 +99,8 @@ test.describe('Form Inputs', () => {
 	});
 
 	test('input with text', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 
 		const input = page.locator('#text-input');
 		await input.fill('Sample input text');
@@ -133,14 +111,9 @@ test.describe('Form Inputs', () => {
 });
 
 test.describe('Surface Components', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('/components.html');
-	});
-
 	test('surfaces section - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('surfaces-section');
@@ -148,9 +121,8 @@ test.describe('Surface Components', () => {
 	});
 
 	test('surfaces section - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('surfaces-section');
@@ -159,14 +131,9 @@ test.describe('Surface Components', () => {
 });
 
 test.describe('Combined Form Example', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('/components.html');
-	});
-
 	test('contact form - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('combined-section');
@@ -174,9 +141,8 @@ test.describe('Combined Form Example', () => {
 	});
 
 	test('contact form - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/components.html');
 		await page.waitForTimeout(100);
 
 		const section = page.getByTestId('combined-section');
@@ -184,9 +150,8 @@ test.describe('Combined Form Example', () => {
 	});
 
 	test('contact form - filled', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/components.html');
 
 		await page.locator('#name').fill('John Doe');
 		await page.locator('#email').fill('john@example.com');
@@ -200,10 +165,8 @@ test.describe('Combined Form Example', () => {
 
 test.describe('Full Page Screenshots', () => {
 	test('components page - light mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/components.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		await expect(page).toHaveScreenshot('components-page-light.png', {
@@ -212,10 +175,8 @@ test.describe('Full Page Screenshots', () => {
 	});
 
 	test('components page - dark mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/components.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
 		await page.waitForTimeout(100);
 
 		await expect(page).toHaveScreenshot('components-page-dark.png', {

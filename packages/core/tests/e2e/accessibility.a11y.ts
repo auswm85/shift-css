@@ -9,10 +9,8 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Accessibility - Color Contrast', () => {
 	test('colors page passes axe contrast checks - light mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/colors.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		// Test UI controls only (not color swatches which intentionally show all color steps)
@@ -32,10 +30,8 @@ test.describe('Accessibility - Color Contrast', () => {
 	});
 
 	test('colors page passes axe contrast checks - dark mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/colors.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
 		await page.waitForTimeout(100);
 
 		// Test UI controls only (not color swatches which intentionally show all color steps)
@@ -53,10 +49,8 @@ test.describe('Accessibility - Color Contrast', () => {
 	});
 
 	test('contrast test page passes axe checks - light mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
@@ -80,10 +74,8 @@ test.describe('Accessibility - Color Contrast', () => {
 	});
 
 	test('contrast test page passes axe checks - dark mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
@@ -108,10 +100,8 @@ test.describe('Accessibility - Color Contrast', () => {
 
 test.describe('Accessibility - Components', () => {
 	test('components page has no accessibility violations - light mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/components.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -122,10 +112,8 @@ test.describe('Accessibility - Components', () => {
 	});
 
 	test('components page has no accessibility violations - dark mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/components.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -165,10 +153,8 @@ test.describe('Accessibility - Components', () => {
 
 test.describe('Accessibility - Focus Indicators', () => {
 	test('buttons have visible focus indicators', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/components.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 
 		const button = page.locator('[s-btn="primary"]').first();
 		await button.focus();
@@ -184,10 +170,8 @@ test.describe('Accessibility - Focus Indicators', () => {
 	});
 
 	test('inputs have visible focus indicators', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/components.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 
 		const input = page.locator('#text-input');
 		await input.focus();
@@ -204,10 +188,8 @@ test.describe('Accessibility - Focus Indicators', () => {
 
 test.describe('Accessibility - Semantic Color Messages', () => {
 	test('success messages have sufficient contrast', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page })

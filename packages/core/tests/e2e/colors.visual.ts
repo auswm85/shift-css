@@ -7,14 +7,9 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Color Scales Visual Regression', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('/colors.html');
-	});
-
 	test('primary color scale - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100); // Allow CSS to settle
 
 		const scale = page.getByTestId('primary-scale');
@@ -22,9 +17,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('primary color scale - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('primary-scale');
@@ -32,9 +26,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('neutral scale (tinted grays) - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('neutral-scale');
@@ -42,9 +35,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('neutral scale (tinted grays) - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('neutral-scale');
@@ -52,9 +44,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('secondary color scale - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('secondary-scale');
@@ -62,9 +53,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('accent color scale - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('accent-scale');
@@ -72,9 +62,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('success color scale - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('success-scale');
@@ -82,9 +71,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('warning color scale - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('warning-scale');
@@ -92,9 +80,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('danger color scale - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		const scale = page.getByTestId('danger-scale');
@@ -102,9 +89,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('full page - light mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		await expect(page).toHaveScreenshot('colors-page-light.png', {
@@ -113,9 +99,8 @@ test.describe('Color Scales Visual Regression', () => {
 	});
 
 	test('full page - dark mode', async ({ page }) => {
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/colors.html');
 		await page.waitForTimeout(100);
 
 		await expect(page).toHaveScreenshot('colors-page-dark.png', {
@@ -126,9 +111,9 @@ test.describe('Color Scales Visual Regression', () => {
 
 test.describe('Custom Hue Override Visual Tests', () => {
 	test('custom primary hue changes scale', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/colors.html');
 		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
 			document.documentElement.style.setProperty('--shift-hue-primary', '320'); // Magenta
 		});
 		await page.waitForTimeout(100);
@@ -138,9 +123,9 @@ test.describe('Custom Hue Override Visual Tests', () => {
 	});
 
 	test('custom neutral hue tints grays', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/colors.html');
 		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
 			document.documentElement.style.setProperty('--shift-hue-neutral', '30'); // Warm grays
 		});
 		await page.waitForTimeout(100);

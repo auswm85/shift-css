@@ -10,10 +10,8 @@ import { expect, test } from '@playwright/test';
 
 test.describe('Tinted Gray Contrast - Axe Validation', () => {
 	test('tinted gray combinations meet AA contrast - light mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		// Use axe-core for proper WCAG contrast validation
@@ -30,10 +28,8 @@ test.describe('Tinted Gray Contrast - Axe Validation', () => {
 	});
 
 	test('tinted gray combinations meet AA contrast - dark mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
 		await page.waitForTimeout(100);
 
 		// Use axe-core for proper WCAG contrast validation
@@ -52,10 +48,8 @@ test.describe('Tinted Gray Contrast - Axe Validation', () => {
 
 test.describe('Semantic Token Contrast', () => {
 	test('semantic tokens meet AA contrast in light mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		// Test AA compliance (4.5:1) - secondary text only needs AA, not AAA
@@ -72,10 +66,8 @@ test.describe('Semantic Token Contrast', () => {
 	});
 
 	test('semantic tokens meet AA contrast in dark mode', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'dark';
-		});
 		await page.waitForTimeout(100);
 
 		// Test AA compliance (4.5:1) - secondary text only needs AA, not AAA
@@ -94,10 +86,8 @@ test.describe('Semantic Token Contrast', () => {
 
 test.describe('Large Text Contrast Requirements', () => {
 	test('large text (24px+) meets AA large (3:1) threshold', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page })
@@ -115,10 +105,8 @@ test.describe('Large Text Contrast Requirements', () => {
 
 test.describe('Interactive Element Contrast (WCAG 2.1 SC 1.4.11)', () => {
 	test('button boundaries meet 3:1 contrast against background', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		// axe-core checks UI component contrast automatically
@@ -142,10 +130,8 @@ test.describe('Interactive Element Contrast (WCAG 2.1 SC 1.4.11)', () => {
 	});
 
 	test('input borders meet 3:1 contrast against background', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		// Get the input border color and background
@@ -168,9 +154,9 @@ test.describe('Interactive Element Contrast (WCAG 2.1 SC 1.4.11)', () => {
 
 test.describe('Custom Hue Contrast Preservation', () => {
 	test('custom neutral hue still meets AA contrast', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
 			// Change neutral to a warm hue (could potentially affect contrast)
 			document.documentElement.style.setProperty('--shift-hue-neutral', '30');
 		});
@@ -189,9 +175,9 @@ test.describe('Custom Hue Contrast Preservation', () => {
 	});
 
 	test('custom primary hue still meets AA contrast', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
 		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
 			// Change primary to magenta
 			document.documentElement.style.setProperty('--shift-hue-primary', '320');
 		});
@@ -220,10 +206,8 @@ test.describe('Custom Hue Contrast Preservation', () => {
 
 test.describe('State Color Contrast', () => {
 	test('all state colors (success, warning, danger) meet AA', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
-		await page.evaluate(() => {
-			document.documentElement.style.colorScheme = 'light';
-		});
 		await page.waitForTimeout(100);
 
 		const accessibilityScanResults = await new AxeBuilder({ page })
