@@ -9,36 +9,36 @@
  */
 
 export type {
+	// Complete map
+	ShiftAttributes,
+	ShiftBadgeVariant,
+	// Visibility
+	ShiftBreakpoint,
 	// Component variants
 	ShiftButtonVariant,
-	ShiftBadgeVariant,
-	ShiftSurfaceVariant,
-	ShiftModalPosition,
-	ShiftTooltipPosition,
-	ShiftProseVariant,
+	ShiftColSpan,
+	ShiftContainer,
+	ShiftContent,
+	ShiftDisplay,
+	// Layout
+	ShiftFlexVariant,
+	ShiftGap,
+	ShiftGridColumns,
+	ShiftGridRows,
 	ShiftInputVariant,
+	ShiftInset,
+	ShiftItems,
+	ShiftJustify,
+	ShiftModalPosition,
+	ShiftOverflow,
+	ShiftPointer,
+	ShiftPosition,
+	ShiftProseVariant,
+	ShiftRowSpan,
+	ShiftSelect,
 	// Sizes
 	ShiftSize,
 	ShiftSizeExtended,
-	// Layout
-	ShiftFlexVariant,
-	ShiftGridColumns,
-	ShiftGridRows,
-	ShiftColSpan,
-	ShiftRowSpan,
-	ShiftGap,
-	ShiftContainer,
-	ShiftJustify,
-	ShiftItems,
-	ShiftContent,
-	ShiftPosition,
-	ShiftInset,
-	ShiftDisplay,
-	// Visibility
-	ShiftBreakpoint,
-	ShiftOverflow,
-	ShiftPointer,
-	ShiftSelect,
-	// Complete map
-	ShiftAttributes,
+	ShiftSurfaceVariant,
+	ShiftTooltipPosition,
 } from './attributes';

@@ -11,10 +11,10 @@
     "test:a11y": "playwright test"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/mdx": "^5.0.4",
     "@astrojs/sitemap": "^3.7.2",
     "@shift-css/core": "workspace:*",
-    "astro": "^6.1.7"
+    "astro": "^6.1.9"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
