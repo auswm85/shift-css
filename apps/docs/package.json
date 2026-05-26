@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "^3.7.3",
     "@shift-css/core": "workspace:*",
     "astro": "^6.3.8"
   },
