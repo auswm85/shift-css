@@ -9,3 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "fix" # production deps → patch release via Release Please
+      prefix-development: "chore" # dev deps → no release
