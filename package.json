@@ -25,5 +25,8 @@
   "workspaces": [
     "packages/*",
     "apps/*"
-  ]
+  ],
+  "overrides": {
+    "yaml": "^2.8.3"
+  }
 }
