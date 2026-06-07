@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.8.1](https://github.com/auswm85/shift-css/compare/core-v0.8.0...core-v0.8.1) (2026-06-07)
+
+
+### Maintenance
+
+* bump @playwright/test from 1.59.1 to 1.60.0 ([#86](https://github.com/auswm85/shift-css/issues/86)) ([c17255b](https://github.com/auswm85/shift-css/commit/c17255b2e0bcfc1381fbd4af0bfbf4099f841d90))
+* bump @types/node from 25.6.0 to 25.9.1 ([#84](https://github.com/auswm85/shift-css/issues/84)) ([aa979da](https://github.com/auswm85/shift-css/commit/aa979daa702c3a58f1c0bbe93c481f31f172ff56))
+* bump @types/react from 19.2.14 to 19.2.17 ([#87](https://github.com/auswm85/shift-css/issues/87)) ([cb6df2a](https://github.com/auswm85/shift-css/commit/cb6df2a087714fe20a4c53498231bca25008c15e))
+* **deps-dev:** bump @axe-core/playwright from 4.11.2 to 4.11.3 ([#74](https://github.com/auswm85/shift-css/issues/74)) ([906da20](https://github.com/auswm85/shift-css/commit/906da2068253cfc35b1913ba870e5d8213ef2dc1))
+* **deps-dev:** bump @types/bun from 1.3.13 to 1.3.14 ([#79](https://github.com/auswm85/shift-css/issues/79)) ([129b164](https://github.com/auswm85/shift-css/commit/129b164934c04717eabc0b8847cfba642699698d))
+* **deps-dev:** bump @types/node from 25.9.1 to 25.9.2 ([#94](https://github.com/auswm85/shift-css/issues/94)) ([e265f2b](https://github.com/auswm85/shift-css/commit/e265f2beb5d474e0e5514fce7d07e71a5fa675c2))
+* **deps-dev:** bump tsx from 4.21.0 to 4.22.0 ([#80](https://github.com/auswm85/shift-css/issues/80)) ([41ffe01](https://github.com/auswm85/shift-css/commit/41ffe0173c3675af6d17d957dd036ce13448e4cb))
+* **deps-dev:** bump tsx from 4.22.0 to 4.22.4 ([#92](https://github.com/auswm85/shift-css/issues/92)) ([9a9c614](https://github.com/auswm85/shift-css/commit/9a9c614fca529028adb9b0cd12b6342a3c041f1f))
+* **deps-dev:** bump vue from 3.5.33 to 3.5.34 ([#82](https://github.com/auswm85/shift-css/issues/82)) ([3174da0](https://github.com/auswm85/shift-css/commit/3174da06f99dafe9b50e047fa151241e8eb9d6f2))
+* **deps:** update dependencies for core and package.json ([5afa7d8](https://github.com/auswm85/shift-css/commit/5afa7d85ea4aadf6127e2e2a8e0550a3f4a5cb81))
+
 ## [0.8.0](https://github.com/auswm85/shift-css/compare/core-v0.7.0...core-v0.8.0) (2026-04-17)
 
 
