@@ -10,5 +10,6 @@ updates:
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "fix" # production deps → patch release via Release Please
-      prefix-development: "chore" # dev deps → no release
+      prefix: "fix" # production deps → fix(deps): → patch release via Release Please
+      prefix-development: "chore" # dev deps → chore(deps-dev): → no release, listed under Maintenance
+      include: "scope" # append (deps)/(deps-dev) scope to the prefix
