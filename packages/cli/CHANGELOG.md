@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/auswm85/shift-css/compare/cli-v0.5.0...cli-v0.5.1) (2026-06-07)
+
+
+### Bug Fixes
+
+* bump @clack/prompts from 1.3.0 to 1.4.0 ([#83](https://github.com/auswm85/shift-css/issues/83)) ([6cd355a](https://github.com/auswm85/shift-css/commit/6cd355a23c6b6d78b3f1a9e451c51fba59bd8814))
+
 ## [0.5.0](https://github.com/auswm85/shift-css/compare/cli-v0.4.0...cli-v0.5.0) (2026-04-18)
 
 
