@@ -13,3 +13,10 @@ updates:
       prefix: "fix" # production deps → fix(deps): → patch release via Release Please
       prefix-development: "chore" # dev deps → chore(deps-dev): → no release, listed under Maintenance
       include: "scope" # append (deps)/(deps-dev) scope to the prefix
+    groups:
+      # Keep @playwright/test, playwright(-core) and @axe-core/playwright in a
+      # single PR so the whole Playwright stack moves together (avoids partial
+      # lockfile dedupe between @playwright/test and @axe-core/playwright's peer).
+      playwright:
+        patterns:
+          - "*playwright*"
