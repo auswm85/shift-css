@@ -17,6 +17,12 @@ COPY apps/docs/package.json ./apps/docs/
 # Install dependencies (skip frozen for cross-platform compatibility)
 RUN bun install
 
+# Install the browser binary matching the resolved Playwright version.
+# The base image ships browsers pinned to its tag, which drifts out of sync
+# whenever Dependabot bumps @playwright/test. Installing here keeps the browser
+# revision aligned with the lockfile regardless of the base image tag.
+RUN bunx playwright install chromium
+
 # Copy source
 COPY . .
 
