@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.2](https://github.com/auswm85/shift-css/compare/cli-v0.5.1...cli-v0.5.2) (2026-06-20)
+
+
+### Bug Fixes
+
+* **deps:** bump @clack/prompts from 1.5.1 to 1.6.0 ([#108](https://github.com/auswm85/shift-css/issues/108)) ([34d4407](https://github.com/auswm85/shift-css/commit/34d440715e366027d92e794e46bb9931c0a1d049))
+
+
+### Maintenance
+
+* **deps-dev:** bump @types/node from 25.9.2 to 25.9.3 ([#101](https://github.com/auswm85/shift-css/issues/101)) ([bae25c5](https://github.com/auswm85/shift-css/commit/bae25c525ccd7433add1200bff839b417cd5b244))
+* **deps-dev:** bump @types/node from 25.9.3 to 26.0.0 ([#109](https://github.com/auswm85/shift-css/issues/109)) ([b6ffc8a](https://github.com/auswm85/shift-css/commit/b6ffc8ae49ed8ac604e0ba8e5c882992a5c7e558))
+
 ## [0.5.1](https://github.com/auswm85/shift-css/compare/cli-v0.5.0...cli-v0.5.1) (2026-06-07)
 
 
