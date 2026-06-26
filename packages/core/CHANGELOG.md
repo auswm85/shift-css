@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.8.2](https://github.com/auswm85/shift-css/compare/core-v0.8.1...core-v0.8.2) (2026-06-26)
+
+
+### Maintenance
+
+* **deps-dev:** bump @playwright/test from 1.60.0 to 1.61.0 ([#105](https://github.com/auswm85/shift-css/issues/105)) ([f437cbe](https://github.com/auswm85/shift-css/commit/f437cbefb4663ab0e740b09cf24128b9c479c60f))
+* **deps-dev:** bump @types/node from 25.9.2 to 25.9.3 ([#101](https://github.com/auswm85/shift-css/issues/101)) ([bae25c5](https://github.com/auswm85/shift-css/commit/bae25c525ccd7433add1200bff839b417cd5b244))
+* **deps-dev:** bump @types/node from 25.9.3 to 26.0.0 ([#109](https://github.com/auswm85/shift-css/issues/109)) ([b6ffc8a](https://github.com/auswm85/shift-css/commit/b6ffc8ae49ed8ac604e0ba8e5c882992a5c7e558))
+* **deps-dev:** bump vue from 3.5.34 to 3.5.38 ([#97](https://github.com/auswm85/shift-css/issues/97)) ([1725d3f](https://github.com/auswm85/shift-css/commit/1725d3fbe1052b226f3b59d50e675cead502e2dd))
+
 ## [0.8.1](https://github.com/auswm85/shift-css/compare/core-v0.8.0...core-v0.8.1) (2026-06-07)
 
 
