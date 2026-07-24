@@ -1,6 +1,6 @@
 {
   "name": "@shift-css/cli",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "CLI tool for Shift CSS framework setup and migration",
   "type": "module",
   "bin": {
