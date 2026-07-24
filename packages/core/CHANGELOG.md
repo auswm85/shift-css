@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.8.3](https://github.com/auswm85/shift-css/compare/core-v0.8.2...core-v0.8.3) (2026-07-24)
+
+
+### Maintenance
+
+* **deps-dev:** bump @types/node from 26.0.0 to 26.1.0 ([#112](https://github.com/auswm85/shift-css/issues/112)) ([4300d71](https://github.com/auswm85/shift-css/commit/4300d7164616e099a90580d9b401b03977377940))
+* **deps-dev:** bump @types/node from 26.1.0 to 26.1.1 ([#119](https://github.com/auswm85/shift-css/issues/119)) ([9e2d756](https://github.com/auswm85/shift-css/commit/9e2d7567f7102764c4bf57fa5adc7ab2cbdcaec3))
+* **deps-dev:** bump lightningcss from 1.32.0 to 1.33.0 ([#129](https://github.com/auswm85/shift-css/issues/129)) ([9fa45ad](https://github.com/auswm85/shift-css/commit/9fa45adfbb7509315073652b300a65709253121b))
+* **deps-dev:** bump the playwright group across 1 directory with 2 updates ([#111](https://github.com/auswm85/shift-css/issues/111)) ([8561472](https://github.com/auswm85/shift-css/commit/856147212a03e23192a174441f1630728ae2e5b5))
+* **deps-dev:** bump tsx from 4.22.4 to 4.23.0 ([#118](https://github.com/auswm85/shift-css/issues/118)) ([72000ad](https://github.com/auswm85/shift-css/commit/72000addd905bba94d1c3511120a8be417fe3866))
+* **deps-dev:** bump tsx from 4.23.0 to 4.23.1 ([#125](https://github.com/auswm85/shift-css/issues/125)) ([cd59aa6](https://github.com/auswm85/shift-css/commit/cd59aa61fe3c112318cf0b9dc4a096cf5aa0f7f7))
+* **deps-dev:** bump typescript from 6.0.3 to 7.0.2 ([#131](https://github.com/auswm85/shift-css/issues/131)) ([d3c4fac](https://github.com/auswm85/shift-css/commit/d3c4facb3cf9c4b4173e9c8775d6353d1541887c))
+* **deps-dev:** bump vue from 3.5.38 to 3.5.39 ([#114](https://github.com/auswm85/shift-css/issues/114)) ([3e407a0](https://github.com/auswm85/shift-css/commit/3e407a02c379d087bea2c870cdaedb557fc6d8aa))
+* **deps-dev:** bump vue from 3.5.39 to 3.5.40 ([#130](https://github.com/auswm85/shift-css/issues/130)) ([007252c](https://github.com/auswm85/shift-css/commit/007252c63719861ac7f676c98cee00b76946aea5))
+
 ## [0.8.2](https://github.com/auswm85/shift-css/compare/core-v0.8.1...core-v0.8.2) (2026-06-26)
 
 
