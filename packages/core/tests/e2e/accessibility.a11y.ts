@@ -8,127 +8,135 @@ import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 test.describe('Accessibility - Color Contrast', () => {
-	test('colors page passes axe contrast checks - light mode', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'light' });
-		await page.goto('/colors.html');
-		await page.waitForTimeout(100);
+	test.describe('light mode', () => {
+		test.use({ colorScheme: 'light' });
 
-		// Test UI controls only (not color swatches which intentionally show all color steps)
-		// Color swatches are excluded since they demonstrate the full scale range
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa'])
-			.exclude('.color-swatch') // Color palette demonstrations aren't subject to contrast rules
-			.exclude('.step-labels') // Step labels are decorative context
-			.analyze();
+		test('colors page passes axe contrast checks', async ({ page }) => {
+			await page.goto('/colors.html');
+			await page.waitForTimeout(100);
 
-		// Only check AA contrast (4.5:1), not AAA (7:1)
-		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v: { id: string }) => v.id === 'color-contrast'
-		);
+			const accessibilityScanResults = await new AxeBuilder({ page })
+				.withTags(['wcag2aa'])
+				.exclude('.color-swatch')
+				.exclude('.step-labels')
+				.analyze();
 
-		expect(contrastViolations).toHaveLength(0);
-	});
+			const contrastViolations = accessibilityScanResults.violations.filter(
+				(v: { id: string }) => v.id === 'color-contrast'
+			);
 
-	test('colors page passes axe contrast checks - dark mode', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'dark' });
-		await page.goto('/colors.html');
-		await page.waitForTimeout(100);
+			expect(contrastViolations).toHaveLength(0);
+		});
 
-		// Test UI controls only (not color swatches which intentionally show all color steps)
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa'])
-			.exclude('.color-swatch')
-			.exclude('.step-labels')
-			.analyze();
+		test('contrast test page passes axe checks', async ({ page }) => {
+			await page.goto('/contrast.html');
+			await page.waitForTimeout(100);
 
-		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v: { id: string }) => v.id === 'color-contrast'
-		);
+			const accessibilityScanResults = await new AxeBuilder({ page })
+				.withTags(['wcag2aa'])
+				.analyze();
 
-		expect(contrastViolations).toHaveLength(0);
-	});
+			const contrastViolations = accessibilityScanResults.violations.filter(
+				(v: { id: string }) => v.id === 'color-contrast'
+			);
 
-	test('contrast test page passes axe checks - light mode', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'light' });
-		await page.goto('/contrast.html');
-		await page.waitForTimeout(100);
-
-		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
-
-		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v: { id: string }) => v.id === 'color-contrast'
-		);
-
-		// Log any violations for debugging
-		if (contrastViolations.length > 0) {
-			console.log('Contrast violations found:');
-			for (const violation of contrastViolations) {
-				for (const node of violation.nodes) {
-					console.log(`  - ${node.html}`);
-					console.log(`    ${node.failureSummary}`);
+			if (contrastViolations.length > 0) {
+				console.log('Contrast violations found:');
+				for (const violation of contrastViolations) {
+					for (const node of violation.nodes) {
+						console.log(`  - ${node.html}`);
+						console.log(`    ${node.failureSummary}`);
+					}
 				}
 			}
-		}
 
-		expect(contrastViolations).toHaveLength(0);
+			expect(contrastViolations).toHaveLength(0);
+		});
 	});
 
-	test('contrast test page passes axe checks - dark mode', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'dark' });
-		await page.goto('/contrast.html');
-		await page.waitForTimeout(100);
+	test.describe('dark mode', () => {
+		test.use({ colorScheme: 'dark' });
 
-		const accessibilityScanResults = await new AxeBuilder({ page }).withTags(['wcag2aa']).analyze();
+		test('colors page passes axe contrast checks', async ({ page }) => {
+			await page.goto('/colors.html');
+			await page.waitForTimeout(100);
 
-		const contrastViolations = accessibilityScanResults.violations.filter(
-			(v: { id: string }) => v.id === 'color-contrast'
-		);
+			const accessibilityScanResults = await new AxeBuilder({ page })
+				.withTags(['wcag2aa'])
+				.exclude('.color-swatch')
+				.exclude('.step-labels')
+				.analyze();
 
-		if (contrastViolations.length > 0) {
-			console.log('Dark mode contrast violations found:');
-			for (const violation of contrastViolations) {
-				for (const node of violation.nodes) {
-					console.log(`  - ${node.html}`);
-					console.log(`    ${node.failureSummary}`);
+			const contrastViolations = accessibilityScanResults.violations.filter(
+				(v: { id: string }) => v.id === 'color-contrast'
+			);
+
+			expect(contrastViolations).toHaveLength(0);
+		});
+
+		test('contrast test page passes axe checks', async ({ page }) => {
+			await page.goto('/contrast.html');
+			await page.waitForTimeout(100);
+
+			const accessibilityScanResults = await new AxeBuilder({ page })
+				.withTags(['wcag2aa'])
+				.analyze();
+
+			const contrastViolations = accessibilityScanResults.violations.filter(
+				(v: { id: string }) => v.id === 'color-contrast'
+			);
+
+			if (contrastViolations.length > 0) {
+				console.log('Dark mode contrast violations found:');
+				for (const violation of contrastViolations) {
+					for (const node of violation.nodes) {
+						console.log(`  - ${node.html}`);
+						console.log(`    ${node.failureSummary}`);
+					}
 				}
 			}
-		}
 
-		expect(contrastViolations).toHaveLength(0);
+			expect(contrastViolations).toHaveLength(0);
+		});
 	});
 });
 
 test.describe('Accessibility - Components', () => {
-	test('components page has no accessibility violations - light mode', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'light' });
-		await page.goto('/components.html');
-		await page.waitForTimeout(100);
+	test.describe('light mode', () => {
+		test.use({ colorScheme: 'light' });
 
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa', 'wcag21aa'])
-			.analyze();
+		test('components page has no accessibility violations', async ({ page }) => {
+			await page.goto('/components.html');
+			await page.waitForTimeout(100);
 
-		expect(accessibilityScanResults.violations).toHaveLength(0);
+			const accessibilityScanResults = await new AxeBuilder({ page })
+				.withTags(['wcag2aa', 'wcag21aa'])
+				.analyze();
+
+			expect(accessibilityScanResults.violations).toHaveLength(0);
+		});
 	});
 
-	test('components page has no accessibility violations - dark mode', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'dark' });
-		await page.goto('/components.html');
-		await page.waitForTimeout(100);
+	test.describe('dark mode', () => {
+		test.use({ colorScheme: 'dark' });
 
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.withTags(['wcag2aa', 'wcag21aa'])
-			.analyze();
+		test('components page has no accessibility violations', async ({ page }) => {
+			await page.goto('/components.html');
+			await page.waitForTimeout(100);
 
-		expect(accessibilityScanResults.violations).toHaveLength(0);
+			const accessibilityScanResults = await new AxeBuilder({ page })
+				.withTags(['wcag2aa', 'wcag21aa'])
+				.analyze();
+
+			expect(accessibilityScanResults.violations).toHaveLength(0);
+		});
 	});
 
 	test('buttons are keyboard accessible', async ({ page }) => {
 		await page.goto('/components.html');
 
-		// Tab to first button and check it receives focus
 		await page.keyboard.press('Tab');
-		await page.keyboard.press('Tab'); // Skip nav links
+		await page.keyboard.press('Tab');
 
 		const focusedElement = await page.evaluate(() => document.activeElement?.hasAttribute('s-btn'));
 
@@ -152,31 +160,28 @@ test.describe('Accessibility - Components', () => {
 });
 
 test.describe('Accessibility - Focus Indicators', () => {
+	test.use({ colorScheme: 'light' });
+
 	test('buttons have visible focus indicators', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/components.html');
 
 		const button = page.locator('[s-btn="primary"]').first();
 		await button.focus();
 
-		// Check that focus outline is visible
 		const outlineWidth = await button.evaluate((el) => {
 			const styles = window.getComputedStyle(el);
 			return styles.outlineWidth;
 		});
 
-		// Focus indicator should be present
 		expect(outlineWidth).not.toBe('0px');
 	});
 
 	test('inputs have visible focus indicators', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/components.html');
 
 		const input = page.locator('#text-input');
 		await input.focus();
 
-		// Check that focus ring is visible
 		const ringColor = await input.evaluate((el) => {
 			const styles = window.getComputedStyle(el);
 			return styles.outlineColor || styles.boxShadow;
@@ -187,8 +192,9 @@ test.describe('Accessibility - Focus Indicators', () => {
 });
 
 test.describe('Accessibility - Semantic Color Messages', () => {
+	test.use({ colorScheme: 'light' });
+
 	test('success messages have sufficient contrast', async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'light' });
 		await page.goto('/contrast.html');
 		await page.waitForTimeout(100);
 
@@ -211,15 +217,12 @@ test.describe('Accessibility - Screen Reader Utilities', () => {
 
 		const srOnlyLabel = page.locator('[data-testid="sr-only-label"]');
 
-		// Element should exist in DOM
 		await expect(srOnlyLabel).toBeAttached();
 
-		// Element should have sr-only styling (1px dimensions, clipped)
 		const box = await srOnlyLabel.boundingBox();
 		expect(box?.width).toBeLessThanOrEqual(1);
 		expect(box?.height).toBeLessThanOrEqual(1);
 
-		// Element should contain accessible text
 		await expect(srOnlyLabel).toHaveText('More options');
 	});
 
@@ -228,16 +231,13 @@ test.describe('Accessibility - Screen Reader Utilities', () => {
 
 		const skipLink = page.locator('[data-testid="skip-link"]');
 
-		// Before focus: should be visually hidden (off-screen or clipped)
 		const initialBox = await skipLink.boundingBox();
 		const isInitiallyHidden =
 			!initialBox || initialBox.width <= 1 || initialBox.height <= 1 || initialBox.y < 0;
 		expect(isInitiallyHidden).toBe(true);
 
-		// Focus the skip link (it's the first focusable element)
 		await skipLink.focus();
 
-		// After focus: should be visible with normal dimensions
 		const focusedBox = await skipLink.boundingBox();
 		expect(focusedBox).not.toBeNull();
 		expect(focusedBox!.width).toBeGreaterThan(1);
@@ -247,13 +247,11 @@ test.describe('Accessibility - Screen Reader Utilities', () => {
 	test('skip link is keyboard accessible', async ({ page }) => {
 		await page.goto('/components.html');
 
-		// Tab to focus the skip link (first focusable element)
 		await page.keyboard.press('Tab');
 
 		const skipLink = page.locator('[data-testid="skip-link"]');
 		await expect(skipLink).toBeFocused();
 
-		// Should now be visible
 		const box = await skipLink.boundingBox();
 		expect(box).not.toBeNull();
 		expect(box!.width).toBeGreaterThan(1);

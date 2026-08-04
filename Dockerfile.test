@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.62.0-jammy
+FROM mcr.microsoft.com/playwright:v1.62.1-jammy
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash playwright
