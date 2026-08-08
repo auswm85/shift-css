@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.5.3](https://github.com/auswm85/shift-css/compare/cli-v0.5.2...cli-v0.5.3) (2026-08-08)
+
+
+### Bug Fixes
+
+* **core:** fix a11y test failures after playwright 1.62.1 update ([#134](https://github.com/auswm85/shift-css/issues/134)) ([73401ff](https://github.com/auswm85/shift-css/commit/73401ffa3aa56fd7fe38b4759a364de3a1d21b1e))
+* **deps:** bump @clack/prompts from 1.6.0 to 1.7.0 ([#123](https://github.com/auswm85/shift-css/issues/123)) ([9f0d388](https://github.com/auswm85/shift-css/commit/9f0d388408f994822407897108248c3582ea3fe5))
+
+
+### Maintenance
+
+* **cli:** update cli package deps ([d429c04](https://github.com/auswm85/shift-css/commit/d429c046a4c097b5f7b914ecc931f672da91601b))
+* **deps-dev:** bump @types/node from 26.0.0 to 26.1.0 ([#112](https://github.com/auswm85/shift-css/issues/112)) ([4300d71](https://github.com/auswm85/shift-css/commit/4300d7164616e099a90580d9b401b03977377940))
+* **deps-dev:** bump @types/node from 26.1.0 to 26.1.1 ([#119](https://github.com/auswm85/shift-css/issues/119)) ([9e2d756](https://github.com/auswm85/shift-css/commit/9e2d7567f7102764c4bf57fa5adc7ab2cbdcaec3))
+* **deps-dev:** bump tsx from 4.22.4 to 4.23.0 ([#118](https://github.com/auswm85/shift-css/issues/118)) ([72000ad](https://github.com/auswm85/shift-css/commit/72000addd905bba94d1c3511120a8be417fe3866))
+* **deps-dev:** bump tsx from 4.23.0 to 4.23.1 ([#125](https://github.com/auswm85/shift-css/issues/125)) ([cd59aa6](https://github.com/auswm85/shift-css/commit/cd59aa61fe3c112318cf0b9dc4a096cf5aa0f7f7))
+* **deps-dev:** bump typescript from 6.0.3 to 7.0.2 ([#131](https://github.com/auswm85/shift-css/issues/131)) ([d3c4fac](https://github.com/auswm85/shift-css/commit/d3c4facb3cf9c4b4173e9c8775d6353d1541887c))
+* **deps:** update playwright and dependencies ([#133](https://github.com/auswm85/shift-css/issues/133)) ([57b4fb2](https://github.com/auswm85/shift-css/commit/57b4fb2f952fa58e7c592ab100ea8f04e214e515))
+
 ## [0.5.2](https://github.com/auswm85/shift-css/compare/cli-v0.5.1...cli-v0.5.2) (2026-06-20)
 
 
