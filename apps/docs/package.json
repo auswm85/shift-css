@@ -11,7 +11,7 @@
     "test:a11y": "playwright test"
   },
   "dependencies": {
-    "@astrojs/mdx": "^7.0.8",
+    "@astrojs/mdx": "^8.0.0",
     "@astrojs/sitemap": "^3.7.4",
     "@shift-css/core": "workspace:*",
     "astro": "^7.2.6"
