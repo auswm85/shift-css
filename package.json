@@ -17,7 +17,7 @@
     "test:docker:update": "docker build -f Dockerfile.test -t shift-css-test . && docker run --rm -v $(pwd)/packages/core/tests/e2e/snapshots:/app/packages/core/tests/e2e/snapshots shift-css-test sh -c 'cd packages/core && bunx playwright test --update-snapshots --project=visual-chrome'"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.10"
+    "@biomejs/biome": "^2.5.12"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -29,6 +29,8 @@
   "overrides": {
     "yaml": "^2.8.3",
     "esbuild": "^0.28.1",
-    "js-yaml": "^4.3.0"
+    "js-yaml": "^4.3.1",
+    "fast-uri": "^3.1.6",
+    "nanoid": "^3.3.18"
   }
 }
