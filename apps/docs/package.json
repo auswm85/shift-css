@@ -20,7 +20,7 @@
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.12.1",
     "@critters-rs/astro": "^1.2.0",
-    "@playwright/test": "^1.62.0",
+    "@playwright/test": "^1.63.0",
     "pagefind": "^1.5.2",
     "typescript": "^7.0.2"
   }
