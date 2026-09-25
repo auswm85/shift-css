@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.5.4](https://github.com/auswm85/shift-css/compare/cli-v0.5.3...cli-v0.5.4) (2026-09-25)
+
+
+### Bug Fixes
+
+* **deps:** bump @clack/prompts from 1.7.0 to 1.8.0 ([#156](https://github.com/auswm85/shift-css/issues/156)) ([d49c9ed](https://github.com/auswm85/shift-css/commit/d49c9ede3ac933ec52f7bd03d0107bf75d9b41ef))
+
+
+### Maintenance
+
+* **deps-dev:** bump @types/bun from 1.3.14 to 1.4.0 ([#147](https://github.com/auswm85/shift-css/issues/147)) ([28d2330](https://github.com/auswm85/shift-css/commit/28d2330393b87bd69b9e330d196ea6d1f79d39e9))
+* **deps-dev:** bump @types/bun from 1.4.1 to 1.4.2 ([#155](https://github.com/auswm85/shift-css/issues/155)) ([ffc99e1](https://github.com/auswm85/shift-css/commit/ffc99e1a3910990619502b0a93421e5993d42e4b))
+* **deps-dev:** bump @types/node from 26.2.0 to 26.3.0 ([#145](https://github.com/auswm85/shift-css/issues/145)) ([21d28e7](https://github.com/auswm85/shift-css/commit/21d28e78d18722a1c576c3be4eda829e3d9a34b1))
+* **deps-dev:** bump @types/node from 26.3.0 to 26.4.0 ([#151](https://github.com/auswm85/shift-css/issues/151)) ([180bb64](https://github.com/auswm85/shift-css/commit/180bb64c175de1eab30621f6586c509166aca812))
+* **deps-dev:** bump @types/node from 26.4.1 to 26.5.0 ([#154](https://github.com/auswm85/shift-css/issues/154)) ([ae79e1f](https://github.com/auswm85/shift-css/commit/ae79e1f9ccb6ea078511c7a9549ee2cc0939bdda))
+* **deps-dev:** bump @types/node from 26.6.1 to 26.6.2 ([#161](https://github.com/auswm85/shift-css/issues/161)) ([6e6cc3e](https://github.com/auswm85/shift-css/commit/6e6cc3e08712f2fb2c1e7ffcd9d4566e55d03ce1))
+* **deps-dev:** bump tsx from 4.23.12 to 4.23.13 ([#150](https://github.com/auswm85/shift-css/issues/150)) ([d5fb356](https://github.com/auswm85/shift-css/commit/d5fb356b9ac70a24d974ff13de87c1e3f483520c))
+* **deps-dev:** bump tsx from 4.23.13 to 4.23.15 ([#160](https://github.com/auswm85/shift-css/issues/160)) ([67f1ff9](https://github.com/auswm85/shift-css/commit/67f1ff95f545e6eac329faffc89a5f359cb678db))
+* **deps-dev:** update tsx dep ([d3965b7](https://github.com/auswm85/shift-css/commit/d3965b70a57371d313a9efcd730560ce614ac39a))
+* **deps:** bump @biomejs/biome and related packages ([488f10d](https://github.com/auswm85/shift-css/commit/488f10d7929b82428c1e1ff887aac1a9ce7635c2))
+* **deps:** bump @types/bun and @types/node versions ([786fa59](https://github.com/auswm85/shift-css/commit/786fa5911e73c9f4100d6f11efd9970d821f7866))
+
 ## [0.5.3](https://github.com/auswm85/shift-css/compare/cli-v0.5.2...cli-v0.5.3) (2026-08-08)
 
 
