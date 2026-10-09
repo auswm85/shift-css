@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright:v1.62.1-jammy
+FROM mcr.microsoft.com/playwright:v1.63.0-jammy
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash playwright
@@ -20,11 +20,12 @@ COPY apps/docs/package.json ./apps/docs/
 # Install dependencies (skip frozen for cross-platform compatibility)
 RUN bun install
 
-# Install the browser binary matching the resolved Playwright version.
-# The base image ships browsers pinned to its tag, which drifts out of sync
-# whenever Dependabot bumps @playwright/test. Installing here keeps the browser
-# revision aligned with the lockfile regardless of the base image tag.
-RUN bunx playwright install chromium
+# Install the browser binary matching the locked Playwright version.
+# Uses the locally installed playwright from the lockfile, not bunx (which
+# would download the latest version with a potentially different Chromium
+# revision). The base image ships browsers pinned to its tag, which drifts
+# out of sync whenever Dependabot bumps @playwright/test.
+RUN packages/core/node_modules/.bin/playwright install chromium
 
 # Copy source
 COPY . .
@@ -32,7 +33,7 @@ COPY . .
 # Build
 RUN bun run build
 
-RUN chown -R playwright:playwright /app
+RUN chown -R playwright:playwright /app /ms-playwright
 USER playwright
 
 # Default command
