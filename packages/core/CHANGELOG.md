@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.5](https://github.com/auswm85/shift-css/compare/core-v0.8.4...core-v0.8.5) (2026-11-01)
+
+
+### Bug Fixes
+
+* **core:** bump @types/node to version 26.6.6 ([a14cb40](https://github.com/auswm85/shift-css/commit/a14cb40ddccda42e19373bdadf76921da7495e28))
+
 ## [0.8.4](https://github.com/auswm85/shift-css/compare/core-v0.8.3...core-v0.8.4) (2026-10-25)
 
 
