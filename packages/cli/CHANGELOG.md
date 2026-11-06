@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.5](https://github.com/auswm85/shift-css/compare/cli-v0.5.4...cli-v0.5.5) (2026-11-01)
+
+
+### Maintenance
+
+* **cli:** bump @types/node to version 26.6.6 ([949e260](https://github.com/auswm85/shift-css/commit/949e260315f676e792cbbfb174b557b5f26c2dbf))
+
 ## [0.5.4](https://github.com/auswm85/shift-css/compare/cli-v0.5.3...cli-v0.5.4) (2026-10-25)
 
 
