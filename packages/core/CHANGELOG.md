@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.8.5](https://github.com/auswm85/shift-css/compare/core-v0.8.4...core-v0.8.5) (2026-11-27)
+
+
+### Bug Fixes
+
+* **core:** bump @types/node to version 26.6.6 ([a14cb40](https://github.com/auswm85/shift-css/commit/a14cb40ddccda42e19373bdadf76921da7495e28))
+
+
+### Maintenance
+
+* **deps-dev:** bump @types/bun from 1.4.4 to 1.4.5 ([#201](https://github.com/auswm85/shift-css/issues/201)) ([ba67538](https://github.com/auswm85/shift-css/commit/ba675382b28cbddca0d3a98f09d8aa1349194730))
+* **deps-dev:** bump the playwright group with 2 updates ([#189](https://github.com/auswm85/shift-css/issues/189)) ([bc344d0](https://github.com/auswm85/shift-css/commit/bc344d0e1aef1fb4fc943137f9d52fb612d698dd))
+* **deps-dev:** bump the playwright group with 2 updates ([#194](https://github.com/auswm85/shift-css/issues/194)) ([193a959](https://github.com/auswm85/shift-css/commit/193a95943fd852470370cfeea01829729df08c16))
+* **deps-dev:** bump vue from 3.5.44 to 3.5.45 ([#192](https://github.com/auswm85/shift-css/issues/192)) ([b95eb7f](https://github.com/auswm85/shift-css/commit/b95eb7f2c1ba27b8e88c51b45ca5704ff0bd7936))
+* **deps-dev:** bump vue from 3.5.45 to 3.5.46 ([#202](https://github.com/auswm85/shift-css/issues/202)) ([e14ffde](https://github.com/auswm85/shift-css/commit/e14ffde168d3cdd6ec97765471794db01abb63f1))
+
 ## [0.8.4](https://github.com/auswm85/shift-css/compare/core-v0.8.3...core-v0.8.4) (2026-10-25)
 
 
